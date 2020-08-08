@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "package": "CarpetTCTCAddition.mixins",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "WorldMixin",
+    "ServerLightProviderMixin",
+    "MinecraftServerMixin"
+  ],
+  "client": [
+    "MinecraftClientMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

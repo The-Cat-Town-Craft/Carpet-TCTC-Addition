@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
-  "id": "carpet-extension",
-  "version": "1.4.6",
+  "id": "carpettctcaddition",
+  "version": "1.0.0",
 
-  "name": "Example Carpet Extension Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "CarpetTCTCAddition",
+  "description": "CarpetTCTCAddition",
   "authors": [
-    "Me!"
+    "Hendrix_Shen"
   ],
   "contact": {
-    "homepage": "https://web.me/",
-    "sources": "https://github.com/gnembon/fabric-carpet-extension-example-mod"
+    "homepage": "https://github.com/The-Cat-The-Craft",
+    "sources": "https://github.com/The-Cat-The-Craft/Carpet-TCTC-Addition"
   },
 
   "license": "CC0-1.0",
@@ -22,11 +22,11 @@
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "CarpetTCTCAddition.mixins.json"
   ],
 
   "depends": {
-    "minecraft": "1.16.x",
+    "minecraft": "1.15.x",
     "fabricloader": ">=0.4.0",
     "carpet": "*"
   },

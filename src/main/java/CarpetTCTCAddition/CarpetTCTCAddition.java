@@ -1,4 +1,4 @@
-package carpet_extension;
+package CarpetTCTCAddition;
 
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
@@ -10,47 +10,24 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 
-public class ExampleExtension implements CarpetExtension
+public class CarpetTCTCAddition implements CarpetExtension
 {
+    public static final String version = "1.0.0";
     public static void noop() { }
     private static SettingsManager mySettingManager;
     static
     {
-        mySettingManager = new SettingsManager("1.0","examplemod","Example Mod");
-        CarpetServer.manageExtension(new ExampleExtension());
+        mySettingManager = new SettingsManager(version, "carpetTCTCAddition", "carpet TCTC Addition");
+        CarpetServer.manageExtension(new CarpetTCTCAddition());
     }
 
     @Override
     public void onGameStarted()
     {
         // let's /carpet handle our few simple settings
-        CarpetServer.settingsManager.parseSettingsClass(ExampleSimpleSettings.class);
+        CarpetServer.settingsManager.parseSettingsClass(CarpetTCTCAdditionSettings.class);
         // Lets have our own settings class independent from carpet.conf
-        mySettingManager.parseSettingsClass(ExampleOwnSettings.class);
-
-        // set-up a snooper to observe how rules are changing in carpet
-        CarpetServer.settingsManager.addRuleObserver( (serverCommandSource, currentRuleState, originalUserTest) ->
-        {
-            if (currentRuleState.categories.contains("examplemod"))
-            {
-                Messenger.m(
-                        serverCommandSource,
-                        "gi Psssst... make sure not to change not to touch original carpet rules"
-                );
-                // obviously you can change original carpet rules
-            }
-            else
-            {
-                try
-                {
-                    Messenger.print_server_message(
-                            serverCommandSource.getMinecraftServer(),
-                            "Ehlo everybody, "+serverCommandSource.getPlayer().getName().getString()+" is cheating..."
-                    );
-                }
-                catch (CommandSyntaxException ignored) { }
-            }
-        });
+        mySettingManager.parseSettingsClass(CarpetTCTCAddition.class);
     }
 
     @Override
@@ -66,11 +43,12 @@ public class ExampleExtension implements CarpetExtension
         // no need to add this.
     }
 
-    @Override
+    /*@Override
     public void registerCommands(CommandDispatcher<ServerCommandSource> dispatcher)
     {
-        ExampleCommand.register(dispatcher);
+        Command.register(dispatcher);
     }
+    */
 
     @Override
     public SettingsManager customSettingsManager()
