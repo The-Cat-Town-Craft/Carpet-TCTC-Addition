@@ -3,9 +3,10 @@
   "package": "CarpetTCTCAddition.mixins",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "MinecraftServerMixin",
+    "BlockStateMixin",
     "WorldMixin",
-    "ServerLightProviderMixin",
-    "MinecraftServerMixin"
+    "ServerLightProviderMixin"
   ],
   "client": [
     "MinecraftClientMixin"

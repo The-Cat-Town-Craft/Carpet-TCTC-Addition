@@ -1,5 +1,6 @@
 package CarpetTCTCAddition;
 
+import CarpetTCTCAddition.commands.TPSCommand;
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import carpet.settings.SettingsManager;
@@ -12,7 +13,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 
 public class CarpetTCTCAddition implements CarpetExtension
 {
-    public static final String version = "1.0.0";
+    public static final String version = "1.0.1";
     public static void noop() { }
     private static SettingsManager mySettingManager;
     static
@@ -43,12 +44,13 @@ public class CarpetTCTCAddition implements CarpetExtension
         // no need to add this.
     }
 
-    /*@Override
+    @Override
     public void registerCommands(CommandDispatcher<ServerCommandSource> dispatcher)
     {
         Command.register(dispatcher);
+        TPSCommand.register(dispatcher);
     }
-    */
+
 
     @Override
     public SettingsManager customSettingsManager()

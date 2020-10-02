@@ -1,5 +1,6 @@
 package CarpetTCTCAddition;
 
+import CarpetTCTCAddition.commands.TPSCommand;
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.server.command.ServerCommandSource;
 

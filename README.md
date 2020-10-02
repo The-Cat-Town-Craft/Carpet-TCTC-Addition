@@ -3,7 +3,7 @@
 依赖于 [fabric-carpet](https://github.com/gnembon/fabric-carpet) 的附属模组
 
 # 新增的功能
-### 光照更新(lightUpdates) (感谢 [HIT-Carpet](https://github.com/HIT-Craft/HIT-Carpet))
+### 光照更新(lightUpdates)
 用于关闭服务器光照更新
 * 默认值: `true`
 * 可选参数: `true`, `false`
@@ -19,12 +19,21 @@
 * 可选参数: `true`, `false`
 * 关闭方法: `/carpet removeUpdateSuppression false`
 
-### 修复更新抑制器崩服(updateSuppressionCrashFix) (感谢 [Xcom6000](https://github.com/X-com))
+### 修复更新抑制器崩服(updateSuppressionCrashFix)
 在保证更新抑制器可以正常工作的情况下, 防止非玩家更新崩服
 * 默认值: `true`
 * 可选参数: `true`, `false`
 * 关闭方法: `/carpet updateSuppressionCrashFix false`
 
+### 方块更新(blockUpdate)
+玩家破坏/放置方块时是否造成更新
+* 默认值: `true`
+* 可选参数: `true`, `false`
+
+### TPS查询(commandTps)
+查看当前服务器实际TPS及MSPT
+* 默认值: `true`
+* 可选参数: `true`, `false`
 
 # 感谢
 - [gnembon](https://github.com/gnembon/) - [fabric-carpet](https://github.com/gnembon/fabric-carpet)

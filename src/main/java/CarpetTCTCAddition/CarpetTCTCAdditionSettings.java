@@ -20,4 +20,10 @@ public class CarpetTCTCAdditionSettings
     @Rule(desc="修复更新抑制器崩服", category = {"TCTC", RuleCategory.BUGFIX})
     public static boolean updateSuppressionCrashFix = false;
 
+    @Rule(desc="方块更新", category = {"TCTC", RuleCategory.BUGFIX})
+    public static boolean blockUpdate = true;
+
+    @Rule(desc="查看当前服务器实际TPS及MSPT", category = {"TCTC", RuleCategory.COMMAND})
+    public static String commandTps = "true";
+
 }
