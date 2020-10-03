@@ -3,13 +3,13 @@
   "package": "CarpetTCTCAddition.mixins",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "CrashReportMixin",
     "MinecraftServerMixin",
-    "BlockStateMixin",
+    "AbstractBlockMixin",
     "WorldMixin",
     "ServerLightProviderMixin"
   ],
   "client": [
-    "MinecraftClientMixin"
   ],
   "injectors": {
     "defaultRequire": 1

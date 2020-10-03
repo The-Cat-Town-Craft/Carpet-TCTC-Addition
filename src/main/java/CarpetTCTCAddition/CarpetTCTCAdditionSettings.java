@@ -26,4 +26,11 @@ public class CarpetTCTCAdditionSettings
     @Rule(desc="查看当前服务器实际TPS及MSPT", category = {"TCTC", RuleCategory.COMMAND})
     public static String commandTps = "true";
 
+    @Rule(
+            desc = "允许使用 /c 和 /s 命令在 旁观者模式 和 生存模式 间切换(原地毯端功能)",
+            extra = "/c 和 /s 命令 将允许全体玩家以低权限模式执行",
+            category =  {"TCTC", RuleCategory.COMMAND}
+    )
+    public static String commandCameramode = "false";
+
 }

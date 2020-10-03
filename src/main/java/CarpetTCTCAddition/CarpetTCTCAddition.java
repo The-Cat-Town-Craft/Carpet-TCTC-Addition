@@ -1,5 +1,6 @@
 package CarpetTCTCAddition;
 
+import CarpetTCTCAddition.commands.CameraModeCommand;
 import CarpetTCTCAddition.commands.TPSCommand;
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
@@ -48,6 +49,7 @@ public class CarpetTCTCAddition implements CarpetExtension
     public void registerCommands(CommandDispatcher<ServerCommandSource> dispatcher)
     {
         Command.register(dispatcher);
+        CameraModeCommand.register(dispatcher);
         TPSCommand.register(dispatcher);
     }
 

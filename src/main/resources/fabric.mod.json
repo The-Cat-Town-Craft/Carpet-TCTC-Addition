@@ -6,6 +6,7 @@
   "name": "CarpetTCTCAddition",
   "description": "CarpetTCTCAddition",
   "authors": [
+    "Crypton_Miku",
     "Hendrix_Shen"
   ],
   "contact": {
@@ -14,7 +15,7 @@
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/CarpetTCTCAddition/icon.png",
 
   "environment": "*",
   "entrypoints": {
@@ -26,7 +27,7 @@
   ],
 
   "depends": {
-    "minecraft": "1.15.x",
+    "minecraft": "1.16.x",
     "fabricloader": ">=0.4.0",
     "carpet": "*"
   },

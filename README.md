@@ -30,8 +30,15 @@
 * 默认值: `true`
 * 可选参数: `true`, `false`
 
+**警告：** 使用此功能时务必启用 updateSuppressionCrashFix 否则 100% 造成崩溃
+
 ### TPS查询(commandTps)
 查看当前服务器实际TPS及MSPT
+* 默认值: `true`
+* 可选参数: `true`, `false`
+
+### 观察者模式(commandCameramode)
+允许使用 /c 和 /s 命令在 旁观者模式 和 生存模式 间切换(原地毯端功能)
 * 默认值: `true`
 * 可选参数: `true`, `false`
 
