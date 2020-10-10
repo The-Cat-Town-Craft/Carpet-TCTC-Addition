@@ -1,4 +1,4 @@
-package CarpetTCTCAddition.mixins;
+package CarpetTCTCAddition.mixins.net.minecraft.server.world;
 
 import CarpetTCTCAddition.CarpetTCTCAdditionSettings;
 import net.minecraft.server.world.ServerLightingProvider;

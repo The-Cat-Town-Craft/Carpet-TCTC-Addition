@@ -3,11 +3,13 @@
   "package": "CarpetTCTCAddition.mixins",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "CrashReportMixin",
-    "MinecraftServerMixin",
-    "AbstractBlockMixin",
-    "WorldMixin",
-    "ServerLightProviderMixin"
+    "net.minecraft.block.AbstractBlockStateMixin",
+    "net.minecraft.server.command.SeedCommandMixin",
+    "net.minecraft.server.dedicated.command.OpCommandMixin",
+    "net.minecraft.server.network.ServerPlayNetworkHandlerMixin",
+    "net.minecraft.server.world.ServerLightProviderMixin",
+    "net.minecraft.util.crash.CrashReportMixin",
+    "net.minecraft.world.WorldMixin"
   ],
   "client": [
   ],

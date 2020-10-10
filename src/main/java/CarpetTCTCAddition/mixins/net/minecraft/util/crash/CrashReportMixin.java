@@ -1,4 +1,4 @@
-package CarpetTCTCAddition.mixins;
+package CarpetTCTCAddition.mixins.net.minecraft.util.crash;
 
 import CarpetTCTCAddition.CarpetTCTCAddition;
 import net.minecraft.util.crash.CrashReport;

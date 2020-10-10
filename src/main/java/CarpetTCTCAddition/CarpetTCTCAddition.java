@@ -1,6 +1,7 @@
 package CarpetTCTCAddition;
 
 import CarpetTCTCAddition.commands.CameraModeCommand;
+import CarpetTCTCAddition.commands.HereCommand;
 import CarpetTCTCAddition.commands.TPSCommand;
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
@@ -14,7 +15,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 
 public class CarpetTCTCAddition implements CarpetExtension
 {
-    public static final String version = "1.0.1";
+    public static final String version = "1.0.2";
     public static void noop() { }
     private static SettingsManager mySettingManager;
     static
@@ -50,6 +51,7 @@ public class CarpetTCTCAddition implements CarpetExtension
     {
         Command.register(dispatcher);
         CameraModeCommand.register(dispatcher);
+        HereCommand.register(dispatcher);
         TPSCommand.register(dispatcher);
     }
 
