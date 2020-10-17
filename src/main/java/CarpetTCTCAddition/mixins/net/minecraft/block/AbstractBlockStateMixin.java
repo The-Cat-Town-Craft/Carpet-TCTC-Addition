@@ -17,7 +17,7 @@ public class AbstractBlockStateMixin {
         at = @At(value = "HEAD"),
         cancellable = true
     )
-    private void cancelBlockAdded(World world, BlockPos pos, BlockState state, boolean notify, CallbackInfo ci) {
+    private void cancelBlockAdded(CallbackInfo ci) {
         if(!CarpetTCTCAdditionSettings.blockUpdate) ci.cancel();
     }
     @Inject(
@@ -25,7 +25,16 @@ public class AbstractBlockStateMixin {
         at = @At(value = "HEAD"),
         cancellable = true
     )
-    private void cancelBlockRemove(World world, BlockPos pos, BlockState state, boolean moved, CallbackInfo ci) {
+    private void cancelBlockRemove(CallbackInfo ci) {
+        if(!CarpetTCTCAdditionSettings.blockUpdate) ci.cancel();
+    }
+    @SuppressWarnings("UnresolvedMixinReference")
+    @Inject(
+        method = "method_26183", //updateNeighbors
+        at = @At(value = "HEAD"),
+        cancellable = true
+    )
+    private void cancelUpdateNeighborStates(CallbackInfo ci) {
         if(!CarpetTCTCAdditionSettings.blockUpdate) ci.cancel();
     }
 }
