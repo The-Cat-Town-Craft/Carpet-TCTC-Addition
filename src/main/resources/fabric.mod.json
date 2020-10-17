@@ -14,7 +14,7 @@
     "sources": "https://github.com/The-Cat-The-Craft/Carpet-TCTC-Addition"
   },
 
-  "license": "CC0-1.0",
+  "license": "GLP-v3",
   "icon": "assets/CarpetTCTCAddition/icon.png",
 
   "environment": "*",
@@ -29,7 +29,7 @@
   "depends": {
     "minecraft": "1.15.x",
     "fabricloader": ">=0.4.0",
-    "carpet": "*"
+    "carpet": ">=1.4.8"
   },
   "suggests": {
     "flamingo": "*"
