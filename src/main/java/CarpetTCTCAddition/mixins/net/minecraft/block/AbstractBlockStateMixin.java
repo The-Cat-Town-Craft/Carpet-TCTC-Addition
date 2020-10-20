@@ -12,16 +12,18 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(AbstractBlock.AbstractBlockState.class)
 public class AbstractBlockStateMixin {
+    @SuppressWarnings("UnresolvedMixinReference")
     @Inject(
-        method = "onBlockAdded",
+        method = "method_26182", //onBlockAdded
         at = @At(value = "HEAD"),
         cancellable = true
     )
     private void cancelBlockAdded(CallbackInfo ci) {
         if(!CarpetTCTCAdditionSettings.blockUpdate) ci.cancel();
     }
+    @SuppressWarnings("UnresolvedMixinReference")
     @Inject(
-        method = "onStateReplaced",
+        method = "method_26197", //onStateReplaced
         at = @At(value = "HEAD"),
         cancellable = true
     )
@@ -30,11 +32,21 @@ public class AbstractBlockStateMixin {
     }
     @SuppressWarnings("UnresolvedMixinReference")
     @Inject(
+        method = "method_26181", //neighborUpdate
+        at = @At(value = "HEAD"),
+        cancellable = true
+    )
+    private void cancelNeighborUpdate(CallbackInfo ci) {
+        if(!CarpetTCTCAdditionSettings.blockUpdate) ci.cancel();
+    }
+
+    @SuppressWarnings("UnresolvedMixinReference")
+    @Inject(
         method = "method_26183", //updateNeighbors
         at = @At(value = "HEAD"),
         cancellable = true
     )
-    private void cancelUpdateNeighborStates(CallbackInfo ci) {
+    private void cancelUpdateNeighbors(CallbackInfo ci) {
         if(!CarpetTCTCAdditionSettings.blockUpdate) ci.cancel();
     }
 }
