@@ -20,6 +20,13 @@ public class CarpetTCTCAdditionSettings
     public static String commandHere = "true";
 
     @Rule(
+        desc = "查询玩家坐标",
+        category = {"TCTC", RuleCategory.COMMAND},
+        options = {"true", "false", "ops", "0", "1", "2", "3", "4"}
+    )
+    public static String commandFind = "ops";
+
+    @Rule(
         desc = "获取服务器管理员(修改该指令权限)",
         category = {"TCTC", RuleCategory.COMMAND, RuleCategory.CREATIVE},
         options = {"true", "false", "ops", "0", "1", "2", "3", "4"}
@@ -54,16 +61,32 @@ public class CarpetTCTCAdditionSettings
     public static boolean blockUpdate = true;
 
     @Rule(
+        desc = "假人计入统计信息",
+        category = {"TCTC", RuleCategory.FEATURE}
+    )
+    public static boolean fakePlayerStats = true;
+
+    @Rule(
         desc = "光照更新",
         category = {"TCTC", RuleCategory.FEATURE})
     public static boolean lightUpdates = true;
 
-
     /* BUG 修复相关 */
-    @Rule(desc = "移除更新抑制器", category = {"TCTC", RuleCategory.BUGFIX})
+    @Rule(
+        desc = "限制 carpet 召唤假人玩家名长度",
+        category = {"TCTC", RuleCategory.BUGFIX}
+    )
+    public static boolean fakePlayerNameLengthLimit = false;
+
+    @Rule(
+        desc = "移除更新抑制器",
+        category = {"TCTC", RuleCategory.BUGFIX}
+    )
     public static boolean removeUpdateSuppression = false;
 
-    @Rule(desc = "修复更新抑制器崩服", category = {"TCTC", RuleCategory.BUGFIX})
+    @Rule(
+        desc = "修复更新抑制器崩服",
+        category = {"TCTC", RuleCategory.BUGFIX}
+    )
     public static boolean updateSuppressionCrashFix = false;
-
 }

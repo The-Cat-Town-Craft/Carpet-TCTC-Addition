@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "id": "carpettctcaddition",
-  "version": "1.0.2",
+  "id": "carpet-tctc-addition",
+  "version": "1.0.3",
 
   "name": "CarpetTCTCAddition",
   "description": "CarpetTCTCAddition",
@@ -11,6 +11,7 @@
   ],
   "contact": {
     "homepage": "https://github.com/The-Cat-The-Craft",
+    "issues": "https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/issues",
     "sources": "https://github.com/The-Cat-The-Craft/Carpet-TCTC-Addition"
   },
 

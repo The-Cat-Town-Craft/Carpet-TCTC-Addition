@@ -1,20 +1,19 @@
 package CarpetTCTCAddition;
 
+import CarpetTCTCAddition.commands.FindCommand;
 import CarpetTCTCAddition.commands.HereCommand;
 import CarpetTCTCAddition.commands.TPSCommand;
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import carpet.settings.SettingsManager;
-import carpet.utils.Messenger;
 import com.mojang.brigadier.CommandDispatcher;
-import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 
 public class CarpetTCTCAddition implements CarpetExtension
 {
-    public static final String version = "1.0.2";
+    public static final String version = "1.0.3";
     public static void noop() { }
     private static SettingsManager mySettingManager;
     static
@@ -49,6 +48,7 @@ public class CarpetTCTCAddition implements CarpetExtension
     public void registerCommands(CommandDispatcher<ServerCommandSource> dispatcher)
     {
         Command.register(dispatcher);
+        FindCommand.register(dispatcher);
         TPSCommand.register(dispatcher);
         HereCommand.register(dispatcher);
     }

@@ -5,6 +5,7 @@
 ## 新增的功能
 
 ### 命令
+ - [查询玩家坐标](#查询玩家坐标-commandFind)
  - [共享玩家坐标](#共享玩家坐标-commandHere)
  - [管理员命令](#管理员命令-commandOp)
  - [获取当前世界种子](#获取当前世界种子-commandSeed)
@@ -12,24 +13,37 @@
 ### 特性
  - [禁用旁观者传送其他玩家](#禁用旁观者传送其他玩家-cameraModeDisableSpectatePlayers)
  - [方块更新](#方块更新-blockUpdate)
+ - [假人计入统计信息](#假人计入统计信息-fakePlayerStats)
  - [光照更新](#光照更新-lightUpdates)
 ### BUG 修复
+ - [假人玩家名长度限制](#假人玩家名长度限制-fakePlayerNameLengthLimit)
  - [移除更新抑制器](#移除更新抑制器-removeUpdateSuppression)
  - [修复更新抑制器崩服](#修复更新抑制器崩服-updateSuppressionCrashFix)
 
 ## 列表
 
+### 查询玩家坐标 (commandFind)
+
+查询玩家坐标 
+
+使用 `/find <玩家/目标选择器>` 来查询玩家坐标, 位于主世界/下界的玩家还会展示其对应另一维度的坐标.
+
+- 类型: `string`  
+- 默认值: `ops`  
+- 参考选项: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4`
+- 分类: `TCTC`, `COMMAND` 
+
 ### 共享玩家坐标 (commandHere)
 
 共享玩家坐标 
 
-使用 `/here` 来共享玩家坐标, 位于主世界/下界的玩家还会展示其对应另一维度的坐标.
+使用 `/here [玩家/目标选择器]` 来共享玩家坐标, 位于主世界/下界的玩家还会展示其对应另一维度的坐标.
 
 对于 `权限等级 > 3` 的玩家可以展示其他玩家的坐标.
 
 - 类型: `string`  
 - 默认值: `true`  
-- 参考选项: `true`, `false`, `0`, `1`, `2`, `3`, `4`
+- 参考选项: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4`
 - 分类: `TCTC`, `COMMAND` 
 
 ### 管理员命令 (commandOp)
@@ -40,7 +54,7 @@
 
 - 类型: `string`  
 - 默认值: `3`  
-- 参考选项: `true`, `false`, `0`, `1`, `2`, `3`, `4`
+- 参考选项: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4`
 - 分类: `TCTC`, `COMMAND`, `CREATIVE` 
 
 ### 获取当前世界种子 (commandSeed)
@@ -51,7 +65,7 @@
 
 - 类型: `string`  
 - 默认值: `2`  
-- 参考选项: `true`, `false`, `0`, `1`, `2`, `3`, `4`
+- 参考选项: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4`
 - 分类: `TCTC`, `COMMAND`, `SURVIVAL` 
 
 ### 获取当前服务器运行速度 (commandTps)
@@ -60,7 +74,7 @@
 
 - 类型: `string`  
 - 默认值: `true`  
-- 参考选项: `true`, `false`, `0`, `1`, `2`, `3`, `4`
+- 参考选项: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4```
 - 分类: `TCTC`, `COMMAND` 
 
 ### 禁用旁观者传送其他玩家 (cameraModeDisableSpectatePlayers)
@@ -71,6 +85,24 @@
 - 默认值: `false`  
 - 参考选项: `true`, `false`
 - 分类: `TCTC`, `FEATURE` 
+
+### 假人玩家名长度限制 (fakePlayerNameLengthLimit)
+
+限制 carpet 召唤假人玩家名长度
+
+- 类型: `boolean`  
+- 默认值: `false`  
+- 参考选项: `true`, `false`
+- 分类: `TCTC`, `BUGFIX`
+
+### 假人计入统计信息 (fakePlayerStats)
+
+假人玩家是否产生统计信息, 通常与计分板相关
+
+- 类型: `boolean`  
+- 默认值: `true`  
+- 参考选项: `true`, `false`
+- 分类: `TCTC`, `FEATURE`
 
 ### 方块更新 (blockUpdate)
 
