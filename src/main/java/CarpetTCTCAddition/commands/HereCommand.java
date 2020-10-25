@@ -43,13 +43,13 @@ public class HereCommand {
         int playerY = (int)player.prevY;
         int playerZ = (int)player.prevZ;
         DimensionType playerDimension =  player.dimension;
-        String Message = String.format("w 玩家 %s 位于 %s §b[x:%d, y:%d, z:%d]", player.getDisplayName().getString(), getDimensionName(playerDimension), playerX, playerY, playerZ);
+        String Message = String.format("玩家 %s 位于 %s §b[x:%d, y:%d, z:%d]", player.getDisplayName().getString(), getDimensionName(playerDimension), playerX, playerY, playerZ);
         if(playerDimension == DimensionType.OVERWORLD) {
-            Message += String.format(" §f-> %s §b[x:%d, y:%d, z:%d]", getDimensionName(DimensionType.THE_NETHER), playerX / 8, playerY / 8, playerZ / 8);
+            Message += String.format(" §f-> %s §b[x:%d, y:%d, z:%d]", getDimensionName(DimensionType.THE_NETHER), playerX / 8, playerY, playerZ / 8);
         } else if (playerDimension == DimensionType.THE_NETHER) {
-            Message += String.format(" §f-> %s §b[x:%d, y:%d, z:%d]", getDimensionName(DimensionType.OVERWORLD), playerX * 8, playerY * 8, playerZ * 8);
+            Message += String.format(" §f-> %s §b[x:%d, y:%d, z:%d]", getDimensionName(DimensionType.OVERWORLD), playerX * 8, playerY, playerZ * 8);
         }
-        Messenger.m(source, Message);
+        Messenger.print_server_message(source.getMinecraftServer(), Message);
         return 1;
     }
     public static String getDimensionName(DimensionType dimension) {
