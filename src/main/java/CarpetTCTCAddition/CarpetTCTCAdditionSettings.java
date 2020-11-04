@@ -8,9 +8,6 @@ import carpet.settings.RuleCategory;
  */
 public class CarpetTCTCAdditionSettings
 {
-    /**
-     * You can define your own catergories. It makes sense to create new category for all settings in your mod.
-     */
     /* 命令相关 */
     @Rule(
         desc = "允许使用 /c 和 /s 命令在 旁观者模式 和 生存模式 间切换(原地毯端功能)",
@@ -19,6 +16,13 @@ public class CarpetTCTCAdditionSettings
         options = {"true", "false", "ops", "0", "1", "2", "3", "4"}
     )
     public static String commandCameramode = "false";
+
+    @Rule(
+        desc = "查找玩家坐标",
+        category = {"TCTC", RuleCategory.COMMAND},
+        options = {"true", "false", "ops", "0", "1", "2", "3", "4"}
+    )
+    public static String commandFind = "ops";
 
     @Rule(
         desc = "共享玩家坐标",
