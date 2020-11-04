@@ -1,14 +1,13 @@
 package CarpetTCTCAddition;
 
 import CarpetTCTCAddition.commands.CameraModeCommand;
+import CarpetTCTCAddition.commands.FindCommand;
 import CarpetTCTCAddition.commands.HereCommand;
 import CarpetTCTCAddition.commands.TPSCommand;
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import carpet.settings.SettingsManager;
-import carpet.utils.Messenger;
 import com.mojang.brigadier.CommandDispatcher;
-import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -27,10 +26,7 @@ public class CarpetTCTCAddition implements CarpetExtension
     @Override
     public void onGameStarted()
     {
-        // let's /carpet handle our few simple settings
         CarpetServer.settingsManager.parseSettingsClass(CarpetTCTCAdditionSettings.class);
-        // Lets have our own settings class independent from carpet.conf
-        mySettingManager.parseSettingsClass(CarpetTCTCAddition.class);
     }
 
     @Override
@@ -49,8 +45,8 @@ public class CarpetTCTCAddition implements CarpetExtension
     @Override
     public void registerCommands(CommandDispatcher<ServerCommandSource> dispatcher)
     {
-        Command.register(dispatcher);
         CameraModeCommand.register(dispatcher);
+        FindCommand.register(dispatcher);
         HereCommand.register(dispatcher);
         TPSCommand.register(dispatcher);
     }

@@ -18,7 +18,7 @@ public class CarpetTCTCAdditionSettings
     public static String commandCameramode = "false";
 
     @Rule(
-        desc = "查找玩家坐标",
+        desc = "共享玩家坐标",
         category = {"TCTC", RuleCategory.COMMAND},
         options = {"true", "false", "ops", "0", "1", "2", "3", "4"}
     )
@@ -66,12 +66,24 @@ public class CarpetTCTCAdditionSettings
     public static boolean blockUpdate = true;
 
     @Rule(
+            desc = "假人计入统计信息",
+            category = {"TCTC", RuleCategory.FEATURE}
+    )
+    public static boolean fakePlayerStats = true;
+
+    @Rule(
         desc = "光照更新",
         category = {"TCTC", RuleCategory.FEATURE}
     )
     public static boolean lightUpdates = true;
 
     /* BUG 修复相关 */
+    @Rule(
+            desc = "限制 carpet 召唤假人玩家名长度",
+            category = {"TCTC", RuleCategory.BUGFIX}
+    )
+    public static boolean fakePlayerNameLengthLimit = false;
+
     @Rule(
         desc = "移除更新抑制器",
         category = {"TCTC", RuleCategory.BUGFIX}

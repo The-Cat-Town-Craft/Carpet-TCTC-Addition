@@ -3,7 +3,9 @@
   "package": "CarpetTCTCAddition.mixins",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "carpet.commands.PlayerCommandMixin",
     "net.minecraft.block.AbstractBlockStateMixin",
+    "net.minecraft.entity.player.PlayerEntityMixin",
     "net.minecraft.server.command.SeedCommandMixin",
     "net.minecraft.server.dedicated.command.OpCommandMixin",
     "net.minecraft.server.network.ServerPlayNetworkHandlerMixin",
