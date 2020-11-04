@@ -45,11 +45,11 @@ public class HereCommand {
         String playerWorld = player.getServerWorld().getRegistryKey().getValue().toString();
         String Message = String.format("w 玩家 %s 位于 %s §b[x:%d, y:%d, z:%d]", player.getDisplayName().getString(), getDimensionName(playerWorld), playerX, playerY, playerZ);
         if(playerWorld.equals("minecraft:overworld")) {
-            Message += String.format(" §f-> %s §b[x:%d, y:%d, z:%d]", getDimensionName("minecraft:the_nether"), playerX / 8, playerY / 8, playerZ / 8);
+            Message += String.format(" §f-> %s §b[x:%d, y:%d, z:%d]", getDimensionName("minecraft:the_nether"), playerX / 8, playerY, playerZ / 8);
         } else if (playerWorld.equals("minecraft:the_nether")) {
-            Message += String.format(" §f-> %s §b[x:%d, y:%d, z:%d]", getDimensionName("minecraft:overworld"), playerX * 8, playerY * 8, playerZ * 8);
+            Message += String.format(" §f-> %s §b[x:%d, y:%d, z:%d]", getDimensionName("minecraft:overworld"), playerX * 8, playerY, playerZ * 8);
         }
-        Messenger.m(source, Message);
+        Messenger.print_server_message(source.getMinecraftServer(), Message);
         return 1;
     }
     public static String getDimensionName(String world) {
