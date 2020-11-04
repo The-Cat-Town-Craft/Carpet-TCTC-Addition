@@ -14,7 +14,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 
 public class CarpetTCTCAddition implements CarpetExtension
 {
-    public static final String version = "1.0.2";
+    public static final String version = "1.0.3";
     public static void noop() { }
     private static SettingsManager mySettingManager;
     static
