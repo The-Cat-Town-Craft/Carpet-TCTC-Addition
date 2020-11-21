@@ -7,7 +7,6 @@
     "carpet.commands.PlayerCommandMixin",
     "net.minecraft.block.AbstractBlockStateMixin",
     "net.minecraft.entity.TntEntityMixin",
-    "net.minecraft.entity.player.PlayerEntityMixin",
     "net.minecraft.server.command.SeedCommandMixin",
     "net.minecraft.server.dedicated.command.OpCommandMixin",
     "net.minecraft.server.network.ServerPlayNetworkHandlerMixin",
@@ -16,6 +15,9 @@
     "net.minecraft.world.WorldMixin"
   ],
   "client": [
+  ],
+  "server": [
+    "net.minecraft.entity.player.PlayerEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1
