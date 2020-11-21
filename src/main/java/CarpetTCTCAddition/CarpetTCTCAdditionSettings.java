@@ -77,6 +77,12 @@ public class CarpetTCTCAdditionSettings
             category = {"TCTC", RuleCategory.FEATURE})
     public static boolean lightUpdates = true;
 
+    /* 优化相关 */
+    @Rule(
+            desc = "Adjust the parameters of carpet MergeTNT",
+            category = {"TCTC", RuleCategory.OPTIMIZATION, RuleCategory.EXPERIMENTAL, RuleCategory.TNT})
+    public static boolean tweakMergeTNT = false;
+
     /* BUG 修复相关 */
     @Rule(
             desc = "Limit player command spawn fakeplayer name length.",

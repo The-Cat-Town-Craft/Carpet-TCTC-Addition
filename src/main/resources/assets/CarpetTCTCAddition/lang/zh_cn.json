@@ -38,6 +38,9 @@
   "rule.removeUpdateSuppression.name": "移除更新抑制器",
   "rule.removeUpdateSuppression.desc": "启用后, 更新抑制器将无法抑制更新, 同时也不会造成崩溃.",
 
+  "rule.tweakMergeTNT.name": "TNT合并调整",
+  "rule.tweakMergeTNT.desc": "对 carpet 的 TNT 合并参数进行调整, 以获得更好的优化.",
+
   "rule.updateSuppressionCrashFix.name": "修复更新抑制器崩服",
   "rule.updateSuppressionCrashFix.desc": "防止更新抑制器造成崩溃."
 }
