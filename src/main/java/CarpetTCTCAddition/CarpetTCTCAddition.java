@@ -4,6 +4,7 @@ import CarpetTCTCAddition.commands.CameraModeCommand;
 import CarpetTCTCAddition.commands.FindCommand;
 import CarpetTCTCAddition.commands.HereCommand;
 import CarpetTCTCAddition.commands.TPSCommand;
+import CarpetTCTCAddition.utils.CarpetTCTCAdditionTranslations;
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import carpet.settings.SettingsManager;
@@ -12,9 +13,11 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 
+import java.util.Map;
+
 public class CarpetTCTCAddition implements CarpetExtension
 {
-    public static final String version = "1.0.3";
+    public static final String version = "1.0.4-dev";
     public static void noop() { }
     private static SettingsManager mySettingManager;
     static
@@ -69,5 +72,11 @@ public class CarpetTCTCAddition implements CarpetExtension
     public void onPlayerLoggedOut(ServerPlayerEntity player)
     {
         //
+    }
+
+    @Override
+    public Map<String, String> canHasTranslations(String lang)
+    {
+        return CarpetTCTCAdditionTranslations.getTranslationFromResourcePath(lang);
     }
 }

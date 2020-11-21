@@ -1,0 +1,43 @@
+{
+  "category.TCTC": "喵镇附属",
+
+  "rule.commandCameramode.name": "旁观者模式",
+  "rule.commandCameramode.desc": "允许使用 /c 和 /s 命令在 旁观者模式 和 生存模式 间切换(原地毯端功能)",
+  "rule.commandCameramode.extra.0": "/c 和 /s 命令 将允许全体玩家以低权限模式执行",
+
+  "rule.commandFind.name": "查找玩家位置命令",
+  "rule.commandFind.desc": "玩家可通过该指令查找在线玩家的位置",
+
+  "rule.commandHere.name": "共享玩家位置命令",
+  "rule.commandHere.desc": "玩家可通过该指令共享自己的位置",
+
+  "rule.commandOp.name": "管理员命令权限调整",
+  "rule.commandOp.desc": "获取服务器管理员(修改该指令权限)",
+
+  "rule.commandSeed.name": "获取当前世界种子命令",
+  "rule.commandSeed.desc": "查看当前地图种子(修改该指令权限).",
+
+  "rule.commandTps.name": "获取当前服务器运行速度",
+  "rule.commandTps.desc": "查看当前服务器实际 TPS 及 MSPT.",
+
+  "rule.cameraModeDisableSpectatePlayers.name": "禁用旁观者传送其他玩家",
+  "rule.cameraModeDisableSpectatePlayers.desc": "处于旁观者模式的玩家将不能通过玩家头像进行快捷传送.",
+
+  "rule.blockUpdate.name": "方块更新",
+  "rule.blockUpdate.desc": "切换玩家放置/破坏方块的更新.",
+
+  "rule.fakePlayerNameLengthLimit.name": "假人玩家名长度限制",
+  "rule.fakePlayerNameLengthLimit.desc": "限制 carpet 召唤假人玩家名长度.",
+
+  "rule.fakePlayerStats.name": "假人计入统计信息",
+  "rule.fakePlayerStats.desc": "假人玩家是否产生统计信息, 通常与计分板相关.",
+
+  "rule.lightUpdates.name": "光照更新",
+  "rule.lightUpdates.desc": "世界光照更新开关, 请勿设置 false 为默认值, 否则在其值为 true 之前, 服务端将无法启动.",
+
+  "rule.removeUpdateSuppression.name": "移除更新抑制器",
+  "rule.removeUpdateSuppression.desc": "启用后, 更新抑制器将无法抑制更新, 同时也不会造成崩溃.",
+
+  "rule.updateSuppressionCrashFix.name": "修复更新抑制器崩服",
+  "rule.updateSuppressionCrashFix.desc": "防止更新抑制器造成崩溃."
+}
