@@ -1,13 +1,25 @@
 {
   "schemaVersion": 1,
   "id": "carpet-tctc-addition",
-  "version": "1.0.3",
+  "version": "1.0.4",
 
   "name": "CarpetTCTCAddition",
   "description": "CarpetTCTCAddition",
   "authors": [
-    "Crypton_Miku",
-    "Hendrix_Shen"
+    {
+      "name": "Hendrix_Shen",
+      "contact": {
+        "homepage": "https://github.com/Hendrix-Shen"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Crypton_Miku",
+      "contact": {
+        "homepage": "https://github.com/Crypton-Miku"
+      }
+    }
   ],
   "contact": {
     "homepage": "https://github.com/The-Cat-The-Craft",

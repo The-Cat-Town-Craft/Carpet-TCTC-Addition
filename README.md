@@ -15,12 +15,23 @@
  - [方块更新](#方块更新-blockUpdate)
  - [假人计入统计信息](#假人计入统计信息-fakePlayerStats)
  - [光照更新](#光照更新-lightUpdates)
+### 优化
+ - [TNT合并调整](#TNT合并调整-tweakMergeTNT)
 ### BUG 修复
  - [假人玩家名长度限制](#假人玩家名长度限制-fakePlayerNameLengthLimit)
  - [移除更新抑制器](#移除更新抑制器-removeUpdateSuppression)
  - [修复更新抑制器崩服](#修复更新抑制器崩服-updateSuppressionCrashFix)
 
 ## 列表
+
+### 方块更新 (blockUpdate)
+
+切换玩家放置/破坏方块的更新
+
+- 类型: `boolean`  
+- 默认值: `true`  
+- 参考选项: `true`, `false`
+- 分类: `TCTC`, `FEATURE`
 
 ### 查询玩家坐标 (commandFind)
 
@@ -104,15 +115,6 @@
 - 参考选项: `true`, `false`
 - 分类: `TCTC`, `FEATURE`
 
-### 方块更新 (blockUpdate)
-
-切换玩家放置/破坏方块的更新
-
-- 类型: `boolean`  
-- 默认值: `true`  
-- 参考选项: `true`, `false`
-- 分类: `TCTC`, `FEATURE`
-
 ### 光照更新 (lightUpdates)
 
 切换世界光照更新状态.
@@ -131,6 +133,17 @@
 ### 移除更新抑制器 (removeUpdateSuppression)
 
 启用后, 更新抑制器将无法抑制更新, 同时也不会造成崩溃.
+
+- 类型: `boolean`  
+- 默认值: `false`  
+- 参考选项: `true`, `false`
+- 分类: `TCTC`, `BUGFIX` 
+
+### 合并TNT调整(tweakMergeTNT)
+
+对 carpet 的 TNT 合并参数进行调整, 以获得更好的优化.
+
+此代码来自由 @ten-miles-away 改写的 [HIT-Carpet](https://github.com/HIT-Craft/HIT-Carpet).
 
 - 类型: `boolean`  
 - 默认值: `false`  
