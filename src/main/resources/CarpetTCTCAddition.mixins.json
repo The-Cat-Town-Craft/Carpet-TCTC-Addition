@@ -2,9 +2,11 @@
   "required": true,
   "package": "CarpetTCTCAddition.mixins",
   "compatibilityLevel": "JAVA_8",
+  "mixinPriority": 999,
   "mixins": [
     "carpet.commands.PlayerCommandMixin",
     "net.minecraft.block.BlockStateMixin",
+    "net.minecraft.entity.TntEntityMixin",
     "net.minecraft.entity.player.PlayerEntityMixin",
     "net.minecraft.server.MinecraftServerMixin",
     "net.minecraft.server.command.SeedCommandMixin",
