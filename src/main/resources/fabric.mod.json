@@ -40,9 +40,9 @@
   ],
 
   "depends": {
-    "minecraft": "1.16.x",
+    "minecraft": "1.17.x",
     "fabricloader": ">=0.4.0",
-    "carpet": ">=1.4.8"
+    "carpet": ">=1.4.18"
   },
   "suggests": {
     "flamingo": "*"
