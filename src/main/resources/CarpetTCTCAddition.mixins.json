@@ -17,7 +17,7 @@
   "client": [
   ],
   "server": [
-    "net.minecraft.entity.player.PlayerEntityMixin"
+    "net.minecraft.server.network.ServerPlayerEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1
