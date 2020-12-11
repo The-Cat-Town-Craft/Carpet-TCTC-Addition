@@ -17,7 +17,7 @@ import java.util.Map;
 
 public class CarpetTCTCAddition implements CarpetExtension
 {
-    public static final String version = "1.0.4";
+    public static final String version = "1.0.5-dev";
     public static void noop() { }
     private static SettingsManager mySettingManager;
     static
