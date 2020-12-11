@@ -5,13 +5,13 @@
   "mixinPriority": 999,
   "mixins": [
     "carpet.commands.PlayerCommandMixin",
+    "carpet.CarpetServerMixin",
     "net.minecraft.block.AbstractBlockStateMixin",
     "net.minecraft.entity.TntEntityMixin",
     "net.minecraft.server.command.SeedCommandMixin",
     "net.minecraft.server.dedicated.command.OpCommandMixin",
     "net.minecraft.server.network.ServerPlayNetworkHandlerMixin",
     "net.minecraft.server.world.ServerLightProviderMixin",
-    "net.minecraft.util.crash.CrashReportMixin",
     "net.minecraft.world.WorldMixin"
   ],
   "client": [
