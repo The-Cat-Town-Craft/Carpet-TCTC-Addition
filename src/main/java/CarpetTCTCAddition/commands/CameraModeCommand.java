@@ -24,20 +24,17 @@ import static net.minecraft.server.command.CommandManager.literal;
 public class CameraModeCommand {
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher)
     {
-        LiteralArgumentBuilder<ServerCommandSource> camera = literal("c").
-                requires((player) -> SettingsManager.canUseCommand(player, CarpetTCTCAdditionSettings.commandCameramode)).
-                executes((c) -> cameraMode(c.getSource(), c.getSource().getPlayer())).
-                then(argument("player", EntityArgumentType.player()).
-                        executes( (c) -> cameraMode(c.getSource(), EntityArgumentType.getPlayer(c, "player"))));
+        LiteralArgumentBuilder<ServerCommandSource> camera = literal("c")
+            .requires((player) -> SettingsManager.canUseCommand(player, CarpetTCTCAdditionSettings.commandCameramode))
+            .executes((c) -> cameraMode(c.getSource(), c.getSource().getPlayer()))
+            .then(argument("player", EntityArgumentType.player())
+                .executes((c) -> cameraMode(c.getSource(), EntityArgumentType.getPlayer(c, "player"))));
 
-        LiteralArgumentBuilder<ServerCommandSource> survival = literal("s").
-                requires((player) -> SettingsManager.canUseCommand(player, CarpetTCTCAdditionSettings.commandCameramode)).
-                executes((c) -> survivalMode(
-                        c.getSource(),
-                        c.getSource().getPlayer())).
-                then(argument("player", EntityArgumentType.player()).
-                        executes( (c) -> survivalMode(c.getSource(), EntityArgumentType.getPlayer(c, "player"))));
-
+        LiteralArgumentBuilder<ServerCommandSource> survival = literal("s")
+            .requires((player) -> SettingsManager.canUseCommand(player, CarpetTCTCAdditionSettings.commandCameramode))
+            .executes((c) -> survivalMode(c.getSource(), c.getSource().getPlayer()))
+            .then(argument("player", EntityArgumentType.player())
+                .executes( (c) -> survivalMode(c.getSource(), EntityArgumentType.getPlayer(c, "player"))));
         dispatcher.register(camera);
         dispatcher.register(survival);
     }
@@ -49,7 +46,7 @@ public class CameraModeCommand {
         }
         catch (CommandSyntaxException e)
         {
-            return true; // shoudn't happen because server has all permissions anyways
+            return true;
         }
     }
     private static int cameraMode(ServerCommandSource source, ServerPlayerEntity player)

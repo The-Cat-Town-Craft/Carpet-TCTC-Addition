@@ -16,14 +16,12 @@ import java.util.Iterator;
 
 public class FindCommand {
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
-        LiteralArgumentBuilder<ServerCommandSource> find = CommandManager.literal("find").requires((player) -> {
-            return SettingsManager.canUseCommand(player, CarpetTCTCAdditionSettings.commandFind);
-        }).then(CommandManager.argument("目标选择器", EntityArgumentType.players())
-                .executes((c) -> {
-                    return execute(c.getSource(), EntityArgumentType.getPlayers(c, "目标选择器"));
-                })).then(CommandManager.argument("玩家", EntityArgumentType.player()).executes((c) -> {
-            return showPos((ServerCommandSource)c.getSource(), EntityArgumentType.getPlayer(c, "玩家"));
-        }));
+        LiteralArgumentBuilder<ServerCommandSource> find = CommandManager.literal("find")
+            .requires((player) -> SettingsManager.canUseCommand(player, CarpetTCTCAdditionSettings.commandFind))
+            .then(CommandManager.argument("目标选择器", EntityArgumentType.players())
+                .executes((c) -> execute(c.getSource(), EntityArgumentType.getPlayers(c, "目标选择器"))))
+                    .then(CommandManager.argument("玩家", EntityArgumentType.player())
+                        .executes((c) -> showPos((ServerCommandSource)c.getSource(), EntityArgumentType.getPlayer(c, "玩家"))));
         dispatcher.register(find);
     }
 

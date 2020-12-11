@@ -17,17 +17,14 @@ import java.util.Iterator;
 public class HereCommand {
 
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
-            LiteralArgumentBuilder<ServerCommandSource> here = CommandManager.literal("here").requires((player) -> {
-            return SettingsManager.canUseCommand(player, CarpetTCTCAdditionSettings.commandHere);
-        }).executes((c) -> {
-            return showPos(c.getSource(), c.getSource().getPlayer());
-        }).then(CommandManager.argument("目标选择器", EntityArgumentType.players())
-            .requires((c) -> c.hasPermissionLevel(3))
-            .executes((c) -> {
-            return execute(c.getSource(), EntityArgumentType.getPlayers(c, "目标选择器"));
-        })).then(CommandManager.argument("玩家", EntityArgumentType.player()).executes((c) -> {
-            return showPos((ServerCommandSource)c.getSource(), EntityArgumentType.getPlayer(c, "玩家"));
-        }));
+        LiteralArgumentBuilder<ServerCommandSource> here = CommandManager.literal("here")
+            .requires((player) -> SettingsManager.canUseCommand(player, CarpetTCTCAdditionSettings.commandHere))
+            .executes((c) -> showPos(c.getSource(), c.getSource().getPlayer()))
+            .then(CommandManager.argument("目标选择器", EntityArgumentType.players())
+                .requires((c) -> c.hasPermissionLevel(3))
+                .executes((c) -> execute(c.getSource(), EntityArgumentType.getPlayers(c, "目标选择器"))))
+                .then(CommandManager.argument("玩家", EntityArgumentType.player())
+                    .executes((c) -> showPos((ServerCommandSource)c.getSource(), EntityArgumentType.getPlayer(c, "玩家"))));
         dispatcher.register(here);
     }
     public static int execute(ServerCommandSource source, Collection<ServerPlayerEntity> targets) throws CommandSyntaxException {

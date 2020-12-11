@@ -14,7 +14,7 @@ import net.minecraft.util.math.MathHelper;
 public class TPSCommand {
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
         LiteralArgumentBuilder<ServerCommandSource> tps = CommandManager.literal("tps")
-            .requires((player) -> {return SettingsManager.canUseCommand(player, CarpetTCTCAdditionSettings.commandTps);})
+            .requires((player) -> SettingsManager.canUseCommand(player, CarpetTCTCAdditionSettings.commandTps))
             .executes((c) -> queryTps(c.getSource()));
         dispatcher.register(tps);
     }
