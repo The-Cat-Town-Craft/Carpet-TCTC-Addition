@@ -17,7 +17,6 @@ public class CarpetTCTCAdditionSettings
     )
     public static String commandCameramode = "false";
 
-    /* 命令相关 */
     @Rule(
             desc = "You can share your position with other players.",
             category = {"TCTC", RuleCategory.COMMAND},
@@ -71,6 +70,12 @@ public class CarpetTCTCAdditionSettings
             category = {"TCTC", RuleCategory.FEATURE}
     )
     public static boolean fakePlayerStats = true;
+
+    @Rule(
+            desc = "All dupe bug for donkey and llmama.",
+            category = {"TCTC", RuleCategory.FEATURE, RuleCategory.BUGFIX}
+    )
+    public static boolean llamaDupeExploit = false;
 
     @Rule(
             desc = "Light update event, don't set false as default setting or your server can't start again until you set it to true.",

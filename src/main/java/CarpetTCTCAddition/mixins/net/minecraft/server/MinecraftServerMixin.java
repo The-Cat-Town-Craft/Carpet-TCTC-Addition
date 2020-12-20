@@ -1,4 +1,4 @@
-package CarpetTCTCAddition.mixins.server;
+package CarpetTCTCAddition.mixins.net.minecraft.server;
 
 import CarpetTCTCAddition.CarpetTCTCAdditionSettings;
 import net.minecraft.server.MinecraftServer;

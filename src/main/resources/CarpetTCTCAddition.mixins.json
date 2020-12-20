@@ -8,6 +8,8 @@
     "carpet.CarpetServerMixin",
     "net.minecraft.block.AbstractBlockStateMixin",
     "net.minecraft.entity.TntEntityMixin",
+    "net.minecraft.server.MinecraftServerMixin",
+    "net.minecraft.server.PlayerManagerMixin",
     "net.minecraft.server.command.SeedCommandMixin",
     "net.minecraft.server.dedicated.command.OpCommandMixin",
     "net.minecraft.server.network.ServerPlayNetworkHandlerMixin",
