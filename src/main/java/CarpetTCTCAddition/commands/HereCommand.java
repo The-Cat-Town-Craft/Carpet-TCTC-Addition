@@ -19,23 +19,27 @@ public class HereCommand {
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
         LiteralArgumentBuilder<ServerCommandSource> here = CommandManager.literal("here")
             .requires((player) -> SettingsManager.canUseCommand(player, CarpetTCTCAdditionSettings.commandHere))
-            .executes((c) -> showPos(c.getSource(), c.getSource().getPlayer()))
+            .executes((c) -> printPos(c.getSource(), c.getSource().getPlayer()))
             .then(CommandManager.argument("目标选择器", EntityArgumentType.players())
                 .requires((c) -> c.hasPermissionLevel(3))
                 .executes((c) -> execute(c.getSource(), EntityArgumentType.getPlayers(c, "目标选择器"))))
                 .then(CommandManager.argument("玩家", EntityArgumentType.player())
-                    .executes((c) -> showPos((ServerCommandSource)c.getSource(), EntityArgumentType.getPlayer(c, "玩家"))));
+                    .executes((c) -> printPos(c.getSource(), EntityArgumentType.getPlayer(c, "玩家"))));
         dispatcher.register(here);
     }
     public static int execute(ServerCommandSource source, Collection<ServerPlayerEntity> targets) throws CommandSyntaxException {
         Iterator var3 = targets.iterator();
         while(var3.hasNext()) {
             ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity)var3.next();
-            showPos(source, serverPlayerEntity);
+            printPos(source, serverPlayerEntity);
         }
         return 1;
     }
-    public static int showPos(ServerCommandSource source, ServerPlayerEntity player) {
+    public static int printPos(ServerCommandSource source, ServerPlayerEntity player) {
+        Messenger.print_server_message(source.getMinecraftServer(), showPos(player));
+        return 1;
+    }
+    public static String showPos(ServerPlayerEntity player) {
         int playerX = (int)player.prevX;
         int playerY = (int)player.prevY;
         int playerZ = (int)player.prevZ;
@@ -46,15 +50,14 @@ public class HereCommand {
         } else if (playerWorld.equals("minecraft:the_nether")) {
             Message += String.format(" §f-> %s §b[x:%d, y:%d, z:%d]", getDimensionName("minecraft:overworld"), playerX * 8, playerY, playerZ * 8);
         }
-        Messenger.print_server_message(source.getMinecraftServer(), Message);
-        return 1;
+        return Message;
     }
     public static String getDimensionName(String world) {
         if (world.equals("minecraft:overworld")) {
             return "§a主世界";
         } else if (world.equals("minecraft:the_nether")) {
             return "§c下界";
-        } else if (world == "minecraft:the_end") {
+        } else if (world.equals("minecraft:the_end")) {
             return "§e末路之地";
         } else {
             return world;
