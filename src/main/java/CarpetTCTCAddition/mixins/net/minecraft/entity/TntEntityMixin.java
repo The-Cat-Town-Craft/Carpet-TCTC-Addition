@@ -20,7 +20,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Iterator;
 
-@Mixin({TntEntity.class})
+@Mixin(value = TntEntity.class, priority = 900) //覆盖 Carpet
 public abstract class TntEntityMixin extends Entity implements TntEntityInterface {
     @Shadow
     private int field_7196;

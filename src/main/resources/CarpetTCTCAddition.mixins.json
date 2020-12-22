@@ -2,7 +2,6 @@
   "required": true,
   "package": "CarpetTCTCAddition.mixins",
   "compatibilityLevel": "JAVA_8",
-  "mixinPriority": 999,
   "mixins": [
     "carpet.commands.PlayerCommandMixin",
     "carpet.CarpetServerMixin",
