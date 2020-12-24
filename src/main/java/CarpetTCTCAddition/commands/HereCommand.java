@@ -45,22 +45,26 @@ public class HereCommand {
         int playerZ = (int)player.prevZ;
         String playerWorld = player.getServerWorld().getRegistryKey().getValue().toString();
         String Message = String.format("玩家 %s 位于 %s §b[x:%d, y:%d, z:%d]", player.getDisplayName().getString(), getDimensionName(playerWorld), playerX, playerY, playerZ);
-        if(playerWorld.equals("minecraft:overworld")) {
-            Message += String.format(" §f-> %s §b[x:%d, y:%d, z:%d]", getDimensionName("minecraft:the_nether"), playerX / 8, playerY, playerZ / 8);
-        } else if (playerWorld.equals("minecraft:the_nether")) {
-            Message += String.format(" §f-> %s §b[x:%d, y:%d, z:%d]", getDimensionName("minecraft:overworld"), playerX * 8, playerY, playerZ * 8);
+        switch (playerWorld) {
+            case "minecraft:overworld":
+                Message += String.format(" §f-> %s §b[x:%d, y:%d, z:%d]", getDimensionName("minecraft:the_nether"), playerX / 8, playerY, playerZ / 8);
+                break;
+            case "minecraft:the_nether":
+                Message += String.format(" §f-> %s §b[x:%d, y:%d, z:%d]", getDimensionName("minecraft:overworld"), playerX * 8, playerY, playerZ * 8);
+                break;
         }
         return Message;
     }
     public static String getDimensionName(String world) {
-        if (world.equals("minecraft:overworld")) {
-            return "§a主世界";
-        } else if (world.equals("minecraft:the_nether")) {
-            return "§c下界";
-        } else if (world.equals("minecraft:the_end")) {
-            return "§e末路之地";
-        } else {
-            return world;
+        switch (world) {
+            case "minecraft:overworld":
+                return "§a主世界";
+            case "minecraft:the_nether":
+                return "§c下界";
+            case "minecraft:the_end":
+                return "§e末路之地";
+            default:
+                return world;
         }
     }
 }
