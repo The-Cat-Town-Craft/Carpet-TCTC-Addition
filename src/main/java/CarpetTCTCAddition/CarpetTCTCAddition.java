@@ -16,7 +16,7 @@ import java.util.Map;
 
 public class CarpetTCTCAddition implements CarpetExtension
 {
-    public static final String version = "1.0.4";
+    public static final String version = "1.0.5";
     public static void noop() { }
     private static SettingsManager mySettingManager;
     static
@@ -50,14 +50,6 @@ public class CarpetTCTCAddition implements CarpetExtension
         FindCommand.register(dispatcher);
         HereCommand.register(dispatcher);
         TPSCommand.register(dispatcher);
-    }
-
-
-    @Override
-    public SettingsManager customSettingsManager()
-    {
-        // this will ensure that our settings are loaded properly when world loads
-        return mySettingManager;
     }
 
     @Override

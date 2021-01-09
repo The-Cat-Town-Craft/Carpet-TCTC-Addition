@@ -31,6 +31,9 @@
   "rule.lightUpdates.name": "光照更新",
   "rule.lightUpdates.desc": "世界光照更新开关, 请勿设置 false 为默认值, 否则在其值为 true 之前, 服务端将无法启动.",
 
+  "rule.llamaDupeExploit.name": "羊驼复制",
+  "rule.llamaDupeExploit.desc": "允许使用羊驼和驴子的复制机制.",
+
   "rule.removeUpdateSuppression.name": "移除更新抑制器",
   "rule.removeUpdateSuppression.desc": "启用后, 更新抑制器将无法抑制更新, 同时也不会造成崩溃.",
 

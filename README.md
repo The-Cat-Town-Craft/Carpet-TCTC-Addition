@@ -14,6 +14,7 @@
  - [禁用旁观者传送其他玩家](#禁用旁观者传送其他玩家-cameraModeDisableSpectatePlayers)
  - [方块更新](#方块更新-blockUpdate)
  - [假人计入统计信息](#假人计入统计信息-fakePlayerStats)
+ - [羊驼复制](#羊驼复制-llamaDupeExploit)
  - [光照更新](#光照更新-lightUpdates)
 ### 优化
  - [TNT合并调整](#TNT合并调整-tweakMergeTNT)
@@ -114,6 +115,15 @@
 - 默认值: `true`  
 - 参考选项: `true`, `false`
 - 分类: `TCTC`, `FEATURE`
+
+### 羊驼复制 (llamaDupeExploit)
+
+允许使用羊驼和驴子的复制机制.
+
+- 类型: `boolean`  
+- 默认值: `false`  
+- 参考选项: `true`, `false`
+- 分类: `TCTC`, `FEATURE`, `BUGFIX` 
 
 ### 光照更新 (lightUpdates)
 
