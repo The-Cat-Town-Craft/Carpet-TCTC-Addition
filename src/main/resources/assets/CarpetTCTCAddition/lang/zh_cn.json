@@ -11,6 +11,10 @@
   "rule.commandHere.name": "共享玩家位置命令",
   "rule.commandHere.desc": "玩家可通过该指令共享自己的位置",
 
+  "rule.commandLoadChunk.name": "区块加载命令",
+  "rule.commandLoadChunk.desc": "允许使用 /loadchunk command.",
+  "rule.commandLoadChunk.extra.0": "远程加载区块",
+
   "rule.commandOp.name": "管理员命令权限调整",
   "rule.commandOp.desc": "获取服务器管理员(修改该指令权限)",
 

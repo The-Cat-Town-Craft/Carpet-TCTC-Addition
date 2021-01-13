@@ -15,7 +15,6 @@ import java.util.Collection;
 import java.util.Iterator;
 
 public class HereCommand {
-
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
         LiteralArgumentBuilder<ServerCommandSource> here = CommandManager.literal("here")
             .requires((player) -> SettingsManager.canUseCommand(player, CarpetTCTCAdditionSettings.commandHere))
