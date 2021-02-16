@@ -16,6 +16,8 @@
  - [方块更新](#方块更新-blockUpdate)
  - [假人计入统计信息](#假人计入统计信息-fakePlayerStats)
  - [光照更新](#光照更新-lightUpdates)
+### 优化
+ - [TNT合并调整](#TNT合并调整-tweakMergeTNT)
 ### BUG 修复
  - [假人玩家名长度限制](#假人玩家名长度限制-fakePlayerNameLengthLimit)
  - [移除更新抑制器](#移除更新抑制器-removeUpdateSuppression)
@@ -141,6 +143,15 @@
 - 默认值: `true`  
 - 参考选项: `true`, `false`
 - 分类: `TCTC`, `FEATURE` 
+
+### TNT合并调整 (tweakMergeTNT)
+
+对 carpet 的 TNT 合并参数进行调整, 以获得更好的优化.
+
+- 类型: `boolean`  
+- 默认值: `false`  
+- 参考选项: `true`, `false`
+- 分类: `TCTC`, `OPTIMIZATION`, `EXPERIMENTAL`, `TNT`
 
 ### 移除更新抑制器 (removeUpdateSuppression)
 

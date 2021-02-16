@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "carpet-tctc-addition",
-  "version": "1.0.4",
+  "version": "1.0.5",
 
   "name": "CarpetTCTCAddition",
   "description": "CarpetTCTCAddition",
@@ -42,7 +42,7 @@
   "depends": {
     "minecraft": "1.17.x",
     "fabricloader": ">=0.4.0",
-    "carpet": ">=1.4.18"
+    "carpet": ">=1.4.21"
   },
   "suggests": {
     "flamingo": "*"

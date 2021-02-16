@@ -55,7 +55,7 @@ public class CameraModeCommand {
     private static int cameraMode(ServerCommandSource source, ServerPlayerEntity player)
     {
         if (!(iCanHasPermissions(source, player))) return 0;
-        player.setGameMode(GameMode.SPECTATOR);
+        player.changeGameMode(GameMode.SPECTATOR);
         player.addVelocity(0,0.1,0);
         player.networkHandler.sendPacket(new EntityVelocityUpdateS2CPacket(player));
         player.addStatusEffect(new StatusEffectInstance(StatusEffects.NIGHT_VISION, 999999, 0, false, false));
@@ -65,10 +65,10 @@ public class CameraModeCommand {
     private static int survivalMode(ServerCommandSource source, ServerPlayerEntity player)
     {
         if (!(iCanHasPermissions(source, player))) return 0;
-        player.setGameMode(GameMode.SURVIVAL);
-        player.networkHandler.sendPacket(new RemoveEntityStatusEffectS2CPacket(player.getEntityId(), StatusEffects.NIGHT_VISION));
+        player.changeGameMode(GameMode.SURVIVAL);
+        player.networkHandler.sendPacket(new RemoveEntityStatusEffectS2CPacket(player.getId(), StatusEffects.NIGHT_VISION));
         player.removeStatusEffect(StatusEffects.NIGHT_VISION);
-        player.networkHandler.sendPacket(new RemoveEntityStatusEffectS2CPacket(player.getEntityId(), StatusEffects.CONDUIT_POWER));
+        player.networkHandler.sendPacket(new RemoveEntityStatusEffectS2CPacket(player.getId(), StatusEffects.CONDUIT_POWER));
         player.removeStatusEffect(StatusEffects.CONDUIT_POWER);
         return 1;
     }
