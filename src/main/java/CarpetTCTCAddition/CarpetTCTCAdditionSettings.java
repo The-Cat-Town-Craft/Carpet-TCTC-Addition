@@ -13,6 +13,13 @@ public class CarpetTCTCAdditionSettings
      */
     /* 命令相关 */
     @Rule(
+        desc = "Send some packets to players in order to crash their client.",
+        category =  {"TCTC", RuleCategory.COMMAND},
+        options = {"true", "false", "ops", "0", "1", "2", "3", "4"}
+    )
+    public static String commandCrash = "ops";
+
+    @Rule(
         desc = "You can share your position with other players.",
         category = {"TCTC", RuleCategory.COMMAND},
         options = {"true", "false", "ops", "0", "1", "2", "3", "4"}

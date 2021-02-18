@@ -14,7 +14,6 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.stat.ServerStatHandler;
 import net.minecraft.stat.Stats;
 import org.apache.logging.log4j.Logger;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -29,7 +28,7 @@ import java.util.UUID;
 @Mixin(PlayerManager.class)
 public abstract class PlayerManagerMixin {
     @Shadow private static Logger LOGGER;
-    @Shadow private  List<ServerPlayerEntity> players = Lists.newArrayList();
+    @Shadow private List<ServerPlayerEntity> players = Lists.newArrayList();
     @Shadow private MinecraftServer server;
     @Shadow private Map<UUID, ServerPlayerEntity> playerMap = Maps.newHashMap();
     @Shadow private Map<UUID, ServerStatHandler> statisticsMap;

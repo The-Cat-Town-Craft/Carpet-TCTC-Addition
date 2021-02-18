@@ -1,6 +1,5 @@
 package CarpetTCTCAddition.mixins.net.minecraft.world;
 
-import CarpetTCTCAddition.CarpetTCTCAddition;
 import CarpetTCTCAddition.CarpetTCTCAdditionSettings;
 import CarpetTCTCAddition.helps.ThrowableSuppression;
 import carpet.utils.Messenger;

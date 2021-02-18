@@ -5,6 +5,7 @@
 ## 新增的功能
 
 ### 命令
+ - [客户端崩溃](#客户端崩溃-commandCrash)
  - [查询玩家坐标](#查询玩家坐标-commandFind)
  - [共享玩家坐标](#共享玩家坐标-commandHere)
  - [管理员命令](#管理员命令-commandOp)
@@ -33,6 +34,17 @@
 - 默认值: `true`  
 - 参考选项: `true`, `false`
 - 分类: `TCTC`, `FEATURE`
+
+### 客户端崩溃 (commandCrash)
+
+发送一个巨大的爆炸数据包交由客户端运算.
+
+注意: 这会使玩家的客户端进入长时间的未响应状态.
+
+- 类型: `string`  
+- 默认值: `ops`  
+- 参考选项: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4`
+- 分类: `TCTC`, `COMMAND` 
 
 ### 查询玩家坐标 (commandFind)
 

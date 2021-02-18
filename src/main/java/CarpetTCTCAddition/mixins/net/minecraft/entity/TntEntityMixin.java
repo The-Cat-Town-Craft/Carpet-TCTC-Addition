@@ -5,7 +5,6 @@ import carpet.CarpetSettings;
 import carpet.fakes.TntEntityInterface;
 import carpet.logging.LoggerRegistry;
 import carpet.logging.logHelpers.TNTLogHelper;
-import java.util.Iterator;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -18,6 +17,8 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import java.util.Iterator;
 
 @Mixin(value = TntEntity.class, priority = 900)
 public abstract class TntEntityMixin extends Entity implements TntEntityInterface {

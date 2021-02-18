@@ -2,7 +2,6 @@ package CarpetTCTCAddition.commands;
 
 import CarpetTCTCAddition.CarpetTCTCAdditionSettings;
 import carpet.settings.SettingsManager;
-import carpet.utils.Messenger;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
@@ -10,7 +9,6 @@ import net.minecraft.command.arguments.EntityArgumentType;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.world.dimension.DimensionType;
 
 import java.util.Collection;
 import java.util.Iterator;
