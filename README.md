@@ -19,6 +19,7 @@
 ### 优化
  - [TNT合并调整](#TNT合并调整-tweakMergeTNT)
 ### BUG 修复
+ - [控制台刷屏修复](#控制台刷屏修复-consoleSpamFix)
  - [羊驼复制](#羊驼复制-llamaDupe)
  - [假人玩家名长度限制](#假人玩家名长度限制-fakePlayerNameLengthLimit)
  - [移除更新抑制器](#移除更新抑制器-removeUpdateSuppression)
@@ -30,6 +31,15 @@
 ### 方块更新 (blockUpdate)
 
 切换玩家放置/破坏方块的更新
+
+- 类型: `boolean`  
+- 默认值: `true`  
+- 参考选项: `true`, `false`
+- 分类: `TCTC`, `FEATURE`
+
+### 控制台刷屏修复 (consoleSpamFix)
+
+移除 实体跟踪 及 玩家交互管理 等的刷屏.
 
 - 类型: `boolean`  
 - 默认值: `true`  

@@ -1,6 +1,9 @@
 {
   "category.TCTC": "喵镇附属",
 
+  "rule.consoleSpamFix.name": "控制台刷屏修复",
+  "rule.consoleSpamFix.desc": "移除 实体跟踪 及 玩家交互管理 等的刷屏.",
+
   "rule.commandCrash.name": "客户端崩溃",
   "rule.commandCrash.desc": "发送一个巨大的爆炸数据包交由客户端运算.",
 

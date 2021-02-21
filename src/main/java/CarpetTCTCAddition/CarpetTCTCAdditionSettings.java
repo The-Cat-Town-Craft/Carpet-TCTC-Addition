@@ -86,6 +86,12 @@ public class CarpetTCTCAdditionSettings
 
     /* BUG 修复相关 */
     @Rule(
+            desc = "Hide something console spam.",
+            category = {"TCTC", RuleCategory.BUGFIX, RuleCategory.CLIENT}
+    )
+    public static boolean consoleSpamFix = false;
+
+    @Rule(
         desc = "Limit player command spawn fakeplayer name length.",
         category = {"TCTC", RuleCategory.BUGFIX}
     )
