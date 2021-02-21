@@ -14,6 +14,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.stat.ServerStatHandler;
 import net.minecraft.stat.Stats;
 import org.apache.logging.log4j.Logger;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -27,12 +28,12 @@ import java.util.UUID;
 
 @Mixin(PlayerManager.class)
 public abstract class PlayerManagerMixin {
-    @Shadow private static Logger LOGGER;
-    @Shadow private List<ServerPlayerEntity> players = Lists.newArrayList();
-    @Shadow private MinecraftServer server;
-    @Shadow private Map<UUID, ServerPlayerEntity> playerMap = Maps.newHashMap();
-    @Shadow private Map<UUID, ServerStatHandler> statisticsMap;
-    @Shadow private Map<UUID, PlayerAdvancementTracker> advancementTrackers;
+    @Shadow @Final private static Logger LOGGER;
+    @Shadow @Final private final List<ServerPlayerEntity> players = Lists.newArrayList();
+    @Shadow @Final private MinecraftServer server;
+    @Shadow @Final private final Map<UUID, ServerPlayerEntity> playerMap = Maps.newHashMap();
+    @Shadow @Final private Map<UUID, ServerStatHandler> statisticsMap;
+    @Shadow @Final private Map<UUID, PlayerAdvancementTracker> advancementTrackers;
 
     @Shadow protected abstract void savePlayerData(ServerPlayerEntity player);
 
@@ -50,14 +51,14 @@ public abstract class PlayerManagerMixin {
         if (player.hasVehicle()) {
             Entity entity = player.getRootVehicle();
             if (entity.hasPlayerRider()) {
-                this.LOGGER.debug("Removing player mount");
+                LOGGER.debug("Removing player mount");
                 player.stopRiding();
                 serverWorld.removeEntity(entity);
                 Iterator var4 = entity.getPassengersDeep().iterator();
-                entity.removed = !CarpetTCTCAdditionSettings.llamaDupeExploit;
+                entity.removed = !CarpetTCTCAdditionSettings.llamaDupe;
 
                 Entity entity2;
-                for(Iterator var5 = entity.getPassengersDeep().iterator(); var5.hasNext(); entity2.removed = !CarpetTCTCAdditionSettings.llamaDupeExploit) {
+                for(Iterator var5 = entity.getPassengersDeep().iterator(); var5.hasNext(); entity2.removed = !CarpetTCTCAdditionSettings.llamaDupe) {
                     entity2 = (Entity)var4.next();
                     serverWorld.removeEntity(entity2);
                 }
@@ -77,6 +78,6 @@ public abstract class PlayerManagerMixin {
             this.statisticsMap.remove(uUID);
             this.advancementTrackers.remove(uUID);
         }
-        this.sendToAll((Packet)(new PlayerListS2CPacket(PlayerListS2CPacket.Action.REMOVE_PLAYER, new ServerPlayerEntity[]{player})));
+        this.sendToAll(new PlayerListS2CPacket(PlayerListS2CPacket.Action.REMOVE_PLAYER, player));
     }
 }

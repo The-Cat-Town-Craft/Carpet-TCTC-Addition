@@ -15,14 +15,15 @@
  - [禁用旁观者传送其他玩家](#禁用旁观者传送其他玩家-cameraModeDisableSpectatePlayers)
  - [方块更新](#方块更新-blockUpdate)
  - [假人计入统计信息](#假人计入统计信息-fakePlayerStats)
- - [羊驼复制](#羊驼复制-llamaDupeExploit)
  - [光照更新](#光照更新-lightUpdates)
 ### 优化
  - [TNT合并调整](#TNT合并调整-tweakMergeTNT)
 ### BUG 修复
+ - [羊驼复制](#羊驼复制-llamaDupe)
  - [假人玩家名长度限制](#假人玩家名长度限制-fakePlayerNameLengthLimit)
  - [移除更新抑制器](#移除更新抑制器-removeUpdateSuppression)
  - [修复更新抑制器崩服](#修复更新抑制器崩服-updateSuppressionCrashFix)
+ - [0gt作物强制催熟](#0gt作物强制催熟-zeroTickFarm)
 
 ## 列表
 
@@ -128,9 +129,9 @@
 - 参考选项: `true`, `false`
 - 分类: `TCTC`, `FEATURE`
 
-### 羊驼复制 (llamaDupeExploit)
+### 羊驼复制 (llamaDupe)
 
-允许使用羊驼和驴子的复制机制.
+[MC-161754]允许使用羊驼和驴子的复制机制.
 
 - 类型: `boolean`  
 - 默认值: `false`  
@@ -183,7 +184,16 @@
 - 参考选项: `true`, `false`
 - 分类: `TCTC`, `BUGFIX` 
 
+### 0gt作物强制催熟 (zeroTickFarm)
+
+[MC-113809]修复 0t 方块移动使 柱子, 仙人掌, 紫颂花, 甘蔗生长.
+
+- 类型: `boolean`  
+- 默认值: `false`  
+- 参考选项: `true`, `false`
+- 分类: `TCTC`, `BUGFIX` 
+
 # 感谢
 - [gnembon](https://github.com/gnembon/) - [fabric-carpet](https://github.com/gnembon/fabric-carpet)
-- [Xcom6000](https://github.com/X-com) - updateSuppressionCrashFix
+- [Xcom6000](https://github.com/X-com) - updateSuppressionCrashFix(Carpet112)
 - [ten-miles-away](https://github.com/ten-miles-away) - [HIT-Carpet](https://github.com/HIT-Craft/HIT-Carpet)

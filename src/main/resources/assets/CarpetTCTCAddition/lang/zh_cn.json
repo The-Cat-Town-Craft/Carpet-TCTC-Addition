@@ -34,8 +34,8 @@
   "rule.lightUpdates.name": "光照更新",
   "rule.lightUpdates.desc": "世界光照更新开关, 请勿设置 false 为默认值, 否则在其值为 true 之前, 服务端将无法启动.",
 
-  "rule.llamaDupeExploit.name": "羊驼复制",
-  "rule.llamaDupeExploit.desc": "允许使用羊驼和驴子的复制机制.",
+  "rule.llamaDupe.name": "羊驼复制",
+  "rule.llamaDupe.desc": "[MC-161754]允许使用羊驼和驴子的复制机制.",
 
   "rule.removeUpdateSuppression.name": "移除更新抑制器",
   "rule.removeUpdateSuppression.desc": "启用后, 更新抑制器将无法抑制更新, 同时也不会造成崩溃.",
@@ -44,5 +44,8 @@
   "rule.tweakMergeTNT.desc": "对 carpet 的 TNT 合并参数进行调整, 以获得更好的优化.",
 
   "rule.updateSuppressionCrashFix.name": "修复更新抑制器崩服",
-  "rule.updateSuppressionCrashFix.desc": "防止更新抑制器造成崩溃."
+  "rule.updateSuppressionCrashFix.desc": "防止更新抑制器造成崩溃.",
+
+  "rule.zeroTickFarm.name": "0gt作物强制催熟",
+  "rule.zeroTickFarm.desc": "[MC-113809]修复 0t 方块移动使 柱子, 仙人掌, 紫颂花, 甘蔗生长."
 }
