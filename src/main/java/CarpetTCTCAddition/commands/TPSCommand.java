@@ -14,7 +14,7 @@ import net.minecraft.util.math.MathHelper;
 public class TPSCommand {
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
         LiteralArgumentBuilder<ServerCommandSource> tps = CommandManager.literal("tps")
-            .requires((player) -> {return SettingsManager.canUseCommand(player, CarpetTCTCAdditionSettings.commandTps);})
+            .requires((player) -> SettingsManager.canUseCommand(player, CarpetTCTCAdditionSettings.commandTps))
             .executes((c) -> queryTps(c.getSource()));
         dispatcher.register(tps);
     }
@@ -23,7 +23,7 @@ public class TPSCommand {
         MinecraftServer server = source.getMinecraftServer();
         double MSPT = MathHelper.average(server.lastTickLengths) * 1.0E-6D;
         double TPS = 1000.0D / Math.max(TickSpeed.time_warp_start_time != 0L ? 0.0D : (double)TickSpeed.mspt, MSPT);
-        Messenger.m(source, new Object[]{"w 当前TPS: ", String.format("wb %.1f ", TPS), " MSPT: ", String.format("wb %.1f", MSPT)});
+        Messenger.m(source, "w 当前TPS: ", String.format("wb %.1f ", TPS), " MSPT: ", String.format("wb %.1f", MSPT));
         return 1;
     }
 }

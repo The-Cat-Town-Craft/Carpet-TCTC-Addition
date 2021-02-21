@@ -78,6 +78,12 @@ public class CarpetTCTCAdditionSettings
         category = {"TCTC", RuleCategory.FEATURE})
     public static boolean lightUpdates = true;
 
+    @Rule(
+        desc = "Emerald ore receiving a block update will throw a StackOverflowError, simulating an update suppressor.",
+        category = {"TCTC", RuleCategory.CREATIVE, RuleCategory.FEATURE}
+    )
+    public static boolean oreUpdateSuppressor = false;
+
     /* 优化相关 */
     @Rule(
         desc = "Adjust the parameters of carpet MergeTNT",

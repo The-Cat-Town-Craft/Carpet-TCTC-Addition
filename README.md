@@ -16,6 +16,7 @@
  - [方块更新](#方块更新-blockUpdate)
  - [假人计入统计信息](#假人计入统计信息-fakePlayerStats)
  - [光照更新](#光照更新-lightUpdates)
+ - [光照更新](#光照更新-oreUpdateSuppressor)
 ### 优化
  - [TNT合并调整](#TNT合并调整-tweakMergeTNT)
 ### BUG 修复
@@ -162,6 +163,15 @@
 - 默认值: `true`  
 - 参考选项: `true`, `false`
 - 分类: `TCTC`, `FEATURE` 
+
+### 模拟更新抑制 (oreUpdateSuppressor)
+
+启用后, 更新抑制器将无法抑制更新, 同时也不会造成崩溃.
+
+- 类型: `boolean`  
+- 默认值: `false`  
+- 参考选项: `true`, `false`
+- 分类: `TCTC`, `BUGFIX` 
 
 ### 移除更新抑制器 (removeUpdateSuppression)
 

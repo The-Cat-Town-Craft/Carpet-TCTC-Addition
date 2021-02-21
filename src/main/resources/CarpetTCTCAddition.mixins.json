@@ -7,6 +7,7 @@
     "carpet.commands.PlayerCommandMixin",
     "carpet.utils.SettingsManagerMixin",
     "net.minecraft.block.BambooBlockMixin",
+    "net.minecraft.block.BlockMixin",
     "net.minecraft.block.BlockStateMixin",
     "net.minecraft.block.CactusBlockMixin",
     "net.minecraft.block.ChorusFlowerBlockMixin",
@@ -23,7 +24,7 @@
     "net.minecraft.world.WorldMixin"
   ],
   "client": [
-    "net.minecraft.client.network.ClientPlayerInteractionManagerMixin",
+    "net.minecraft.client.network.ClientPlayerInteractionManagerMixin"
   ],
   "server": [
     "net.minecraft.server.network.ServerPlayerEntityMixin"
