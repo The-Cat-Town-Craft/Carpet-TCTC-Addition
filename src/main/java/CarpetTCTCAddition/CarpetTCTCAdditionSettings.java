@@ -128,4 +128,31 @@ public class CarpetTCTCAdditionSettings
         category = {TCTC, RuleCategory.BUGFIX}
     )
     public static boolean zeroTickFarm = true;
+
+    /* 世界生成 相关 */
+    @Rule(
+        desc = "Is obsidian platform generated in the end.",
+        category = {TCTC, WORLDGENERATION, RuleCategory.FEATURE}
+    )
+    public static CreatePlatformOptions obsidianPlatform = CreatePlatformOptions.PLAYER;
+    public enum CreatePlatformOptions {
+        ALL(false, true),
+        NONE(false, false),
+        PLAYER(true, false);
+
+        private final boolean createForPlayer;
+        private final boolean createForAll;
+
+        CreatePlatformOptions(boolean createForPlayer, boolean createForAll)
+        {
+            this.createForPlayer = createForPlayer;
+            this.createForAll = createForAll;
+        }
+        public boolean shouldCreateForPlayer() {
+            return this.createForPlayer;
+        }
+        public boolean shouldCreateForAll() {
+            return this.createForAll;
+        }
+    }
 }

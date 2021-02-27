@@ -37,8 +37,11 @@
   "rule.lightUpdates.name": "光照更新",
   "rule.lightUpdates.desc": "世界光照更新开关, 请勿设置 false 为默认值, 否则在其值为 true 之前, 服务端将无法启动.",
 
+  "rule.obsidianPlatform.name": "黑曜石平台生成控制",
+  "rule.obsidianPlatform.desc": "实体进入末地维度时是否创建黑曜石平台.",
+
   "rule.oreUpdateSuppressor.name": "模拟更新抑制",
-  "rule.oreUpdateSuppressor.desc": "当绿宝石矿受到 NC 更新时, 将会引发 栈溢出 异常, 用于模拟 更新抑制.",
+  "rule.oreUpdateSuppressor.desc": "当绿宝石矿受到 NC更新 时, 将会引发 栈溢出 异常, 用于模拟 更新抑制.",
 
   "rule.llamaDupe.name": "羊驼复制",
   "rule.llamaDupe.desc": "[MC-161754]允许使用羊驼和驴子的复制机制.",

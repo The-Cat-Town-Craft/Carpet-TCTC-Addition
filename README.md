@@ -26,6 +26,8 @@
  - [移除更新抑制器](#移除更新抑制器-removeUpdateSuppression)
  - [修复更新抑制器崩服](#修复更新抑制器崩服-updateSuppressionCrashFix)
  - [0gt作物强制催熟](#0gt作物强制催熟-zeroTickFarm)
+### 世界生成
+ - [黑曜石平台生成控制](#黑曜石平台生成控制-)
 
 ## 列表
 
@@ -159,14 +161,23 @@
 
 #### <b>警告:</b> 关闭光照更新时无法加载新区块，请提前加载区块，请勿在未加载区块上线
 
-- 类型: `boolean`  
-- 默认值: `true`  
+- 类型: `boolean`
+- 默认值: `true`
 - 参考选项: `true`, `false`
-- 分类: `TCTC`, `FEATURE` 
+- 分类: `TCTC`, `FEATURE`
+
+### 黑曜石平台生成控制 (obsidianPlatform)
+
+实体进入末地维度时是否创建黑曜石平台.
+
+- 类型: `CreatePlatformOptions`
+- 默认值: `player`
+- 参考选项: `all` `none`, `player`
+- 分类: `TCTC`, `WORLDGENERATION` `FEATURE`
 
 ### 模拟更新抑制 (oreUpdateSuppressor)
 
-启用后, 更新抑制器将无法抑制更新, 同时也不会造成崩溃.
+当绿宝石矿受到`NC更新`时, 将会引发`栈溢出`异常, 用于模拟`更新抑制`.
 
 - 类型: `boolean`  
 - 默认值: `false`  

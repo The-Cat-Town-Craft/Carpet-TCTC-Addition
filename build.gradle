@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '0.4-SNAPSHOT'
+	id 'fabric-loom' version '0.5-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -17,6 +17,8 @@ version = project.minecraft_version+'-'+project.mod_version
 group = project.maven_group
 
 minecraft {
+	// Used
+	//accessWidener "src/main/resources/CarpetTCTCAddition.accesswidener"
 }
 
 dependencies {
