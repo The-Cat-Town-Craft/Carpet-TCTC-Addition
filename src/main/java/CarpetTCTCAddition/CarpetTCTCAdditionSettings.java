@@ -58,16 +58,22 @@ public class CarpetTCTCAdditionSettings
 
     /* 特性相关*/
     @Rule(
+            desc = "Block update event.",
+            category = {TCTC, RuleCategory.FEATURE}
+    )
+    public static boolean blockUpdate = true;
+
+    @Rule(
         desc = "Disables players in /c from spectating other players",
         category = {TCTC, RuleCategory.SURVIVAL, RuleCategory.FEATURE}
     )
     public static boolean cameraModeDisableSpectatePlayers = false;
 
     @Rule(
-        desc = "Block update event.",
-        category = {TCTC, RuleCategory.FEATURE}
+        desc = "When the entity passes through the ender gateway, the target chunk will be loaded for 15 seconds like nether portal.",
+        category = {TCTC, RuleCategory.CREATIVE, RuleCategory.FEATURE}
     )
-    public static boolean blockUpdate = true;
+    public static boolean endGateWayChunkLoader = false;
 
     @Rule(
         desc = "Allows fake players to gain stats.",

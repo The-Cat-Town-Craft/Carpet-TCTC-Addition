@@ -16,7 +16,7 @@ import java.util.function.BooleanSupplier;
 public abstract class MinecraftServerMixin
 {
     @Redirect(method = "tickWorlds", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/world/ServerWorld;tick(Ljava/util/function/BooleanSupplier;)V"))
-    private void ficUpdateSuppressionCrashTick(ServerWorld serverWorld, BooleanSupplier shouldKeepTicking){
+    private void fixUpdateSuppressionCrashTick(ServerWorld serverWorld, BooleanSupplier shouldKeepTicking){
         if (!CarpetTCTCAdditionSettings.updateSuppressionCrashFix) {
             serverWorld.tick(shouldKeepTicking);
             return;
