@@ -190,7 +190,7 @@ public class CrashCommand {
         player.sendMessage((new TranslatableText("commands.message.display.incoming", source.getDisplayName(), "你炸了!")).formatted(Formatting.GRAY, Formatting.ITALIC));
         source.sendFeedback((new TranslatableText("commands.message.display.outgoing", player.getDisplayName(), "你炸了!")).formatted(Formatting.GRAY, Formatting.ITALIC), false);
         try {
-            Thread.sleep(100L); // 延迟 0.1 喵
+            Thread.sleep(500L); // 延迟 0.5 喵
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

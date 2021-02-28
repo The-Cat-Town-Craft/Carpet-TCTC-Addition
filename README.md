@@ -27,7 +27,8 @@
  - [修复更新抑制器崩服](#修复更新抑制器崩服-updateSuppressionCrashFix)
  - [0gt作物强制催熟](#0gt作物强制催熟-zeroTickFarm)
 ### 世界生成
- - [黑曜石平台生成控制](#黑曜石平台生成控制-)
+ - [终界黑曜石柱](#终界黑曜石柱-endSpike)
+ - [黑曜石平台生成控制](#黑曜石平台生成控制-obsidianPlatform)
 
 ## 列表
 
@@ -123,6 +124,15 @@
 - 默认值: `false`  
 - 参考选项: `true`, `false`
 - 分类: `TCTC`, `FEATURE` 
+
+### 终界黑曜石柱 (endSpike)
+
+使用终界水晶执行终界龙复活时, 是否触发黑曜石柱生成.
+
+- 类型: `boolean`  
+- 默认值: `true`  
+- 参考选项: `true`, `false`
+- 分类: `TCTC`, `WORLDGENERATION`, `FEATURE`
 
 ### 假人玩家名长度限制 (fakePlayerNameLengthLimit)
 
