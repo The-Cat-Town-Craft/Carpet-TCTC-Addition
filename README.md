@@ -5,6 +5,8 @@
 ## 新增的功能
 
 ### 命令
+ - [旁观者模式](#旁观者模式-commandCameramode)
+ - [客户端崩溃](#客户端崩溃-commandCrash)
  - [查询玩家坐标](#查询玩家坐标-commandFind)
  - [共享玩家坐标](#共享玩家坐标-commandHere)
  - [管理员命令](#管理员命令-commandOp)
@@ -25,14 +27,29 @@
 
 ## 列表
 
-### 方块更新 (blockUpdate)
+### 旁观者模式 (commandCameramode)
 
-切换玩家放置/破坏方块的更新
+允许使用 `/c` 和 `/s` 命令在 `旁观者模式` 和 `生存模式` 间切换(原地毯端功能) .
 
-- 类型: `boolean`  
+`/c` 和 `/s` 命令 将允许全体玩家以低权限模式执行.
+
+对于 `权限等级 > 2` 的玩家变更其他玩家的游戏模式.
+
+- 类型: `string`  
 - 默认值: `true`  
-- 参考选项: `true`, `false`
-- 分类: `TCTC`, `FEATURE`
+- 参考选项: `true`, `false`, `0`, `1`, `2`, `3`, `4`
+- 分类: `TCTC`, `COMMAND`
+
+### 客户端崩溃 (commandCrash)
+
+发送一个巨大的爆炸数据包交由客户端运算.
+
+注意: 这会使玩家的客户端进入长时间的未响应状态.
+
+- 类型: `string`
+- 默认值: `ops`
+- 参考选项: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4`
+- 分类: `TCTC`, `COMMAND`
 
 ### 查询玩家坐标 (commandFind)
 
@@ -49,13 +66,13 @@
 
 共享玩家坐标 
 
-使用 `/here [玩家/目标选择器]` 来共享玩家坐标, 位于主世界/下界的玩家还会展示其对应另一维度的坐标.
+使用 `/here` 来共享玩家坐标, 位于主世界/下界的玩家还会展示其对应另一维度的坐标.
 
 对于 `权限等级 > 3` 的玩家可以展示其他玩家的坐标.
 
 - 类型: `string`  
 - 默认值: `true`  
-- 参考选项: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4`
+- 参考选项: `true`, `false`, `0`, `1`, `2`, `3`, `4`
 - 分类: `TCTC`, `COMMAND` 
 
 ### 管理员命令 (commandOp)
@@ -66,7 +83,7 @@
 
 - 类型: `string`  
 - 默认值: `3`  
-- 参考选项: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4`
+- 参考选项: `true`, `false`, `0`, `1`, `2`, `3`, `4`
 - 分类: `TCTC`, `COMMAND`, `CREATIVE` 
 
 ### 获取当前世界种子 (commandSeed)
@@ -77,7 +94,7 @@
 
 - 类型: `string`  
 - 默认值: `2`  
-- 参考选项: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4`
+- 参考选项: `true`, `false`, `0`, `1`, `2`, `3`, `4`
 - 分类: `TCTC`, `COMMAND`, `SURVIVAL` 
 
 ### 获取当前服务器运行速度 (commandTps)
@@ -86,7 +103,7 @@
 
 - 类型: `string`  
 - 默认值: `true`  
-- 参考选项: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4```
+- 参考选项: `true`, `false`, `0`, `1`, `2`, `3`, `4`
 - 分类: `TCTC`, `COMMAND` 
 
 ### 禁用旁观者传送其他玩家 (cameraModeDisableSpectatePlayers)
@@ -97,6 +114,15 @@
 - 默认值: `false`  
 - 参考选项: `true`, `false`
 - 分类: `TCTC`, `FEATURE` 
+
+### 方块更新 (blockUpdate)
+
+切换玩家放置/破坏方块的更新
+
+- 类型: `boolean`  
+- 默认值: `true`  
+- 参考选项: `true`, `false`
+- 分类: `TCTC`, `FEATURE`
 
 ### 假人玩家名长度限制 (fakePlayerNameLengthLimit)
 
@@ -140,20 +166,18 @@
 - 参考选项: `true`, `false`
 - 分类: `TCTC`, `FEATURE` 
 
-### 移除更新抑制器 (removeUpdateSuppression)
+### TNT合并调整 (tweakMergeTNT)
 
-启用后, 更新抑制器将无法抑制更新, 同时也不会造成崩溃.
+对 carpet 的 TNT 合并参数进行调整, 以获得更好的优化.
 
 - 类型: `boolean`  
 - 默认值: `false`  
 - 参考选项: `true`, `false`
-- 分类: `TCTC`, `BUGFIX` 
+- 分类: `TCTC`, `OPTIMIZATION`, `EXPERIMENTAL`, `TNT`
 
-### 合并TNT调整(tweakMergeTNT)
+### 移除更新抑制器 (removeUpdateSuppression)
 
-对 carpet 的 TNT 合并参数进行调整, 以获得更好的优化.
-
-此代码来自由 @ten-miles-away 改写的 [HIT-Carpet](https://github.com/HIT-Craft/HIT-Carpet).
+启用后, 更新抑制器将无法抑制更新, 同时也不会造成崩溃.
 
 - 类型: `boolean`  
 - 默认值: `false`  
@@ -170,6 +194,7 @@
 - 默认值: `false`  
 - 参考选项: `true`, `false`
 - 分类: `TCTC`, `BUGFIX` 
+
 
 # 感谢
 - [gnembon](https://github.com/gnembon/) - [fabric-carpet](https://github.com/gnembon/fabric-carpet)

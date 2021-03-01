@@ -1,6 +1,13 @@
 {
   "category.TCTC": "喵镇附属",
 
+  "rule.commandCameramode.name": "旁观者模式",
+  "rule.commandCameramode.desc": "允许使用 /c 和 /s 命令在 旁观者模式 和 生存模式 间切换(原地毯端功能)",
+  "rule.commandCameramode.extra.0": "/c 和 /s 命令 将允许全体玩家以低权限模式执行",
+
+  "rule.commandCrash.name": "客户端崩溃",
+  "rule.commandCrash.desc": "发送一个巨大的爆炸数据包交由客户端运算.",
+
   "rule.commandFind.name": "查找玩家位置命令",
   "rule.commandFind.desc": "玩家可通过该指令查找在线玩家的位置",
 

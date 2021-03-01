@@ -8,10 +8,22 @@ import carpet.settings.RuleCategory;
  */
 public class CarpetTCTCAdditionSettings
 {
-    /**
-     * You can define your own catergories. It makes sense to create new category for all settings in your mod.
-     */
     /* 命令相关 */
+    @Rule(
+            desc = "Send some packets to players in order to crash their client.",
+            category =  {"TCTC", RuleCategory.COMMAND},
+            options = {"true", "false", "ops", "0", "1", "2", "3", "4"}
+    )
+    public static String commandCrash = "ops";
+
+    @Rule(
+        desc = "Enables /c and /s commands to quickly switch between camera and survival modes",
+        extra = "/c and /s commands are available to all players regardless of their permission levels",
+        category =  {"TCTC", RuleCategory.COMMAND},
+        options = {"true", "false", "ops", "0", "1", "2", "3", "4"}
+    )
+    public static String commandCameramode = "false";
+
     @Rule(
         desc = "You can share your position with other players.",
         category = {"TCTC", RuleCategory.COMMAND},
@@ -25,7 +37,6 @@ public class CarpetTCTCAdditionSettings
         options = {"true", "false", "ops", "0", "1", "2", "3", "4"}
     )
     public static String commandFind = "ops";
-
     @Rule(
         desc = "Get server Operator by yourself.(Modify command permissions)",
         category = {"TCTC", RuleCategory.COMMAND, RuleCategory.CREATIVE},
@@ -40,8 +51,7 @@ public class CarpetTCTCAdditionSettings
     )
     public static String commandSeed = "2";
 
-    @Rule
-        (desc = "Check tps and mspt this time.",
+    @Rule(desc = "Check tps and mspt this time.",
         category = {"TCTC", RuleCategory.COMMAND},
         options = {"true", "false", "ops", "0", "1", "2", "3", "4"}
     )
@@ -67,20 +77,22 @@ public class CarpetTCTCAdditionSettings
     public static boolean fakePlayerStats = true;
 
     @Rule(
-            desc = "All dupe bug for donkey and llmama.",
-            category = {"TCTC", RuleCategory.FEATURE, RuleCategory.BUGFIX}
+        desc = "[MC-161754]All dupe bug for donkey and llmama.",
+        category = {"TCTC", "Exploit",RuleCategory.FEATURE, RuleCategory.BUGFIX}
     )
-    public static boolean llamaDupeExploit = true;
+    public static boolean llamaDupe = false;
 
     @Rule(
         desc = "Light update event, don't set false as default setting or your server can't start again until you set it to true.",
-        category = {"TCTC", RuleCategory.FEATURE})
+        category = {"TCTC", RuleCategory.FEATURE}
+    )
     public static boolean lightUpdates = true;
 
     /* 优化相关 */
     @Rule(
-        desc = "Adjust the parameters of carpet MergeTNT",
-        category = {"TCTC", RuleCategory.OPTIMIZATION, RuleCategory.EXPERIMENTAL, RuleCategory.TNT})
+            desc = "Adjust the parameters of carpet MergeTNT",
+            category = {"TCTC", RuleCategory.OPTIMIZATION, RuleCategory.EXPERIMENTAL, RuleCategory.TNT}
+    )
     public static boolean tweakMergeTNT = false;
 
     /* BUG 修复相关 */

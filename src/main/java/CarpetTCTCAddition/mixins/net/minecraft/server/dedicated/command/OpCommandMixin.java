@@ -12,12 +12,12 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 public class OpCommandMixin {
     @SuppressWarnings("UnresolvedMixinReference")
     @Redirect(
-            method = "method_13470",  // lambda method
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/server/command/ServerCommandSource;hasPermissionLevel(I)Z"
-            ),
-            allow = 1
+        method = "method_13470",  // lambda method
+        at = @At(
+            value = "INVOKE",
+            target = "Lnet/minecraft/server/command/ServerCommandSource;hasPermissionLevel(I)Z"
+        ),
+        allow = 1
     )
     private static boolean canUseSeedCommand(ServerCommandSource source, int level)
     {

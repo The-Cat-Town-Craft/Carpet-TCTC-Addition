@@ -12,12 +12,15 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class ServerPlayNetworkHandlerMixin {
 
     @Inject(
-            method = {"onSpectatorTeleport"},
-            at = {@At("HEAD")},
-            cancellable = true
+        method = "onSpectatorTeleport",
+        at = @At(
+            value = "HEAD"
+        ),
+        cancellable = true
     )
     private void disableSpectatorTeleport(SpectatorTeleportC2SPacket packet, CallbackInfo ci) {
-        if(CarpetTCTCAdditionSettings.cameraModeDisableSpectatePlayers)
+        if(CarpetTCTCAdditionSettings.cameraModeDisableSpectatePlayers) {
             ci.cancel();
+        }
     }
 }

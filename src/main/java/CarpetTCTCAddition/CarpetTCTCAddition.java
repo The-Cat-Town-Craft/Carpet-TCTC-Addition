@@ -1,8 +1,6 @@
 package CarpetTCTCAddition;
 
-import CarpetTCTCAddition.commands.FindCommand;
-import CarpetTCTCAddition.commands.HereCommand;
-import CarpetTCTCAddition.commands.TPSCommand;
+import CarpetTCTCAddition.commands.*;
 import CarpetTCTCAddition.utils.CarpetTCTCAdditionTranslations;
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
@@ -16,7 +14,7 @@ import java.util.Map;
 
 public class CarpetTCTCAddition implements CarpetExtension
 {
-    public static final String version = "1.0.5";
+    public static final String version = "1.0.6-dev";
     public static void noop() { }
     private static SettingsManager mySettingManager;
     static
@@ -47,6 +45,8 @@ public class CarpetTCTCAddition implements CarpetExtension
     @Override
     public void registerCommands(CommandDispatcher<ServerCommandSource> dispatcher)
     {
+        CameraModeCommand.register(dispatcher);
+        CrashCommand.register(dispatcher);
         FindCommand.register(dispatcher);
         HereCommand.register(dispatcher);
         TPSCommand.register(dispatcher);

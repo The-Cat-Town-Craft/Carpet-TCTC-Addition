@@ -5,7 +5,6 @@ import carpet.CarpetSettings;
 import carpet.fakes.TntEntityInterface;
 import carpet.logging.LoggerRegistry;
 import carpet.logging.logHelpers.TNTLogHelper;
-import java.util.Iterator;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -19,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(value = TntEntity.class, priority = 900)
+@Mixin(value = TntEntity.class, priority = 900) //覆盖 Carpet
 public abstract class TntEntityMixin extends Entity implements TntEntityInterface {
     @Shadow
     private int field_7196;
@@ -105,12 +104,10 @@ public abstract class TntEntityMixin extends Entity implements TntEntityInterfac
             Vec3d velocity = this.getVelocity();
             if (!this.world.isClient && this.mergeBool && velocity.x == 0.0D && velocity.y == 0.0D && velocity.z == 0.0D) {
                 this.mergeBool = false;
-                Iterator var3 = this.world.getEntities(this, this.getBoundingBox()).iterator();
 
-                while(var3.hasNext()) {
-                    Entity entity = (Entity)var3.next();
+                for (Entity entity : this.world.getOtherEntities(this, this.getBoundingBox())) {
                     if (entity instanceof TntEntity && !entity.removed) {
-                        TntEntity entityTNTPrimed = (TntEntity)entity;
+                        TntEntity entityTNTPrimed = (TntEntity) entity;
                         Vec3d tntVelocity = entityTNTPrimed.getVelocity();
                         int FuseTimer;
                         if (CarpetTCTCAdditionSettings.tweakMergeTNT) {
@@ -119,7 +116,7 @@ public abstract class TntEntityMixin extends Entity implements TntEntityInterfac
                             FuseTimer = entityTNTPrimed.getFuseTimer();
                         }
                         if (tntVelocity.x == 0.0D && tntVelocity.y == 0.0D && tntVelocity.z == 0.0D && this.getX() == entityTNTPrimed.getX() && this.getZ() == entityTNTPrimed.getZ() && this.getY() == entityTNTPrimed.getY() && this.field_7196 == FuseTimer) {
-                            this.mergedTNT += ((TntEntityInterface)entityTNTPrimed).getMergedTNT();
+                            this.mergedTNT += ((TntEntityInterface) entityTNTPrimed).getMergedTNT();
                             entityTNTPrimed.remove();
                         }
                     }

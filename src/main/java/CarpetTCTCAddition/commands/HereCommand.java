@@ -6,11 +6,10 @@ import carpet.utils.Messenger;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import net.minecraft.command.arguments.EntityArgumentType;
+import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.world.dimension.DimensionType;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -23,14 +22,12 @@ public class HereCommand {
             .then(CommandManager.argument("目标选择器", EntityArgumentType.players())
                 .requires((c) -> c.hasPermissionLevel(3))
                 .executes((c) -> execute(c.getSource(), EntityArgumentType.getPlayers(c, "目标选择器"))))
-            .then(CommandManager.argument("玩家", EntityArgumentType.player())
-                .executes((c) -> printPos(c.getSource(), EntityArgumentType.getPlayer(c, "玩家"))));
+                .then(CommandManager.argument("玩家", EntityArgumentType.player())
+                    .executes((c) -> printPos(c.getSource(), EntityArgumentType.getPlayer(c, "玩家"))));
         dispatcher.register(here);
     }
-    public static int execute(ServerCommandSource source, Collection<ServerPlayerEntity> targets) throws CommandSyntaxException {
-        Iterator var3 = targets.iterator();
-        while(var3.hasNext()) {
-            ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity)var3.next();
+    public static int execute(ServerCommandSource source, Collection<ServerPlayerEntity> targets) {
+        for (ServerPlayerEntity serverPlayerEntity : targets) {
             printPos(source, serverPlayerEntity);
         }
         return 1;
@@ -43,24 +40,28 @@ public class HereCommand {
         int playerX = (int)player.prevX;
         int playerY = (int)player.prevY;
         int playerZ = (int)player.prevZ;
-        DimensionType playerDimension =  player.dimension;
-        String Message = String.format("玩家 %s 位于 %s §b[x:%d, y:%d, z:%d]", player.getDisplayName().getString(), getDimensionName(playerDimension), playerX, playerY, playerZ);
-        if(playerDimension == DimensionType.OVERWORLD) {
-            Message += String.format(" §f-> %s §b[x:%d, y:%d, z:%d]", getDimensionName(DimensionType.THE_NETHER), playerX / 8, playerY, playerZ / 8);
-        } else if (playerDimension == DimensionType.THE_NETHER) {
-            Message += String.format(" §f-> %s §b[x:%d, y:%d, z:%d]", getDimensionName(DimensionType.OVERWORLD), playerX * 8, playerY, playerZ * 8);
+        String playerWorld = player.getServerWorld().getRegistryKey().getValue().toString();
+        String Message = String.format("玩家 %s 位于 %s §b[x:%d, y:%d, z:%d]", player.getDisplayName().getString(), getDimensionName(playerWorld), playerX, playerY, playerZ);
+        switch (playerWorld) {
+            case "minecraft:overworld":
+                Message += String.format(" §f-> %s §b[x:%d, y:%d, z:%d]", getDimensionName("minecraft:the_nether"), playerX / 8, playerY, playerZ / 8);
+                break;
+            case "minecraft:the_nether":
+                Message += String.format(" §f-> %s §b[x:%d, y:%d, z:%d]", getDimensionName("minecraft:overworld"), playerX * 8, playerY, playerZ * 8);
+                break;
         }
         return Message;
     }
-    public static String getDimensionName(DimensionType dimension) {
-        if (dimension == DimensionType.OVERWORLD) {
-            return "§a主世界";
-        } else if (dimension == DimensionType.THE_NETHER) {
-            return "§c下界";
-        } else if (dimension == DimensionType.THE_END) {
-            return "§e末路之地";
-        } else {
-            return "§f未知";
+    public static String getDimensionName(String world) {
+        switch (world) {
+            case "minecraft:overworld":
+                return "§a主世界";
+            case "minecraft:the_nether":
+                return "§c下界";
+            case "minecraft:the_end":
+                return "§e末路之地";
+            default:
+                return world;
         }
     }
 }

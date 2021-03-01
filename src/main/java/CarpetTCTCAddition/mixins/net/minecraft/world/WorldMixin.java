@@ -1,8 +1,7 @@
 package CarpetTCTCAddition.mixins.net.minecraft.world;
 
-import CarpetTCTCAddition.CarpetTCTCAddition;
 import CarpetTCTCAddition.CarpetTCTCAdditionSettings;
-import CarpetTCTCAddition.helps.ThrowableSuppression;
+import CarpetTCTCAddition.helper.ThrowableSuppression;
 import carpet.utils.Messenger;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -13,6 +12,8 @@ import net.minecraft.util.crash.CrashReportSection;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
+import net.minecraft.world.chunk.WorldChunk;
+import net.minecraft.world.dimension.DimensionType;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -22,21 +23,17 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(World.class)
 public abstract class WorldMixin {
-    @Shadow @Final public boolean isClient;
+    @Shadow
+    @Final
+    public boolean isClient;
     @Shadow public abstract BlockState getBlockState(BlockPos pos);
-
-    @Shadow public abstract World getWorld();
 
     @Shadow public abstract MinecraftServer getServer();
 
-    //@Inject(method = "updateNeighbor", at = @At(value = "INVOKE", target = "net/minecraft/util/crash/CrashException.<init> (Lnet/minecraft/util/crash/CrashReport;)V"), cancellable = true)
+    @Shadow public abstract WorldChunk getWorldChunk(BlockPos pos);
+
     @Inject(method = "updateNeighbor", at = @At(value = "HEAD"), cancellable = true)
     private void SupressorFix(BlockPos sourcePos, Block sourceBlock, BlockPos neighborPos, CallbackInfo ci) {
-        /**
-        if (CarpetTCTCAdditionSettings.removeUpdateSuppression) {
-            ci.cancel();
-        }
-        **/
         updateNeighbor(sourcePos, sourceBlock, neighborPos);
         ci.cancel();
     }
@@ -45,7 +42,7 @@ public abstract class WorldMixin {
         if (!this.isClient) {
             BlockState blockState = this.getBlockState(sourcePos);
             try {
-                blockState.neighborUpdate(this.getWorld(), sourcePos, sourceBlock, neighborPos, false);
+                blockState.neighborUpdate(this.getWorldChunk(sourcePos).getWorld(), sourcePos, sourceBlock, neighborPos, false);
             } catch (Throwable var8) {
                 if (CarpetTCTCAdditionSettings.removeUpdateSuppression)
                     return;
