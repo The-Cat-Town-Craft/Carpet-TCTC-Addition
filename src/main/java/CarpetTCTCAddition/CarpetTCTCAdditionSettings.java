@@ -77,12 +77,6 @@ public class CarpetTCTCAdditionSettings
     public static boolean fakePlayerStats = true;
 
     @Rule(
-        desc = "[MC-161754]All dupe bug for donkey and llmama.",
-        category = {"TCTC", "Exploit",RuleCategory.FEATURE, RuleCategory.BUGFIX}
-    )
-    public static boolean llamaDupe = false;
-
-    @Rule(
         desc = "Light update event, don't set false as default setting or your server can't start again until you set it to true.",
         category = {"TCTC", RuleCategory.FEATURE}
     )
@@ -113,4 +107,17 @@ public class CarpetTCTCAdditionSettings
         category = {"TCTC", RuleCategory.BUGFIX}
     )
     public static boolean updateSuppressionCrashFix = false;
+
+    /* 漏洞 */
+    @Rule(
+        desc = "[MC-161754]All dupe bug for donkey and llmama.",
+        category = {"TCTC", "Exploit"}
+    )
+    public static boolean llamaDupe = false;
+
+    @Rule(
+        desc = "[MC-113809]Fixes zero tick make Bamboo, Cactus, ChorusFlower, SugarCane grow up.",
+        category = {"TCTC", "Exploit"}
+    )
+    public static boolean zeroTickFarm = false;
 }
