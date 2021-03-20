@@ -1,6 +1,9 @@
 {
   "category.TCTC": "喵镇附属",
 
+  "rule.cameraModeDisableSpectatePlayers.name": "禁用旁观者传送其他玩家",
+  "rule.cameraModeDisableSpectatePlayers.desc": "处于旁观者模式的玩家将不能通过玩家头像进行快捷传送.",
+
   "rule.commandCameramode.name": "旁观者模式",
   "rule.commandCameramode.desc": "允许使用 /c 和 /s 命令在 旁观者模式 和 生存模式 间切换(原地毯端功能)",
   "rule.commandCameramode.extra.0": "/c 和 /s 命令 将允许全体玩家以低权限模式执行",
@@ -23,8 +26,8 @@
   "rule.commandTps.name": "获取当前服务器运行速度",
   "rule.commandTps.desc": "查看当前服务器实际 TPS 及 MSPT.",
 
-  "rule.cameraModeDisableSpectatePlayers.name": "禁用旁观者传送其他玩家",
-  "rule.cameraModeDisableSpectatePlayers.desc": "处于旁观者模式的玩家将不能通过玩家头像进行快捷传送.",
+  "rule.consoleSpamFix.name": "控制台刷屏修复",
+  "rule.consoleSpamFix.desc": "移除 实体跟踪 及 玩家交互管理 等的刷屏.",
 
   "rule.blockUpdate.name": "方块更新",
   "rule.blockUpdate.desc": "切换玩家放置/破坏方块的更新.",

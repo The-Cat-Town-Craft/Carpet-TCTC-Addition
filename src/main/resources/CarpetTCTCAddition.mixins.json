@@ -16,11 +16,14 @@
     "net.minecraft.server.PlayerManagerMixin",
     "net.minecraft.server.command.SeedCommandMixin",
     "net.minecraft.server.dedicated.command.OpCommandMixin",
+    "net.minecraft.server.network.EntityTrackerEntryMixin",
+    "net.minecraft.server.network.ServerPlayerInteractionManagerMixin",
     "net.minecraft.server.network.ServerPlayNetworkHandlerMixin",
     "net.minecraft.server.world.ServerLightProviderMixin",
     "net.minecraft.world.WorldMixin"
   ],
   "client": [
+    "net.minecraft.client.network.ClientPlayerInteractionManagerMixin"
   ],
   "server": [
     "net.minecraft.server.network.ServerPlayerEntityMixin"

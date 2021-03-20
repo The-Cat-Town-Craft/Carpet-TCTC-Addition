@@ -84,12 +84,18 @@ public class CarpetTCTCAdditionSettings
 
     /* 优化相关 */
     @Rule(
-            desc = "Adjust the parameters of carpet MergeTNT",
-            category = {"TCTC", RuleCategory.OPTIMIZATION, RuleCategory.EXPERIMENTAL, RuleCategory.TNT}
+        desc = "Adjust the parameters of carpet MergeTNT",
+        category = {"TCTC", RuleCategory.OPTIMIZATION, RuleCategory.EXPERIMENTAL, RuleCategory.TNT}
     )
     public static boolean tweakMergeTNT = false;
 
     /* BUG 修复相关 */
+    @Rule(
+        desc = "Hide something console spam.",
+        category = {"TCTC", RuleCategory.BUGFIX, RuleCategory.CLIENT}
+    )
+    public static boolean consoleSpamFix = false;
+
     @Rule(
         desc = "Limit player command spawn fakeplayer name length.",
         category = {"TCTC", RuleCategory.BUGFIX}
