@@ -17,10 +17,11 @@
  - [方块更新](#方块更新-blockUpdate)
  - [假人计入统计信息](#假人计入统计信息-fakePlayerStats)
  - [光照更新](#光照更新-lightUpdates)
+ - [模拟更新抑制](#模拟更新抑制-oreUpdateSuppressor)
 ### 优化
  - [TNT合并调整](#TNT合并调整-tweakMergeTNT)
 ### BUG 修复
-- [控制台刷屏修复](#控制台刷屏修复-consoleSpamFix)
+ - [控制台刷屏修复](#控制台刷屏修复-consoleSpamFix)
  - [假人玩家名长度限制](#假人玩家名长度限制-fakePlayerNameLengthLimit)
  - [移除更新抑制器](#移除更新抑制器-removeUpdateSuppression)
  - [修复更新抑制器崩服](#修复更新抑制器崩服-updateSuppressionCrashFix)
@@ -206,6 +207,15 @@
 - 默认值: `false`  
 - 参考选项: `true`, `false`
 - 分类: `TCTC`, `BUGFIX`
+
+### 模拟更新抑制 (oreUpdateSuppressor)
+
+当绿宝石矿受到`NC更新`时, 将会引发`栈溢出`异常, 用于模拟`更新抑制`.
+
+- 类型: `boolean`
+- 默认值: `false`
+- 参考选项: `true`, `false`
+- 分类: `TCTC`, `CREATIVE`, `FEATURE`
 
 ### 0gt作物强制催熟 (zeroTickFarm)
 

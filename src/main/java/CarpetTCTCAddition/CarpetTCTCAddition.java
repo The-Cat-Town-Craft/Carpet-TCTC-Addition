@@ -16,6 +16,7 @@ public class CarpetTCTCAddition implements CarpetExtension
 {
     public static final String version = "1.0.6-dev";
     public static void noop() { }
+    public static MinecraftServer server;
     private static SettingsManager mySettingManager;
     static
     {
@@ -32,6 +33,7 @@ public class CarpetTCTCAddition implements CarpetExtension
     @Override
     public void onServerLoaded(MinecraftServer server)
     {
+        CarpetTCTCAddition.server = server;
         // reloading of /carpet settings is handled by carpet
         // reloading of own settings is handled as an extension, since we claim own settings manager
     }

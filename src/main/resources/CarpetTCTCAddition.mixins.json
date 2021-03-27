@@ -6,6 +6,7 @@
     "carpet.CarpetServerMixin",
     "carpet.commands.PlayerCommandMixin",
     "carpet.utils.SettingsManagerMixin",
+    "net.minecraft.block.AbstractBlockMixin",
     "net.minecraft.block.AbstractBlockStateMixin",
     "net.minecraft.block.BambooBlockMixin",
     "net.minecraft.block.CactusBlockMixin",

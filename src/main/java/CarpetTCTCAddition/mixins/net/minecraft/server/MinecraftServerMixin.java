@@ -1,5 +1,6 @@
 package CarpetTCTCAddition.mixins.net.minecraft.server;
 
+import CarpetTCTCAddition.CarpetTCTCAddition;
 import CarpetTCTCAddition.CarpetTCTCAdditionSettings;
 import carpet.utils.Messenger;
 import net.minecraft.server.MinecraftServer;
@@ -26,6 +27,7 @@ public abstract class MinecraftServerMixin {
     )
     private void updateSuppressionFix(CallbackInfo ci) {
         if (CarpetTCTCAdditionSettings.updateSuppressionCrashFix) {
+            Messenger.print_server_message(CarpetTCTCAddition.server, "世界循环异常.");
             ci.cancel();
         }
     }
