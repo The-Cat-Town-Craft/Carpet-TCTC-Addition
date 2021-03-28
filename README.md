@@ -28,6 +28,8 @@
 ### 漏洞
  - [羊驼复制](#羊驼复制-llamaDupe)
  - [0gt作物强制催熟](#0gt作物强制催熟-zeroTickFarm)
+### 世界生成
+ - [黑曜石平台生成控制](#黑曜石平台生成控制-obsidianPlatform)
 
 ## 列表
 
@@ -207,6 +209,15 @@
 - 默认值: `false`  
 - 参考选项: `true`, `false`
 - 分类: `TCTC`, `BUGFIX`
+
+### 黑曜石平台生成控制 (obsidianPlatform)
+
+实体进入末地维度时是否创建黑曜石平台.
+
+- 类型: `CreatePlatformOptions`
+- 默认值: `player`
+- 参考选项: `all` `none`, `player`
+- 分类: `TCTC`, `WORLDGENERATION` `FEATURE`
 
 ### 模拟更新抑制 (oreUpdateSuppressor)
 

@@ -8,8 +8,9 @@ import carpet.settings.RuleCategory;
  */
 public class CarpetTCTCAdditionSettings
 {
-    public final static String TCTC = "TCTC";
     public final static String EXPLOIT = "Exploit";
+    public final static String TCTC = "TCTC";
+    public final static String WORLDGENERATION = "WorldGeneration";
     /* 命令相关 */
     @Rule(
             desc = "Send some packets to players in order to crash their client.",
@@ -134,4 +135,32 @@ public class CarpetTCTCAdditionSettings
         category = {TCTC, EXPLOIT}
     )
     public static boolean zeroTickFarm = false;
+
+    /* 世界生成 相关 */
+
+    @Rule(
+        desc = "Is obsidian platform generated in the end.",
+        category = {TCTC, WORLDGENERATION, RuleCategory.FEATURE}
+    )
+    public static CreatePlatformOptions obsidianPlatform = CreatePlatformOptions.PLAYER;
+    public enum CreatePlatformOptions {
+        ALL(false, true),
+        NONE(false, false),
+        PLAYER(true, false);
+
+        private final boolean createForPlayer;
+        private final boolean createForAll;
+
+        CreatePlatformOptions(boolean createForPlayer, boolean createForAll)
+        {
+            this.createForPlayer = createForPlayer;
+            this.createForAll = createForAll;
+        }
+        public boolean shouldCreateForPlayer() {
+            return this.createForPlayer;
+        }
+        public boolean shouldCreateForAll() {
+            return this.createForAll;
+        }
+    }
 }

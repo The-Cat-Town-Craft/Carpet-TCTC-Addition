@@ -1,5 +1,7 @@
 {
+  "category.EXPLOIT": "漏洞",
   "category.TCTC": "喵镇附属",
+  "category.WorldGeneration": "世界生成",
 
   "rule.cameraModeDisableSpectatePlayers.name": "禁用旁观者传送其他玩家",
   "rule.cameraModeDisableSpectatePlayers.desc": "处于旁观者模式的玩家将不能通过玩家头像进行快捷传送.",
@@ -40,6 +42,9 @@
 
   "rule.lightUpdates.name": "光照更新",
   "rule.lightUpdates.desc": "世界光照更新开关, 请勿设置 false 为默认值, 否则在其值为 true 之前, 服务端将无法启动.",
+
+  "rule.obsidianPlatform.name": "黑曜石平台生成控制",
+  "rule.obsidianPlatform.desc": "实体进入末地维度时是否创建黑曜石平台.",
 
   "rule.oreUpdateSuppressor.name": "模拟更新抑制",
   "rule.oreUpdateSuppressor.desc": "当绿宝石矿受到 NC更新 时, 将会引发 栈溢出 异常, 用于模拟 更新抑制.",
