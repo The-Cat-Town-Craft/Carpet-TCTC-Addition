@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class CarpetTCTCAddition implements CarpetExtension
 {
-    public static final String version = "1.0.6-dev";
+    public static final String version = "1.0.6";
     public static void noop() { }
     public static MinecraftServer server;
     private static SettingsManager mySettingManager;
