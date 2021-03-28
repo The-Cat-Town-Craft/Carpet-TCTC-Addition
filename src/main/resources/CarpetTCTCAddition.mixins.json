@@ -12,6 +12,7 @@
     "net.minecraft.block.CactusBlockMixin",
     "net.minecraft.block.ChorusFlowerBlockMixin",
     "net.minecraft.block.SugarCaneBlockMixin",
+    "net.minecraft.block.entity.EndGatewayBlockEntityMixin",
     "net.minecraft.entity.EntityMixin",
     "net.minecraft.entity.TntEntityMixin",
     "net.minecraft.server.MinecraftServerMixin",

@@ -15,6 +15,7 @@
 ### 特性
  - [禁用旁观者传送其他玩家](#禁用旁观者传送其他玩家-cameraModeDisableSpectatePlayers)
  - [方块更新](#方块更新-blockUpdate)
+ - [终界折跃门区块加载器](#终界折跃门区块加载器-endGateWayChunkLoader)
  - [假人计入统计信息](#假人计入统计信息-fakePlayerStats)
  - [光照更新](#光照更新-lightUpdates)
  - [模拟更新抑制](#模拟更新抑制-oreUpdateSuppressor)
@@ -129,9 +130,16 @@
 - 类型: `string`  
 - 默认值: `2`  
 - 参考选项: `true`, `false`, `0`, `1`, `2`, `3`, `4`
-- 分类: `TCTC`, `COMMAND`, `SURVIVAL` 
+- 分类: `TCTC`, `COMMAND`, `SURVIVAL`
 
-### 获取当前服务器运行速度 (commandTps)
+### 终界折跃门区块加载器 (endGateWayChunkLoader)
+
+当实体穿越终界折跃门时, 目标区块会像下界传送门一样使目标区块获得 15 秒的加载.
+
+- 类型: `boolean`
+- 默认值: `false`
+- 参考选项: `true`, `false`
+- 分类: `TCTC`, `CREATIVE`, `FEATURE`
 
 ### 终界黑曜石柱 (endSpike)
 
@@ -141,6 +149,8 @@
 - 默认值: `true`
 - 参考选项: `true`, `false`
 - 分类: `TCTC`, `WORLDGENERATION`, `FEATURE`
+
+### 获取当前服务器运行速度 (commandTps)
 
 获取当前服务器实际 TPS 和 MSPT 信息
 

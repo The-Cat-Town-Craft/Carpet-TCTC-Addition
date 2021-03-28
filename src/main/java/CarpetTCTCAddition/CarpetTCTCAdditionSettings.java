@@ -74,6 +74,12 @@ public class CarpetTCTCAdditionSettings
     public static boolean blockUpdate = true;
 
     @Rule(
+        desc = "When the entity passes through the ender gateway, the target chunk will be loaded for 15 seconds like nether portal.",
+        category = {TCTC, RuleCategory.CREATIVE, RuleCategory.FEATURE}
+    )
+    public static boolean endGateWayChunkLoader = false;
+
+    @Rule(
         desc = "Allows fake players to gain stats.",
         category = {TCTC, RuleCategory.FEATURE}
     )
@@ -138,8 +144,8 @@ public class CarpetTCTCAdditionSettings
 
     /* 世界生成 相关 */
     @Rule(
-            desc = "Is end spike generated in the end.",
-            category = {TCTC, WORLDGENERATION, RuleCategory.FEATURE}
+        desc = "Is end spike generated in the end.",
+        category = {TCTC, WORLDGENERATION, RuleCategory.FEATURE}
     )
     public static boolean endSpike = true;
 
