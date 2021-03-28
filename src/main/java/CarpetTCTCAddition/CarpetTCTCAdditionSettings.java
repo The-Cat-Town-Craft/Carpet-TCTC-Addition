@@ -137,6 +137,11 @@ public class CarpetTCTCAdditionSettings
     public static boolean zeroTickFarm = false;
 
     /* 世界生成 相关 */
+    @Rule(
+            desc = "Is end spike generated in the end.",
+            category = {TCTC, WORLDGENERATION, RuleCategory.FEATURE}
+    )
+    public static boolean endSpike = true;
 
     @Rule(
         desc = "Is obsidian platform generated in the end.",

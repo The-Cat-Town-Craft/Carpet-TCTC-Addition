@@ -22,7 +22,8 @@
     "net.minecraft.server.network.ServerPlayerInteractionManagerMixin",
     "net.minecraft.server.network.ServerPlayNetworkHandlerMixin",
     "net.minecraft.server.world.ServerLightProviderMixin",
-    "net.minecraft.world.WorldMixin"
+    "net.minecraft.world.WorldMixin",
+    "net.minecraft.world.gen.feature.EndSpikeFeatureMixin"
   ],
   "client": [
     "net.minecraft.client.network.ClientPlayerInteractionManagerMixin"

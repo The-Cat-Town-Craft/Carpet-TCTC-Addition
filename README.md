@@ -29,6 +29,7 @@
  - [羊驼复制](#羊驼复制-llamaDupe)
  - [0gt作物强制催熟](#0gt作物强制催熟-zeroTickFarm)
 ### 世界生成
+ - [终界黑曜石柱](#终界黑曜石柱-endSpike)
  - [黑曜石平台生成控制](#黑曜石平台生成控制-obsidianPlatform)
 
 ## 列表
@@ -131,6 +132,15 @@
 - 分类: `TCTC`, `COMMAND`, `SURVIVAL` 
 
 ### 获取当前服务器运行速度 (commandTps)
+
+### 终界黑曜石柱 (endSpike)
+
+是否执行终界黑曜石柱的世界生成.
+
+- 类型: `boolean`
+- 默认值: `true`
+- 参考选项: `true`, `false`
+- 分类: `TCTC`, `WORLDGENERATION`, `FEATURE`
 
 获取当前服务器实际 TPS 和 MSPT 信息
 
