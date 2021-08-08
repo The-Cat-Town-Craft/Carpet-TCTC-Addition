@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "id": "carpet-tctc-addition",
+  "version": "${mod_version}",
+
+  "name": "CarpetTCTCAddition",
+  "description": "A carpet extension.",
+  "authors": [
+    {
+      "name": "The Cat Town Craft",
+      "contact": {
+        "homepage": "https://github.com/The-Cat-The-Craft"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Hendrix-Shen",
+      "contact": {
+        "homepage": "https://github.com/Hendrix-Shen"
+      }
+    }
+  ],
+  "contact": {
+    "homepage": "https://github.com/The-Cat-The-Craft",
+    "issues": "https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/issues",
+    "sources": "https://github.com/The-Cat-The-Craft/Carpet-TCTC-Addition"
+  },
+
+  "license": "GPL-v3",
+  "icon": "assets/carpet-tctc-addition/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "top.catowncraft.CarpetTCTCAddition.CarpetTCTCAddition"
+    ]
+  },
+  "mixins": [
+    "carpet-tctc-addition.mixins.json"
+  ],
+
+  "accessWidener": "carpet-tctc-addition.accesswidener",
+
+  "depends": {
+    "carpet": ">=1.4.8",
+    "fabricloader": ">=0.9.0",
+    "minecraft": "1.15.2"
+  },
+  "custom": {
+    "modmenu:parent": "carpet"
+  }
+}

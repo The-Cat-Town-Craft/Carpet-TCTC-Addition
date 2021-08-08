@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "top.catowncraft.CarpetTCTCAddition.mixins",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "carpet.settings.MixinSettingsManager"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
