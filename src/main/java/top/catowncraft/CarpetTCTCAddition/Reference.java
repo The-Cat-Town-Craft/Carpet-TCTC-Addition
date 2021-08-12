@@ -13,6 +13,4 @@ public class Reference {
     public static final String MOD_NAME = "Carpet TCTC Addition";
     public static final String MOD_VERSION = "1.0.0-build.undefined";
     public static final String MOD_VERSION_TYPE = "Version Exception";
-
-    public static final String VERSION_MESSAGE = String.format(tr("carpet-tctc-addition.message.command.carpet.version"), Reference.MOD_NAME, Reference.MOD_VERSION, String.format(tr("carpet-tctc-addition.label.versionType.%s"), Reference.MOD_VERSION_TYPE));
 }

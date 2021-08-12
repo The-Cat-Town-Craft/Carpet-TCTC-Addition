@@ -7,6 +7,7 @@
 package top.catowncraft.CarpetTCTCAddition.utils;
 
 import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.network.chat.BaseComponent;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.level.dimension.DimensionType;
 
@@ -15,5 +16,10 @@ public class MessageUtil {
     {
         if (source != null)
             source.sendSuccess(new TextComponent(message),source.getServer() != null && source.getServer().getLevel(DimensionType.OVERWORLD) != null);
+    }
+    public static void sendMessage(CommandSourceStack source, BaseComponent component)
+    {
+        if (source != null)
+            source.sendSuccess(component,source.getServer() != null && source.getServer().getLevel(DimensionType.OVERWORLD) != null);
     }
 }

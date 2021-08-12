@@ -21,7 +21,7 @@ public class CarpetTCTCAddition implements CarpetExtension, ModInitializer {
 
     @Override
     public String version() {
-        return Reference.VERSION_MESSAGE;
+        return Reference.MOD_ID;
     }
 
     @Override
