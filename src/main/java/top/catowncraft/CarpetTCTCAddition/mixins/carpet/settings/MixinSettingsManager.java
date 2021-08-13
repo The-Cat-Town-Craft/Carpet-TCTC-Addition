@@ -15,7 +15,6 @@ import net.minecraft.network.chat.TextComponent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Slice;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import top.catowncraft.CarpetTCTCAddition.Reference;
 import top.catowncraft.CarpetTCTCAddition.utils.MessageUtil;
@@ -26,17 +25,9 @@ import static carpet.utils.Translations.tr;
 public class MixinSettingsManager {
     @Inject(
             method = "listAllSettings",
-            slice = @Slice(
-                    from = @At(
-                            value = "CONSTANT",
-                            args = "stringValue= version: ",
-                            ordinal = 0
-                    )
-            ),
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/commands/CommandSourceStack;getPlayerOrException()Lnet/minecraft/server/level/ServerPlayer;",
-                    ordinal = 0
+                    target = "Lnet/minecraft/commands/CommandSourceStack;getPlayerOrException()Lnet/minecraft/server/level/ServerPlayer;"
             ),
             remap = false
     )
