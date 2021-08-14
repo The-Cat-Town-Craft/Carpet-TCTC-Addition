@@ -6,6 +6,16 @@
  */
 package top.catowncraft.CarpetTCTCAddition;
 
+import carpet.settings.Rule;
+
 public class CarpetTCTCAdditionSettings {
     private static final String TCTC = "TCTC";
+    private static final String TCTC_BUGFIX = "TCTC-BUGFIX";
+
+    @Rule(
+            name = "updateSuppressionCrashFix",
+            desc = "Fixes updates suppression causing server crashes.",
+            category = {TCTC, TCTC_BUGFIX}
+    )
+    public static boolean updateSuppressionCrashFix = false;
 }

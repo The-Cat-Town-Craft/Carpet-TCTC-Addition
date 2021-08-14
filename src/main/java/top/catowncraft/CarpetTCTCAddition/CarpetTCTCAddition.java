@@ -9,14 +9,25 @@ package top.catowncraft.CarpetTCTCAddition;
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.server.MinecraftServer;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import top.catowncraft.CarpetTCTCAddition.utils.CarpetTCTCAdditionTranslations;
 
 import java.util.Map;
 
 public class CarpetTCTCAddition implements CarpetExtension, ModInitializer {
+    public static final Logger logger = LogManager.getLogger(Reference.MOD_ID);
+    private static MinecraftServer minecraftServer;
+
     @Override
     public void onGameStarted() {
         CarpetServer.settingsManager.parseSettingsClass(CarpetTCTCAdditionSettings.class);
+    }
+
+    @Override
+    public void onServerLoaded(MinecraftServer server) {
+        minecraftServer = server;
     }
 
     @Override
@@ -32,5 +43,9 @@ public class CarpetTCTCAddition implements CarpetExtension, ModInitializer {
     @Override
     public void onInitialize() {
         CarpetServer.manageExtension(new CarpetTCTCAddition());
+    }
+
+    public static MinecraftServer getServer() {
+        return minecraftServer;
     }
 }

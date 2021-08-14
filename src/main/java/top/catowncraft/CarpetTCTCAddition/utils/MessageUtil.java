@@ -9,7 +9,10 @@ package top.catowncraft.CarpetTCTCAddition.utils;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.network.chat.BaseComponent;
 import net.minecraft.network.chat.TextComponent;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.dimension.DimensionType;
+import top.catowncraft.CarpetTCTCAddition.CarpetTCTCAddition;
 
 public class MessageUtil {
     public static void sendMessage(CommandSourceStack source, String message)
@@ -21,5 +24,31 @@ public class MessageUtil {
     {
         if (source != null)
             source.sendSuccess(component,source.getServer() != null && source.getServer().getLevel(DimensionType.OVERWORLD) != null);
+    }
+
+    public static void sendServerMessage(MinecraftServer server, String message)
+    {
+        if (server != null) {
+            CarpetTCTCAddition.logger.info(message);
+            for (Player player : server.getPlayerList().getPlayers())
+            {
+                player.sendMessage(new TextComponent(message));
+            }
+        } else {
+            CarpetTCTCAddition.logger.error("Message not delivered: " + message);
+        }
+    }
+
+    public static void sendServerMessage(MinecraftServer server, BaseComponent baseComponent)
+    {
+        if (server != null) {
+            CarpetTCTCAddition.logger.info(baseComponent);
+            for (Player player : server.getPlayerList().getPlayers())
+            {
+                player.sendMessage(baseComponent);
+            }
+        } else {
+            CarpetTCTCAddition.logger.error("Message not delivered: " + baseComponent);
+        }
     }
 }
