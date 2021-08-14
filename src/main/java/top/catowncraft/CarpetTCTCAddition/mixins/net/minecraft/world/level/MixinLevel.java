@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) Copyright 2020 - 2021 The Cat Town Craft and contributors.
+ * This source code is subject to the terms of the GNU General Public
+ * License, version 3. If a copy of the GPL was not distributed with this
+ * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
+ */
 package top.catowncraft.CarpetTCTCAddition.mixins.net.minecraft.world.level;
 
 import net.minecraft.ChatFormatting;
@@ -32,7 +38,7 @@ public class MixinLevel {
             locals = LocalCapture.CAPTURE_FAILHARD,
             cancellable = true
     )
-    private void OnPopulateBlockDetails(BlockPos blockPos, Block block, BlockPos blockPos2, CallbackInfo ci, BlockState state, Throwable throwable){
+    private void OnPopulateBlockDetails(BlockPos blockPos, Block block, BlockPos blockPos2, CallbackInfo ci, BlockState state, Throwable throwable) {
         if (CarpetTCTCAdditionSettings.updateSuppressionCrashFix && (throwable.getCause() instanceof StackOverflowError || throwable.getCause() instanceof ThrowableSuppression)) {
             if (throwable.getCause() instanceof StackOverflowError) {
                 MessageUtil.sendServerMessage(CarpetTCTCAddition.getServer(), (BaseComponent) new TextComponent(tr("carpet-tctc-addition.message.server.updateSuppression.processed", "Update suppression.")).setStyle(new Style().setColor(ChatFormatting.GRAY).setItalic(true)));
