@@ -14,7 +14,7 @@ public class CarpetTCTCAdditionSettings {
 
     @Rule(
             name = "updateSuppressionCrashFix",
-            desc = "Fixes updates suppression causing server crashes.",
+            desc = "Fix updates suppression causing server crashes.",
             category = {TCTC, TCTC_BUGFIX}
     )
     public static boolean updateSuppressionCrashFix = false;
