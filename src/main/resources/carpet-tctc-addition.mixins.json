@@ -4,7 +4,10 @@
   "package": "top.catowncraft.CarpetTCTCAddition.mixins",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "carpet.settings.MixinSettingsManager"
+    "carpet.settings.MixinSettingsManager",
+    "minecraft.server.MixinMinecraftServer",
+    "minecraft.world.entity.player.MixinPlayer",
+    "minecraft.world.level.MixinLevel"
   ],
   "client": [
   ],
