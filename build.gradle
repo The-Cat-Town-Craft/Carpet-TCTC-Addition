@@ -36,7 +36,6 @@ dependencies {
     modApi("net.fabricmc:fabric-loader:${project.fabric_loader_version}")
 
 	// Carpet Mod.
-	// modApi("carpet:fabric-carpet:${project.minecraft_version}-${project.carpet_version}")
 	modApi("carpet:fabric-carpet:${project.minecraft_version}-${project.carpet_version}")
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
@@ -62,6 +61,10 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 runClient {
+	defaultCharacterEncoding = "UTF-8"
+}
+
+runServer {
 	defaultCharacterEncoding = "UTF-8"
 }
 
