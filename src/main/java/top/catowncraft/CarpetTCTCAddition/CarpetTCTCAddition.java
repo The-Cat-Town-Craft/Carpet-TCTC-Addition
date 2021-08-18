@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 The Cat Town Craft and contributors.
+ * Copyright (c) Copyright 2020 - 2021 The Cat Town Craft and contributors.
  * This source code is subject to the terms of the GNU General Public
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
@@ -9,19 +9,30 @@ package top.catowncraft.CarpetTCTCAddition;
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.server.MinecraftServer;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import top.catowncraft.CarpetTCTCAddition.utils.CarpetTCTCAdditionTranslations;
 
 import java.util.Map;
 
 public class CarpetTCTCAddition implements CarpetExtension, ModInitializer {
+    public static final Logger logger = LogManager.getLogger(Reference.MOD_ID);
+    private static MinecraftServer minecraftServer;
+
     @Override
     public void onGameStarted() {
         CarpetServer.settingsManager.parseSettingsClass(CarpetTCTCAdditionSettings.class);
     }
 
     @Override
+    public void onServerLoaded(MinecraftServer server) {
+        minecraftServer = server;
+    }
+
+    @Override
     public String version() {
-        return Reference.VERSION_MESSAGE;
+        return Reference.MOD_ID;
     }
 
     @Override
@@ -32,5 +43,9 @@ public class CarpetTCTCAddition implements CarpetExtension, ModInitializer {
     @Override
     public void onInitialize() {
         CarpetServer.manageExtension(new CarpetTCTCAddition());
+    }
+
+    public static MinecraftServer getServer() {
+        return minecraftServer;
     }
 }
