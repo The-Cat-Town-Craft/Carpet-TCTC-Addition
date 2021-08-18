@@ -4,12 +4,19 @@
   "carpet-tctc-addition.label.versionType.Version Exception": "版本异常",
 
   "carpet-tctc-addition.message.command.carpet.version": "%s 版本: %s (%s)",
-  "carpet-tctc-addition.message.server.updateSuppression.exception": "获到更新抑制异常，已阻止服务器崩溃。",
+  "carpet-tctc-addition.message.server.updateSuppression.exception": "捕获到更新抑制异常，已阻止服务器崩溃。",
   "carpet-tctc-addition.message.server.updateSuppression.processed": "更新抑制。",
 
   "category.TCTC": "喵镇附属",
   "category.TCTC-BUGFIX": "喵镇附属-漏洞修复",
+  "category.TCTC-FEATURE": "喵镇附属-特性",
 
+  "rule.playerStats.name": "统计信息",
+  "rule.playerStats.desc": "玩家与假人统计信息的控制。",
+  "rule.playerStats.extra.0": "bot - 仅假人可获得统计信息。",
+  "rule.playerStats.extra.1": "both - 玩家和假人均可获得统计信息。",
+  "rule.playerStats.extra.2": "none - 玩家和假人均不可获得统计信息。",
+  "rule.playerStats.extra.3": "player - 仅玩家可获得统计信息。",
   "rule.updateSuppressionCrashFix.name": "更新抑制崩溃修复",
   "rule.updateSuppressionCrashFix.desc": "修复更新抑制造成的服务器崩溃。"
 }

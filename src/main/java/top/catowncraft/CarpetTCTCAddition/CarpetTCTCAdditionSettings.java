@@ -11,6 +11,26 @@ import carpet.settings.Rule;
 public class CarpetTCTCAdditionSettings {
     private static final String TCTC = "TCTC";
     private static final String TCTC_BUGFIX = "TCTC-BUGFIX";
+    private static final String TCTC_FEATURE = "TCTC-FEATURE";
+
+    @Rule(
+            name = "playerStats",
+            desc = "Control of player and bot statistics.",
+            extra = {
+                    "bot - Only bots are allowed to gain stats.",
+                    "both - Both bots and players are allowed to gain stats.",
+                    "none - No one allowed to gain stats.",
+                    "player - Only players are allowed to gain stats."
+            },
+            category = {TCTC, TCTC_FEATURE}
+    )
+    public static PlayerStatsOptions playerStats = PlayerStatsOptions.BOTH;
+    public enum PlayerStatsOptions {
+        BOT,
+        BOTH,
+        NONE,
+        PLAYER;
+    }
 
     @Rule(
             name = "updateSuppressionCrashFix",
