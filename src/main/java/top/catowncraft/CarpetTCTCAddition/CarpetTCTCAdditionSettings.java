@@ -25,6 +25,7 @@ public class CarpetTCTCAdditionSettings {
             category = {TCTC, TCTC_FEATURE, TCTC_WORLD_GENERATE}
     )
     public static EnderPlatformOptions enderPlatform = EnderPlatformOptions.PLAYER;
+
     public enum EnderPlatformOptions {
         ALL,
         NONE,
@@ -43,11 +44,12 @@ public class CarpetTCTCAdditionSettings {
             category = {TCTC, TCTC_FEATURE}
     )
     public static PlayerStatsOptions playerStats = PlayerStatsOptions.BOTH;
+
     public enum PlayerStatsOptions {
         BOT,
         BOTH,
         NONE,
-        PLAYER;
+        PLAYER
     }
 
     @Rule(
