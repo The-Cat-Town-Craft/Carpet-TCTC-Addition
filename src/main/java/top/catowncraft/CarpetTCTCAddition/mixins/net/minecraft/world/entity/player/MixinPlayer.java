@@ -33,10 +33,10 @@ public abstract class MixinPlayer extends LivingEntity {
             cancellable = true
     )
     private void onAwardStat(Stat<?> stat, CallbackInfo ci) {
-        if (CarpetTCTCAdditionSettings.playerStats == CarpetTCTCAdditionSettings.PlayerStatsOptions.PLAYER && (LivingEntity)this instanceof EntityPlayerMPFake) {
+        if (CarpetTCTCAdditionSettings.playerStats == CarpetTCTCAdditionSettings.PlayerStatsOptions.PLAYER && (LivingEntity) this instanceof EntityPlayerMPFake) {
             ci.cancel();
         }
-        if (CarpetTCTCAdditionSettings.playerStats == CarpetTCTCAdditionSettings.PlayerStatsOptions.BOT && (LivingEntity)this instanceof ServerPlayer && !((LivingEntity)this instanceof EntityPlayerMPFake)) {
+        if (CarpetTCTCAdditionSettings.playerStats == CarpetTCTCAdditionSettings.PlayerStatsOptions.BOT && (LivingEntity) this instanceof ServerPlayer && !((LivingEntity) this instanceof EntityPlayerMPFake)) {
             ci.cancel();
         }
         if (CarpetTCTCAdditionSettings.playerStats == CarpetTCTCAdditionSettings.PlayerStatsOptions.NONE) {

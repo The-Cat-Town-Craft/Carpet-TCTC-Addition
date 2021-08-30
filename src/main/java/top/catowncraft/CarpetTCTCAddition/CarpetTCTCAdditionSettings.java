@@ -12,6 +12,25 @@ public class CarpetTCTCAdditionSettings {
     private static final String TCTC = "TCTC";
     private static final String TCTC_BUGFIX = "TCTC-BUGFIX";
     private static final String TCTC_FEATURE = "TCTC-FEATURE";
+    private static final String TCTC_WORLD_GENERATE = "TCTC-WORLD_GENERATE";
+
+    @Rule(
+            name = "enderPlatform",
+            desc = "Is obsidian platform generated in the end.",
+            extra = {
+                    "all - Generate ender platform when all entities are transferred to the_end dimension.",
+                    "none - Ender platform will not be generated anyway.",
+                    "player - Ender platform is generated only when the player entity teleports to the_end dimension.",
+            },
+            category = {TCTC, TCTC_FEATURE, TCTC_WORLD_GENERATE}
+    )
+    public static EnderPlatformOptions enderPlatform = EnderPlatformOptions.PLAYER;
+
+    public enum EnderPlatformOptions {
+        ALL,
+        NONE,
+        PLAYER
+    }
 
     @Rule(
             name = "playerStats",
@@ -25,11 +44,12 @@ public class CarpetTCTCAdditionSettings {
             category = {TCTC, TCTC_FEATURE}
     )
     public static PlayerStatsOptions playerStats = PlayerStatsOptions.BOTH;
+
     public enum PlayerStatsOptions {
         BOT,
         BOTH,
         NONE,
-        PLAYER;
+        PLAYER
     }
 
     @Rule(
