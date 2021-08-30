@@ -17,6 +17,26 @@ A [fabric-carpet](https://github.com/gnembon/fabric-carpet) extension mod. It of
 
 ## Rule List
 
+### enderPlatform
+
+Is obsidian platform generated in the end.
+                    
+all - Generate ender platform when all entities are transferred to the_end dimension.
+                    
+none - Ender platform will not be generated anyway.
+                    
+player - Ender platform is generated only when the player entity teleports to the_end dimension.
+
+- Type: `enum`
+
+- Default value: `player`
+
+- Suggested options: `all`, `none`, `player`
+
+- Categories: `TCTC`, `TCTC-FEATURE`, `TCTC-WORLD-GENERATE`
+
+_For Minecraft 1.16.5 and later branches, the default value is `all`_
+
 ### playerStats
 
 Control of player and bot statistics.
@@ -35,7 +55,7 @@ player - Only players are allowed to gain stats.
 
 - Suggested options: `bot`, `both`, `none`, `player`
 
-- Categories: `TCTC`, `TCTC_FEATURE`
+- Categories: `TCTC`, `TCTC-FEATURE`
 
 ### updateSuppressionCrashFix
 
@@ -47,7 +67,7 @@ Fix updates suppression causing server crashes.
 
 - Suggested options: `false`, `true`
 
-- Categories: `TCTC`, `TCTC_BUGFIX`
+- Categories: `TCTC`, `TCTC-BUGFIX`
 
 ## Development
 
