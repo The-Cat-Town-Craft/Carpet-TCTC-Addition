@@ -6,6 +6,8 @@
   "mixins": [
     "carpet.settings.MixinSettingsManager",
     "minecraft.server.MixinMinecraftServer",
+    "minecraft.server.level.MixinServerPlayer",
+    "minecraft.world.entity.MixinEntity",
     "minecraft.world.entity.player.MixinPlayer",
     "minecraft.world.level.MixinLevel"
   ],
