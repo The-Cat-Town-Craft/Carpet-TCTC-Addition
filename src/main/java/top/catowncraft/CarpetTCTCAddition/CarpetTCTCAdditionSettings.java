@@ -11,8 +11,17 @@ import carpet.settings.Rule;
 public class CarpetTCTCAdditionSettings {
     private static final String TCTC = "TCTC";
     private static final String TCTC_BUGFIX = "TCTC-BUGFIX";
+    private static final String TCTC_COMMAND = "TCTC-COMMAND";
     private static final String TCTC_FEATURE = "TCTC-FEATURE";
     private static final String TCTC_WORLD_GENERATE = "TCTC-WORLD_GENERATE";
+
+    @Rule(
+            name = "commandFix",
+            desc = "Enables /fix command to fix chunk data.",
+            category = {TCTC, TCTC_COMMAND},
+            options = {"true", "false", "ops", "0", "1", "2", "3", "4"}
+    )
+    public static String commandFix = "ops";
 
     @Rule(
             name = "enderPlatform",

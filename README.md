@@ -17,6 +17,18 @@ A [fabric-carpet](https://github.com/gnembon/fabric-carpet) extension mod. It of
 
 ## Rule List
 
+### commandFix
+
+Enables /fix command to fix chunk data.
+
+- Type: `String`
+
+- Default value: `ops`
+
+- Suggested options: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4`
+
+- Categories: `TCTC`, `TCTC-COMMAND`
+
 ### enderPlatform
 
 Is obsidian platform generated in the end.
