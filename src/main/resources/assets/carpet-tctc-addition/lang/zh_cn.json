@@ -4,13 +4,19 @@
   "carpet-tctc-addition.label.versionType.Version Exception": "版本异常",
 
   "carpet-tctc-addition.message.command.carpet.version": "%s 版本: %s (%s)",
+  "carpet-tctc-addition.message.command.fix.fixed": "区块 [%s, %s] 修复中...",
+  "carpet-tctc-addition.message.command.fix.fixing": "区块 [%s, %s] 修复完成。",
   "carpet-tctc-addition.message.server.updateSuppression.exception": "捕获到更新抑制异常，已阻止服务器崩溃。",
   "carpet-tctc-addition.message.server.updateSuppression.processed": "更新抑制。",
 
   "category.TCTC": "喵镇附属",
+  "category.TCTC-COMMAND": "喵镇附属-命令",
   "category.TCTC-BUGFIX": "喵镇附属-漏洞修复",
   "category.TCTC-FEATURE": "喵镇附属-特性",
   "category.TCTC-WORLD_GENERATE": "喵镇附属-世界生成",
+
+  "rule.commandFix.name": "区块修复命令",
+  "rule.commandFix.desc": "启用 /fix 命令用于修复区块数据。",
 
   "rule.enderPlatform.name": "末路之地平台",
   "rule.enderPlatform.desc": "是否在实体进入末路之地时生成黑曜石平台。",
