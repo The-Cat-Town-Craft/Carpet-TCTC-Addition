@@ -8,10 +8,13 @@ package top.catowncraft.CarpetTCTCAddition;
 
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
+import com.mojang.brigadier.CommandDispatcher;
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.server.MinecraftServer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import top.catowncraft.CarpetTCTCAddition.commands.FixCommand;
 import top.catowncraft.CarpetTCTCAddition.utils.CarpetTCTCAdditionTranslations;
 
 import java.util.Map;
@@ -19,6 +22,11 @@ import java.util.Map;
 public class CarpetTCTCAddition implements CarpetExtension, ModInitializer {
     public static final Logger logger = LogManager.getLogger(Reference.MOD_ID);
     private static MinecraftServer minecraftServer;
+
+    @Override
+    public void registerCommands(CommandDispatcher<CommandSourceStack> dispatcher) {
+        FixCommand.register(dispatcher);
+    }
 
     @Override
     public void onGameStarted() {
