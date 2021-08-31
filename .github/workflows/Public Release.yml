@@ -18,6 +18,9 @@ jobs:
       cruseforge_117_release: ${{ steps.properties.outputs.cruseforge_117_release }}
       cruseforge_117_support: ${{ steps.properties.outputs.cruseforge_117_support }}
       cruseforge_117_version: ${{ steps.properties.outputs.cruseforge_117_version }}
+      github_115_brunch: ${{ steps.properties.outputs.github_115_brunch }}
+      github_116_brunch: ${{ steps.properties.outputs.github_116_brunch }}
+      github_117_brunch: ${{ steps.properties.outputs.github_117_brunch }}
     steps:
       - name: Checkout the sources
         uses: actions/checkout@v2
@@ -33,7 +36,7 @@ jobs:
         id: properties
         run: |
           path='./gradle.properties'
-          for property in cruseforge_115_release, cruseforge_115_support, cruseforge_115_version, cruseforge_116_release, cruseforge_116_support, cruseforge_116_version, cruseforge_117_release, cruseforge_117_support, cruseforge_117_version
+          for property in cruseforge_115_release cruseforge_115_support cruseforge_115_version github_115_brunch cruseforge_116_release cruseforge_116_support cruseforge_116_version github_116_brunch cruseforge_117_release cruseforge_117_support cruseforge_117_version github_117_brunch
           do
             result=$(sed -n "/^[[:space:]]*$property[[:space:]]*=[[:space:]]*/s/^[[:space:]]*$property[[:space:]]*=[[:space:]]*//p" "$path")
             echo "$property: $result"
@@ -63,14 +66,17 @@ jobs:
       id: getbranchinfo
       run: |
         if ${{ matrix.branch == '1.15'}}; then
+          echo "::set-output name=branchname::${{ needs.Get-Properties.outputs.github_115_brunch }}"
           echo "::set-output name=release::${{ needs.Get-Properties.outputs.cruseforge_115_release }}"
           echo "::set-output name=support::${{ needs.Get-Properties.outputs.cruseforge_115_support }}"
           echo "::set-output name=version::${{ needs.Get-Properties.outputs.cruseforge_115_version }}"
         elif ${{ matrix.branch == '1.16'}}; then
+          echo "::set-output name=branchname::${{ needs.Get-Properties.outputs.github_116_brunch }}"
           echo "::set-output name=release::${{ needs.Get-Properties.outputs.cruseforge_116_release }}"
           echo "::set-output name=support::${{ needs.Get-Properties.outputs.cruseforge_116_support }}"
           echo "::set-output name=version::${{ needs.Get-Properties.outputs.cruseforge_116_version }}"
         elif ${{ matrix.branch == '1.17'}}; then
+          echo "::set-output name=branchname::${{ needs.Get-Properties.outputs.github_117_brunch }}"
           echo "::set-output name=release::${{ needs.Get-Properties.outputs.cruseforge_117_release }}"
           echo "::set-output name=support::${{ needs.Get-Properties.outputs.cruseforge_117_support }}"
           echo "::set-output name=version::${{ needs.Get-Properties.outputs.cruseforge_117_version }}"
@@ -114,7 +120,7 @@ jobs:
         files: 'build/libs/${{ steps.findjar.outputs.jarname }}'
         repo-token: ${{ secrets.GITHUB_TOKEN }}
     - name: Upload assets to Curseforge
-      if: ${{ matrix.os == 'ubuntu-latest' && steps.getbranchinfo.outputs.version }}
+      if: ${{ matrix.os == 'ubuntu-latest' && steps.getbranchinfo.outputs.version}}
       uses: itsmeow/curseforge-upload@v3
       with:
         token: ${{ secrets.CF_API_TOKEN }}
@@ -124,3 +130,4 @@ jobs:
         changelog_type: markdown
         changelog: ${{ github.event.release.body }}
         game_versions: ${{ steps.getbranchinfo.outputs.version }}, ${{ steps.getbranchinfo.outputs.support }}
+        release_type: ${{ needs.Get-Properties.outputs.release-type }}
