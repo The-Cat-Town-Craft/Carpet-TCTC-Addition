@@ -27,7 +27,7 @@ public class MixinSettingsManager {
             method = "listAllSettings",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/commands/CommandSourceStack;getPlayerOrException()Lnet/minecraft/server/level/ServerPlayer;"
+                    target = "Lcarpet/settings/SettingsManager;getCategories()Ljava/lang/Iterable;"
             ),
             remap = false
     )
