@@ -87,21 +87,29 @@ Current main development for Minecraft version: 1.15.2.
 
 Current maintaining branches:
 
+- `1.14.4` for Minecraft 1.14.4
+
 - `1.15.2` for Minecraft 1.15.2
 
 - `1.16.5` for Minecraft 1.16.5
 
 - `1.17.1` for Minecraft 1.17.1
 
+- `1.18` for Minecraft 1.18-snapshot
+
 For general new features, implement them in `master` branch first then merge it into other branches
 
 Branches merge order:
+
+- `master` -> `1.14.4`
 
 - `master` -> `1.15.2`
 
 - `master` -> `1.16.5`
 
 - `master` -> `1.17.1`
+
+- `master` -> `1.18`
 
 For version specific fixes / patches, implement them in relevant branches.
 

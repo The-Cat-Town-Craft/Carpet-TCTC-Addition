@@ -40,7 +40,7 @@ public class MixinMinecraftServer {
     )
     private void onTickingWorld(BooleanSupplier booleanSupplier, CallbackInfo ci, Iterator var2, ServerLevel serverLevel, Throwable throwable) {
         if (CarpetTCTCAdditionSettings.updateSuppressionCrashFix && (throwable.getCause() instanceof ThrowableSuppression)) {
-            MessageUtil.sendServerMessage(CarpetTCTCAddition.getServer(), (BaseComponent) new TextComponent(tr("carpet-tctc-addition.message.server.updateSuppression.exception", "We caught an update suppression exception. This should cause the server to crash, but we prevented it.")).setStyle(new Style().setColor(ChatFormatting.GRAY).setItalic(true)));
+            MessageUtil.sendServerMessage(CarpetTCTCAddition.getServer(), (BaseComponent) new TextComponent(tr("carpet-tctc-addition.message.server.updateSuppression.exception", "We caught an update suppression exception. This should cause the server to crash, but we prevented it.")).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
             ci.cancel();
         }
     }
