@@ -4,7 +4,6 @@
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-
 package top.catowncraft.CarpetTCTCAddition.utils;
 
 import net.minecraft.Util;
@@ -40,12 +39,12 @@ public class MessageUtil {
 
     public static void sendServerMessage(MinecraftServer server, BaseComponent baseComponent) {
         if (server != null) {
-            CarpetTCTCAddition.logger.info(baseComponent);
+            CarpetTCTCAddition.logger.info(baseComponent.getString());
             for (Player player : server.getPlayerList().getPlayers()) {
                 player.sendMessage(baseComponent, Util.NIL_UUID);
             }
         } else {
-            CarpetTCTCAddition.logger.error("Message not delivered: " + baseComponent);
+            CarpetTCTCAddition.logger.error("Message not delivered: " + baseComponent.getString());
         }
     }
 }

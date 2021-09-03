@@ -9,6 +9,6 @@ package top.catowncraft.CarpetTCTCAddition;
 public class Reference {
     public static final String MOD_ID = "carpet-tctc-addition";
     public static final String MOD_NAME = "Carpet TCTC Addition";
-    public static final String MOD_VERSION = "1.0.0-build.undefined";
+    public static final String MOD_VERSION = "1.0.1-build.undefined";
     public static final String MOD_VERSION_TYPE = "Version Exception";
 }

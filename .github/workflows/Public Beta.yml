@@ -48,5 +48,5 @@ jobs:
         if: ${{ matrix.os == 'ubuntu-latest' }}
         uses: actions/upload-artifact@v2
         with:
-          name: CarpetTCTCAddition-fabric-mc1.15-${{ steps.getid.outputs.commitID }}(Public Beta)
+          name: CarpetTCTCAddition-fabric-mc1.16-${{ steps.getid.outputs.commitID }}(Public Beta)
           path: build/libs/
