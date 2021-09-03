@@ -39,12 +39,12 @@ public class MessageUtil {
 
     public static void sendServerMessage(MinecraftServer server, BaseComponent baseComponent) {
         if (server != null) {
-            CarpetTCTCAddition.logger.info(baseComponent);
+            CarpetTCTCAddition.logger.info(baseComponent.getString());
             for (Player player : server.getPlayerList().getPlayers()) {
                 player.sendMessage(baseComponent, Util.NIL_UUID);
             }
         } else {
-            CarpetTCTCAddition.logger.error("Message not delivered: " + baseComponent);
+            CarpetTCTCAddition.logger.error("Message not delivered: " + baseComponent.getString());
         }
     }
 }
