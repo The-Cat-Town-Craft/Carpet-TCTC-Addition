@@ -1,8 +1,8 @@
 name: Public Release
 on:
   release:
-     types:
-       - published
+    types:
+      - published
 
 jobs:
   Get-Properties:
@@ -18,9 +18,14 @@ jobs:
       cruseforge_117_release: ${{ steps.properties.outputs.cruseforge_117_release }}
       cruseforge_117_support: ${{ steps.properties.outputs.cruseforge_117_support }}
       cruseforge_117_version: ${{ steps.properties.outputs.cruseforge_117_version }}
+      cruseforge_118_release: ${{ steps.properties.outputs.cruseforge_118_release }}
+      cruseforge_118_support: ${{ steps.properties.outputs.cruseforge_118_support }}
+      cruseforge_118_version: ${{ steps.properties.outputs.cruseforge_118_version }}
+      github_114_brunch: ${{ steps.properties.outputs.github_114_brunch }}
       github_115_brunch: ${{ steps.properties.outputs.github_115_brunch }}
       github_116_brunch: ${{ steps.properties.outputs.github_116_brunch }}
       github_117_brunch: ${{ steps.properties.outputs.github_117_brunch }}
+      github_118_brunch: ${{ steps.properties.outputs.github_118_brunch }}
     steps:
       - name: Checkout the sources
         uses: actions/checkout@v2
@@ -36,7 +41,7 @@ jobs:
         id: properties
         run: |
           path='./gradle.properties'
-          for property in cruseforge_115_release cruseforge_115_support cruseforge_115_version github_115_brunch cruseforge_116_release cruseforge_116_support cruseforge_116_version github_116_brunch cruseforge_117_release cruseforge_117_support cruseforge_117_version github_117_brunch
+          for property in cruseforge_114_release cruseforge_114_support cruseforge_114_version github_114_brunch cruseforge_115_release cruseforge_115_support cruseforge_115_version github_115_brunch cruseforge_116_release cruseforge_116_support cruseforge_116_version github_116_brunch cruseforge_117_release cruseforge_117_support cruseforge_117_version github_117_brunch cruseforge_118_release cruseforge_118_support cruseforge_118_version github_118_brunch
           do
             result=$(sed -n "/^[[:space:]]*$property[[:space:]]*=[[:space:]]*/s/^[[:space:]]*$property[[:space:]]*=[[:space:]]*//p" "$path")
             echo "$property: $result"
@@ -48,86 +53,98 @@ jobs:
     strategy:
       matrix:
         java: [
-          16
+            16
         ]
         os: [
-          ubuntu-18.04,
-          ubuntu-latest
+            ubuntu-18.04,
+            ubuntu-latest
         ]
         branch: [
-          1.15,
-          1.16,
-          1.17
+            1.14,
+            1.15,
+            1.16,
+            1.17，
+              1.18
         ]
     runs-on: ${{ matrix.os }}
 
     steps:
-    - name: Get info from branch to run
-      id: getbranchinfo
-      run: |
-        if ${{ matrix.branch == '1.15'}}; then
-          echo "::set-output name=branchname::${{ needs.Get-Properties.outputs.github_115_brunch }}"
-          echo "::set-output name=release::${{ needs.Get-Properties.outputs.cruseforge_115_release }}"
-          echo "::set-output name=support::${{ needs.Get-Properties.outputs.cruseforge_115_support }}"
-          echo "::set-output name=version::${{ needs.Get-Properties.outputs.cruseforge_115_version }}"
-        elif ${{ matrix.branch == '1.16'}}; then
-          echo "::set-output name=branchname::${{ needs.Get-Properties.outputs.github_116_brunch }}"
-          echo "::set-output name=release::${{ needs.Get-Properties.outputs.cruseforge_116_release }}"
-          echo "::set-output name=support::${{ needs.Get-Properties.outputs.cruseforge_116_support }}"
-          echo "::set-output name=version::${{ needs.Get-Properties.outputs.cruseforge_116_version }}"
-        elif ${{ matrix.branch == '1.17'}}; then
-          echo "::set-output name=branchname::${{ needs.Get-Properties.outputs.github_117_brunch }}"
-          echo "::set-output name=release::${{ needs.Get-Properties.outputs.cruseforge_117_release }}"
-          echo "::set-output name=support::${{ needs.Get-Properties.outputs.cruseforge_117_support }}"
-          echo "::set-output name=version::${{ needs.Get-Properties.outputs.cruseforge_117_version }}"
-        fi
-    - name: Checkout the sources
-      uses: actions/checkout@v2
-      with:
-        ref: ${{ steps.getbranchinfo.outputs.branchname }}
-    - name: Set up JDK ${{ matrix.java }}
-      uses: actions/setup-java@v2
-      with:
-        distribution: 'adopt'
-        java-version: ${{ matrix.java }}
+      - name: Get info from branch to run
+        id: getbranchinfo
+        run: |
+          if ${{ matrix.branch == '1.14'}}; then
+            echo "::set-output name=branchname::${{ needs.Get-Properties.outputs.github_114_brunch }}"
+            echo "::set-output name=release::${{ needs.Get-Properties.outputs.cruseforge_114_release }}"
+            echo "::set-output name=support::${{ needs.Get-Properties.outputs.cruseforge_114_support }}"
+            echo "::set-output name=version::${{ needs.Get-Properties.outputs.cruseforge_114_version }}"
+          elif ${{ matrix.branch == '1.15'}}; then
+            echo "::set-output name=branchname::${{ needs.Get-Properties.outputs.github_115_brunch }}"
+            echo "::set-output name=release::${{ needs.Get-Properties.outputs.cruseforge_115_release }}"
+            echo "::set-output name=support::${{ needs.Get-Properties.outputs.cruseforge_115_support }}"
+            echo "::set-output name=version::${{ needs.Get-Properties.outputs.cruseforge_115_version }}"
+          elif ${{ matrix.branch == '1.16'}}; then
+            echo "::set-output name=branchname::${{ needs.Get-Properties.outputs.github_116_brunch }}"
+            echo "::set-output name=release::${{ needs.Get-Properties.outputs.cruseforge_116_release }}"
+            echo "::set-output name=support::${{ needs.Get-Properties.outputs.cruseforge_116_support }}"
+            echo "::set-output name=version::${{ needs.Get-Properties.outputs.cruseforge_116_version }}"
+          elif ${{ matrix.branch == '1.17'}}; then
+            echo "::set-output name=branchname::${{ needs.Get-Properties.outputs.github_117_brunch }}"
+            echo "::set-output name=release::${{ needs.Get-Properties.outputs.cruseforge_117_release }}"
+            echo "::set-output name=support::${{ needs.Get-Properties.outputs.cruseforge_117_support }}"
+            echo "::set-output name=version::${{ needs.Get-Properties.outputs.cruseforge_117_version }}"
+          elif ${{ matrix.branch == '1.18'}}; then
+            echo "::set-output name=branchname::${{ needs.Get-Properties.outputs.github_118_brunch }}"
+            echo "::set-output name=release::${{ needs.Get-Properties.outputs.cruseforge_118_release }}"
+            echo "::set-output name=support::${{ needs.Get-Properties.outputs.cruseforge_118_support }}"
+            echo "::set-output name=version::${{ needs.Get-Properties.outputs.cruseforge_118_version }}"
+          fi
+      - name: Checkout the sources
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ steps.getbranchinfo.outputs.branchname }}
+      - name: Set up JDK ${{ matrix.java }}
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: ${{ matrix.java }}
 
-    - name: Display build number
-      run: echo Carpet TCTC Addition build\#$GITHUB_RUN_NUMBER \(Public Release\)
-    - name: Set build number in codes
-      run: |
-        sed -i "s/build.undefined/build.$GITHUB_RUN_NUMBER/g" gradle.properties
-        sed -i "s/build.undefined/build.$GITHUB_RUN_NUMBER/g" src/main/java/top/catowncraft/CarpetTCTCAddition/Reference.java
-        sed -i "s/Version Exception/Public Release/g" src/main/java/top/catowncraft/CarpetTCTCAddition/Reference.java
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
-    - name: Build with Gradle
-      run: ./gradlew build
-    - name: Find correct JAR
-      id: findjar
-      run: |
-        output="$(find build/libs/ ! -name "*-dev.jar" ! -name "*-sources.jar" -type f -printf "%f\n")"
-        echo "::set-output name=jarname::$output"
-    - name: Upload assets to GitHub Action
-      if: ${{ matrix.os == 'ubuntu-latest' }}
-      uses: actions/upload-artifact@v2
-      with:
-        name: CarpetTCTCAddition-fabric-mc${{ matrix.branch }}-${{ steps.getid.outputs.commitID }}(Public Release)
-        path: build/libs/
-    - name: Upload assets to GitHub Release
-      if: ${{ matrix.os == 'ubuntu-latest' }}
-      uses: AButler/upload-release-assets@v2.0
-      with:
-        files: 'build/libs/${{ steps.findjar.outputs.jarname }}'
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-    - name: Upload assets to Curseforge
-      if: ${{ matrix.os == 'ubuntu-latest' && steps.getbranchinfo.outputs.version}}
-      uses: itsmeow/curseforge-upload@v3
-      with:
-        token: ${{ secrets.CF_API_TOKEN }}
-        project_id: 513524
-        game_endpoint: minecraft
-        file_path: build/libs/${{ steps.findjar.outputs.jarname }}
-        changelog_type: markdown
-        changelog: ${{ github.event.release.body }}
-        game_versions: ${{ steps.getbranchinfo.outputs.version }}, ${{ steps.getbranchinfo.outputs.support }}
-        release_type: ${{ needs.Get-Properties.outputs.release-type }}
+      - name: Display build number
+        run: echo Carpet TCTC Addition build\#$GITHUB_RUN_NUMBER \(Public Release\)
+      - name: Set build number in codes
+        run: |
+          sed -i "s/build.undefined/build.$GITHUB_RUN_NUMBER/g" gradle.properties
+          sed -i "s/build.undefined/build.$GITHUB_RUN_NUMBER/g" src/main/java/top/catowncraft/CarpetTCTCAddition/Reference.java
+          sed -i "s/Version Exception/Public Release/g" src/main/java/top/catowncraft/CarpetTCTCAddition/Reference.java
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+      - name: Build with Gradle
+        run: ./gradlew build
+      - name: Find correct JAR
+        id: findjar
+        run: |
+          output="$(find build/libs/ ! -name "*-dev.jar" ! -name "*-sources.jar" -type f -printf "%f\n")"
+          echo "::set-output name=jarname::$output"
+      - name: Upload assets to GitHub Action
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: CarpetTCTCAddition-fabric-mc${{ matrix.branch }}#$GITHUB_RUN_NUMBER(Public Release)
+          path: build/libs/
+      - name: Upload assets to GitHub Release
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+        uses: AButler/upload-release-assets@v2.0
+        with:
+          files: 'build/libs/${{ steps.findjar.outputs.jarname }}'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload assets to Curseforge
+        if: ${{ matrix.os == 'ubuntu-latest' && steps.getbranchinfo.outputs.version}}
+        uses: itsmeow/curseforge-upload@v3
+        with:
+          token: ${{ secrets.CF_API_TOKEN }}
+          project_id: 513524
+          game_endpoint: minecraft
+          file_path: build/libs/${{ steps.findjar.outputs.jarname }}
+          changelog_type: markdown
+          changelog: ${{ github.event.release.body }}
+          game_versions: ${{ steps.getbranchinfo.outputs.version }}, ${{ steps.getbranchinfo.outputs.support }}
+          release_type: ${{ needs.Get-Properties.outputs.release-type }}
