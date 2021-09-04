@@ -9,7 +9,8 @@
     "net.minecraft.server.level.MixinServerPlayer",
     "net.minecraft.world.entity.MixinEntity",
     "net.minecraft.world.entity.player.MixinPlayer",
-    "net.minecraft.world.level.MixinLevel"
+    "net.minecraft.world.level.MixinLevel",
+    "net.minecraft.world.level.block.piston.MixinPistonBaseBlock"
   ],
   "client": [
   ],

@@ -42,6 +42,13 @@ public class CarpetTCTCAdditionSettings {
     }
 
     @Rule(
+            name = "illegalPistonActionFix",
+            desc = "Fix headless pistons to destroy blocks.",
+            category = {TCTC, TCTC_FEATURE}
+    )
+    public static boolean illegalPistonActionFix = false;
+
+    @Rule(
             name = "playerStats",
             desc = "Control of player and bot statistics.",
             extra = {
