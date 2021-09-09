@@ -13,7 +13,7 @@ jobs:
           16
         ]
         os: [
-          ubuntu-18.04
+          ubuntu-20.04
         ]
     runs-on: ${{ matrix.os }}
     steps:
@@ -47,7 +47,6 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
       - name: Upload assets to GitHub Action
-        if: ${{ matrix.os == 'ubuntu-latest' }}
         uses: actions/upload-artifact@v2
         with:
           name: ${{ steps.properties.outputs.archives_base_name }}-mc${{ steps.properties.outputs.minecraft_version_out }}-${{ steps.properties.outputs.mod_version_detail }}(Public Beta)
