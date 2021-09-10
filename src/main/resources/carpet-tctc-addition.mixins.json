@@ -5,11 +5,13 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "carpet.settings.MixinSettingsManager",
-    "minecraft.server.MixinMinecraftServer",
-    "minecraft.server.level.MixinServerPlayer",
-    "minecraft.world.entity.MixinEntity",
-    "minecraft.world.entity.player.MixinPlayer",
-    "minecraft.world.level.MixinLevel"
+    "net.minecraft.server.MixinMinecraftServer",
+    "net.minecraft.server.level.MixinServerPlayer",
+    "net.minecraft.server.network.MixinServerGamePacketListenerImpl",
+    "net.minecraft.world.entity.MixinEntity",
+    "net.minecraft.world.entity.player.MixinPlayer",
+    "net.minecraft.world.level.MixinLevel",
+    "net.minecraft.world.level.block.piston.MixinPistonBaseBlock"
   ],
   "client": [
   ],
