@@ -36,7 +36,7 @@ jobs:
         id: properties
         run: |
           path='./gradle.properties'
-          for property in minecraft_version_out mod_version_detail archives_base_name
+          for property in minecraft_version_out mod_version_detail mod_file_name
           do
             result=$(sed -n "/^[[:space:]]*$property[[:space:]]*=[[:space:]]*/s/^[[:space:]]*$property[[:space:]]*=[[:space:]]*//p" "$path")
             echo "$property: $result"
@@ -49,5 +49,5 @@ jobs:
       - name: Upload assets to GitHub Action
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ steps.properties.outputs.archives_base_name }}-mc${{ steps.properties.outputs.minecraft_version_out }}-${{ steps.properties.outputs.mod_version_detail }}(Public Beta)
+          name: ${{ steps.properties.outputs.mod_file_name }}-mc${{ steps.properties.outputs.minecraft_version_out }}-${{ steps.properties.outputs.mod_version_detail }}(Public Beta)
           path: build/libs/
