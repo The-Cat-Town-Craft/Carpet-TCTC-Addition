@@ -18,6 +18,9 @@
   "rule.commandFix.name": "区块修复命令",
   "rule.commandFix.desc": "启用 /fix 命令用于修复区块数据。",
 
+  "rule.cameraModeDisableSpectatePlayers.name": "禁止旁观者传送",
+  "rule.cameraModeDisableSpectatePlayers.desc": "禁止旁观者玩家快捷传送。",
+
   "rule.enderPlatform.name": "末路之地平台",
   "rule.enderPlatform.desc": "是否在实体进入末路之地时生成黑曜石平台。",
   "rule.enderPlatform.extra.0": "all - 任何实体进入末路之地维度时，生成黑曜石平台。",

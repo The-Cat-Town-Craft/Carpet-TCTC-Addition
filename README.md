@@ -30,6 +30,18 @@ Enables /fix command to fix chunk data.
 
 - Categories: `TCTC`, `TCTC-COMMAND`
 
+### cameraModeDisableSpectatePlayers
+
+Disables players in /c from spectating other players.
+
+- Type: `boolean`
+
+- Default value: `false`
+
+- Suggested options: `false`, `true`
+
+- Categories: `TCTC`, `TCTC-FEATURE`
+
 ### enderPlatform
 
 Is obsidian platform generated in the end.

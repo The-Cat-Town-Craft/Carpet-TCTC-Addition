@@ -24,6 +24,13 @@ public class CarpetTCTCAdditionSettings {
     public static String commandFix = "ops";
 
     @Rule(
+            name = "cameraModeDisableSpectatePlayers",
+            desc = "Disables players in /c from spectating other players.",
+            category = {TCTC, TCTC_FEATURE}
+    )
+    public static boolean cameraModeDisableSpectatePlayers = false;
+
+    @Rule(
             name = "enderPlatform",
             desc = "Is obsidian platform generated in the end.",
             extra = {
