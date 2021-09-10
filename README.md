@@ -1,4 +1,5 @@
 # Carpet TCTC Addition
+
 [![Minecraft](http://cf.way2muchnoise.eu/versions/Minecraft_513524_all.svg?badge_style=flat)](https://www.curseforge.com/minecraft/mc-mods/carpet-tctc-addition/files)
 [![License](https://img.shields.io/github/license/The-Cat-Town-Craft/Carpet-TCTC-Addition?style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/blob/main/LICENSE)
 [![Issues](https://img.shields.io/github/issues/The-Cat-Town-Craft/Carpet-TCTC-Addition?style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/issues)
@@ -29,14 +30,26 @@ Enables /fix command to fix chunk data.
 
 - Categories: `TCTC`, `TCTC-COMMAND`
 
+### cameraModeDisableSpectatePlayers
+
+Disables players in /c from spectating other players.
+
+- Type: `boolean`
+
+- Default value: `false`
+
+- Suggested options: `false`, `true`
+
+- Categories: `TCTC`, `TCTC-FEATURE`
+
 ### enderPlatform
 
 Is obsidian platform generated in the end.
-                    
+
 all - Generate ender platform when all entities are transferred to the_end dimension.
-                    
+
 none - Ender platform will not be generated anyway.
-                    
+
 player - Ender platform is generated only when the player entity teleports to the_end dimension.
 
 - Type: `enum`
@@ -48,6 +61,18 @@ player - Ender platform is generated only when the player entity teleports to th
 - Categories: `TCTC`, `TCTC-FEATURE`, `TCTC-WORLD-GENERATE`
 
 _For Minecraft 1.16.5 and later branches, the default value is `all`_
+
+### illegalPistonActionFix
+
+Fix headless pistons to destroy blocks.
+
+- Type: `boolean`
+
+- Default value: `false`
+
+- Suggested options: `false`, `true`
+
+- Categories: `TCTC`, `TCTC-FEATURE`
 
 ### playerStats
 
@@ -101,15 +126,17 @@ For general new features, implement them in `master` branch first then merge it 
 
 Branches merge order:
 
-- `master` -> `1.14.4`
+- `dev` -> `1.14.4`
 
-- `master` -> `1.15.2`
+- `dev` -> `1.15.2`
 
-- `master` -> `1.16.5`
+- `dev` -> `1.16.5`
 
-- `master` -> `1.17.1`
+- `dev` -> `1.17.1`
 
-- `master` -> `1.18`
+- `dev` -> `1.18`
+
+- `1.15.2` -> `master` (When publishing **public releases**)
 
 For version specific fixes / patches, implement them in relevant branches.
 
