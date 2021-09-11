@@ -30,6 +30,18 @@
 
 - 类别: `TCTC`, `TCTC-COMMAND`
 
+### 共享坐标(commandHere)
+
+启用 /here 命令来让你可以与其他玩家分享你的位置。
+
+- 类型: `String`
+
+- 默认值: `true`
+
+- 参考数据: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4`
+
+- 类别: `TCTC`, `TCTC-COMMAND`
+
 ### 禁止旁观者传送(cameraModeDisableSpectatePlayers)
 
 禁止旁观者玩家快捷传送。

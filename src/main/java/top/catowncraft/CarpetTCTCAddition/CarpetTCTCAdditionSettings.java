@@ -24,6 +24,14 @@ public class CarpetTCTCAdditionSettings {
     public static String commandFix = "ops";
 
     @Rule(
+            name = "commandHere",
+            desc = "Enables /here command to allow you to share your location with other players.",
+            category = {TCTC, TCTC_COMMAND},
+            options = {"true", "false", "ops", "0", "1", "2", "3", "4"}
+    )
+    public static String commandHere = "true";
+
+    @Rule(
             name = "cameraModeDisableSpectatePlayers",
             desc = "Disables players in /c from spectating other players.",
             category = {TCTC, TCTC_FEATURE}

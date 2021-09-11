@@ -3,9 +3,16 @@
   "carpet-tctc-addition.label.versionType.Public Release": "公共发行版",
   "carpet-tctc-addition.label.versionType.Version Exception": "版本异常",
 
+  "carpet-tctc-addition.label.dimensionType.overworld": "主世界",
+  "carpet-tctc-addition.label.dimensionType.end": "末路之地",
+  "carpet-tctc-addition.label.dimensionType.nether": "下界",
+  "carpet-tctc-addition.label.dimensionType.unknown": "未知",
+
   "carpet-tctc-addition.message.command.carpet.version": "%s 版本: %s (%s)",
   "carpet-tctc-addition.message.command.fix.fixed": "区块 [%s, %s] 修复中...",
   "carpet-tctc-addition.message.command.fix.fixing": "区块 [%s, %s] 修复完成。",
+  "carpet-tctc-addition.message.command.fix.here.withoutTransformed": "%s @ %s %s",
+  "carpet-tctc-addition.message.command.fix.here.withTransformed": "%s @ %s %s -> %s",
   "carpet-tctc-addition.message.server.updateSuppression.exception": "捕获到更新抑制异常，已阻止服务器崩溃。",
   "carpet-tctc-addition.message.server.updateSuppression.processed": "更新抑制。",
 
@@ -17,6 +24,9 @@
 
   "rule.commandFix.name": "区块修复命令",
   "rule.commandFix.desc": "启用 /fix 命令用于修复区块数据。",
+
+  "rule.commandHere.name": "共享坐标",
+  "rule.commandHere.desc": "启用 /here 命令来让你可以与其他玩家分享你的位置。",
 
   "rule.cameraModeDisableSpectatePlayers.name": "禁止旁观者传送",
   "rule.cameraModeDisableSpectatePlayers.desc": "禁止旁观者玩家快捷传送。",
