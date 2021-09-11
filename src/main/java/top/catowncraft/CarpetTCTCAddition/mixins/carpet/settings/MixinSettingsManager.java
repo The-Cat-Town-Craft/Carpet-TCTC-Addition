@@ -10,7 +10,6 @@ import carpet.settings.SettingsManager;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.network.chat.BaseComponent;
-import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextComponent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -32,6 +31,6 @@ public class MixinSettingsManager {
             remap = false
     )
     private void printAdditionVersion(CommandSourceStack source, CallbackInfoReturnable<Integer> cir) {
-        MessageUtil.sendMessage(source, (BaseComponent) new TextComponent(String.format(tr("carpet-tctc-addition.message.command.carpet.version", "%s Version: %s (%s)"), Reference.MOD_NAME, Reference.MOD_VERSION, tr(String.format("carpet-tctc-addition.label.versionType.%s", Reference.MOD_VERSION_TYPE), Reference.MOD_VERSION_TYPE))).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
+        MessageUtil.sendMessage(source, new TextComponent(String.format(tr("carpet-tctc-addition.message.command.carpet.version", "%s Version: %s (%s)"), Reference.MOD_NAME, Reference.MOD_VERSION, tr(String.format("carpet-tctc-addition.label.versionType.%s", Reference.MOD_VERSION_TYPE), Reference.MOD_VERSION_TYPE))).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
     }
 }
