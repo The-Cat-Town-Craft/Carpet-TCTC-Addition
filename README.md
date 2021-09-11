@@ -74,6 +74,18 @@ player - Ender platform is generated only when the player entity teleports to th
 
 _For Minecraft 1.16.5 and later branches, the default value is `all`_
 
+### hereGlowTime
+
+Time highlighted when using here command shared coordinates.
+
+- Type: `int`
+
+- Default value: `15`
+
+- Suggested options: `0`, `15`
+
+- Categories: `TCTC`, `TCTC-MISC`
+
 ### illegalPistonActionFix
 
 Fix headless pistons to destroy blocks.

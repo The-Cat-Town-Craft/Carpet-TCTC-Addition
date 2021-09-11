@@ -74,6 +74,18 @@ player - 玩家实体进入末路之地维度时，生成黑曜石平台。
 
 _对于 Minecraft 1.16.5 及更高版本的分支，默认值为 `all`_
 
+### 高亮时间(hereGlowTime)
+
+使用 here 共享坐标时高亮的时间。
+
+- 类型: `int`
+
+- 默认值: `15`
+
+- 参考数据: `0`, `15`
+
+- 类别: `TCTC`, `TCTC-MISC`
+
 ### 非法活塞动作修复(illegalPistonActionFix)
 
 修复无头活塞破坏方块。

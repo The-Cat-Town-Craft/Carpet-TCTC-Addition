@@ -16,6 +16,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.dimension.DimensionType;
 import top.catowncraft.CarpetTCTCAddition.CarpetTCTCAddition;
@@ -65,7 +67,10 @@ public class HereCommand {
                     )
             );
         }
-        // TODO World map waypoint adder and glowing player rule.
+        if (CarpetTCTCAdditionSettings.hereGlowTime > 0) {
+            serverPlayer.addEffect(new MobEffectInstance(MobEffects.GLOWING, CarpetTCTCAdditionSettings.hereGlowTime * 20, 0, false, false, false));
+        }
+        // TODO World map waypoint adder.
         return 1;
     }
 

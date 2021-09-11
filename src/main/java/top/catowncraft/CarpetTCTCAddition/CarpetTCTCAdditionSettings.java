@@ -13,6 +13,7 @@ public class CarpetTCTCAdditionSettings {
     private static final String TCTC_BUGFIX = "TCTC-BUGFIX";
     private static final String TCTC_COMMAND = "TCTC-COMMAND";
     private static final String TCTC_FEATURE = "TCTC-FEATURE";
+    private static final String TCTC_MISC = "TCTC-MISC";
     private static final String TCTC_WORLD_GENERATE = "TCTC-WORLD_GENERATE";
 
     @Rule(
@@ -55,6 +56,13 @@ public class CarpetTCTCAdditionSettings {
         NONE,
         PLAYER
     }
+
+    @Rule(
+            name = "hereGlowTime",
+            desc = "Time highlighted when using here command shared coordinates.",
+            category = {TCTC, TCTC_MISC}
+    )
+    public static int hereGlowTime = 15;
 
     @Rule(
             name = "illegalPistonActionFix",
