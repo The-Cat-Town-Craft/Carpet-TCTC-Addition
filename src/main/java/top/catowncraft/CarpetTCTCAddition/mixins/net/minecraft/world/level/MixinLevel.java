@@ -40,7 +40,7 @@ public class MixinLevel {
     private void OnPopulateBlockDetails(BlockPos blockPos, Block block, BlockPos blockPos2, CallbackInfo ci, BlockState state, Throwable throwable) {
         if (CarpetTCTCAdditionSettings.updateSuppressionCrashFix && (throwable.getCause() instanceof StackOverflowError || throwable.getCause() instanceof ThrowableSuppression)) {
             if (throwable.getCause() instanceof StackOverflowError) {
-                MessageUtil.sendServerMessage(CarpetTCTCAddition.getServer(), (BaseComponent) new TextComponent(tr("carpet-tctc-addition.message.server.updateSuppression.processed", "Update suppression.")).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
+                MessageUtil.sendServerMessage(CarpetTCTCAddition.getServer(), new TextComponent(tr("carpet-tctc-addition.message.server.updateSuppression.processed", "Update suppression.")).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
                 throw new ThrowableSuppression("updateSuppression");
             }
         }

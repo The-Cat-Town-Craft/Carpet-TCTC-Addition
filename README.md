@@ -30,6 +30,18 @@ Enables /fix command to fix chunk data.
 
 - Categories: `TCTC`, `TCTC-COMMAND`
 
+### commandHere
+
+Enables /here command to allow you to share your location with other players.
+
+- Type: `String`
+
+- Default value: `true`
+
+- Suggested options: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4`
+
+- Categories: `TCTC`, `TCTC-COMMAND`
+
 ### cameraModeDisableSpectatePlayers
 
 Disables players in /c from spectating other players.
@@ -61,6 +73,18 @@ player - Ender platform is generated only when the player entity teleports to th
 - Categories: `TCTC`, `TCTC-FEATURE`, `TCTC-WORLD-GENERATE`
 
 _For Minecraft 1.16.5 and later branches, the default value is `all`_
+
+### hereGlowTime
+
+Time highlighted when using here command shared coordinates.
+
+- Type: `int`
+
+- Default value: `15`
+
+- Suggested options: `0`, `15`
+
+- Categories: `TCTC`, `TCTC-MISC`
 
 ### illegalPistonActionFix
 
