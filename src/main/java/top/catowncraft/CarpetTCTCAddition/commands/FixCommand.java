@@ -13,7 +13,6 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.arguments.coordinates.BlockPosArgument;
-import net.minecraft.network.chat.BaseComponent;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.server.level.ColumnPos;
 import net.minecraft.server.level.ServerLevel;
