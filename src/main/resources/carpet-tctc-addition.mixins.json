@@ -7,6 +7,7 @@
     "carpet.settings.MixinSettingsManager",
     "net.minecraft.server.MixinMinecraftServer",
     "net.minecraft.server.level.MixinServerPlayer",
+    "net.minecraft.server.network.MixinServerGamePacketListenerImpl",
     "net.minecraft.world.entity.MixinEntity",
     "net.minecraft.world.entity.player.MixinPlayer",
     "net.minecraft.world.level.MixinLevel",
