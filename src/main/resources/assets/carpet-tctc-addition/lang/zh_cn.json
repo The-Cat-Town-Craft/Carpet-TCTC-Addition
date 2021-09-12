@@ -11,8 +11,11 @@
   "carpet-tctc-addition.message.command.carpet.version": "%s 版本: %s (%s)",
   "carpet-tctc-addition.message.command.fix.fixed": "区块 [%s, %s] 修复中...",
   "carpet-tctc-addition.message.command.fix.fixing": "区块 [%s, %s] 修复完成。",
-  "carpet-tctc-addition.message.command.fix.here.withoutTransformed": "%s @ %s %s",
-  "carpet-tctc-addition.message.command.fix.here.withTransformed": "%s @ %s %s -> %s",
+  "carpet-tctc-addition.message.command.here.withoutTransformed": "%s @ %s %s %s %s %s",
+  "carpet-tctc-addition.message.command.here.withTransformed": "%s @ %s %s %s %s %s -> %s",
+  "carpet-tctc-addition.message.command.here.hover.teleport": "点击传送至此",
+  "carpet-tctc-addition.message.command.here.hover.voxelMap": "点击通过 VoxelMap 高亮此坐标。 Ctrl-点击通过 VoxelMap 添加导航点。",
+  "carpet-tctc-addition.message.command.here.hover.xaeroMap": "点击通过 XaeroMap 添加导航点。",
   "carpet-tctc-addition.message.server.updateSuppression.exception": "捕获到更新抑制异常，已阻止服务器崩溃。",
   "carpet-tctc-addition.message.server.updateSuppression.processed": "更新抑制。",
 
