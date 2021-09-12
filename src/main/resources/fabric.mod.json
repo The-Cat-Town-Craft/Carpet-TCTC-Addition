@@ -2,7 +2,6 @@
   "schemaVersion": 1,
   "id": "carpet-tctc-addition",
   "version": "${mod_version}",
-
   "name": "CarpetTCTCAddition",
   "description": "A carpet extension.",
   "authors": [
@@ -26,10 +25,8 @@
     "issues": "https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/issues",
     "sources": "https://github.com/The-Cat-The-Craft/Carpet-TCTC-Addition"
   },
-
   "license": "GPL-v3",
   "icon": "assets/carpet-tctc-addition/icon.png",
-
   "environment": "*",
   "entrypoints": {
     "main": [
@@ -39,9 +36,7 @@
   "mixins": [
     "carpet-tctc-addition.mixins.json"
   ],
-
   "accessWidener": "carpet-tctc-addition.accesswidener",
-
   "depends": {
     "carpet": ">=1.4.45",
     "fabricloader": ">=0.9.0",

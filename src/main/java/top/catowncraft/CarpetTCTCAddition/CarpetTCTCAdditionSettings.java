@@ -13,6 +13,7 @@ public class CarpetTCTCAdditionSettings {
     private static final String TCTC_BUGFIX = "TCTC-BUGFIX";
     private static final String TCTC_COMMAND = "TCTC-COMMAND";
     private static final String TCTC_FEATURE = "TCTC-FEATURE";
+    private static final String TCTC_MISC = "TCTC-MISC";
     private static final String TCTC_WORLD_GENERATE = "TCTC-WORLD_GENERATE";
 
     @Rule(
@@ -22,6 +23,14 @@ public class CarpetTCTCAdditionSettings {
             options = {"true", "false", "ops", "0", "1", "2", "3", "4"}
     )
     public static String commandFix = "ops";
+
+    @Rule(
+            name = "commandHere",
+            desc = "Enables /here command to allow you to share your location with other players.",
+            category = {TCTC, TCTC_COMMAND},
+            options = {"true", "false", "ops", "0", "1", "2", "3", "4"}
+    )
+    public static String commandHere = "true";
 
     @Rule(
             name = "cameraModeDisableSpectatePlayers",
@@ -47,6 +56,13 @@ public class CarpetTCTCAdditionSettings {
         NONE,
         PLAYER
     }
+
+    @Rule(
+            name = "hereGlowTime",
+            desc = "Time highlighted when using here command shared coordinates.",
+            category = {TCTC, TCTC_MISC}
+    )
+    public static int hereGlowTime = 15;
 
     @Rule(
             name = "illegalPistonActionFix",

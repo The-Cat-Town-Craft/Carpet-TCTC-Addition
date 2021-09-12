@@ -51,9 +51,9 @@ public class FixCommand {
         }
         LevelChunk levelChunk = (LevelChunk) blockGetter;
         Heightmap.primeHeightmaps(levelChunk, EnumSet.allOf(Heightmap.Types.class));
-        MessageUtil.sendMessage(source, (BaseComponent) new TextComponent(String.format(tr("carpet-tctc-addition.message.command.fix.fixing", "Fixing chunk [%s, %s]..."), chunkPos.x, chunkPos.z)).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
+        MessageUtil.sendMessage(source, new TextComponent(String.format(tr("carpet-tctc-addition.message.command.fix.fixing", "Fixing chunk [%s, %s]..."), chunkPos.x, chunkPos.z)).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
         ((ThreadedLevelLightEngine) level.getLightEngine()).lightChunk(levelChunk, false).thenRun(() -> {
-            MessageUtil.sendMessage(source, (BaseComponent) new TextComponent(String.format(tr("carpet-tctc-addition.message.command.fix.fixed", "Fixed chunk [%s, %s]"), chunkPos.x, chunkPos.z)).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
+            MessageUtil.sendMessage(source, new TextComponent(String.format(tr("carpet-tctc-addition.message.command.fix.fixed", "Fixed chunk [%s, %s]"), chunkPos.x, chunkPos.z)).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
         });
         return 1;
     }
