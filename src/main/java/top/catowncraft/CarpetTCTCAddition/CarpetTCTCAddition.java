@@ -15,8 +15,7 @@ import net.minecraft.server.MinecraftServer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import top.catowncraft.CarpetTCTCAddition.commands.FixCommand;
-
-import java.util.Map;
+import top.catowncraft.CarpetTCTCAddition.commands.HereCommand;
 
 public class CarpetTCTCAddition implements CarpetExtension, ModInitializer {
     public static final Logger logger = LogManager.getLogger(Reference.MOD_ID);
@@ -25,6 +24,7 @@ public class CarpetTCTCAddition implements CarpetExtension, ModInitializer {
     @Override
     public void registerCommands(CommandDispatcher<CommandSourceStack> dispatcher) {
         FixCommand.register(dispatcher);
+        HereCommand.register(dispatcher);
     }
 
     @Override

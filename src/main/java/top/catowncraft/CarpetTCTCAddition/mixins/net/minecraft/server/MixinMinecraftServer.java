@@ -8,7 +8,6 @@ package top.catowncraft.CarpetTCTCAddition.mixins.net.minecraft.server;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.BaseComponent;
-import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
