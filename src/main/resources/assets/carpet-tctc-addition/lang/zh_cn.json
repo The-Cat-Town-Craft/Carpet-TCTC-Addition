@@ -3,9 +3,19 @@
   "carpet-tctc-addition.label.versionType.Public Release": "公共发行版",
   "carpet-tctc-addition.label.versionType.Version Exception": "版本异常",
 
+  "carpet-tctc-addition.label.dimensionType.overworld": "主世界",
+  "carpet-tctc-addition.label.dimensionType.end": "末路之地",
+  "carpet-tctc-addition.label.dimensionType.nether": "下界",
+  "carpet-tctc-addition.label.dimensionType.unknown": "未知",
+
   "carpet-tctc-addition.message.command.carpet.version": "%s 版本: %s (%s)",
   "carpet-tctc-addition.message.command.fix.fixed": "区块 [%s, %s] 修复中...",
   "carpet-tctc-addition.message.command.fix.fixing": "区块 [%s, %s] 修复完成。",
+  "carpet-tctc-addition.message.command.here.withoutTransformed": "%s @ %s %s %s %s %s",
+  "carpet-tctc-addition.message.command.here.withTransformed": "%s @ %s %s %s %s %s -> %s",
+  "carpet-tctc-addition.message.command.here.hover.teleport": "点击传送至此",
+  "carpet-tctc-addition.message.command.here.hover.voxelMap": "点击通过 VoxelMap 高亮此坐标。 Ctrl-点击通过 VoxelMap 添加导航点。",
+  "carpet-tctc-addition.message.command.here.hover.xaeroMap": "点击通过 XaeroMap 添加导航点。",
   "carpet-tctc-addition.message.server.updateSuppression.exception": "捕获到更新抑制异常，已阻止服务器崩溃。",
   "carpet-tctc-addition.message.server.updateSuppression.processed": "更新抑制。",
 
@@ -13,10 +23,14 @@
   "category.TCTC-COMMAND": "喵镇附属-命令",
   "category.TCTC-BUGFIX": "喵镇附属-漏洞修复",
   "category.TCTC-FEATURE": "喵镇附属-特性",
+  "category.TCTC-MISC": "喵镇附属-杂项",
   "category.TCTC-WORLD_GENERATE": "喵镇附属-世界生成",
 
   "rule.commandFix.name": "区块修复命令",
   "rule.commandFix.desc": "启用 /fix 命令用于修复区块数据。",
+
+  "rule.commandHere.name": "共享坐标",
+  "rule.commandHere.desc": "启用 /here 命令来让你可以与其他玩家分享你的位置。",
 
   "rule.cameraModeDisableSpectatePlayers.name": "禁止旁观者传送",
   "rule.cameraModeDisableSpectatePlayers.desc": "禁止旁观者玩家快捷传送。",
@@ -26,6 +40,9 @@
   "rule.enderPlatform.extra.0": "all - 任何实体进入末路之地维度时，生成黑曜石平台。",
   "rule.enderPlatform.extra.1": "none - 任何实体进入末路之地维度时，都不生成黑曜石平台。",
   "rule.enderPlatform.extra.2": "player - 玩家实体进入末路之地维度时，生成黑曜石平台。",
+
+  "rule.hereGlowTime.name": "高亮时间",
+  "rule.hereGlowTime.desc": "使用 here 共享坐标时高亮的时间。",
 
   "rule.illegalPistonActionFix.name": "非法活塞动作修复",
   "rule.illegalPistonActionFix.desc": "修复无头活塞破坏方块。",
