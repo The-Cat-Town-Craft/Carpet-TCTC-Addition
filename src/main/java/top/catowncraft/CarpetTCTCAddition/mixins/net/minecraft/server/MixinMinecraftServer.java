@@ -8,7 +8,6 @@
 package top.catowncraft.CarpetTCTCAddition.mixins.net.minecraft.server;
 
 import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.BaseComponent;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
@@ -40,7 +39,7 @@ public class MixinMinecraftServer {
     )
     private void onTickingWorld(BooleanSupplier booleanSupplier, CallbackInfo ci, Iterator var2, ServerLevel serverLevel, Throwable throwable) {
         if (CarpetTCTCAdditionSettings.updateSuppressionCrashFix && (throwable.getCause() instanceof ThrowableSuppression)) {
-            MessageUtil.sendServerMessage(CarpetTCTCAddition.getServer(), (BaseComponent) new TextComponent(tr("carpet-tctc-addition.message.server.updateSuppression.exception", "We caught an update suppression exception. This should cause the server to crash, but we prevented it.")).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
+            MessageUtil.sendServerMessage(CarpetTCTCAddition.getServer(), new TextComponent(tr("carpet-tctc-addition.message.server.updateSuppression.exception", "We caught an update suppression exception. This should cause the server to crash, but we prevented it.")).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
             ci.cancel();
         }
     }

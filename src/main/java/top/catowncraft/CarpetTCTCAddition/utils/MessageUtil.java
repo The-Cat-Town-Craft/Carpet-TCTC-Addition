@@ -8,7 +8,7 @@ package top.catowncraft.CarpetTCTCAddition.utils;
 
 import net.minecraft.Util;
 import net.minecraft.commands.CommandSourceStack;
-import net.minecraft.network.chat.BaseComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.entity.player.Player;
@@ -21,7 +21,7 @@ public class MessageUtil {
             source.sendSuccess(new TextComponent(message), source.getServer() != null && source.getServer().getLevel(Level.OVERWORLD) != null);
     }
 
-    public static void sendMessage(CommandSourceStack source, BaseComponent component) {
+    public static void sendMessage(CommandSourceStack source, Component component) {
         if (source != null)
             source.sendSuccess(component, source.getServer() != null && source.getServer().getLevel(Level.OVERWORLD) != null);
     }
@@ -37,14 +37,14 @@ public class MessageUtil {
         }
     }
 
-    public static void sendServerMessage(MinecraftServer server, BaseComponent baseComponent) {
+    public static void sendServerMessage(MinecraftServer server, Component component) {
         if (server != null) {
-            CarpetTCTCAddition.logger.info(baseComponent.getString());
+            CarpetTCTCAddition.logger.info(component.getString());
             for (Player player : server.getPlayerList().getPlayers()) {
-                player.sendMessage(baseComponent, Util.NIL_UUID);
+                player.sendMessage(component, Util.NIL_UUID);
             }
         } else {
-            CarpetTCTCAddition.logger.error("Message not delivered: " + baseComponent.getString());
+            CarpetTCTCAddition.logger.error("Message not delivered: " + component.getString());
         }
     }
 }

@@ -13,7 +13,6 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.arguments.coordinates.BlockPosArgument;
-import net.minecraft.network.chat.BaseComponent;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.server.level.ColumnPos;
 import net.minecraft.server.level.ServerLevel;
@@ -51,9 +50,9 @@ public class FixCommand {
         }
         LevelChunk levelChunk = (LevelChunk) blockGetter;
         Heightmap.primeHeightmaps(levelChunk, EnumSet.allOf(Heightmap.Types.class));
-        MessageUtil.sendMessage(source, (BaseComponent) new TextComponent(String.format(tr("carpet-tctc-addition.message.command.fix.fixing", "Fixing chunk [%s, %s]..."), chunkPos.x, chunkPos.z)).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
+        MessageUtil.sendMessage(source, new TextComponent(String.format(tr("carpet-tctc-addition.message.command.fix.fixing", "Fixing chunk [%s, %s]..."), chunkPos.x, chunkPos.z)).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
         ((ThreadedLevelLightEngine) level.getLightEngine()).lightChunk(levelChunk, false).thenRun(() -> {
-            MessageUtil.sendMessage(source, (BaseComponent) new TextComponent(String.format(tr("carpet-tctc-addition.message.command.fix.fixed", "Fixed chunk [%s, %s]"), chunkPos.x, chunkPos.z)).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
+            MessageUtil.sendMessage(source, new TextComponent(String.format(tr("carpet-tctc-addition.message.command.fix.fixed", "Fixed chunk [%s, %s]"), chunkPos.x, chunkPos.z)).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
         });
         return 1;
     }
