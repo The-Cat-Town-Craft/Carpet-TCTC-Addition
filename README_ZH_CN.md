@@ -84,7 +84,21 @@ player - 玩家实体进入末路之地维度时，生成黑曜石平台。
 
 - 类别: `TCTC`, `TCTC-FEATURE`, `TCTC-WORLD-GENERATE`
 
-_对于 Minecraft 1.16.5 及更高版本的分支，默认值为 `all`_
+*对于 Minecraft 1.16.5 及更高版本的分支，默认值为 `all`*
+
+### 烟花加速系数(fireworkSpeedupCoefficient)
+
+控制烟花火箭的加速系数。
+
+- 类型: `double`
+
+- 默认值: `1.5`
+
+- 参考数据: `1.25`, `1.5`
+
+- 类别: `TCTC`, `TCTC-CLIENT`, `TCTC-FEATURE`
+
+*对于 Minecraft 1.18 及更高版本的分支，默认值为 `1.25`*
 
 ### 高亮时间(hereGlowTime)
 

@@ -11,6 +11,7 @@
     "net.minecraft.server.players.MixinPlayerList",
     "net.minecraft.world.entity.MixinEntity",
     "net.minecraft.world.entity.player.MixinPlayer",
+    "net.minecraft.world.entity.projectile.MixinFireworkRocketEntity",
     "net.minecraft.world.level.MixinLevel",
     "net.minecraft.world.level.block.piston.MixinPistonBaseBlock"
   ],

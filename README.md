@@ -84,7 +84,21 @@ player - Ender platform is generated only when the player entity teleports to th
 
 - Categories: `TCTC`, `TCTC-FEATURE`, `TCTC-WORLD-GENERATE`
 
-_For Minecraft 1.16.5 and later branches, the default value is `all`_
+*For Minecraft 1.16.5 and later branches, the default value is `all`*
+
+### fireworkSpeedupCoefficient
+
+Controlling the acceleration coefficient of a firework rocket.
+
+- Type: `double`
+
+- Default value: `1.5`
+
+- Suggested options: `1.25`, `1.5`
+
+- Categories: `TCTC`, `TCTC-CLIENT`, `TCTC-FEATURE`
+
+*For Minecraft 1.18 and later branches, the default value is `1.25`*
 
 ### hereGlowTime
 

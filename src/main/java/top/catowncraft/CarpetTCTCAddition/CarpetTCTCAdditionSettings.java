@@ -11,6 +11,7 @@ import carpet.settings.Rule;
 public class CarpetTCTCAdditionSettings {
     private static final String TCTC = "TCTC";
     private static final String TCTC_BUGFIX = "TCTC-BUGFIX";
+    private static final String TCTC_CLIENT = "TCTC-CLIENT";
     private static final String TCTC_COMMAND = "TCTC-COMMAND";
     private static final String TCTC_FEATURE = "TCTC-FEATURE";
     private static final String TCTC_MISC = "TCTC-MISC";
@@ -64,6 +65,14 @@ public class CarpetTCTCAdditionSettings {
         NONE,
         PLAYER
     }
+
+    @Rule(
+            name = "fireworkSpeedupCoefficient",
+            desc = "Controlling the acceleration coefficient of a firework rocket.",
+            category = {TCTC, TCTC_CLIENT, TCTC_FEATURE},
+            options = {"1.25", "1.5"}
+    )
+    public static double fireworkSpeedupCoefficient = 1.5D;
 
     @Rule(
             name = "hereGlowTime",
