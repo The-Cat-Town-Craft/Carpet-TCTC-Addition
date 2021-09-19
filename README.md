@@ -172,7 +172,7 @@ Current maintaining branches:
 
 - `1.18` for Minecraft 1.18-snapshot
 
-For general new features, implement them in `master` branch first then merge it into other branches
+For general new features, implement them in `dev` branch first then merge it into other branches
 
 Branches merge order:
 
