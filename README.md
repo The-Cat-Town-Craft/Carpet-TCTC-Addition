@@ -42,6 +42,18 @@ Enables /here command to allow you to share your location with other players.
 
 - Categories: `TCTC`, `TCTC-COMMAND`
 
+### commandOperator
+
+Enables /operator command to allow you to change the player's permission level.
+
+- Type: `String`
+
+- Default value: `ops`
+
+- Suggested options: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4`
+
+- Categories: `TCTC`, `TCTC-COMMAND`
+
 ### cameraModeDisableSpectatePlayers
 
 Disables players in /c from spectating other players.

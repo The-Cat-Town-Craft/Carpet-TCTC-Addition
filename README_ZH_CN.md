@@ -30,13 +30,25 @@
 
 - 类别: `TCTC`, `TCTC-COMMAND`
 
-### 共享坐标(commandHere)
+### 共享坐标命令(commandHere)
 
 启用 /here 命令来让你可以与其他玩家分享你的位置。
 
 - 类型: `String`
 
 - 默认值: `true`
+
+- 参考数据: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4`
+
+- 类别: `TCTC`, `TCTC-COMMAND`
+
+### 权限控制命令(commandOperator)
+
+启用 /operator 命令来允许你更改玩家的权限等级。
+
+- 类型: `String`
+
+- 默认值: `ops`
 
 - 参考数据: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4`
 

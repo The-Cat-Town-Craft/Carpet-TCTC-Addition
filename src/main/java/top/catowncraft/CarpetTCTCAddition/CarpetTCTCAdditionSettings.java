@@ -33,6 +33,14 @@ public class CarpetTCTCAdditionSettings {
     public static String commandHere = "true";
 
     @Rule(
+            name = "commandOperator",
+            desc = "Enables /operator command to allow you to change the player's permission level.",
+            category = {TCTC, TCTC_COMMAND},
+            options = {"true", "false", "ops", "0", "1", "2", "3", "4"}
+    )
+    public static String commandOperator = "ops";
+
+    @Rule(
             name = "cameraModeDisableSpectatePlayers",
             desc = "Disables players in /c from spectating other players.",
             category = {TCTC, TCTC_FEATURE}
