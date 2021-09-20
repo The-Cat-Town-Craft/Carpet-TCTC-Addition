@@ -49,6 +49,13 @@ public class CarpetTCTCAdditionSettings {
     public static boolean cameraModeDisableSpectatePlayers = false;
 
     @Rule(
+            name = "endGatewayChunkLoader",
+            desc = "When the entity passes through the ender gateway, the target chunk will be loaded for 15 seconds like nether portal.",
+            category = {TCTC, TCTC_FEATURE}
+    )
+    public static boolean endGatewayChunkLoader = false;
+
+    @Rule(
             name = "enderPlatform",
             desc = "Is obsidian platform generated in the end.",
             extra = {

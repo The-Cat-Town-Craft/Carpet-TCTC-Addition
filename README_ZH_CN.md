@@ -66,6 +66,18 @@
 
 - 类别: `TCTC`, `TCTC-FEATURE`
 
+### 末路之地折跃门区块加载器(endGatewayChunkLoader)
+
+当实体穿越末路之地折跃门时，目标区块会像下界传送门一样使目标区块获得 15 秒的加载。
+
+- 类型: `boolean`
+
+- 默认值: `false`
+
+- 参考数据: `false`, `true`
+
+- 类别: `TCTC`, `TCTC-FEATURE`
+
 ### 末路之地平台(enderPlatform)
 
 是否在实体进入末路之地时生成黑曜石平台.

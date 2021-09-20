@@ -66,6 +66,18 @@ Disables players in /c from spectating other players.
 
 - Categories: `TCTC`, `TCTC-FEATURE`
 
+### endGatewayChunkLoader
+
+When the entity passes through the ender gateway, the target chunk will be loaded for 15 seconds like nether portal.
+
+- Type: `boolean`
+
+- Default value: `false`
+
+- Suggested options: `false`, `true`
+
+- Categories: `TCTC`, `TCTC-FEATURE`
+
 ### enderPlatform
 
 Is obsidian platform generated in the end.
