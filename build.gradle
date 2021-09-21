@@ -1,6 +1,10 @@
+import com.modrinth.minotaur.TaskModrinthUpload
+import com.modrinth.minotaur.request.VersionType
+
 plugins {
-    id 'fabric-loom' version '0.9-SNAPSHOT'
+    id 'fabric-loom' version '0.10-SNAPSHOT'
     id 'maven-publish'
+	id "com.modrinth.minotaur" version "1.2.1"
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
@@ -58,6 +62,30 @@ tasks.withType(JavaCompile).configureEach {
 	// see http://yodaconditions.net/blog/fix-for-java-file-encoding-problems-with-gradle.html
 	// If Javadoc is generated, this must be specified in that task too.
 	it.options.encoding = "UTF-8"
+}
+
+task publishModrinth (type: TaskModrinthUpload) {
+	onlyIf {
+		System.getenv("MODRINTH_API_TOKEN")
+	}
+	token = System.getenv("MODRINTH_API_TOKEN")
+	projectId = 'vbBQ6dVH'
+	versionNumber = "${project.mod_version_detail}"
+	changelog = System.getenv("CHANGE_LOG")
+	uploadFile = remapJar
+	switch ("${project.modrinth_release_type}") {
+		case "alpha":
+			versionType = VersionType.ALPHA
+			break
+		case "beta":
+			versionType = VersionType.BETA
+			break
+		case "release":
+			versionType = VersionType.RELEASE
+			break
+	}
+	addGameVersion("${project.minecraft_version}")
+	addLoader('fabric')
 }
 
 runClient {

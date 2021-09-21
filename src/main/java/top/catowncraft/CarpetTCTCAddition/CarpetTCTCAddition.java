@@ -16,6 +16,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import top.catowncraft.CarpetTCTCAddition.commands.FixCommand;
 import top.catowncraft.CarpetTCTCAddition.commands.HereCommand;
+import top.catowncraft.CarpetTCTCAddition.commands.OperatorCommand;
 import top.catowncraft.CarpetTCTCAddition.utils.CarpetTCTCAdditionTranslations;
 
 import java.util.Map;
@@ -28,6 +29,7 @@ public class CarpetTCTCAddition implements CarpetExtension, ModInitializer {
     public void registerCommands(CommandDispatcher<CommandSourceStack> dispatcher) {
         FixCommand.register(dispatcher);
         HereCommand.register(dispatcher);
+        OperatorCommand.register(dispatcher);
     }
 
     @Override
