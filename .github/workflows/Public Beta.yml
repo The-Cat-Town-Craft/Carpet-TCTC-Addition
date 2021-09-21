@@ -10,20 +10,19 @@ jobs:
     strategy:
       matrix:
         java: [
-          16,
-          17
+          16-jdk,
+          17-jdk
         ]
         os: [
           ubuntu-20.04
         ]
     runs-on: ${{ matrix.os }}
+    container:
+      image: openjdk:${{ matrix.java }}
+      options: --user root
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up JDK ${{ matrix.java }}
-        uses: actions/setup-java@v2
-        with:
-          distribution: 'adopt'
-          java-version: ${{ matrix.java }}
+      - name: Checkout the sources
+        uses: actions/checkout@v2
       - name: Get commit id
         id: getid
         run: |
