@@ -178,7 +178,31 @@ Wet sponges will be able to absorb lava.
 
 - Suggested options: `false`, `true`
 
-- Categories: `TCTC`, `TCTC-EXPERIMENTAL`, `TCTC-BUGFIX`
+- Categories: `TCTC`, `TCTC-EXPERIMENTAL`, `TCTC-FEATURE`
+
+### wetSpongeAbsorbLavaLimit
+
+Maximum offset limit for wet sponge.
+
+- Type: `int`
+
+- Default value: `32`
+
+- Suggested options: `32`, `64`
+
+- Categories: `TCTC`, `TCTC-EXPERIMENTAL`, `TCTC-FEATURE`
+
+### wetSpongeAbsorbLavaRange
+
+Maximum lava sucking for wet sponge.
+
+- Type: `int`
+
+- Default value: `3`
+
+- Suggested options: `3`, `6`
+
+- Categories: `TCTC`, `TCTC-EXPERIMENTAL`, `TCTC-FEATURE`
 
 ## Development
 
@@ -196,7 +220,7 @@ Current maintaining branches:
 
 - `1.18` for Minecraft 1.18-snapshot
 
-For general new features, implement them in `dev` branch first then merge it into other branches
+For general new features, implement them in `dev` branch first then merge it into other branches.
 
 Branches merge order:
 

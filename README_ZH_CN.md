@@ -178,7 +178,31 @@ player - 仅玩家可获得统计信息。
 
 - 参考数据: `false`, `true`
 
-- 类别: `TCTC`, `TCTC-EXPERIMENTAL`, `TCTC-BUGFIX`
+- 类别: `TCTC`, `TCTC-EXPERIMENTAL`, `TCTC-FEATURE`
+
+### 湿海绵吸收岩浆限制(wetSpongeAbsorbLavaLimit)
+
+湿海绵吸收岩浆最大数量限制。
+
+- 类型: `int`
+
+- 默认值: `32`
+
+- 参考数据: `32`, `64`
+
+- 类别: `TCTC`, `TCTC-EXPERIMENTAL`, `TCTC-FEATURE`
+
+### 湿海绵吸收岩浆距离(wetSpongeAbsorbLavaRange)
+
+湿海绵吸收岩浆最大偏移限制。
+
+- 类型: `int`
+
+- 默认值: `3`
+
+- 参考数据: `3`, `6`
+
+- 类别: `TCTC`, `TCTC-EXPERIMENTAL`, `TCTC-FEATURE`
 
 ## 开发
 

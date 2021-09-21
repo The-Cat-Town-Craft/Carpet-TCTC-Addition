@@ -129,4 +129,18 @@ public class CarpetTCTCAdditionSettings {
             category = {TCTC, TCTC_EXPERIMENTAL, TCTC_FEATURE}
     )
     public static boolean wetSpongeAbsorbLava = false;
+
+    @Rule(
+            name = "wetSpongeAbsorbLavaLimit",
+            desc = "Maximum offset limit for wet sponge.",
+            category = {TCTC, TCTC_EXPERIMENTAL, TCTC_FEATURE}
+    )
+    public static int wetSpongeAbsorbLavaLimit = 32;
+
+    @Rule(
+            name = "wetSpongeAbsorbLavaRange",
+            desc = "Maximum lava sucking for wet sponge.",
+            category = {TCTC, TCTC_EXPERIMENTAL, TCTC_FEATURE}
+    )
+    public static int wetSpongeAbsorbLavaRange = 3;
 }

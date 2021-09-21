@@ -82,20 +82,20 @@ public class MixinWetSpongeBlock extends Block {
                 if (fluidState.is(FluidTags.LAVA)) {
                     if (blockState.getBlock() instanceof BucketPickup && ((BucketPickup) blockState.getBlock()).takeLiquid(level, relative, blockState) != Fluids.EMPTY) {
                         i++;
-                        if (j < 6) {
+                        if (j < CarpetTCTCAdditionSettings.wetSpongeAbsorbLavaRange - 1) {
                             queue.add(new Tuple<>(relative, j + 1));
                         }
                     } else if (blockState.getBlock() instanceof LiquidBlock) {
                         level.setBlock(relative, Blocks.AIR.defaultBlockState(), 3);
                         i++;
-                        if (j < 6) {
+                        if (j < CarpetTCTCAdditionSettings.wetSpongeAbsorbLavaRange - 1) {
                             queue.add(new Tuple<>(relative, j + 1));
                         }
                     }
                 }
             }
 
-            if (i > 64) {
+            if (i > CarpetTCTCAdditionSettings.wetSpongeAbsorbLavaLimit) {
                 break;
             }
         }
