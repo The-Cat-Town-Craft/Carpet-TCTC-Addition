@@ -8,7 +8,6 @@ package top.catowncraft.CarpetTCTCAddition.mixins.net.minecraft.world.level;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.BaseComponent;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
