@@ -8,8 +8,7 @@ jobs:
     strategy:
       matrix:
         java: [
-          16-jdk,
-          17-jdk
+          16
         ]
         os: [
           ubuntu-latest
@@ -22,9 +21,6 @@ jobs:
           1.18
         ]
     runs-on: ${{ matrix.os }}
-    container:
-      image: openjdk:${{ matrix.java }}
-      options: --user root
     steps:
       - name: Get info from branch to run
         id: getbranchinfo
@@ -44,6 +40,11 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: ${{ steps.getbranchinfo.outputs.branchname }}
+      - name: Set up JDK ${{ matrix.java }}
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: ${{ matrix.java }}
       - name: Set build number in codes
         run: |
           sed -i "s/build.undefined/build.$GITHUB_RUN_NUMBER/g" gradle.properties
@@ -69,19 +70,17 @@ jobs:
           output="$(find build/libs/ ! -name "*-dev.jar" ! -name "*-sources.jar" -type f -printf "%f\n")"
           echo "::set-output name=jarname::$output"
       - name: Upload assets to GitHub Action
-        if: ${{ matrix.java == '16' }}
         uses: actions/upload-artifact@v2
         with:
           name: ${{ steps.properties.outputs.mod_file_name }}-mc${{ steps.properties.outputs.minecraft_version_out }}-${{ steps.properties.outputs.mod_version_detail }}(Public Release)
           path: build/libs/
       - name: Upload assets to GitHub Release
-        if: ${{ matrix.java == '16' }}
         uses: AButler/upload-release-assets@v2.0
         with:
           files: 'build/libs/${{ steps.findjar.outputs.jarname }}'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload assets to Curseforge
-        if: ${{ matrix.java == '16' && steps.properties.outputs.cruseforge_release }}
+        if: ${{ steps.properties.outputs.cruseforge_release }}
         uses: itsmeow/curseforge-upload@v3
         with:
           token: ${{ secrets.CF_API_TOKEN }}
