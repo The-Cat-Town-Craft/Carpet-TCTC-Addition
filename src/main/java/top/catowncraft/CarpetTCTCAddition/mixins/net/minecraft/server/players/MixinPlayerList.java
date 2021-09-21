@@ -22,13 +22,19 @@ import java.util.UUID;
 
 @Mixin(PlayerList.class)
 public abstract class MixinPlayerList implements PlayerListInterface {
-    @Shadow @Final private ServerOpList ops;
+    @Shadow
+    @Final
+    private ServerOpList ops;
 
-    @Shadow public abstract boolean canBypassPlayerLimit(GameProfile gameProfile);
+    @Shadow
+    public abstract boolean canBypassPlayerLimit(GameProfile gameProfile);
 
-    @Shadow public abstract void sendPlayerPermissionLevel(ServerPlayer serverPlayer);
+    @Shadow
+    public abstract void sendPlayerPermissionLevel(ServerPlayer serverPlayer);
 
-    @Shadow @Nullable public abstract ServerPlayer getPlayer(UUID uUID);
+    @Shadow
+    @Nullable
+    public abstract ServerPlayer getPlayer(UUID uUID);
 
     @Override
     public void setPermissionLevel(GameProfile gameProfile, int level) {

@@ -69,7 +69,7 @@ public class MixinWetSpongeBlock extends Block {
         queue.add(new Tuple<>(blockPos, 0));
         int i = 0;
 
-        while(!queue.isEmpty()) {
+        while (!queue.isEmpty()) {
             Tuple<BlockPos, Integer> tuple = queue.poll();
             BlockPos tupleA = tuple.getA();
             int j = tuple.getB();

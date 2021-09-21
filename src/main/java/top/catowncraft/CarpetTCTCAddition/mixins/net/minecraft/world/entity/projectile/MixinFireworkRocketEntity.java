@@ -18,7 +18,8 @@ import top.catowncraft.CarpetTCTCAddition.CarpetTCTCAdditionSettings;
 
 @Mixin(FireworkRocketEntity.class)
 public class MixinFireworkRocketEntity {
-    @Shadow private LivingEntity attachedToEntity;
+    @Shadow
+    private LivingEntity attachedToEntity;
 
     @ModifyArgs(
             method = "tick",
