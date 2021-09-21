@@ -8,7 +8,8 @@ jobs:
     strategy:
       matrix:
         java: [
-          16
+          16,
+          17
         ]
         os: [
           ubuntu-latest
@@ -70,17 +71,19 @@ jobs:
           output="$(find build/libs/ ! -name "*-dev.jar" ! -name "*-sources.jar" -type f -printf "%f\n")"
           echo "::set-output name=jarname::$output"
       - name: Upload assets to GitHub Action
+        if: ${{ matrix.java == '16' }}
         uses: actions/upload-artifact@v2
         with:
           name: ${{ steps.properties.outputs.mod_file_name }}-mc${{ steps.properties.outputs.minecraft_version_out }}-${{ steps.properties.outputs.mod_version_detail }}(Public Release)
           path: build/libs/
       - name: Upload assets to GitHub Release
+        if: ${{ matrix.java == '16' }}
         uses: AButler/upload-release-assets@v2.0
         with:
           files: 'build/libs/${{ steps.findjar.outputs.jarname }}'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload assets to Curseforge
-        if: ${{ steps.properties.outputs.cruseforge_release }}
+        if: ${{ matrix.java == '16' && steps.properties.outputs.cruseforge_release }}
         uses: itsmeow/curseforge-upload@v3
         with:
           token: ${{ secrets.CF_API_TOKEN }}
