@@ -43,6 +43,8 @@
     "minecraft": "1.16.5"
   },
   "custom": {
-    "modmenu:parent": "carpet"
+    "modmenu": {
+      "parent": "carpet"
+    }
   }
 }
