@@ -13,6 +13,7 @@
     "net.minecraft.world.entity.player.MixinPlayer",
     "net.minecraft.world.entity.projectile.MixinFireworkRocketEntity",
     "net.minecraft.world.level.MixinLevel",
+    "net.minecraft.world.level.block.MixinWetSpongeBlock",
     "net.minecraft.world.level.block.entity.MixinTheEndGatewayBlockEntity",
     "net.minecraft.world.level.block.piston.MixinPistonBaseBlock"
   ],

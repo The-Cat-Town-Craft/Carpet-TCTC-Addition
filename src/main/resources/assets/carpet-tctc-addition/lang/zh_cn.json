@@ -26,6 +26,7 @@
   "category.TCTC-BUGFIX": "喵镇附属-漏洞修复",
   "category.TCTC-CLIENT": "喵镇附属-客户端",
   "category.TCTC-COMMAND": "喵镇附属-命令",
+  "category.TCTC-EXPERIMENTAL": "喵镇附属-实验性",
   "category.TCTC-FEATURE": "喵镇附属-特性",
   "category.TCTC-MISC": "喵镇附属-杂项",
   "category.TCTC-WORLD_GENERATE": "喵镇附属-世界生成",
@@ -68,5 +69,8 @@
   "rule.playerStats.extra.3": "player - 仅玩家可获得统计信息。",
 
   "rule.updateSuppressionCrashFix.name": "更新抑制崩溃修复",
-  "rule.updateSuppressionCrashFix.desc": "修复更新抑制造成的服务器崩溃。"
+  "rule.updateSuppressionCrashFix.desc": "修复更新抑制造成的服务器崩溃。",
+
+  "rule.wetSpongeAbsorbLava.name": "湿海绵吸收岩浆",
+  "rule.wetSpongeAbsorbLava.desc": "湿海绵将可以吸收岩浆。"
 }

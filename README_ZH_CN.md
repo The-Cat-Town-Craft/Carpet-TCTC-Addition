@@ -168,6 +168,18 @@ player - 仅玩家可获得统计信息。
 
 - 类别: `TCTC`, `TCTC_BUGFIX`
 
+### 湿海绵吸收岩浆(wetSpongeAbsorbLava)
+
+湿海绵将可以吸收岩浆。
+
+- 类型: `boolean`
+
+- 默认值: `false`
+
+- 参考数据: `false`, `true`
+
+- 类别: `TCTC`, `TCTC-EXPERIMENTAL`, `TCTC-BUGFIX`
+
 ## 开发
 
 当前主开发分支：1.15.2

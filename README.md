@@ -168,6 +168,18 @@ Fix updates suppression causing server crashes.
 
 - Categories: `TCTC`, `TCTC-BUGFIX`
 
+### wetSpongeAbsorbLava
+
+Wet sponges will be able to absorb lava.
+
+- Type: `boolean`
+
+- Default value: `false`
+
+- Suggested options: `false`, `true`
+
+- Categories: `TCTC`, `TCTC-EXPERIMENTAL`, `TCTC-BUGFIX`
+
 ## Development
 
 Current main development for Minecraft version: 1.15.2.

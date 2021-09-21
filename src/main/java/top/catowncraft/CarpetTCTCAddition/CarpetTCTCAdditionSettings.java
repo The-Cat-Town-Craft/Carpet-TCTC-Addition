@@ -13,6 +13,7 @@ public class CarpetTCTCAdditionSettings {
     private static final String TCTC_BUGFIX = "TCTC-BUGFIX";
     private static final String TCTC_CLIENT = "TCTC-CLIENT";
     private static final String TCTC_COMMAND = "TCTC-COMMAND";
+    private static final String TCTC_EXPERIMENTAL = "TCTC-EXPERIMENTAL";
     private static final String TCTC_FEATURE = "TCTC-FEATURE";
     private static final String TCTC_MISC = "TCTC-MISC";
     private static final String TCTC_WORLD_GENERATE = "TCTC-WORLD_GENERATE";
@@ -121,4 +122,11 @@ public class CarpetTCTCAdditionSettings {
             category = {TCTC, TCTC_BUGFIX}
     )
     public static boolean updateSuppressionCrashFix = false;
+
+    @Rule(
+            name = "wetSpongeAbsorbLava",
+            desc = "Wet sponges will be able to absorb lava.",
+            category = {TCTC, TCTC_EXPERIMENTAL, TCTC_FEATURE}
+    )
+    public static boolean wetSpongeAbsorbLava = false;
 }
