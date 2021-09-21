@@ -98,4 +98,4 @@ jobs:
         run: ./gradlew publishModrinth
         env:
           CHANGE_LOG: ${{ github.event.release.body }}
-          MODRINTH_TOKEN: ${{ secrets.MODRINTH_API_TOKEN }}
+          MODRINTH_API_TOKEN: ${{ secrets.MODRINTH_API_TOKEN }}
