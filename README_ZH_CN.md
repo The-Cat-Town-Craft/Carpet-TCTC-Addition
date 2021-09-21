@@ -30,7 +30,7 @@
 
 - 类别: `TCTC`, `TCTC-COMMAND`
 
-### 共享坐标(commandHere)
+### 共享坐标命令(commandHere)
 
 启用 /here 命令来让你可以与其他玩家分享你的位置。
 
@@ -42,9 +42,33 @@
 
 - 类别: `TCTC`, `TCTC-COMMAND`
 
+### 权限控制命令(commandOperator)
+
+启用 /operator 命令来允许你更改玩家的权限等级。
+
+- 类型: `String`
+
+- 默认值: `ops`
+
+- 参考数据: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4`
+
+- 类别: `TCTC`, `TCTC-COMMAND`
+
 ### 禁止旁观者传送(cameraModeDisableSpectatePlayers)
 
 禁止旁观者玩家快捷传送。
+
+- 类型: `boolean`
+
+- 默认值: `false`
+
+- 参考数据: `false`, `true`
+
+- 类别: `TCTC`, `TCTC-FEATURE`
+
+### 末路之地折跃门区块加载器(endGatewayChunkLoader)
+
+当实体穿越末路之地折跃门时，目标区块会像下界传送门一样使目标区块获得 15 秒的加载。
 
 - 类型: `boolean`
 
@@ -72,7 +96,21 @@ player - 玩家实体进入末路之地维度时，生成黑曜石平台。
 
 - 类别: `TCTC`, `TCTC-FEATURE`, `TCTC-WORLD-GENERATE`
 
-_对于 Minecraft 1.16.5 及更高版本的分支，默认值为 `all`_
+*对于 Minecraft 1.16.5 及更高版本的分支，默认值为 `all`*
+
+### 烟花加速系数(fireworkSpeedupCoefficient)
+
+控制烟花火箭的加速系数。
+
+- 类型: `double`
+
+- 默认值: `1.5`
+
+- 参考数据: `1.25`, `1.5`
+
+- 类别: `TCTC`, `TCTC-CLIENT`, `TCTC-FEATURE`
+
+*对于 Minecraft 1.18 及更高版本的分支，默认值为 `1.25`*
 
 ### 高亮时间(hereGlowTime)
 
@@ -130,6 +168,42 @@ player - 仅玩家可获得统计信息。
 
 - 类别: `TCTC`, `TCTC_BUGFIX`
 
+### 湿海绵吸收岩浆(wetSpongeAbsorbLava)
+
+湿海绵将可以吸收岩浆。
+
+- 类型: `boolean`
+
+- 默认值: `false`
+
+- 参考数据: `false`, `true`
+
+- 类别: `TCTC`, `TCTC-EXPERIMENTAL`, `TCTC-FEATURE`
+
+### 湿海绵吸收岩浆限制(wetSpongeAbsorbLavaLimit)
+
+湿海绵吸收岩浆最大数量限制。
+
+- 类型: `int`
+
+- 默认值: `32`
+
+- 参考数据: `32`, `64`
+
+- 类别: `TCTC`, `TCTC-EXPERIMENTAL`, `TCTC-FEATURE`
+
+### 湿海绵吸收岩浆距离(wetSpongeAbsorbLavaRange)
+
+湿海绵吸收岩浆最大偏移限制。
+
+- 类型: `int`
+
+- 默认值: `3`
+
+- 参考数据: `3`, `6`
+
+- 类别: `TCTC`, `TCTC-EXPERIMENTAL`, `TCTC-FEATURE`
+
 ## 开发
 
 当前主开发分支：1.15.2
@@ -146,7 +220,7 @@ player - 仅玩家可获得统计信息。
 
 - `1.18` 适用于 Minecraft 1.18-快照
 
-对于通用的新特性，在 `master` 分支中实现，再将其合并至其他分支。
+对于通用的新特性，在 `dev` 分支中实现，再将其合并至其他分支。
 
 分支合并顺序：
 

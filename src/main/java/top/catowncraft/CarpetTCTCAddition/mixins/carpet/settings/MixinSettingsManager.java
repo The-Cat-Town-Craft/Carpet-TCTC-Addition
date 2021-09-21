@@ -9,7 +9,6 @@ package top.catowncraft.CarpetTCTCAddition.mixins.carpet.settings;
 import carpet.settings.SettingsManager;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
-import net.minecraft.network.chat.BaseComponent;
 import net.minecraft.network.chat.TextComponent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

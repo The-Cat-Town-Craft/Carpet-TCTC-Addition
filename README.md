@@ -42,9 +42,33 @@ Enables /here command to allow you to share your location with other players.
 
 - Categories: `TCTC`, `TCTC-COMMAND`
 
+### commandOperator
+
+Enables /operator command to allow you to change the player's permission level.
+
+- Type: `String`
+
+- Default value: `ops`
+
+- Suggested options: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4`
+
+- Categories: `TCTC`, `TCTC-COMMAND`
+
 ### cameraModeDisableSpectatePlayers
 
 Disables players in /c from spectating other players.
+
+- Type: `boolean`
+
+- Default value: `false`
+
+- Suggested options: `false`, `true`
+
+- Categories: `TCTC`, `TCTC-FEATURE`
+
+### endGatewayChunkLoader
+
+When the entity passes through the ender gateway, the target chunk will be loaded for 15 seconds like nether portal.
 
 - Type: `boolean`
 
@@ -72,7 +96,21 @@ player - Ender platform is generated only when the player entity teleports to th
 
 - Categories: `TCTC`, `TCTC-FEATURE`, `TCTC-WORLD-GENERATE`
 
-_For Minecraft 1.16.5 and later branches, the default value is `all`_
+*For Minecraft 1.16.5 and later branches, the default value is `all`*
+
+### fireworkSpeedupCoefficient
+
+Controlling the acceleration coefficient of a firework rocket.
+
+- Type: `double`
+
+- Default value: `1.5`
+
+- Suggested options: `1.25`, `1.5`
+
+- Categories: `TCTC`, `TCTC-CLIENT`, `TCTC-FEATURE`
+
+*For Minecraft 1.18 and later branches, the default value is `1.25`*
 
 ### hereGlowTime
 
@@ -130,6 +168,42 @@ Fix updates suppression causing server crashes.
 
 - Categories: `TCTC`, `TCTC-BUGFIX`
 
+### wetSpongeAbsorbLava
+
+Wet sponges will be able to absorb lava.
+
+- Type: `boolean`
+
+- Default value: `false`
+
+- Suggested options: `false`, `true`
+
+- Categories: `TCTC`, `TCTC-EXPERIMENTAL`, `TCTC-FEATURE`
+
+### wetSpongeAbsorbLavaLimit
+
+Maximum offset limit for wet sponge.
+
+- Type: `int`
+
+- Default value: `32`
+
+- Suggested options: `32`, `64`
+
+- Categories: `TCTC`, `TCTC-EXPERIMENTAL`, `TCTC-FEATURE`
+
+### wetSpongeAbsorbLavaRange
+
+Maximum lava sucking for wet sponge.
+
+- Type: `int`
+
+- Default value: `3`
+
+- Suggested options: `3`, `6`
+
+- Categories: `TCTC`, `TCTC-EXPERIMENTAL`, `TCTC-FEATURE`
+
 ## Development
 
 Current main development for Minecraft version: 1.15.2.
@@ -146,7 +220,7 @@ Current maintaining branches:
 
 - `1.18` for Minecraft 1.18-snapshot
 
-For general new features, implement them in `master` branch first then merge it into other branches
+For general new features, implement them in `dev` branch first then merge it into other branches.
 
 Branches merge order:
 

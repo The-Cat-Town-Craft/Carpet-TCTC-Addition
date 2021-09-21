@@ -11,7 +11,9 @@ import carpet.settings.Rule;
 public class CarpetTCTCAdditionSettings {
     private static final String TCTC = "TCTC";
     private static final String TCTC_BUGFIX = "TCTC-BUGFIX";
+    private static final String TCTC_CLIENT = "TCTC-CLIENT";
     private static final String TCTC_COMMAND = "TCTC-COMMAND";
+    private static final String TCTC_EXPERIMENTAL = "TCTC-EXPERIMENTAL";
     private static final String TCTC_FEATURE = "TCTC-FEATURE";
     private static final String TCTC_MISC = "TCTC-MISC";
     private static final String TCTC_WORLD_GENERATE = "TCTC-WORLD_GENERATE";
@@ -33,11 +35,26 @@ public class CarpetTCTCAdditionSettings {
     public static String commandHere = "true";
 
     @Rule(
+            name = "commandOperator",
+            desc = "Enables /operator command to allow you to change the player's permission level.",
+            category = {TCTC, TCTC_COMMAND},
+            options = {"true", "false", "ops", "0", "1", "2", "3", "4"}
+    )
+    public static String commandOperator = "ops";
+
+    @Rule(
             name = "cameraModeDisableSpectatePlayers",
             desc = "Disables players in /c from spectating other players.",
             category = {TCTC, TCTC_FEATURE}
     )
     public static boolean cameraModeDisableSpectatePlayers = false;
+
+    @Rule(
+            name = "endGatewayChunkLoader",
+            desc = "When the entity passes through the ender gateway, the target chunk will be loaded for 15 seconds like nether portal.",
+            category = {TCTC, TCTC_FEATURE}
+    )
+    public static boolean endGatewayChunkLoader = false;
 
     @Rule(
             name = "enderPlatform",
@@ -56,6 +73,14 @@ public class CarpetTCTCAdditionSettings {
         NONE,
         PLAYER
     }
+
+    @Rule(
+            name = "fireworkSpeedupCoefficient",
+            desc = "Controlling the acceleration coefficient of a firework rocket.",
+            category = {TCTC, TCTC_CLIENT, TCTC_FEATURE},
+            options = {"1.25", "1.5"}
+    )
+    public static double fireworkSpeedupCoefficient = 1.25D;
 
     @Rule(
             name = "hereGlowTime",
@@ -97,4 +122,25 @@ public class CarpetTCTCAdditionSettings {
             category = {TCTC, TCTC_BUGFIX}
     )
     public static boolean updateSuppressionCrashFix = false;
+
+    @Rule(
+            name = "wetSpongeAbsorbLava",
+            desc = "Wet sponges will be able to absorb lava.",
+            category = {TCTC, TCTC_EXPERIMENTAL, TCTC_FEATURE}
+    )
+    public static boolean wetSpongeAbsorbLava = false;
+
+    @Rule(
+            name = "wetSpongeAbsorbLavaLimit",
+            desc = "Maximum offset limit for wet sponge.",
+            category = {TCTC, TCTC_EXPERIMENTAL, TCTC_FEATURE}
+    )
+    public static int wetSpongeAbsorbLavaLimit = 32;
+
+    @Rule(
+            name = "wetSpongeAbsorbLavaRange",
+            desc = "Maximum lava sucking for wet sponge.",
+            category = {TCTC, TCTC_EXPERIMENTAL, TCTC_FEATURE}
+    )
+    public static int wetSpongeAbsorbLavaRange = 3;
 }
