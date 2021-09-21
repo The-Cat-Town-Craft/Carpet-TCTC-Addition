@@ -54,7 +54,7 @@ jobs:
         id: properties
         run: |
           path='./gradle.properties'
-          for property in mod_file_name mod_version_detail mod_file_name minecraft_version_out cruseforge_gameversion cruseforge_relations cruseforge_release cruseforge_release_type github_release
+          for property in mod_file_name mod_version_detail mod_file_name minecraft_version_out cruseforge_gameversion cruseforge_relations cruseforge_release cruseforge_release_type github_release modrinth_release_type
           do
             result=$(sed -n "/^[[:space:]]*$property[[:space:]]*=[[:space:]]*/s/^[[:space:]]*$property[[:space:]]*=[[:space:]]*//p" "$path")
             echo "$property: $result"
@@ -93,3 +93,9 @@ jobs:
           game_versions: ${{ steps.properties.outputs.cruseforge_gameversion }}
           release_type: ${{ steps.properties.outputs.cruseforge_release_type }}
           relations: ${{ steps.properties.outputs.cruseforge_relations }}
+      - name: Upload assets to Modrinth
+        if: ${{ steps.properties.outputs.modrinth_release_type }}
+        run: ./gradlew publishModrinth
+        env:
+          CHANGE_LOG: ${{ github.event.release.body }}
+          MODRINTH_TOKEN: ${{ secrets.MODRINTH_API_TOKEN }}
