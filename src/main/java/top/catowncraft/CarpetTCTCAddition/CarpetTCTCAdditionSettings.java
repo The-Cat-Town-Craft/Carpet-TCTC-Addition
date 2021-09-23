@@ -16,6 +16,7 @@ public class CarpetTCTCAdditionSettings {
     private static final String TCTC_EXPERIMENTAL = "TCTC-EXPERIMENTAL";
     private static final String TCTC_FEATURE = "TCTC-FEATURE";
     private static final String TCTC_MISC = "TCTC-MISC";
+    private static final String TCTC_PROTOCOL = "TCTC-PROTOCOL";
     private static final String TCTC_WORLD_GENERATE = "TCTC-WORLD_GENERATE";
 
     @Rule(
@@ -122,6 +123,14 @@ public class CarpetTCTCAdditionSettings {
             category = {TCTC, TCTC_BUGFIX}
     )
     public static boolean updateSuppressionCrashFix = false;
+
+    @Rule(
+            name = "voxelMapWorldName",
+            desc = "Send VoxelMap world information packets to client.",
+            category = {TCTC, TCTC_PROTOCOL},
+            options = {"#none", "creative", "mirror", "survival"}
+    )
+    public static String voxelMapWorldName = "#none";
 
     @Rule(
             name = "wetSpongeAbsorbLava",

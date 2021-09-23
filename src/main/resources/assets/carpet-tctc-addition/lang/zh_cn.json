@@ -29,6 +29,7 @@
   "category.TCTC-EXPERIMENTAL": "喵镇附属-实验性",
   "category.TCTC-FEATURE": "喵镇附属-特性",
   "category.TCTC-MISC": "喵镇附属-杂项",
+  "category.TCTC-PROTOCOL": "喵镇附属-协议",
   "category.TCTC-WORLD_GENERATE": "喵镇附属-世界生成",
 
   "rule.commandFix.name": "区块修复命令",
@@ -70,6 +71,9 @@
 
   "rule.updateSuppressionCrashFix.name": "更新抑制崩溃修复",
   "rule.updateSuppressionCrashFix.desc": "修复更新抑制造成的服务器崩溃。",
+
+  "rule.voxelMapWorldName.name": "体素地图世界名",
+  "rule.voxelMapWorldName.desc": "向客户端发送体素地图世界信息数据包。",
 
   "rule.wetSpongeAbsorbLava.name": "湿海绵吸收岩浆",
   "rule.wetSpongeAbsorbLava.desc": "湿海绵将可以吸收岩浆。",

@@ -22,7 +22,7 @@
 
 启用 /fix 命令用于修复区块数据。
 
-- 类型: `String`
+- 类型: `string`
 
 - 默认值: `ops`
 
@@ -34,7 +34,7 @@
 
 启用 /here 命令来让你可以与其他玩家分享你的位置。
 
-- 类型: `String`
+- 类型: `string`
 
 - 默认值: `true`
 
@@ -46,7 +46,7 @@
 
 启用 /operator 命令来允许你更改玩家的权限等级。
 
-- 类型: `String`
+- 类型: `string`
 
 - 默认值: `ops`
 
@@ -167,6 +167,18 @@ player - 仅玩家可获得统计信息。
 - 参考数据: `false`, `true`
 
 - 类别: `TCTC`, `TCTC_BUGFIX`
+
+### 体素地图世界名(voxelMapWorldName)
+
+向客户端发送体素地图世界信息数据包。
+
+- 类型: `string`
+
+- 默认值: `#none`
+
+- 参考数据: `#none`, `creative`, `mirror`, `survival`
+
+- 类别: `TCTC`, `TCTC-PROTOCOL`
 
 ### 湿海绵吸收岩浆(wetSpongeAbsorbLava)
 
