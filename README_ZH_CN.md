@@ -216,6 +216,18 @@ player - 仅玩家可获得统计信息。
 
 - 类别: `TCTC`, `TCTC-EXPERIMENTAL`, `TCTC-FEATURE`
 
+### xaero地图世界名(voxelMapWorldName)
+
+向客户端发送xaero地图世界信息数据包。
+
+- 类型: `string`
+
+- 默认值: `#none`
+
+- 参考数据: `#none`, `creative`, `mirror`, `survival`
+
+- 类别: `TCTC`, `TCTC-PROTOCOL`
+
 ## 开发
 
 当前主开发分支：1.15.2

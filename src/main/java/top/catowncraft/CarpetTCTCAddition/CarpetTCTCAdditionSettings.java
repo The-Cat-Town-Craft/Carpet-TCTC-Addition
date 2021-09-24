@@ -152,4 +152,12 @@ public class CarpetTCTCAdditionSettings {
             category = {TCTC, TCTC_EXPERIMENTAL, TCTC_FEATURE}
     )
     public static int wetSpongeAbsorbLavaRange = 3;
+
+    @Rule(
+            name = "xaeroMapWorldName",
+            desc = "Send XaeroMap world information packets to client.",
+            category = {TCTC, TCTC_PROTOCOL},
+            options = {"#none", "creative", "mirror", "survival"}
+    )
+    public static String xaeroMapWorldName = "#none";
 }

@@ -216,6 +216,18 @@ Maximum lava sucking for wet sponge.
 
 - Categories: `TCTC`, `TCTC-EXPERIMENTAL`, `TCTC-FEATURE`
 
+### xaeroMapWorldName
+
+Send XaeroMap world information packets to client.
+
+- Type: `string`
+
+- Default value: `#none`
+
+- Suggested options: `#none`, `creative`, `mirror`, `survival`
+
+- Categories: `TCTC`, `TCTC-PROTOCOL`
+
 ## Development
 
 Current main development for Minecraft version: 1.15.2.

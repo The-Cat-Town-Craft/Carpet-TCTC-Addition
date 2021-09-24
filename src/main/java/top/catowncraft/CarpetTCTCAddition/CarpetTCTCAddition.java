@@ -61,7 +61,7 @@ public class CarpetTCTCAddition implements CarpetExtension, ModInitializer {
         CarpetServer.manageExtension(new CarpetTCTCAddition());
 
         // Register packet handler
-        ServerPlayNetworking.registerGlobalReceiver(new ResourceLocation("worldinfo", "world_id"), WorldMapUtil::VoxelMapPacketHandler);
+        ServerPlayNetworking.registerGlobalReceiver(new ResourceLocation("worldinfo", "world_id"), WorldMapUtil::voxelMapPacketHandler);
     }
 
     public static MinecraftServer getServer() {

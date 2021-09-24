@@ -18,11 +18,15 @@ import net.minecraft.server.network.ServerGamePacketListenerImpl;
 import top.catowncraft.CarpetTCTCAddition.CarpetTCTCAdditionSettings;
 
 import java.nio.charset.StandardCharsets;
+import java.util.zip.CRC32;
 
 public class WorldMapUtil {
-    private static final ResourceLocation VOXEL_MAP_CHANNEL = new ResourceLocation("worldinfo:world_id");
+    private static final ResourceLocation VOXEL_MAP_CHANNEL = new ResourceLocation("worldinfo", "world_id");
 
-    public static void VoxelMapPacketHandler(MinecraftServer server, ServerPlayer player, ServerGamePacketListenerImpl listener, FriendlyByteBuf buf, PacketSender responseSender) {
+    private static final ResourceLocation XAERO_WORLD_MAP_CHANNEL = new ResourceLocation("xaeroworldmap", "main");
+    private static final ResourceLocation XAERO_MINI_MAP_CHANNEL = new ResourceLocation("xaeroworldmap", "main");
+
+    public static void voxelMapPacketHandler(MinecraftServer server, ServerPlayer player, ServerGamePacketListenerImpl listener, FriendlyByteBuf buf, PacketSender responseSender) {
         if (!CarpetTCTCAdditionSettings.voxelMapWorldName.equals("#none")) {
             byte[] bytes = CarpetTCTCAdditionSettings.voxelMapWorldName.getBytes(StandardCharsets.UTF_8);
             ByteBuf byteBuf = Unpooled.buffer();
@@ -30,9 +34,20 @@ public class WorldMapUtil {
             friendlyByteBuf.writeByte(0);
             friendlyByteBuf.writeByte(bytes.length);
             friendlyByteBuf.writeBytes(bytes);
-            player.connection.send(new ClientboundCustomPayloadPacket(VOXEL_MAP_CHANNEL, friendlyByteBuf), future -> {
-                byteBuf.release();
-            });
+            player.connection.send(new ClientboundCustomPayloadPacket(VOXEL_MAP_CHANNEL, friendlyByteBuf), future -> byteBuf.release());
+        }
+    }
+
+    public static void xaeroMapPacketHandler(ServerPlayer player) {
+        if (!CarpetTCTCAdditionSettings.xaeroMapWorldName.equals("#none")) {
+            byte[] bytes = CarpetTCTCAdditionSettings.xaeroMapWorldName.getBytes(StandardCharsets.UTF_8);
+            CRC32 crc32 = new CRC32();
+            crc32.update(bytes, 0, bytes.length);
+            ByteBuf byteBuf = Unpooled.buffer();
+            byteBuf.writeByte(0);
+            byteBuf.writeInt((int) crc32.getValue());
+            player.connection.send(new ClientboundCustomPayloadPacket(XAERO_MINI_MAP_CHANNEL, new FriendlyByteBuf(byteBuf.duplicate())));
+            player.connection.send(new ClientboundCustomPayloadPacket(XAERO_WORLD_MAP_CHANNEL, new FriendlyByteBuf(byteBuf.duplicate())));
         }
     }
 }

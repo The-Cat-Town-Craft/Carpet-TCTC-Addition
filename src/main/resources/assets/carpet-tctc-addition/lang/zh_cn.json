@@ -82,5 +82,8 @@
   "rule.wetSpongeAbsorbLavaLimit.desc": "湿海绵吸收岩浆最大数量限制。",
 
   "rule.wetSpongeAbsorbLavaRange.name": "湿海绵吸收岩浆距离",
-  "rule.wetSpongeAbsorbLavaRange.desc": "湿海绵吸收岩浆最大偏移限制。"
+  "rule.wetSpongeAbsorbLavaRange.desc": "湿海绵吸收岩浆最大偏移限制。",
+
+  "rule.xaeroMapWorldName.name": "xaero地图世界名",
+  "rule.xaeroMapWorldName.desc": "向客户端发送xaero地图世界信息数据包。"
 }
