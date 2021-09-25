@@ -79,14 +79,17 @@ public class CarpetTCTCAdditionSettings {
             name = "fireworkSpeedupCoefficient",
             desc = "Controlling the acceleration coefficient of a firework rocket.",
             category = {TCTC, TCTC_CLIENT, TCTC_FEATURE},
-            options = {"1.25", "1.5"}
+            options = {"1.25", "1.5"},
+            strict = false
     )
     public static double fireworkSpeedupCoefficient = 1.5D;
 
     @Rule(
             name = "hereGlowTime",
             desc = "Time highlighted when using here command shared coordinates.",
-            category = {TCTC, TCTC_MISC}
+            category = {TCTC, TCTC_MISC},
+            options = {"0", "15"},
+            strict = false
     )
     public static int hereGlowTime = 15;
 
@@ -128,7 +131,8 @@ public class CarpetTCTCAdditionSettings {
             name = "voxelMapWorldName",
             desc = "Send VoxelMap world information packets to client.",
             category = {TCTC, TCTC_PROTOCOL},
-            options = {"#none", "creative", "mirror", "survival"}
+            options = {"#none", "creative", "mirror", "survival"},
+            strict = false
     )
     public static String voxelMapWorldName = "#none";
 
@@ -157,7 +161,8 @@ public class CarpetTCTCAdditionSettings {
             name = "xaeroMapWorldName",
             desc = "Send XaeroMap world information packets to client.",
             category = {TCTC, TCTC_PROTOCOL},
-            options = {"#none", "creative", "mirror", "survival"}
+            options = {"#none", "creative", "mirror", "survival"},
+            strict = false
     )
     public static String xaeroMapWorldName = "#none";
 }
