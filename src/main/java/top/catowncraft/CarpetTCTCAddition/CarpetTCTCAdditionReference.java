@@ -22,7 +22,7 @@ public class CarpetTCTCAdditionReference {
         return MOD_NAME;
     }
 
-    public static  String getModVersion() {
+    public static String getModVersion() {
         return MOD_VERSION;
     }
 

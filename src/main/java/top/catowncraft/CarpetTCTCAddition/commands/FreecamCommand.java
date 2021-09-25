@@ -27,9 +27,9 @@ public class FreecamCommand {
                 literal("freecam").
                 requires(commandSourceStack -> SettingsManager.canUseCommand(commandSourceStack, CarpetTCTCAdditionSettings.commandFreecam)).
                 executes((commandContext) -> executeFreeCamera(commandContext.getSource(), Collections.singleton(commandContext.getSource().getPlayerOrException()))).
-                then(Commands.argument("target" ,EntityArgument.players())
+                then(Commands.argument("target", EntityArgument.players())
                         .requires((commandContext) -> commandContext.hasPermission(2))
-                        .executes((commandContext) -> executeFreeCamera(commandContext.getSource(), EntityArgument.getPlayers(commandContext,"targets"))));
+                        .executes((commandContext) -> executeFreeCamera(commandContext.getSource(), EntityArgument.getPlayers(commandContext, "targets"))));
         dispatcher.register(camera);
     }
 

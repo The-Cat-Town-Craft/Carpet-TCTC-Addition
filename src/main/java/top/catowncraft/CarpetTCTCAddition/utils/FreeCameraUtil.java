@@ -117,8 +117,9 @@ public class FreeCameraUtil {
         } catch (NullPointerException | IOException e) {
             dataJSON = null;
         }
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();;
-        freeCameraData = gson.fromJson(dataJSON, new TypeToken<HashMap<UUID, CameraData>>() {}.getType());
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        freeCameraData = gson.fromJson(dataJSON, new TypeToken<HashMap<UUID, CameraData>>() {
+        }.getType());
     }
 
     public static void saveFreeCameraData() {
