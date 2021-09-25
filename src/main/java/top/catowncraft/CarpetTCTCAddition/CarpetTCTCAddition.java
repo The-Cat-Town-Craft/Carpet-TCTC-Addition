@@ -10,13 +10,16 @@ import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import com.mojang.brigadier.CommandDispatcher;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import top.catowncraft.CarpetTCTCAddition.commands.FixCommand;
 import top.catowncraft.CarpetTCTCAddition.commands.HereCommand;
 import top.catowncraft.CarpetTCTCAddition.commands.OperatorCommand;
+import top.catowncraft.CarpetTCTCAddition.utils.WorldMapUtil;
 
 public class CarpetTCTCAddition implements CarpetExtension, ModInitializer {
     public static final Logger logger = LogManager.getLogger(Reference.MOD_ID);
@@ -46,7 +49,11 @@ public class CarpetTCTCAddition implements CarpetExtension, ModInitializer {
 
     @Override
     public void onInitialize() {
+        // Register mod as carpet extension.
         CarpetServer.manageExtension(new CarpetTCTCAddition());
+
+        // Register packet handler
+        ServerPlayNetworking.registerGlobalReceiver(new ResourceLocation("worldinfo", "world_id"), WorldMapUtil::voxelMapPacketHandler);
     }
 
     public static MinecraftServer getServer() {

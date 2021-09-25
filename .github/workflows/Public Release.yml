@@ -75,13 +75,13 @@ jobs:
           name: ${{ steps.properties.outputs.mod_file_name }}-mc${{ steps.properties.outputs.minecraft_version_out }}-${{ steps.properties.outputs.mod_version_detail }}(Public Release)
           path: build/libs/
       - name: Upload assets to GitHub Release
-        if: ${{ steps.properties.outputs.github_release }}
+        if: ${{ steps.properties.outputs.github_release == 'true'  }}
         uses: AButler/upload-release-assets@v2.0
         with:
           files: 'build/libs/${{ steps.findjar.outputs.jarname }}'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload assets to Curseforge
-        if: ${{ steps.properties.outputs.cruseforge_release }}
+        if: ${{ steps.properties.outputs.cruseforge_release == 'true'  }}
         uses: itsmeow/curseforge-upload@v3
         with:
           token: ${{ secrets.CF_API_TOKEN }}
@@ -94,7 +94,7 @@ jobs:
           release_type: ${{ steps.properties.outputs.cruseforge_release_type }}
           relations: ${{ steps.properties.outputs.cruseforge_relations }}
       - name: Upload assets to Modrinth
-        if: ${{ steps.properties.outputs.modrinth_release_type }}
+        if: ${{ steps.properties.outputs.modrinth_release == 'true' }}
         run: ./gradlew publishModrinth
         env:
           CHANGE_LOG: ${{ github.event.release.body }}
