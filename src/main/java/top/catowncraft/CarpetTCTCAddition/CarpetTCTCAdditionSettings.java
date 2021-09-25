@@ -28,6 +28,14 @@ public class CarpetTCTCAdditionSettings {
     public static String commandFix = "ops";
 
     @Rule(
+            name = "commandFreecam",
+            desc = "Enables /freecam command to toggle your camera mode.",
+            category = {TCTC, TCTC_COMMAND},
+            options = {"true", "false", "ops", "0", "1", "2", "3", "4"}
+    )
+    public static String commandFreecam = "true";
+
+    @Rule(
             name = "commandHere",
             desc = "Enables /here command to allow you to share your location with other players.",
             category = {TCTC, TCTC_COMMAND},
@@ -83,6 +91,13 @@ public class CarpetTCTCAdditionSettings {
             strict = false
     )
     public static double fireworkSpeedupCoefficient = 1.5D;
+
+    @Rule(
+            name = "freecamRestoreLocation",
+            desc = "Return to the starting position when you have finished spectating.",
+            category = {TCTC, TCTC_MISC}
+    )
+    public static boolean freecamRestoreLocation = true;
 
     @Rule(
             name = "hereGlowTime",
