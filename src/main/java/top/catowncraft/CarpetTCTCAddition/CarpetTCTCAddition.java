@@ -25,7 +25,7 @@ import top.catowncraft.CarpetTCTCAddition.utils.WorldMapUtil;
 import java.util.Map;
 
 public class CarpetTCTCAddition implements CarpetExtension, ModInitializer {
-    public static final Logger logger = LogManager.getLogger(Reference.MOD_ID);
+    public static final Logger logger = LogManager.getLogger(CarpetTCTCAdditionReference.getModId());
     private static MinecraftServer minecraftServer;
 
     @Override
@@ -47,7 +47,7 @@ public class CarpetTCTCAddition implements CarpetExtension, ModInitializer {
 
     @Override
     public String version() {
-        return Reference.MOD_ID;
+        return CarpetTCTCAdditionReference.getModVersion();
     }
 
     @Override
