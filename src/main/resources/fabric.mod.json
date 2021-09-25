@@ -45,6 +45,7 @@
   "depends": {
     "carpet": ">=1.4.8",
     "fabricloader": ">=0.9.0",
+    "fabric": ">=0.28.5",
     "minecraft": "1.15.2"
   },
   "custom": {

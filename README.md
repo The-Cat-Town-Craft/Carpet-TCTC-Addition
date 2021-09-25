@@ -22,7 +22,7 @@ A [fabric-carpet](https://github.com/gnembon/fabric-carpet) extension mod. It of
 
 Enables /fix command to fix chunk data.
 
-- Type: `String`
+- Type: `string`
 
 - Default value: `ops`
 
@@ -34,7 +34,7 @@ Enables /fix command to fix chunk data.
 
 Enables /here command to allow you to share your location with other players.
 
-- Type: `String`
+- Type: `string`
 
 - Default value: `true`
 
@@ -46,7 +46,7 @@ Enables /here command to allow you to share your location with other players.
 
 Enables /operator command to allow you to change the player's permission level.
 
-- Type: `String`
+- Type: `string`
 
 - Default value: `ops`
 
@@ -168,6 +168,18 @@ Fix updates suppression causing server crashes.
 
 - Categories: `TCTC`, `TCTC-BUGFIX`
 
+### voxelMapWorldName
+
+Send VoxelMap world information packets to client.
+
+- Type: `string`
+
+- Default value: `#none`
+
+- Suggested options: `#none`, `creative`, `mirror`, `survival`
+
+- Categories: `TCTC`, `TCTC-PROTOCOL`
+
 ### wetSpongeAbsorbLava
 
 Wet sponges will be able to absorb lava.
@@ -203,6 +215,18 @@ Maximum lava sucking for wet sponge.
 - Suggested options: `3`, `6`
 
 - Categories: `TCTC`, `TCTC-EXPERIMENTAL`, `TCTC-FEATURE`
+
+### xaeroMapWorldName
+
+Send XaeroMap world information packets to client.
+
+- Type: `string`
+
+- Default value: `#none`
+
+- Suggested options: `#none`, `creative`, `mirror`, `survival`
+
+- Categories: `TCTC`, `TCTC-PROTOCOL`
 
 ## Development
 
