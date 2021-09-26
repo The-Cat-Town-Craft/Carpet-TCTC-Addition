@@ -35,7 +35,7 @@ public class FreecamCommand {
 
     public static int executeFreeCamera(CommandSourceStack source, Collection<ServerPlayer> collection) throws CommandRuntimeException {
         for (ServerPlayer serverPlayer : collection) {
-            FreeCameraUtil.CameraData cameraData = FreeCameraUtil.freeCameraData.get(serverPlayer.getUUID());
+            FreeCameraUtil.CameraData cameraData = FreeCameraUtil.freeCameraData == null ? null : FreeCameraUtil.freeCameraData.get(serverPlayer.getUUID());
             boolean isCameraMode;
             FreeCameraUtil.CameraData cameraDataNew = new FreeCameraUtil.CameraData(serverPlayer.gameMode.getGameModeForPlayer(), serverPlayer.dimension, serverPlayer.getX(), serverPlayer.getY(), serverPlayer.getZ(), serverPlayer.yRot, serverPlayer.xRot, true);
             if (cameraData == null || !cameraData.isFreeCamera()) {

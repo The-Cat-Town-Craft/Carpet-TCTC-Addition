@@ -85,7 +85,7 @@ public class FreeCameraUtil {
             this.gameType = gameType;
         }
 
-        public void setLevel(DimensionType dimensionType) {
+        public void setDimensionType(DimensionType dimensionType) {
             this.dimensionType = dimensionType.toString();
         }
 
@@ -115,7 +115,7 @@ public class FreeCameraUtil {
         try {
             dataJSON = IOUtils.toString(new FileInputStream(getFile()), StandardCharsets.UTF_8);
         } catch (NullPointerException | IOException e) {
-            dataJSON = null;
+            dataJSON = "{}";
         }
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         freeCameraData = gson.fromJson(dataJSON, new TypeToken<HashMap<UUID, CameraData>>() {
@@ -126,8 +126,8 @@ public class FreeCameraUtil {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         try (Writer writer = new OutputStreamWriter(new FileOutputStream(getFile()), StandardCharsets.UTF_8)) {
             writer.write(gson.toJson(freeCameraData));
-        } catch (Exception ignore) {
-            ignore.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
