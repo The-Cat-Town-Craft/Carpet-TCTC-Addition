@@ -17,20 +17,23 @@ import net.minecraft.server.MinecraftServer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import top.catowncraft.CarpetTCTCAddition.commands.FixCommand;
+import top.catowncraft.CarpetTCTCAddition.commands.FreecamCommand;
 import top.catowncraft.CarpetTCTCAddition.commands.HereCommand;
 import top.catowncraft.CarpetTCTCAddition.commands.OperatorCommand;
 import top.catowncraft.CarpetTCTCAddition.utils.CarpetTCTCAdditionTranslations;
+import top.catowncraft.CarpetTCTCAddition.utils.FreeCameraUtil;
 import top.catowncraft.CarpetTCTCAddition.utils.WorldMapUtil;
 
 import java.util.Map;
 
 public class CarpetTCTCAddition implements CarpetExtension, ModInitializer {
-    public static final Logger logger = LogManager.getLogger(Reference.MOD_ID);
+    public static final Logger logger = LogManager.getLogger(CarpetTCTCAdditionReference.getModId());
     private static MinecraftServer minecraftServer;
 
     @Override
     public void registerCommands(CommandDispatcher<CommandSourceStack> dispatcher) {
         FixCommand.register(dispatcher);
+        FreecamCommand.register(dispatcher);
         HereCommand.register(dispatcher);
         OperatorCommand.register(dispatcher);
     }
@@ -43,11 +46,13 @@ public class CarpetTCTCAddition implements CarpetExtension, ModInitializer {
     @Override
     public void onServerLoaded(MinecraftServer server) {
         minecraftServer = server;
+        // Load freecam data.
+        FreeCameraUtil.loadFreeCameraData();
     }
 
     @Override
     public String version() {
-        return Reference.MOD_ID;
+        return CarpetTCTCAdditionReference.getModVersion();
     }
 
     @Override

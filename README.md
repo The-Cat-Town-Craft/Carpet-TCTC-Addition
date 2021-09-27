@@ -16,6 +16,13 @@
 
 A [fabric-carpet](https://github.com/gnembon/fabric-carpet) extension mod. It offers some interesting features.
 
+## Dependencies
+
+| Dependency | Type     | Download                                                                                                                    |
+| ---------- | -------- | --------------------------------------------------------------------------------------------------------------------------- |
+| Carpet     | Required | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/carpet) &#124; [Github](https://github.com/gnembon/fabric-carpet) |
+| Fabric API | Required | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api)                                                       |
+
 ## Rule List
 
 ### commandFix
@@ -25,6 +32,18 @@ Enables /fix command to fix chunk data.
 - Type: `string`
 
 - Default value: `ops`
+
+- Suggested options: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4`
+
+- Categories: `TCTC`, `TCTC-COMMAND`
+
+### commandFreecam
+
+Enables /freecam command to toggle your camera mode.
+
+- Type: `string`
+
+- Default value: `true`
 
 - Suggested options: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4`
 
@@ -111,6 +130,18 @@ Controlling the acceleration coefficient of a firework rocket.
 - Categories: `TCTC`, `TCTC-CLIENT`, `TCTC-FEATURE`
 
 *For Minecraft 1.18 and later branches, the default value is `1.25`*
+
+### freecamRestoreLocation
+
+Return to the starting position when you have finished spectating.
+
+- Type: `boolean`
+
+- Default value: `true`
+
+- Suggested options: `true`, `false`
+
+- Categories: `TCTC`, `TCTC-MISC`
 
 ### hereGlowTime
 
@@ -230,6 +261,8 @@ Send XaeroMap world information packets to client.
 
 ## Development
 
+### Branches
+
 Current main development for Minecraft version: 1.15.2.
 
 Current maintaining branches:
@@ -265,6 +298,12 @@ For version specific fixes / patches, implement them in relevant branches.
 `master` branch is always consistent with the main development branch version.
 
 Try not to affect version compatibility unless it's necessary.
+
+### Mappings
+
+We are using the **Mojang official** mappings to de-obfuscate Minecraft and insert patches.
+
+### Document
 
 The English doc and the Chinese doc are aligned line by line.
 
