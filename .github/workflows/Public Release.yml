@@ -98,3 +98,4 @@ jobs:
         env:
           CHANGE_LOG: ${{ github.event.release.body }}
           MODRINTH_API_TOKEN: ${{ secrets.MODRINTH_API_TOKEN }}
+          VERSION_NUMBER: ${{ steps.properties.outputs.mod_file_name }}-mc${{ steps.properties.outputs.minecraft_version_out }}-${{ steps.properties.outputs.mod_version_detail }}
