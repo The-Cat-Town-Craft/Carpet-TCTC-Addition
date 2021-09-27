@@ -48,13 +48,12 @@ jobs:
       - name: Set build number in codes
         run: |
           sed -i "s/build.undefined/build.$GITHUB_RUN_NUMBER/g" gradle.properties
-          sed -i "s/build.undefined/build.$GITHUB_RUN_NUMBER/g" src/main/java/top/catowncraft/CarpetTCTCAddition/Reference.java
-          sed -i "s/Version Exception/Public Release/g" src/main/java/top/catowncraft/CarpetTCTCAddition/Reference.java
+          sed -i "s/Version Exception/Public Release/g" src/main/java/top/catowncraft/CarpetTCTCAddition/CarpetTCTCAdditionReference.java
       - name: Read relevant fields from gradle.properties
         id: properties
         run: |
           path='./gradle.properties'
-          for property in mod_file_name mod_version_detail mod_file_name minecraft_version_out cruseforge_gameversion cruseforge_relations cruseforge_release cruseforge_release_type github_release modrinth_release_type
+          for property in mod_file_name mod_version_detail mod_file_name minecraft_version_out cruseforge_gameversion cruseforge_relations cruseforge_release cruseforge_release_type github_release modrinth_release modrinth_release_type
           do
             result=$(sed -n "/^[[:space:]]*$property[[:space:]]*=[[:space:]]*/s/^[[:space:]]*$property[[:space:]]*=[[:space:]]*//p" "$path")
             echo "$property: $result"

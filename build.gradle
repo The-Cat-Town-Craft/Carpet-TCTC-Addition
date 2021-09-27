@@ -43,7 +43,7 @@ dependencies {
 	modApi("carpet:fabric-carpet:${project.minecraft_version}-${project.carpet_version}")
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
-	modCompileOnly("net.fabricmc.fabric-api:fabric-api:${project.fabric_version}")
+	modApi("net.fabricmc.fabric-api:fabric-api:${project.fabric_version}")
 }
 
 processResources

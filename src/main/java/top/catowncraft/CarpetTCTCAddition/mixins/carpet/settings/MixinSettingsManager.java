@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import top.catowncraft.CarpetTCTCAddition.Reference;
+import top.catowncraft.CarpetTCTCAddition.CarpetTCTCAdditionReference;
 import top.catowncraft.CarpetTCTCAddition.utils.MessageUtil;
 
 @Mixin(SettingsManager.class)
@@ -29,6 +29,6 @@ public class MixinSettingsManager {
             remap = false
     )
     private void printAdditionVersion(CommandSourceStack source, CallbackInfoReturnable<Integer> cir) {
-        MessageUtil.sendMessage(source, (BaseComponent) new TextComponent(String.format("%s Version: %s (%s)", Reference.MOD_NAME, Reference.MOD_VERSION, Reference.MOD_VERSION_TYPE)).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
+        MessageUtil.sendMessage(source, (BaseComponent) new TextComponent(String.format("%s Version: %s (%s)", CarpetTCTCAdditionReference.getModName(), CarpetTCTCAdditionReference.getModVersion(), CarpetTCTCAdditionReference.getModVersionType())).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
     }
 }

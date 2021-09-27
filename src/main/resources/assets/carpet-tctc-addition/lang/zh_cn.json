@@ -35,6 +35,9 @@
   "rule.commandFix.name": "区块修复命令",
   "rule.commandFix.desc": "启用 /fix 命令用于修复区块数据。",
 
+  "rule.commandFreecam.name": "灵魂出窍命令",
+  "rule.commandFreecam.desc": "启用 /freecam 允许你切换旁观模式。",
+
   "rule.commandHere.name": "共享坐标命令",
   "rule.commandHere.desc": "启用 /here 命令来让你可以与其他玩家分享你的位置。",
 
@@ -55,6 +58,9 @@
 
   "rule.fireworkSpeedupCoefficient.name": "烟花加速系数",
   "rule.fireworkSpeedupCoefficient.desc": "控制烟花火箭的加速系数。",
+
+  "rule.freecamRestoreLocation.name": "灵魂回溯",
+  "rule.freecamRestoreLocation.desc": "结束旁观后回到初始位置。",
 
   "rule.hereGlowTime.name": "高亮时间",
   "rule.hereGlowTime.desc": "使用 here 共享坐标时高亮的时间。",
