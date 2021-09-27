@@ -16,6 +16,13 @@
 
 A [fabric-carpet](https://github.com/gnembon/fabric-carpet) extension mod. It offers some interesting features.
 
+## Dependencies
+
+| Dependency | Type     | Download                                                                                                                    |
+| ---------- | -------- | --------------------------------------------------------------------------------------------------------------------------- |
+| Carpet     | Required | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/carpet) &#124; [Github](https://github.com/gnembon/fabric-carpet) |
+| Fabric API | Required | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api)                                                       |
+
 ## Rule List
 
 ### commandFix
