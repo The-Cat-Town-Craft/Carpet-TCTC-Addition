@@ -70,6 +70,7 @@ task publishModrinth (type: TaskModrinthUpload) {
 	}
 	token = System.getenv("MODRINTH_API_TOKEN")
 	projectId = 'vbBQ6dVH'
+	versionNumber = System.getenv("VERSION_NUMBER")
 	changelog = System.getenv("CHANGE_LOG")
 	uploadFile = remapJar
 	switch ("${project.modrinth_release_type}") {
