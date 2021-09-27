@@ -30,6 +30,18 @@
 
 - 类别: `TCTC`, `TCTC-COMMAND`
 
+### 灵魂出窍命令(commandFreecam)
+
+启用 /freecam 允许你切换旁观模式。
+
+- 类型: `string`
+
+- 默认值: `true`
+
+- 参考数据: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4`
+
+- 类别: `TCTC`, `TCTC-COMMAND`
+
 ### 共享坐标命令(commandHere)
 
 启用 /here 命令来让你可以与其他玩家分享你的位置。
@@ -111,6 +123,18 @@ player - 玩家实体进入末路之地维度时，生成黑曜石平台。
 - 类别: `TCTC`, `TCTC-CLIENT`, `TCTC-FEATURE`
 
 *对于 Minecraft 1.18 及更高版本的分支，默认值为 `1.25`*
+
+### 灵魂回溯(freecamRestoreLocation)
+
+结束旁观后回到初始位置。
+
+- 类型: `boolean`
+
+- 默认值: `true`
+
+- 参考数据: `true`, `false`
+
+- 类别: `TCTC`, `TCTC-MISC`
 
 ### 高亮时间(hereGlowTime)
 
@@ -230,6 +254,8 @@ player - 仅玩家可获得统计信息。
 
 ## 开发
 
+### 分支
+
 当前主开发分支：1.15.2
 
 目前维护的分支：
@@ -265,6 +291,12 @@ player - 仅玩家可获得统计信息。
 `master` 永远与主开发分支版本一致。
 
 除非必要，尽量不要影响版本兼容性。
+
+### 混淆映射表
+
+我们使用 **Mojang 官方** 混淆映射表来反混淆 Minecraft 并插入补丁程序。
+
+### 文档
 
 英文文档与中文文档是逐行对应的。
 

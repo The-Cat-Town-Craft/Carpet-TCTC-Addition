@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import top.catowncraft.CarpetTCTCAddition.Reference;
+import top.catowncraft.CarpetTCTCAddition.CarpetTCTCAdditionReference;
 import top.catowncraft.CarpetTCTCAddition.utils.MessageUtil;
 
 import static carpet.utils.Translations.tr;
@@ -30,6 +30,6 @@ public class MixinSettingsManager {
             remap = false
     )
     private void printAdditionVersion(CommandSourceStack source, CallbackInfoReturnable<Integer> cir) {
-        MessageUtil.sendMessage(source, new TextComponent(String.format(tr("carpet-tctc-addition.message.command.carpet.version", "%s Version: %s (%s)"), Reference.MOD_NAME, Reference.MOD_VERSION, tr(String.format("carpet-tctc-addition.label.versionType.%s", Reference.MOD_VERSION_TYPE), Reference.MOD_VERSION_TYPE))).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
+        MessageUtil.sendMessage(source, new TextComponent(String.format(tr("carpet-tctc-addition.message.command.carpet.version", "%s Version: %s (%s)"), CarpetTCTCAdditionReference.getModName(), CarpetTCTCAdditionReference.getModVersion(), tr(String.format("carpet-tctc-addition.label.versionType.%s", CarpetTCTCAdditionReference.getModVersionType()), CarpetTCTCAdditionReference.getModVersionType()))).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
     }
 }
