@@ -16,6 +16,13 @@
 
 一个 [fabric-carpet](https://github.com/gnembon/fabric-carpet) 扩展模组。 它提供了一些有趣的特性。
 
+## 依赖项
+
+| 依赖       | 类型 | 下载                                                                                                                        |
+| ---------- | ---- | --------------------------------------------------------------------------------------------------------------------------- |
+| Carpet     | 必须 | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/carpet) &#124; [Github](https://github.com/gnembon/fabric-carpet) |
+| Fabric API | 必须 | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api)                                                       |
+
 ## 规则列表
 
 ### 区块修复命令(commandFix)
