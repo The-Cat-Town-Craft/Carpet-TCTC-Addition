@@ -30,8 +30,7 @@ jobs:
       - name: Set commit id in codes
         run: |
           sed -i "s/build.undefined/${{ steps.getid.outputs.commitID }}/g" gradle.properties
-          sed -i "s/build.undefined/${{ steps.getid.outputs.commitID }}/g" src/main/java/top/catowncraft/CarpetTCTCAddition/Reference.java
-          sed -i "s/Version Exception/Public Beta/g" src/main/java/top/catowncraft/CarpetTCTCAddition/Reference.java
+          sed -i "s/Version Exception/Public Beta/g" src/main/java/top/catowncraft/CarpetTCTCAddition/CarpetTCTCAdditionReference.java
       - name: Read relevant fields from gradle.properties
         id: properties
         run: |
