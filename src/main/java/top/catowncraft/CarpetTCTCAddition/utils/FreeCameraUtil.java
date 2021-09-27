@@ -26,7 +26,7 @@ public class FreeCameraUtil {
 
     public static class CameraData {
         boolean isFreeCamera;
-        GameType gameType;
+        String gameType;
         String dimensionType;
         double x;
         double y;
@@ -36,7 +36,7 @@ public class FreeCameraUtil {
 
         public CameraData(GameType gameType, DimensionType dimensionType, double x, double y, double z, float yRot, float xRot, boolean isFreeCamera) {
             this.isFreeCamera = isFreeCamera;
-            this.gameType = gameType;
+            this.gameType = gameType.getName();
             this.dimensionType = dimensionType.toString();
             this.x = x;
             this.y = y;
@@ -50,7 +50,7 @@ public class FreeCameraUtil {
         }
 
         public GameType getGameType() {
-            return this.gameType;
+            return GameType.byName(this.gameType);
         }
 
         public DimensionType getDimensionType() {
@@ -82,7 +82,7 @@ public class FreeCameraUtil {
         }
 
         public void setGameType(GameType gameType) {
-            this.gameType = gameType;
+            this.gameType = gameType.getName();
         }
 
         public void setDimensionType(DimensionType dimensionType) {
