@@ -18,10 +18,10 @@
 
 ## 依赖项
 
-| 依赖       | 类型 | 下载                                                                                                                        |
-| ---------- | ---- | --------------------------------------------------------------------------------------------------------------------------- |
-| Carpet     | 必须 | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/carpet) &#124; [Github](https://github.com/gnembon/fabric-carpet) |
-| Fabric API | 必须 | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api)                                                       |
+| 依赖       | 类型 | 下载                                                                                                                                                                             |
+| ---------- | ---- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Carpet     | 必须 | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/carpet) &#124; [Github](https://github.com/gnembon/fabric-carpet)                                                      |
+| Fabric API | 必须 | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api) &#124; [Github](https://github.com/FabricMC/fabric) &#124; [Modrinth](https://modrinth.com/mod/fabric-api) |
 
 ## 规则列表
 
