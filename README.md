@@ -18,10 +18,10 @@ A [fabric-carpet](https://github.com/gnembon/fabric-carpet) extension mod. It of
 
 ## Dependencies
 
-| Dependency | Type     | Download                                                                                                                    |
-| ---------- | -------- | --------------------------------------------------------------------------------------------------------------------------- |
-| Carpet     | Required | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/carpet) &#124; [Github](https://github.com/gnembon/fabric-carpet) |
-| Fabric API | Required | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api)                                                       |
+| Dependency | Type     | Download                                                                                                                                                                         |
+| ---------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Carpet     | Required | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/carpet) &#124; [Github](https://github.com/gnembon/fabric-carpet)                                                      |
+| Fabric API | Required | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api) &#124; [Github](https://github.com/FabricMC/fabric) &#124; [Modrinth](https://modrinth.com/mod/fabric-api) |
 
 ## Rule List
 
