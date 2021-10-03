@@ -29,7 +29,7 @@ public class FreecamCommand {
                 .executes(context -> executeFreeCamera(context.getSource(), context.getSource().getPlayerOrException()))
                 .then(argument("target", players())
                         .requires(commandContext -> commandContext.hasPermission(2))
-                        .executes(commandContext -> executeFreeCamera(commandContext.getSource(), getPlayers(commandContext, "targets"))));
+                        .executes(commandContext -> executeFreeCamera(commandContext.getSource(), getPlayers(commandContext, "target"))));
         dispatcher.register(camera);
     }
 
