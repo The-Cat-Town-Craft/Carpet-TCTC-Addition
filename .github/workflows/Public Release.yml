@@ -63,6 +63,8 @@ jobs:
         run: chmod +x gradlew
       - name: Build with Gradle
         run: ./gradlew build
+      - name: Publish maven with Gradle
+        run: ./gradlew publish
       - name: Find correct JAR
         id: findjar
         run: |
@@ -73,6 +75,11 @@ jobs:
         with:
           name: ${{ steps.properties.outputs.mod_file_name }}-mc${{ steps.properties.outputs.minecraft_version_out }}-${{ steps.properties.outputs.mod_version_detail }}(Public Release)
           path: build/libs/
+      - name: Upload libs to GitHub Action
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ steps.properties.outputs.mod_file_name }}-mc${{ steps.properties.outputs.minecraft_version_out }}-${{ steps.properties.outputs.mod_version_detail }}(Maven)
+          path: publish/
       - name: Upload assets to GitHub Release
         if: ${{ steps.properties.outputs.github_release == 'true'  }}
         uses: AButler/upload-release-assets@v2.0
