@@ -4,7 +4,7 @@
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package top.catowncraft.CarpetTCTCAddition.mixins.net.minecraft.server.players;
+package top.catowncraft.CarpetTCTCAddition.mixins.misc.commandOperatorHelper;
 
 import com.mojang.authlib.GameProfile;
 import net.minecraft.server.level.ServerLevel;

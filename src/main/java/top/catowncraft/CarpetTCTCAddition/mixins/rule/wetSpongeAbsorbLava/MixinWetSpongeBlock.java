@@ -4,7 +4,7 @@
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package top.catowncraft.CarpetTCTCAddition.mixins.net.minecraft.world.level.block;
+package top.catowncraft.CarpetTCTCAddition.mixins.rule.wetSpongeAbsorbLava;
 
 import com.google.common.collect.Lists;
 import net.minecraft.core.BlockPos;
@@ -39,10 +39,8 @@ public class MixinWetSpongeBlock extends Block {
             )
     )
     private void onPlace(BlockState blockState, Level level, BlockPos blockPos, BlockState blockState2, boolean bl, CallbackInfo ci) {
-        if (CarpetTCTCAdditionSettings.wetSpongeAbsorbLava) {
-            if (blockState2.getBlock() != blockState.getBlock()) {
-                this.tryAbsorbLava(level, blockPos);
-            }
+        if (CarpetTCTCAdditionSettings.wetSpongeAbsorbLava && blockState2.getBlock() != blockState.getBlock()) {
+            this.tryAbsorbLava(level, blockPos);
         }
     }
 

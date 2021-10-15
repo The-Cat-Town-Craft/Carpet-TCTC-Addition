@@ -59,13 +59,6 @@ public class CarpetTCTCAdditionSettings {
     public static boolean cameraModeDisableSpectatePlayers = false;
 
     @Rule(
-            name = "endGatewayChunkLoader",
-            desc = "When the entity passes through the ender gateway, the target chunk will be loaded for 15 seconds like nether portal.",
-            category = {TCTC, TCTC_FEATURE}
-    )
-    public static boolean endGatewayChunkLoader = false;
-
-    @Rule(
             name = "enderPlatform",
             desc = "Is obsidian platform generated in the end.",
             extra = {
@@ -76,13 +69,12 @@ public class CarpetTCTCAdditionSettings {
             category = {TCTC, TCTC_FEATURE, TCTC_WORLD_GENERATE}
     )
     public static EnderPlatformOptions enderPlatform = EnderPlatformOptions.PLAYER;
-
-    public enum EnderPlatformOptions {
-        ALL,
-        NONE,
-        PLAYER
-    }
-
+    @Rule(
+            name = "endGatewayChunkLoader",
+            desc = "When the entity passes through the ender gateway, the target chunk will be loaded for 15 seconds like nether portal.",
+            category = {TCTC, TCTC_FEATURE}
+    )
+    public static boolean endGatewayChunkLoader = false;
     @Rule(
             name = "fireworkSpeedupCoefficient",
             desc = "Controlling the acceleration coefficient of a firework rocket.",
@@ -91,14 +83,12 @@ public class CarpetTCTCAdditionSettings {
             strict = false
     )
     public static double fireworkSpeedupCoefficient = 1.5D;
-
     @Rule(
             name = "freecamRestoreLocation",
             desc = "Return to the starting position when you have finished spectating.",
             category = {TCTC, TCTC_MISC}
     )
     public static boolean freecamRestoreLocation = true;
-
     @Rule(
             name = "hereGlowTime",
             desc = "Time highlighted when using here command shared coordinates.",
@@ -107,14 +97,12 @@ public class CarpetTCTCAdditionSettings {
             strict = false
     )
     public static int hereGlowTime = 15;
-
     @Rule(
             name = "illegalPistonActionFix",
             desc = "Fix headless pistons to destroy blocks.",
             category = {TCTC, TCTC_FEATURE}
     )
     public static boolean illegalPistonActionFix = false;
-
     @Rule(
             name = "playerStats",
             desc = "Control of player and bot statistics.",
@@ -127,21 +115,12 @@ public class CarpetTCTCAdditionSettings {
             category = {TCTC, TCTC_FEATURE}
     )
     public static PlayerStatsOptions playerStats = PlayerStatsOptions.BOTH;
-
-    public enum PlayerStatsOptions {
-        BOT,
-        BOTH,
-        NONE,
-        PLAYER
-    }
-
     @Rule(
             name = "updateSuppressionCrashFix",
             desc = "Fix updates suppression causing server crashes.",
             category = {TCTC, TCTC_BUGFIX}
     )
     public static boolean updateSuppressionCrashFix = false;
-
     @Rule(
             name = "voxelMapWorldName",
             desc = "Send VoxelMap world information packets to client.",
@@ -150,28 +129,24 @@ public class CarpetTCTCAdditionSettings {
             strict = false
     )
     public static String voxelMapWorldName = "#none";
-
     @Rule(
             name = "wetSpongeAbsorbLava",
             desc = "Wet sponges will be able to absorb lava.",
             category = {TCTC, TCTC_EXPERIMENTAL, TCTC_FEATURE}
     )
     public static boolean wetSpongeAbsorbLava = false;
-
     @Rule(
             name = "wetSpongeAbsorbLavaLimit",
             desc = "Maximum offset limit for wet sponge.",
             category = {TCTC, TCTC_EXPERIMENTAL, TCTC_FEATURE}
     )
     public static int wetSpongeAbsorbLavaLimit = 32;
-
     @Rule(
             name = "wetSpongeAbsorbLavaRange",
             desc = "Maximum lava sucking for wet sponge.",
             category = {TCTC, TCTC_EXPERIMENTAL, TCTC_FEATURE}
     )
     public static int wetSpongeAbsorbLavaRange = 3;
-
     @Rule(
             name = "xaeroMapWorldName",
             desc = "Send XaeroMap world information packets to client.",
@@ -180,4 +155,17 @@ public class CarpetTCTCAdditionSettings {
             strict = false
     )
     public static String xaeroMapWorldName = "#none";
+
+    public enum EnderPlatformOptions {
+        ALL,
+        NONE,
+        PLAYER
+    }
+
+    public enum PlayerStatsOptions {
+        BOT,
+        BOTH,
+        NONE,
+        PLAYER
+    }
 }

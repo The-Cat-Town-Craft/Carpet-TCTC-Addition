@@ -7,13 +7,12 @@ plugins {
 	id "com.modrinth.minotaur" version "1.2.1"
 }
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
-
-
 group = project.group + "." + project.mod_id
 archivesBaseName = project.mod_file_name + '-mc' + project.minecraft_version_out
-version = project.mod_version_detail
+version = project.mod_version as Object
+if (project.mod_version_detail.toString() != "build.undefined") {
+	version += "+${project.mod_version_detail}"
+}
 
 repositories {
 	// Add repositories to retrieve artifacts from in here.
@@ -31,18 +30,13 @@ loom {
 }
 
 dependencies {
-	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
-	// You may need to force-disable transitiveness on them.
+	// Development Environment
+	minecraft("com.mojang:minecraft:${project.minecraft_version}")
+	mappings(loom.officialMojangMappings())
+	modApi("net.fabricmc:fabric-loader:${project.fabric_loader_version}")
 
-    // To change the versions see the gradle.properties file
-    minecraft("com.mojang:minecraft:${project.minecraft_version}")
-    mappings loom.officialMojangMappings()
-    modApi("net.fabricmc:fabric-loader:${project.fabric_loader_version}")
-
-	// Carpet Mod.
+	// Required library
 	modApi("carpet:fabric-carpet:${project.minecraft_version}-${project.carpet_version}")
-
-	// Fabric API. This is technically optional, but you probably want it anyway.
 	modApi("net.fabricmc.fabric-api:fabric-api:${project.fabric_version}")
 }
 
@@ -62,6 +56,8 @@ tasks.withType(JavaCompile).configureEach {
 	// see http://yodaconditions.net/blog/fix-for-java-file-encoding-problems-with-gradle.html
 	// If Javadoc is generated, this must be specified in that task too.
 	it.options.encoding = "UTF-8"
+	it.sourceCompatibility = JavaVersion.VERSION_1_8
+	it.targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 task publishModrinth (type: TaskModrinthUpload) {
@@ -69,7 +65,7 @@ task publishModrinth (type: TaskModrinthUpload) {
 		System.getenv("MODRINTH_API_TOKEN")
 	}
 	token = System.getenv("MODRINTH_API_TOKEN")
-	projectId = 'vbBQ6dVH'
+	projectId = "${project.modrinth_project_id}"
 	versionNumber = System.getenv("VERSION_NUMBER")
 	changelog = System.getenv("CHANGE_LOG")
 	uploadFile = remapJar
@@ -122,7 +118,6 @@ publishing {
 		}
 	}
 
-	// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
 	repositories {
 		// Add repositories to publish to here.
 		// Notice: This block does NOT have the same function as the block in the top level.
