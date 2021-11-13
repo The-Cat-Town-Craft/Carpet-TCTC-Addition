@@ -49,6 +49,10 @@
 
   "rule.endGatewayChunkLoader.name": "末路之地折跃门区块加载器",
   "rule.endGatewayChunkLoader.desc": "当实体穿越末路之地折跃门时，目标区块会像下界传送门一样使目标区块获得 15 秒的加载。",
+  "rule.endGatewayChunkLoader.extra.0": "all - 所有实体穿过末路之地折跃门时，给予目标区块加载票。",
+  "rule.endGatewayChunkLoader.extra.1": "except_player - 除玩家外的所有实体穿过末路之地折跃门时，给予目标区块加载票。",
+  "rule.endGatewayChunkLoader.extra.2": "item_only - 物品实体穿过末路之地折跃门时，给予目标区块加载票。",
+  "rule.endGatewayChunkLoader.extra.3": "off - 原版行为。",
 
   "rule.enderPlatform.name": "末路之地平台",
   "rule.enderPlatform.desc": "是否在实体进入末路之地时生成黑曜石平台。",
