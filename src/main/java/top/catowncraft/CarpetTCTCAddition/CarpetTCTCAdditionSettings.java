@@ -59,6 +59,24 @@ public class CarpetTCTCAdditionSettings {
     public static boolean cameraModeDisableSpectatePlayers = false;
 
     @Rule(
+            name = "enderPlatform",
+            desc = "Is obsidian platform generated in the end.",
+            extra = {
+                    "all - Generate ender platform when all entities are transferred to the_end dimension.",
+                    "none - Ender platform will not be generated anyway.",
+                    "player - Ender platform is generated only when the player entity teleports to the_end dimension.",
+            },
+            category = {TCTC, TCTC_FEATURE, TCTC_WORLD_GENERATE}
+    )
+    public static EnderPlatformOptions enderPlatform = EnderPlatformOptions.PLAYER;
+
+    public enum EnderPlatformOptions {
+        ALL,
+        NONE,
+        PLAYER
+    }
+
+    @Rule(
             name = "endGatewayChunkLoader",
             desc = "When the entity passes through the ender gateway, the target chunk will be loaded for 15 seconds like nether portal.",
             extra = {
@@ -76,24 +94,6 @@ public class CarpetTCTCAdditionSettings {
         EXCEPT_PLAYER,
         ITEM_ONLY,
         OFF
-    }
-
-    @Rule(
-            name = "enderPlatform",
-            desc = "Is obsidian platform generated in the end.",
-            extra = {
-                    "all - Generate ender platform when all entities are transferred to the_end dimension.",
-                    "none - Ender platform will not be generated anyway.",
-                    "player - Ender platform is generated only when the player entity teleports to the_end dimension.",
-            },
-            category = {TCTC, TCTC_FEATURE, TCTC_WORLD_GENERATE}
-    )
-    public static EnderPlatformOptions enderPlatform = EnderPlatformOptions.PLAYER;
-
-    public enum EnderPlatformOptions {
-        ALL,
-        NONE,
-        PLAYER
     }
 
     @Rule(
