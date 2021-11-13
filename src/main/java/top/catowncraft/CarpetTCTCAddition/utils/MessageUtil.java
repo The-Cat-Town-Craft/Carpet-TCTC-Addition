@@ -27,23 +27,23 @@ public class MessageUtil {
 
     public static void sendServerMessage(MinecraftServer server, String message) {
         if (server != null) {
-            CarpetTCTCAddition.logger.info(message);
+            CarpetTCTCAddition.getLogger().info(message);
             for (Player player : server.getPlayerList().getPlayers()) {
                 player.sendMessage(new TextComponent(message));
             }
         } else {
-            CarpetTCTCAddition.logger.error("Message not delivered: " + message);
+            CarpetTCTCAddition.getLogger().error("Message not delivered: " + message);
         }
     }
 
     public static void sendServerMessage(MinecraftServer server, BaseComponent baseComponent) {
         if (server != null) {
-            CarpetTCTCAddition.logger.info(baseComponent.getString());
+            CarpetTCTCAddition.getLogger().info(baseComponent.getString());
             for (Player player : server.getPlayerList().getPlayers()) {
                 player.sendMessage(baseComponent);
             }
         } else {
-            CarpetTCTCAddition.logger.error("Message not delivered: " + baseComponent.getString());
+            CarpetTCTCAddition.getLogger().error("Message not delivered: " + baseComponent.getString());
         }
     }
 }

@@ -51,9 +51,7 @@ public class FixCommand {
         LevelChunk levelChunk = (LevelChunk) blockGetter;
         Heightmap.primeHeightmaps(levelChunk, EnumSet.allOf(Heightmap.Types.class));
         MessageUtil.sendMessage(source, (BaseComponent) new TextComponent(String.format("Fixing chunk [%s, %s]...", chunkPos.x, chunkPos.z)).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
-        level.getChunkSource().getLightEngine().lightChunk(levelChunk, false).thenRun(() -> {
-            MessageUtil.sendMessage(source, (BaseComponent) new TextComponent(String.format("Fixed chunk [%s, %s]", chunkPos.x, chunkPos.z)).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
-        });
+        level.getChunkSource().getLightEngine().lightChunk(levelChunk, false).thenRun(() -> MessageUtil.sendMessage(source, (BaseComponent) new TextComponent(String.format("Fixed chunk [%s, %s]", chunkPos.x, chunkPos.z)).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC)));
         return 1;
     }
 }
