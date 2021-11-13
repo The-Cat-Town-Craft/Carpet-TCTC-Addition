@@ -59,13 +59,6 @@ public class CarpetTCTCAdditionSettings {
     public static boolean cameraModeDisableSpectatePlayers = false;
 
     @Rule(
-            name = "endGatewayChunkLoader",
-            desc = "When the entity passes through the ender gateway, the target chunk will be loaded for 15 seconds like nether portal.",
-            category = {TCTC, TCTC_FEATURE}
-    )
-    public static boolean endGatewayChunkLoader = false;
-
-    @Rule(
             name = "enderPlatform",
             desc = "Is obsidian platform generated in the end.",
             extra = {
@@ -84,13 +77,33 @@ public class CarpetTCTCAdditionSettings {
     }
 
     @Rule(
+            name = "endGatewayChunkLoader",
+            desc = "When the entity passes through the ender gateway, the target chunk will be loaded for 15 seconds like nether portal.",
+            extra = {
+                    "all - Give the target chunk a load ticket when all entities through the ender gateway.",
+                    "except_player - Give the target chunk a load ticket when all entities except the player through the ender gateway.",
+                    "item_only - Give the target chunk a load ticket when the player entities except the player through the ender gateway.",
+                    "off - Vanilla action.",
+            },
+            category = {TCTC, TCTC_FEATURE}
+    )
+    public static EndGatewayChunkLoaderOptions endGatewayChunkLoader = EndGatewayChunkLoaderOptions.OFF;
+
+    public enum EndGatewayChunkLoaderOptions {
+        ALL,
+        EXCEPT_PLAYER,
+        ITEM_ONLY,
+        OFF
+    }
+
+    @Rule(
             name = "fireworkSpeedupCoefficient",
             desc = "Controlling the acceleration coefficient of a firework rocket.",
             category = {TCTC, TCTC_CLIENT, TCTC_FEATURE},
             options = {"1.25", "1.5"},
             strict = false
     )
-    public static double fireworkSpeedupCoefficient = 1.25D;
+    public static double fireworkSpeedupCoefficient = 1.5D;
 
     @Rule(
             name = "freecamRestoreLocation",
