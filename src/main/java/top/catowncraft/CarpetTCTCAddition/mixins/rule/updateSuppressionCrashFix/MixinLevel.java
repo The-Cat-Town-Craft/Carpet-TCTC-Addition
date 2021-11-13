@@ -5,7 +5,7 @@
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
 
-package top.catowncraft.CarpetTCTCAddition.mixins.net.minecraft.world.level;
+package top.catowncraft.CarpetTCTCAddition.mixins.rule.updateSuppressionCrashFix;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;

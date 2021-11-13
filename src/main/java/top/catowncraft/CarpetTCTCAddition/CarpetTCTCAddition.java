@@ -27,8 +27,16 @@ import top.catowncraft.CarpetTCTCAddition.utils.WorldMapUtil;
 import java.util.Map;
 
 public class CarpetTCTCAddition implements CarpetExtension, ModInitializer {
-    public static final Logger logger = LogManager.getLogger(CarpetTCTCAdditionReference.getModId());
+    private static final Logger logger = LogManager.getLogger(CarpetTCTCAdditionReference.getModId());
     private static MinecraftServer minecraftServer;
+
+    public static MinecraftServer getServer() {
+        return minecraftServer;
+    }
+
+    public static Logger getLogger() {
+        return logger;
+    }
 
     @Override
     public void registerCommands(CommandDispatcher<CommandSourceStack> dispatcher) {
@@ -67,9 +75,5 @@ public class CarpetTCTCAddition implements CarpetExtension, ModInitializer {
 
         // Register packet handler
         ServerPlayNetworking.registerGlobalReceiver(new ResourceLocation("worldinfo", "world_id"), WorldMapUtil::voxelMapPacketHandler);
-    }
-
-    public static MinecraftServer getServer() {
-        return minecraftServer;
     }
 }

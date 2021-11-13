@@ -5,7 +5,7 @@
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
 
-package top.catowncraft.CarpetTCTCAddition.mixins.carpet.settings;
+package top.catowncraft.CarpetTCTCAddition.mixins.misc.printCarpetVersion;
 
 import carpet.settings.SettingsManager;
 import net.minecraft.ChatFormatting;

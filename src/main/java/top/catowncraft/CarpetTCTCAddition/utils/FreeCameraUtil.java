@@ -6,7 +6,6 @@
  */
 package top.catowncraft.CarpetTCTCAddition.utils;
 
-import com.google.common.collect.Maps;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -28,6 +27,31 @@ import static net.minecraft.core.Registry.DIMENSION_REGISTRY;
 
 public class FreeCameraUtil {
     public static HashMap<UUID, CameraData> freeCameraData = new HashMap<>();
+
+    public static void loadFreeCameraData() {
+        String dataJSON;
+        try {
+            dataJSON = IOUtils.toString(new FileInputStream(getFile()), StandardCharsets.UTF_8);
+        } catch (NullPointerException | IOException e) {
+            dataJSON = "{}";
+        }
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        freeCameraData = gson.fromJson(dataJSON, new TypeToken<HashMap<String, CameraData>>() {
+        }.getType());
+    }
+
+    public static void saveFreeCameraData() {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        try (Writer writer = new OutputStreamWriter(new FileOutputStream(getFile()), StandardCharsets.UTF_8)) {
+            writer.write(gson.toJson(freeCameraData));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static File getFile() {
+        return CarpetTCTCAddition.getServer().getWorldPath(LevelResource.ROOT).resolve(String.format("%s_freeCameraStorage.json", CarpetTCTCAdditionReference.getModId())).toFile();
+    }
 
     public static class CameraData {
         boolean isFreeCamera;
@@ -54,8 +78,16 @@ public class FreeCameraUtil {
             return this.isFreeCamera;
         }
 
+        public void setFreeCamera(boolean isFreeCamera) {
+            this.isFreeCamera = isFreeCamera;
+        }
+
         public GameType getGameType() {
             return GameType.byName(this.gameType);
+        }
+
+        public void setGameType(GameType gameType) {
+            this.gameType = gameType.getName();
         }
 
         public ResourceKey<Level> getResourceKey() {
@@ -66,77 +98,44 @@ public class FreeCameraUtil {
             return this.x;
         }
 
-        public double getY() {
-            return this.y;
-        }
-
-        public double getZ() {
-            return this.z;
-        }
-
-        public float getYRot() {
-            return this.yRot;
-        }
-
-        public float getXRot() {
-            return this.xRot;
-        }
-
-        public void setFreeCamera(boolean isFreeCamera) {
-            this.isFreeCamera = isFreeCamera;
-        }
-
-        public void setGameType(GameType gameType) {
-            this.gameType = gameType.getName();
-        }
-
-        public void setDimensionType(ResourceKey<Level> resourceKey) {
-            this.resourceKey = resourceKey.toString();
-        }
-
         public void setX(double x) {
             this.x = x;
+        }
+
+        public double getY() {
+            return this.y;
         }
 
         public void setY(double y) {
             this.y = y;
         }
 
+        public double getZ() {
+            return this.z;
+        }
+
         public void setZ(double z) {
             this.z = z;
+        }
+
+        public float getYRot() {
+            return this.yRot;
         }
 
         public void setYRot(float yRot) {
             this.yRot = yRot;
         }
 
+        public float getXRot() {
+            return this.xRot;
+        }
+
         public void setXRot(float xRot) {
             this.xRot = xRot;
         }
-    }
 
-    public static void loadFreeCameraData() {
-        String dataJSON;
-        try {
-            dataJSON = IOUtils.toString(new FileInputStream(getFile()), StandardCharsets.UTF_8);
-        } catch (NullPointerException | IOException e) {
-            dataJSON = "{}";
+        public void setDimensionType(ResourceKey<Level> resourceKey) {
+            this.resourceKey = resourceKey.toString();
         }
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        freeCameraData = gson.fromJson(dataJSON, new TypeToken<HashMap<String, CameraData>>() {
-        }.getType());
-    }
-
-    public static void saveFreeCameraData() {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        try (Writer writer = new OutputStreamWriter(new FileOutputStream(getFile()), StandardCharsets.UTF_8)) {
-            writer.write(gson.toJson(freeCameraData));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static File getFile() {
-        return CarpetTCTCAddition.getServer().getWorldPath(LevelResource.ROOT).resolve(String.format("%s_freeCameraStorage.json", CarpetTCTCAdditionReference.getModId())).toFile();
     }
 }
