@@ -1,13 +1,14 @@
 # Carpet TCTC Addition
-
 [![Minecraft](http://cf.way2muchnoise.eu/versions/Minecraft_513524_all.svg?badge_style=flat)](https://www.curseforge.com/minecraft/mc-mods/carpet-tctc-addition/files)
-[![License](https://img.shields.io/github/license/The-Cat-Town-Craft/Carpet-TCTC-Addition?style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/blob/main/LICENSE)
+[![License](https://img.shields.io/github/license/The-Cat-Town-Craft/Carpet-TCTC-Addition?label=License&style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/blob/main/LICENSE)
 ![Java-8](https://img.shields.io/github/languages/top/The-Cat-Town-Craft/Carpet-TCTC-Addition?style=flat-square)
 ![Languages](https://img.shields.io/badge/Java-8-orange?style=flat-square)
-[![Issues](https://img.shields.io/github/issues/The-Cat-Town-Craft/Carpet-TCTC-Addition?style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/issues)
-[![Pull Requests](https://img.shields.io/github/issues-pr/The-Cat-Town-Craft/Carpet-TCTC-Addition?style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/pulls)
-[![CI](https://img.shields.io/github/workflow/status/The-Cat-Town-Craft/Carpet-TCTC-Addition/CI?&style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/actions/workflows/CI.yml)
-[![Github Release](https://img.shields.io/github/v/release/The-Cat-Town-Craft/Carpet-TCTC-Addition?include_prereleases&style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/releases)
+[![Codacy Grade](https://img.shields.io/codacy/grade/1c5b3072db3c4137b0b5a0c7b57a43e9?label=Codacy%20Grade&style=flat-square)](https://app.codacy.com/gh/The-Cat-Town-Craft/Carpet-TCTC-Addition/dashboard)
+[![Issues](https://img.shields.io/github/issues/The-Cat-Town-Craft/Carpet-TCTC-Addition?label=Issues&style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/issues)
+[![Pull Requests](https://img.shields.io/github/issues-pr/The-Cat-Town-Craft/Carpet-TCTC-Addition?label=Pull%20Requests&style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/pulls)
+[![CI](https://img.shields.io/github/workflow/status/The-Cat-Town-Craft/Carpet-TCTC-Addition/CI/dev?label=Public%20Beta&style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/actions/workflows/CI.yml?query=branch%3Adev)
+[![CI](https://img.shields.io/github/workflow/status/The-Cat-Town-Craft/Carpet-TCTC-Addition/CI/master?label=Public%20Release&style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/actions/workflows/CI.yml?query=branch%3Amaster)
+[![Github Release](https://img.shields.io/github/v/release/The-Cat-Town-Craft/Carpet-TCTC-Addition?label=Release&include_prereleases&style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/releases)
 [![Github Release Downloads](https://img.shields.io/github/downloads/The-Cat-Town-Craft/Carpet-TCTC-Addition/total?label=Github%20Release%20Downloads&style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/releases)
 [![CurseForge Downloads](http://cf.way2muchnoise.eu/513524.svg?badge_style=flat)](https://www.curseforge.com/minecraft/mc-mods/carpet-tctc-addition)
 
@@ -71,15 +72,6 @@
 - 参考数据: `false`, `true`
 - 类别: `TCTC`, `TCTC-FEATURE`
 
-### 末路之地折跃门区块加载器(endGatewayChunkLoader)
-
-当实体穿越末路之地折跃门时，目标区块会像下界传送门一样使目标区块获得 15 秒的加载。
-
-- 类型: `boolean`
-- 默认值: `false`
-- 参考数据: `false`, `true`
-- 类别: `TCTC`, `TCTC-FEATURE`
-
 ### 末路之地平台(enderPlatform)
 
 是否在实体进入末路之地时生成黑曜石平台.
@@ -96,6 +88,23 @@ player - 玩家实体进入末路之地维度时，生成黑曜石平台。
 - 类别: `TCTC`, `TCTC-FEATURE`, `TCTC-WORLD-GENERATE`
 
 *对于 Minecraft 1.16.5 及更高版本的分支，默认值为 `all`*
+
+### 末路之地折跃门区块加载器(endGatewayChunkLoader)
+
+当实体穿越末路之地折跃门时，目标区块会像下界传送门一样使目标区块获得 15 秒的加载。
+
+all - 所有实体穿过末路之地折跃门时，给予目标区块加载票。
+
+except_player - 除玩家外的所有实体穿过末路之地折跃门时，给予目标区块加载票。
+
+item_only - 物品实体穿过末路之地折跃门时，给予目标区块加载票。
+
+off - 原版行为。
+
+- 类型: `enum`
+- 默认值: `off`
+- 参考数据: `all`, `except_player`, `item_only`, `off`
+- 类别: `TCTC`, `TCTC-FEATURE`
 
 ### 烟花加速系数(fireworkSpeedupCoefficient)
 
@@ -150,7 +159,7 @@ player - 仅玩家可获得统计信息。
 - 类型: `enum`
 - 默认值: `both`
 - 参考数据: `bot`, `both`, `none`, `player`
-- 类别: `TCTC`, `TCTC_FEATURE`
+- 类别: `TCTC`, `TCTC-FEATURE`
 
 ### 更新抑制崩溃修复(updateSuppressionCrashFix)
 
@@ -159,7 +168,7 @@ player - 仅玩家可获得统计信息。
 - 类型: `boolean`
 - 默认值: `false`
 - 参考数据: `false`, `true`
-- 类别: `TCTC`, `TCTC_BUGFIX`
+- 类别: `TCTC`, `TCTC-BUGFIX`
 
 ### 体素地图世界名(voxelMapWorldName)
 
