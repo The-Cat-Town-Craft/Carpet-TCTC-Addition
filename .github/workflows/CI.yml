@@ -128,23 +128,25 @@ jobs:
           output="$(find build/libs/ ! -name "*-dev.jar" ! -name "*-sources.jar" -type f -printf "%f\n")"
           echo "::set-output name=jarname::$output"
       - name: Upload assets to GitHub Action
+        if: ${{ matrix.java == '17' }}
         uses: actions/upload-artifact@v2
         with:
           name: ${{ steps.properties.outputs.mod_file_name }}+${{ steps.properties.outputs.mod_version_detail }}(Public Release)
           path: build/libs/
       - name: Upload maven to GitHub Action
+        if: ${{ matrix.java == '17' }}
         uses: actions/upload-artifact@v2
         with:
           name: ${{ steps.properties.outputs.mod_file_name }}+${{ steps.properties.outputs.mod_version_detail }}(Maven)
           path: publish/
       - name: Upload assets to GitHub Release
-        if: ${{ steps.properties.outputs.github_release == 'true' }}
+        if: ${{ steps.properties.outputs.github_release == 'true' && matrix.java == '17' }}
         uses: AButler/upload-release-assets@v2.0
         with:
           files: 'build/libs/${{ steps.findjar.outputs.jarname }}'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload assets to Curseforge
-        if: ${{ steps.properties.outputs.cruseforge_release == 'true' }}
+        if: ${{ steps.properties.outputs.cruseforge_release == 'true' && matrix.java == '17' }}
         uses: itsmeow/curseforge-upload@v3
         with:
           token: ${{ secrets.CF_API_TOKEN }}
@@ -157,7 +159,7 @@ jobs:
           release_type: ${{ steps.properties.outputs.cruseforge_release_type }}
           relations: ${{ steps.properties.outputs.cruseforge_relations }}
       - name: Upload assets to Modrinth
-        if: ${{ steps.properties.outputs.modrinth_release == 'true' }}
+        if: ${{ steps.properties.outputs.modrinth_release == 'true' && matrix.java == '17' }}
         run: ./gradlew publishModrinth
         env:
           CHANGE_LOG: ${{ github.event.release.body }}
@@ -168,7 +170,8 @@ jobs:
     strategy:
       matrix:
         java: [
-          16
+          16,
+          17
         ]
         os: [
           ubuntu-20.04
