@@ -4,7 +4,7 @@
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package top.catowncraft.CarpetTCTCAddition.mixins.net.minecraft.world.level;
+package top.catowncraft.CarpetTCTCAddition.mixins.rule.updateSuppressionCrashFix;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -33,15 +33,12 @@ public class MixinLevel {
                     target = "Lnet/minecraft/CrashReport;forThrowable(Ljava/lang/Throwable;Ljava/lang/String;)Lnet/minecraft/CrashReport;",
                     shift = At.Shift.BEFORE
             ),
-            locals = LocalCapture.CAPTURE_FAILHARD,
-            cancellable = true
+            locals = LocalCapture.CAPTURE_FAILHARD
     )
-    private void OnPopulateBlockDetails(BlockPos blockPos, Block block, BlockPos blockPos2, CallbackInfo ci, BlockState state, Throwable throwable) {
-        if (CarpetTCTCAdditionSettings.updateSuppressionCrashFix && (throwable.getCause() instanceof StackOverflowError || throwable.getCause() instanceof ThrowableSuppression)) {
-            if (throwable.getCause() instanceof StackOverflowError) {
-                MessageUtil.sendServerMessage(CarpetTCTCAddition.getServer(), new TextComponent(tr("carpet-tctc-addition.message.server.updateSuppression.processed", "Update suppression.")).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
-                throw new ThrowableSuppression("updateSuppression");
-            }
+    private void onPopulateBlockDetails(BlockPos blockPos, Block block, BlockPos blockPos2, CallbackInfo ci, BlockState state, Throwable throwable) {
+        if (CarpetTCTCAdditionSettings.updateSuppressionCrashFix && (throwable.getCause() instanceof StackOverflowError)) {
+            MessageUtil.sendServerMessage(CarpetTCTCAddition.getServer(), new TextComponent(tr("carpet-tctc-addition.message.server.updateSuppression.processed", "Update suppression.")).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
+            throw new ThrowableSuppression("updateSuppression");
         }
     }
 }

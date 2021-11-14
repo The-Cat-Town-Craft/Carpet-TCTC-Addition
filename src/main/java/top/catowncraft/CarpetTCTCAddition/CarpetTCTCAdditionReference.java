@@ -12,7 +12,7 @@ public class CarpetTCTCAdditionReference {
     private static final String MOD_ID = "carpet-tctc-addition";
     private static final String MOD_NAME = "Carpet TCTC Addition";
     private static final String MOD_VERSION = FabricLoader.getInstance().getModContainer(MOD_ID).orElseThrow(RuntimeException::new).getMetadata().getVersion().getFriendlyString();
-    private static final String MOD_VERSION_TYPE = "Version Exception";
+    private static final String MOD_VERSION_TYPE = "Development";
 
     public static String getModId() {
         return MOD_ID;
