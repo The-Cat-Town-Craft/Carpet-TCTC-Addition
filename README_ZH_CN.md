@@ -1,13 +1,14 @@
 # Carpet TCTC Addition
 [![Minecraft](http://cf.way2muchnoise.eu/versions/Minecraft_513524_all.svg?badge_style=flat)](https://www.curseforge.com/minecraft/mc-mods/carpet-tctc-addition/files)
-[![License](https://img.shields.io/github/license/The-Cat-Town-Craft/Carpet-TCTC-Addition?style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/blob/main/LICENSE)
+[![License](https://img.shields.io/github/license/The-Cat-Town-Craft/Carpet-TCTC-Addition?label=License&style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/blob/main/LICENSE)
 ![Java-8](https://img.shields.io/github/languages/top/The-Cat-Town-Craft/Carpet-TCTC-Addition?style=flat-square)
 ![Languages](https://img.shields.io/badge/Java-8-orange?style=flat-square)
-[![Issues](https://img.shields.io/github/issues/The-Cat-Town-Craft/Carpet-TCTC-Addition?style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/issues)
-[![Pull Requests](https://img.shields.io/github/issues-pr/The-Cat-Town-Craft/Carpet-TCTC-Addition?style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/pulls)
+[![Codacy Grade](https://img.shields.io/codacy/grade/1c5b3072db3c4137b0b5a0c7b57a43e9?label=Codacy%20Grade&style=flat-square)](https://app.codacy.com/gh/The-Cat-Town-Craft/Carpet-TCTC-Addition/dashboard)
+[![Issues](https://img.shields.io/github/issues/The-Cat-Town-Craft/Carpet-TCTC-Addition?label=Issues&style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/issues)
+[![Pull Requests](https://img.shields.io/github/issues-pr/The-Cat-Town-Craft/Carpet-TCTC-Addition?label=Pull%20Requests&style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/pulls)
 [![CI](https://img.shields.io/github/workflow/status/The-Cat-Town-Craft/Carpet-TCTC-Addition/CI/dev?label=Public%20Beta&style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/actions/workflows/CI.yml?query=branch%3Adev)
 [![CI](https://img.shields.io/github/workflow/status/The-Cat-Town-Craft/Carpet-TCTC-Addition/CI/master?label=Public%20Release&style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/actions/workflows/CI.yml?query=branch%3Amaster)
-[![Github Release](https://img.shields.io/github/v/release/The-Cat-Town-Craft/Carpet-TCTC-Addition?include_prereleases&style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/releases)
+[![Github Release](https://img.shields.io/github/v/release/The-Cat-Town-Craft/Carpet-TCTC-Addition?label=Release&include_prereleases&style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/releases)
 [![Github Release Downloads](https://img.shields.io/github/downloads/The-Cat-Town-Craft/Carpet-TCTC-Addition/total?label=Github%20Release%20Downloads&style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/releases)
 [![CurseForge Downloads](http://cf.way2muchnoise.eu/513524.svg?badge_style=flat)](https://www.curseforge.com/minecraft/mc-mods/carpet-tctc-addition)
 
@@ -33,7 +34,7 @@
 - 类型: `string`
 - 默认值: `ops`
 - 参考数据: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4`
-- 类别: `COMMAND`
+- 类别: `TCTC`, `TCTC-COMMAND`
 
 ### 灵魂出窍命令(commandFreecam)
 
@@ -42,7 +43,7 @@
 - 类型: `string`
 - 默认值: `true`
 - 参考数据: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4`
-- 类别: `COMMAND`
+- 类别: `TCTC`, `TCTC-COMMAND`
 
 ### 共享坐标命令(commandHere)
 
@@ -51,7 +52,7 @@
 - 类型: `string`
 - 默认值: `true`
 - 参考数据: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4`
-- 类别: `COMMAND`
+- 类别: `TCTC`, `TCTC-COMMAND`
 
 ### 权限控制命令(commandOperator)
 
@@ -60,7 +61,7 @@
 - 类型: `string`
 - 默认值: `ops`
 - 参考数据: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4`
-- 类别: `COMMAND`
+- 类别: `TCTC`, `TCTC-COMMAND`
 
 ### 禁止旁观者传送(cameraModeDisableSpectatePlayers)
 
@@ -69,16 +70,7 @@
 - 类型: `boolean`
 - 默认值: `false`
 - 参考数据: `false`, `true`
-- 类别: `FEATURE`
-
-### 末路之地折跃门区块加载器(endGatewayChunkLoader)
-
-当实体穿越末路之地折跃门时，目标区块会像下界传送门一样使目标区块获得 15 秒的加载。
-
-- 类型: `boolean`
-- 默认值: `false`
-- 参考数据: `false`, `true`
-- 类别: `FEATURE`
+- 类别: `TCTC`, `TCTC-FEATURE`
 
 ### 末路之地平台(enderPlatform)
 
@@ -93,9 +85,26 @@ player - 玩家实体进入末路之地维度时，生成黑曜石平台。
 - 类型: `enum`
 - 默认值: `player`
 - 参考数据: `all`, `none`, `player`
-- 类别: `FEATURE`, `WORLD-GENERATE`
+- 类别: `TCTC`, `TCTC-FEATURE`, `TCTC-WORLD-GENERATE`
 
 *对于 Minecraft 1.16.5 及更高版本的分支，默认值为 `all`*
+
+### 末路之地折跃门区块加载器(endGatewayChunkLoader)
+
+当实体穿越末路之地折跃门时，目标区块会像下界传送门一样使目标区块获得 15 秒的加载。
+
+all - 所有实体穿过末路之地折跃门时，给予目标区块加载票。
+
+except_player - 除玩家外的所有实体穿过末路之地折跃门时，给予目标区块加载票。
+
+item_only - 物品实体穿过末路之地折跃门时，给予目标区块加载票。
+
+off - 原版行为。
+
+- 类型: `enum`
+- 默认值: `off`
+- 参考数据: `all`, `except_player`, `item_only`, `off`
+- 类别: `TCTC`, `TCTC-FEATURE`
 
 ### 烟花加速系数(fireworkSpeedupCoefficient)
 
@@ -104,7 +113,7 @@ player - 玩家实体进入末路之地维度时，生成黑曜石平台。
 - 类型: `double`
 - 默认值: `1.5`
 - 参考数据: `1.25`, `1.5`
-- 类别: `CLIENT`, `FEATURE`
+- 类别: `TCTC`, `TCTC-CLIENT`, `TCTC-FEATURE`
 
 *对于 Minecraft 1.18 及更高版本的分支，默认值为 `1.25`*
 
@@ -115,7 +124,7 @@ player - 玩家实体进入末路之地维度时，生成黑曜石平台。
 - 类型: `boolean`
 - 默认值: `true`
 - 参考数据: `true`, `false`
-- 类别: `MISC`
+- 类别: `TCTC`, `TCTC-MISC`
 
 ### 高亮时间(hereGlowTime)
 
@@ -124,7 +133,7 @@ player - 玩家实体进入末路之地维度时，生成黑曜石平台。
 - 类型: `int`
 - 默认值: `15`
 - 参考数据: `0`, `15`
-- 类别: `MISC`
+- 类别: `TCTC`, `TCTC-MISC`
 
 ### 非法活塞动作修复(illegalPistonActionFix)
 
@@ -133,7 +142,7 @@ player - 玩家实体进入末路之地维度时，生成黑曜石平台。
 - 类型: `boolean`
 - 默认值: `false`
 - 参考数据: `false`, `true`
-- 类别: `FEATURE`
+- 类别: `TCTC`, `TCTC-FEATURE`
 
 ### 统计信息(playerStats)
 
@@ -150,7 +159,7 @@ player - 仅玩家可获得统计信息。
 - 类型: `enum`
 - 默认值: `both`
 - 参考数据: `bot`, `both`, `none`, `player`
-- 类别: `TCTC_FEATURE`
+- 类别: `TCTC`, `TCTC-FEATURE`
 
 ### 更新抑制崩溃修复(updateSuppressionCrashFix)
 
@@ -159,7 +168,7 @@ player - 仅玩家可获得统计信息。
 - 类型: `boolean`
 - 默认值: `false`
 - 参考数据: `false`, `true`
-- 类别: `TCTC_BUGFIX`
+- 类别: `TCTC`, `TCTC-BUGFIX`
 
 ### 体素地图世界名(voxelMapWorldName)
 
@@ -168,7 +177,7 @@ player - 仅玩家可获得统计信息。
 - 类型: `string`
 - 默认值: `#none`
 - 参考数据: `#none`, `creative`, `mirror`, `survival`
-- 类别: `PROTOCOL`
+- 类别: `TCTC`, `TCTC-PROTOCOL`
 
 ### 湿海绵吸收岩浆(wetSpongeAbsorbLava)
 
@@ -177,7 +186,7 @@ player - 仅玩家可获得统计信息。
 - 类型: `boolean`
 - 默认值: `false`
 - 参考数据: `false`, `true`
-- 类别: `EXPERIMENTAL`, `FEATURE`
+- 类别: `TCTC`, `TCTC-EXPERIMENTAL`, `TCTC-FEATURE`
 
 ### 湿海绵吸收岩浆限制(wetSpongeAbsorbLavaLimit)
 
@@ -186,7 +195,7 @@ player - 仅玩家可获得统计信息。
 - 类型: `int`
 - 默认值: `32`
 - 参考数据: `32`, `64`
-- 类别: `EXPERIMENTAL`, `FEATURE`
+- 类别: `TCTC`, `TCTC-EXPERIMENTAL`, `TCTC-FEATURE`
 
 ### 湿海绵吸收岩浆距离(wetSpongeAbsorbLavaRange)
 
@@ -195,7 +204,7 @@ player - 仅玩家可获得统计信息。
 - 类型: `int`
 - 默认值: `3`
 - 参考数据: `3`, `6`
-- 类别: `EXPERIMENTAL`, `FEATURE`
+- 类别: `TCTC`, `TCTC-EXPERIMENTAL`, `TCTC-FEATURE`
 
 ### xaero地图世界名(voxelMapWorldName)
 
@@ -204,7 +213,7 @@ player - 仅玩家可获得统计信息。
 - 类型: `string`
 - 默认值: `#none`
 - 参考数据: `#none`, `creative`, `mirror`, `survival`
-- 类别: `PROTOCOL`
+- 类别: `TCTC`, `TCTC-PROTOCOL`
 
 ## 开发
 
