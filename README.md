@@ -1,13 +1,14 @@
 # Carpet TCTC Addition
-
 [![Minecraft](http://cf.way2muchnoise.eu/versions/Minecraft_513524_all.svg?badge_style=flat)](https://www.curseforge.com/minecraft/mc-mods/carpet-tctc-addition/files)
-[![License](https://img.shields.io/github/license/The-Cat-Town-Craft/Carpet-TCTC-Addition?style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/blob/main/LICENSE)
+[![License](https://img.shields.io/github/license/The-Cat-Town-Craft/Carpet-TCTC-Addition?label=License&style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/blob/main/LICENSE)
 ![Java-8](https://img.shields.io/github/languages/top/The-Cat-Town-Craft/Carpet-TCTC-Addition?style=flat-square)
 ![Languages](https://img.shields.io/badge/Java-8-orange?style=flat-square)
-[![Issues](https://img.shields.io/github/issues/The-Cat-Town-Craft/Carpet-TCTC-Addition?style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/issues)
-[![Pull Requests](https://img.shields.io/github/issues-pr/The-Cat-Town-Craft/Carpet-TCTC-Addition?style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/pulls)
-[![CI](https://img.shields.io/github/workflow/status/The-Cat-Town-Craft/Carpet-TCTC-Addition/CI?&style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/actions/workflows/CI.yml)
-[![Github Release](https://img.shields.io/github/v/release/The-Cat-Town-Craft/Carpet-TCTC-Addition?include_prereleases&style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/releases)
+[![Codacy Grade](https://img.shields.io/codacy/grade/1c5b3072db3c4137b0b5a0c7b57a43e9?label=Codacy%20Grade&style=flat-square)](https://app.codacy.com/gh/The-Cat-Town-Craft/Carpet-TCTC-Addition/dashboard)
+[![Issues](https://img.shields.io/github/issues/The-Cat-Town-Craft/Carpet-TCTC-Addition?label=Issues&style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/issues)
+[![Pull Requests](https://img.shields.io/github/issues-pr/The-Cat-Town-Craft/Carpet-TCTC-Addition?label=Pull%20Requests&style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/pulls)
+[![CI](https://img.shields.io/github/workflow/status/The-Cat-Town-Craft/Carpet-TCTC-Addition/CI/dev?label=Public%20Beta&style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/actions/workflows/CI.yml?query=branch%3Adev)
+[![CI](https://img.shields.io/github/workflow/status/The-Cat-Town-Craft/Carpet-TCTC-Addition/CI/master?label=Public%20Release&style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/actions/workflows/CI.yml?query=branch%3Amaster)
+[![Github Release](https://img.shields.io/github/v/release/The-Cat-Town-Craft/Carpet-TCTC-Addition?label=Release&include_prereleases&style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/releases)
 [![Github Release Downloads](https://img.shields.io/github/downloads/The-Cat-Town-Craft/Carpet-TCTC-Addition/total?label=Github%20Release%20Downloads&style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/releases)
 [![CurseForge Downloads](http://cf.way2muchnoise.eu/513524.svg?badge_style=flat)](https://www.curseforge.com/minecraft/mc-mods/carpet-tctc-addition)
 
@@ -71,15 +72,6 @@ Disables players in /c from spectating other players.
 - Suggested options: `false`, `true`
 - Categories: `TCTC`, `TCTC-FEATURE`
 
-### endGatewayChunkLoader
-
-When the entity passes through the ender gateway, the target chunk will be loaded for 15 seconds like nether portal.
-
-- Type: `boolean`
-- Default value: `false`
-- Suggested options: `false`, `true`
-- Categories: `TCTC`, `TCTC-FEATURE`
-
 ### enderPlatform
 
 Is obsidian platform generated in the end.
@@ -96,6 +88,23 @@ player - Ender platform is generated only when the player entity teleports to th
 - Categories: `TCTC`, `TCTC-FEATURE`, `TCTC-WORLD-GENERATE`
 
 *For Minecraft 1.16.5 and later branches, the default value is `all`*
+
+### endGatewayChunkLoader
+
+When the entity passes through the ender gateway, the target chunk will be loaded for 15 seconds like nether portal.
+
+all - Give the target chunk a load ticket when all entities through the ender gateway.
+
+except_player - Give the target chunk a load ticket when all entities except the player through the ender gateway.
+
+item_only - Give the target chunk a load ticket when the player entities except the player through the ender gateway.
+
+off - Vanilla action.
+
+- Type: `enum`
+- Default value: `off`
+- Suggested options: `all`, `except_player`, `item_only`, `off`
+- Categories: `TCTC`, `TCTC-FEATURE`
 
 ### fireworkSpeedupCoefficient
 
