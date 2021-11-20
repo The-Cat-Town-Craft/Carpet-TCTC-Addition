@@ -21,6 +21,7 @@ import top.catowncraft.CarpetTCTCAddition.CarpetTCTCAdditionSettings;
 import top.catowncraft.CarpetTCTCAddition.utils.MessageUtil;
 import top.catowncraft.CarpetTCTCAddition.utils.ThrowableSuppression;
 
+import java.util.Iterator;
 import java.util.function.BooleanSupplier;
 
 import static carpet.utils.Translations.tr;
@@ -36,7 +37,7 @@ public class MixinMinecraftServer {
             locals = LocalCapture.CAPTURE_FAILHARD,
             cancellable = true
     )
-    private void onTickingWorld(BooleanSupplier booleanSupplier, CallbackInfo ci, Iterable<ServerLevel> allLevels, ServerLevel serverLevel, Throwable throwable) {
+    private void onTickingWorld(BooleanSupplier booleanSupplier, CallbackInfo ci, Iterator<ServerLevel> allLevels, ServerLevel serverLevel, Throwable throwable) {
         if (CarpetTCTCAdditionSettings.updateSuppressionCrashFix && (throwable.getCause() instanceof ThrowableSuppression)) {
             MessageUtil.sendServerMessage(CarpetTCTCAddition.getServer(), new TextComponent(tr("carpet-tctc-addition.message.server.updateSuppression.exception", "We caught an update suppression exception. This should cause the server to crash, but we prevented it.")).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
             ci.cancel();

@@ -34,8 +34,7 @@ public class MixinLevel {
                     target = "Lnet/minecraft/CrashReport;forThrowable(Ljava/lang/Throwable;Ljava/lang/String;)Lnet/minecraft/CrashReport;",
                     shift = At.Shift.BEFORE
             ),
-            locals = LocalCapture.CAPTURE_FAILHARD,
-            cancellable = true
+            locals = LocalCapture.CAPTURE_FAILHARD
     )
     private void OnPopulateBlockDetails(BlockPos blockPos, Block block, BlockPos blockPos2, CallbackInfo ci, BlockState state, Throwable throwable) {
         if (CarpetTCTCAdditionSettings.updateSuppressionCrashFix && (throwable.getCause() instanceof StackOverflowError || throwable.getCause() instanceof ThrowableSuppression)) {
