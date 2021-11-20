@@ -4,9 +4,10 @@
   "package": "top.catowncraft.CarpetTCTCAddition.mixins",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "misc.printCarpetVersion.MixinSettingsManager",
     "misc.commandOperatorHelper.MixinPlayerList",
+    "misc.printCarpetVersion.MixinSettingsManager",
     "rule.cameraModeDisableSpectatePlayers.MixinServerGamePacketListenerImpl",
+    "rule.disableIllegalChatCharacterCheck.MixinSharedConstants",
     "rule.enderPlatform.MixinEntity",
     "rule.enderPlatform.MixinServerPlayer",
     "rule.endGatewayChunkLoader.MixinTheEndGatewayBlockEntity",

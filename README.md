@@ -72,6 +72,15 @@ Disables players in /c from spectating other players.
 - Suggested options: `false`, `true`
 - Categories: `TCTC`, `TCTC-FEATURE`
 
+### disableIllegalChatCharacterCheck
+
+Allows you to use characters such as subsections in the game.
+
+- Type: `boolean`
+- Default value: `false`
+- Suggested options: `false`, `true`
+- Categories: `TCTC`, `TCTC-CLIENT`, `TCTC-EXPERIMENTAL`, `TCTC-MISC`
+
 ### enderPlatform
 
 Is obsidian platform generated in the end.
