@@ -13,13 +13,8 @@ jobs:
     if: ${{ github.event_name == 'push' }}
     strategy:
       matrix:
-        java: [
-          16,
-          17
-        ]
-        os: [
-          ubuntu-20.04
-        ]
+        java: [16, 17]
+        os: [ubuntu-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout the sources
@@ -29,15 +24,19 @@ jobs:
         with:
           distribution: 'adopt'
           java-version: ${{ matrix.java }}
+      - name: Get short commit sha
+        id: get_short_sha
+        run: |
+          short_sha=$(echo ${GITHUB_SHA} | cut -c1-7)
+          echo "::set-output name=short_sha::$short_sha"
       - name: Set build number in codes
         run: |
-          sed -i "s/build.undefined/${GITHUB_SHA::7}/g" gradle.properties
           sed -i "s/Development/Public Beta/g" src/main/java/top/catowncraft/CarpetTCTCAddition/CarpetTCTCAdditionReference.java
       - name: Read relevant fields from gradle.properties
         id: properties
         run: |
           path='./gradle.properties'
-          for property in mod_file_name mod_version_detail mod_file_name minecraft_version_out
+          for property in mod_file_name mod_version minecraft_version_out
           do
             result=$(sed -n "/^[[:space:]]*$property[[:space:]]*=[[:space:]]*/s/^[[:space:]]*$property[[:space:]]*=[[:space:]]*//p" "$path")
             echo "$property: $result"
@@ -46,18 +45,24 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Build with Gradle
+        env:
+          GIT_COMMIT_ID: ${{ steps.get_short_sha.outputs.short_sha }}
         run: ./gradlew build
       - name: Publish maven with Gradle
+        env:
+          GIT_COMMIT_ID: ${{ steps.get_short_sha.outputs.short_sha }}
         run: ./gradlew publish
       - name: Upload assets to GitHub Action
+        if: ${{ matrix.java == '17' }}
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ steps.properties.outputs.mod_file_name }}+${{ steps.properties.outputs.mod_version_detail }}(Public Beta)
+          name: ${{ steps.properties.outputs.mod_file_name }}-mc${{ steps.properties.outputs.minecraft_version_out }}-${{ steps.properties.outputs.mod_version }}+${{ steps.get_short_sha.outputs.short_sha }}(Public Beta)
           path: build/libs/
       - name: Upload maven to GitHub Action
+        if: ${{ matrix.java == '17' }}
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ steps.properties.outputs.mod_file_name }}+${{ steps.properties.outputs.mod_version_detail }}(Maven)
+          name: ${{ steps.properties.outputs.mod_file_name }}-mc${{ steps.properties.outputs.minecraft_version_out }}-${{ steps.properties.outputs.mod_version }}+${{ steps.get_short_sha.outputs.short_sha }}(Maven)
           path: publish/
   publish:
     if: ${{ github.event_name == 'release' }}
