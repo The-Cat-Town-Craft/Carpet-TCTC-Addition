@@ -72,9 +72,18 @@
 - 参考数据: `false`, `true`
 - 类别: `TCTC`, `TCTC-FEATURE`
 
+### 禁用聊天非法字符检查(disableIllegalChatCharacterCheck)
+
+允许你在游戏中使用 分节符 等字符。
+
+- 类型: `boolean`
+- 默认值: `false`
+- 参考数据: `false`, `true`
+- 类别: `TCTC`, `TCTC-CLIENT`, `TCTC-EXPERIMENTAL`, `TCTC-MISC`
+
 ### 末路之地平台(enderPlatform)
 
-是否在实体进入末路之地时生成黑曜石平台.
+是否在实体进入末路之地时生成黑曜石平台。
 
 all - 任何实体进入末路之地维度时，生成黑曜石平台。
 
