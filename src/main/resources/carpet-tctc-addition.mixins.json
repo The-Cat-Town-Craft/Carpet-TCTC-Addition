@@ -7,6 +7,7 @@
     "misc.commandOperatorHelper.MixinPlayerList",
     "misc.printCarpetVersion.MixinSettingsManager",
     "rule.cameraModeDisableSpectatePlayers.MixinServerGamePacketListenerImpl",
+    "rule.disableIllegalChatCharacterCheck.MixinSharedConstants",
     "rule.enderPlatform.MixinEntity",
     "rule.enderPlatform.MixinServerPlayer",
     "rule.endGatewayChunkLoader.MixinTheEndGatewayBlockEntity",
