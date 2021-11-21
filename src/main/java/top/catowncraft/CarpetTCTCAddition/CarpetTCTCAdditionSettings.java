@@ -20,6 +20,13 @@ public class CarpetTCTCAdditionSettings {
     private static final String TCTC_WORLD_GENERATE = "TCTC-WORLD_GENERATE";
 
     @Rule(
+            name = "blockIllegalUsername",
+            desc = "Verify username using online mode rules.",
+            category = {TCTC, TCTC_MISC, TCTC_PROTOCOL}
+    )
+    public static boolean blockIllegalUsername = false;
+
+    @Rule(
             name = "commandFix",
             desc = "Enables /fix command to fix chunk data.",
             category = {TCTC, TCTC_COMMAND},
