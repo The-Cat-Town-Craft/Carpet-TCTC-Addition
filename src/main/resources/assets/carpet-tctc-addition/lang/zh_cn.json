@@ -32,6 +32,9 @@
   "category.TCTC-PROTOCOL": "喵镇附属-协议",
   "category.TCTC-WORLD_GENERATE": "喵镇附属-世界生成",
 
+  "rule.blockIllegalUsername.name": "阻止非法用户名",
+  "rule.blockIllegalUsername.desc": "使用正版模式规则验证用户名。",
+
   "rule.commandFix.name": "区块修复命令",
   "rule.commandFix.desc": "启用 /fix 命令用于修复区块数据。",
 
@@ -46,6 +49,9 @@
 
   "rule.cameraModeDisableSpectatePlayers.name": "禁止旁观者传送",
   "rule.cameraModeDisableSpectatePlayers.desc": "禁止旁观者玩家快捷传送。",
+
+  "rule.disableIllegalChatCharacterCheck.name": "禁用聊天非法字符检查",
+  "rule.disableIllegalChatCharacterCheck.desc": "允许你在游戏中使用 分节符 等字符。",
 
   "rule.endGatewayChunkLoader.name": "末路之地折跃门区块加载器",
   "rule.endGatewayChunkLoader.desc": "当实体穿越末路之地折跃门时，目标区块会像下界传送门一样使目标区块获得 15 秒的加载。",

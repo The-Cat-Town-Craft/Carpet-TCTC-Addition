@@ -7,12 +7,18 @@ plugins {
 	id "com.modrinth.minotaur" version "1.2.1"
 }
 
-group = project.group + "." + project.mod_id
-archivesBaseName = project.mod_file_name + '-mc' + project.minecraft_version_out
-version = project.mod_version as Object
-if (project.mod_version_detail.toString() != "build.undefined") {
-	version += "+${project.mod_version_detail}"
+static String getVersionString() {
+	String git_commit_id = System.getenv("GIT_COMMIT_ID")
+	if (git_commit_id != null) {
+		return git_commit_id
+	} else {
+		return new Date().format('yyyyMMdd.HHmmss')
+	}
 }
+
+group = "${project.group}.${project.mod_id}" as Object
+archivesBaseName = "${project.mod_file_name}-mc${project.minecraft_version_out}"
+version = "${project.mod_version}+${getVersionString()}" as Object
 
 repositories {
 	// Add repositories to retrieve artifacts from in here.
@@ -36,7 +42,7 @@ dependencies {
 	modApi("net.fabricmc:fabric-loader:${project.fabric_loader_version}")
 
 	// Required library
-	modApi("carpet:fabric-carpet:${project.minecraft_version}-${project.carpet_version}")
+	modApi("carpet:fabric-carpet:${project.minecraft_version_carpet}-${project.carpet_version}")
 	modApi("net.fabricmc.fabric-api:fabric-api:${project.fabric_version}")
 }
 

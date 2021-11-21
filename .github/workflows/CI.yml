@@ -9,17 +9,26 @@ on:
       - published
   pull_request:
 jobs:
+  prepare_build_matrix:
+    if: ${{ github.event_name == 'push' }}
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.build-matrix.outputs.matrix }}
+    steps:
+      - name: Setup matrix data
+        id: build-matrix
+        run: |
+          if ${{ contains(github.ref, '1.14.4') || contains(github.ref, '1.15.2') || contains(github.ref, '1.16.5') || contains(github.ref, '1.17.1')  || contains(github.ref, 'dev') }}; then
+            echo "::set-output name=matrix::{\"java\":[16, 17], \"os\":[\"ubuntu-latest\"]}"
+          else
+            echo "::set-output name=matrix::{\"java\":[17], \"os\":[\"ubuntu-latest\"]}"
+          fi
   build:
     if: ${{ github.event_name == 'push' }}
+    needs:
+      - prepare_build_matrix
     strategy:
-      matrix:
-        java: [
-          16,
-          17
-        ]
-        os: [
-          ubuntu-20.04
-        ]
+      matrix: ${{ fromJSON(needs.prepare_build_matrix.outputs.matrix) }}
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout the sources
@@ -29,15 +38,19 @@ jobs:
         with:
           distribution: 'adopt'
           java-version: ${{ matrix.java }}
+      - name: Get short commit sha
+        id: get_short_sha
+        run: |
+          short_sha=$(echo ${GITHUB_SHA} | cut -c1-7)
+          echo "::set-output name=short_sha::$short_sha"
       - name: Set build number in codes
         run: |
-          sed -i "s/build.undefined/${GITHUB_SHA::7}/g" gradle.properties
           sed -i "s/Development/Public Beta/g" src/main/java/top/catowncraft/CarpetTCTCAddition/CarpetTCTCAdditionReference.java
       - name: Read relevant fields from gradle.properties
         id: properties
         run: |
           path='./gradle.properties'
-          for property in mod_file_name mod_version_detail mod_file_name minecraft_version_out
+          for property in mod_file_name mod_version minecraft_version_out
           do
             result=$(sed -n "/^[[:space:]]*$property[[:space:]]*=[[:space:]]*/s/^[[:space:]]*$property[[:space:]]*=[[:space:]]*//p" "$path")
             echo "$property: $result"
@@ -46,37 +59,36 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Build with Gradle
+        env:
+          GIT_COMMIT_ID: ${{ steps.get_short_sha.outputs.short_sha }}
         run: ./gradlew build
       - name: Publish maven with Gradle
+        env:
+          GIT_COMMIT_ID: ${{ steps.get_short_sha.outputs.short_sha }}
         run: ./gradlew publish
       - name: Upload assets to GitHub Action
+        if: ${{ matrix.java == '17' }}
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ steps.properties.outputs.mod_file_name }}+${{ steps.properties.outputs.mod_version_detail }}(Public Beta)
+          name: ${{ steps.properties.outputs.mod_file_name }}-mc${{ steps.properties.outputs.minecraft_version_out }}-${{ steps.properties.outputs.mod_version }}+${{ steps.get_short_sha.outputs.short_sha }}(Public Beta)
           path: build/libs/
       - name: Upload maven to GitHub Action
+        if: ${{ matrix.java == '17' }}
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ steps.properties.outputs.mod_file_name }}+${{ steps.properties.outputs.mod_version_detail }}(Maven)
+          name: ${{ steps.properties.outputs.mod_file_name }}-mc${{ steps.properties.outputs.minecraft_version_out }}-${{ steps.properties.outputs.mod_version }}+${{ steps.get_short_sha.outputs.short_sha }}(Maven)
           path: publish/
   publish:
     if: ${{ github.event_name == 'release' }}
     strategy:
       matrix:
-        java: [
-          16,
-          17
-        ]
-        os: [
-          ubuntu-latest
-        ]
-        branch: [
-          1.14,
-          1.15,
-          1.16,
-          1.17,
-          1.18
-        ]
+        java: [16, 17]
+        os: [ubuntu-latest]
+        branch: [1.14, 1.15, 1.16, 1.17, 1.18]
+        exclude:
+          - java: 16
+            os: ubuntu-latest
+            branch: 1.18
     runs-on: ${{ matrix.os }}
     steps:
       - name: Get info from branch to run
@@ -97,6 +109,17 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: ${{ steps.getbranchinfo.outputs.branchname }}
+      - name: Get commit sha from the corresponding branch
+        id: get_sha
+        uses: mego22/actions-git-sha@main
+        with:
+          repo: "https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition.git"
+          branch: "${{ steps.getbranchinfo.outputs.branchname }}"
+      - name: Get short commit sha
+        id: get_short_sha
+        run: |
+          short_sha=$(echo ${{ steps.get_sha.outputs.sha }} | cut -c1-7)
+          echo "::set-output name=short_sha::$short_sha"
       - name: Set up JDK ${{ matrix.java }}
         uses: actions/setup-java@v2
         with:
@@ -104,13 +127,12 @@ jobs:
           java-version: ${{ matrix.java }}
       - name: Set build number in codes
         run: |
-          sed -i "s/build.undefined/${GITHUB_SHA::7}/g" gradle.properties
           sed -i "s/Development/Public Release/g" src/main/java/top/catowncraft/CarpetTCTCAddition/CarpetTCTCAdditionReference.java
       - name: Read relevant fields from gradle.properties
         id: properties
         run: |
           path='./gradle.properties'
-          for property in mod_file_name mod_version_detail mod_file_name minecraft_version_out cruseforge_gameversion cruseforge_projectid cruseforge_relations cruseforge_release cruseforge_release_type github_release modrinth_release modrinth_release_type
+          for property in mod_file_name mod_version minecraft_version_out cruseforge_gameversion cruseforge_projectid cruseforge_relations cruseforge_release cruseforge_release_type github_release modrinth_release modrinth_release_type
           do
             result=$(sed -n "/^[[:space:]]*$property[[:space:]]*=[[:space:]]*/s/^[[:space:]]*$property[[:space:]]*=[[:space:]]*//p" "$path")
             echo "$property: $result"
@@ -119,8 +141,12 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Build with Gradle
+        env:
+          GIT_COMMIT_ID: ${{ steps.get_short_sha.outputs.short_sha }}
         run: ./gradlew build
       - name: Publish maven with Gradle
+        env:
+          GIT_COMMIT_ID: ${{ steps.get_short_sha.outputs.short_sha }}
         run: ./gradlew publish
       - name: Find correct jar
         id: findjar
@@ -131,13 +157,13 @@ jobs:
         if: ${{ matrix.java == '17' }}
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ steps.properties.outputs.mod_file_name }}+${{ steps.properties.outputs.mod_version_detail }}(Public Release)
+          name: ${{ steps.properties.outputs.mod_file_name }}-mc${{ steps.properties.outputs.minecraft_version_out }}-${{ steps.properties.outputs.mod_version }}+${{ steps.get_short_sha.outputs.short_sha }}(Public Release)
           path: build/libs/
       - name: Upload maven to GitHub Action
         if: ${{ matrix.java == '17' }}
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ steps.properties.outputs.mod_file_name }}+${{ steps.properties.outputs.mod_version_detail }}(Maven)
+          name: ${{ steps.properties.outputs.mod_file_name }}-mc${{ steps.properties.outputs.minecraft_version_out }}-${{ steps.properties.outputs.mod_version }}+${{ steps.get_short_sha.outputs.short_sha }}(Maven)
           path: publish/
       - name: Upload assets to GitHub Release
         if: ${{ steps.properties.outputs.github_release == 'true' && matrix.java == '17' }}
@@ -164,7 +190,7 @@ jobs:
         env:
           CHANGE_LOG: ${{ github.event.release.body }}
           MODRINTH_API_TOKEN: ${{ secrets.MODRINTH_API_TOKEN }}
-          VERSION_NUMBER: ${{ steps.properties.outputs.mod_file_name }}-mc${{ steps.properties.outputs.minecraft_version_out }}+${{ steps.properties.outputs.mod_version_detail }}
+          VERSION_NUMBER: ${{ steps.properties.outputs.mod_file_name }}-mc${{ steps.properties.outputs.minecraft_version_out }}-${{ steps.properties.outputs.mod_version }}+${{ steps.get_short_sha.outputs.short_sha }}
   pull_request:
     if: ${{ github.event_name == 'pull_request' }}
     strategy:

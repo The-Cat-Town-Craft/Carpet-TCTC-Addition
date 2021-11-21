@@ -20,6 +20,13 @@ public class CarpetTCTCAdditionSettings {
     private static final String TCTC_WORLD_GENERATE = "TCTC-WORLD_GENERATE";
 
     @Rule(
+            name = "blockIllegalUsername",
+            desc = "Verify username using online mode rules.",
+            category = {TCTC, TCTC_MISC, TCTC_PROTOCOL}
+    )
+    public static boolean blockIllegalUsername = false;
+
+    @Rule(
             name = "commandFix",
             desc = "Enables /fix command to fix chunk data.",
             category = {TCTC, TCTC_COMMAND},
@@ -57,6 +64,13 @@ public class CarpetTCTCAdditionSettings {
             category = {TCTC, TCTC_FEATURE}
     )
     public static boolean cameraModeDisableSpectatePlayers = false;
+
+    @Rule(
+            name = "disableIllegalChatCharacterCheck",
+            desc = "Allows you to use characters such as subsections in the game.",
+            category = {TCTC, TCTC_CLIENT, TCTC_EXPERIMENTAL, TCTC_MISC}
+    )
+    public static boolean disableIllegalChatCharacterCheck = false;
 
     @Rule(
             name = "enderPlatform",

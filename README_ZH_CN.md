@@ -27,54 +27,72 @@
 
 ## 规则列表
 
+### 阻止非法用户名(blockIllegalUsername)
+
+使用正版模式规则验证用户名。
+
+- 类型: `布尔值`
+- 默认值: `false`
+- 参考数据: `false`, `true`
+- 类别: `喵镇附属`, `喵镇附属-杂项`, `喵镇附属-协议`
+
 ### 区块修复命令(commandFix)
 
 启用 /fix 命令用于修复区块数据。
 
-- 类型: `string`
+- 类型: `字符串`
 - 默认值: `ops`
-- 参考数据: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4`
-- 类别: `TCTC`, `TCTC-COMMAND`
+- 参考数据: `false`, `true`, `ops`, `0`, `1`, `2`, `3`, `4`
+- 类别: `喵镇附属`, `喵镇附属-命令`
 
 ### 灵魂出窍命令(commandFreecam)
 
 启用 /freecam 允许你切换旁观模式。
 
-- 类型: `string`
+- 类型: `字符串`
 - 默认值: `true`
-- 参考数据: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4`
-- 类别: `TCTC`, `TCTC-COMMAND`
+- 参考数据: `false`, `true`, `ops`, `0`, `1`, `2`, `3`, `4`
+- 类别: `喵镇附属`, `喵镇附属-命令`
 
 ### 共享坐标命令(commandHere)
 
 启用 /here 命令来让你可以与其他玩家分享你的位置。
 
-- 类型: `string`
+- 类型: `字符串`
 - 默认值: `true`
-- 参考数据: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4`
-- 类别: `TCTC`, `TCTC-COMMAND`
+- 参考数据: `false`, `true`, `ops`, `0`, `1`, `2`, `3`, `4`
+- 类别: `喵镇附属`, `喵镇附属-命令`
 
 ### 权限控制命令(commandOperator)
 
 启用 /operator 命令来允许你更改玩家的权限等级。
 
-- 类型: `string`
+- 类型: `字符串`
 - 默认值: `ops`
-- 参考数据: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4`
-- 类别: `TCTC`, `TCTC-COMMAND`
+- 参考数据: `false`, `true`, `ops`, `0`, `1`, `2`, `3`, `4`
+- 类别: `喵镇附属`, `喵镇附属-命令`
 
 ### 禁止旁观者传送(cameraModeDisableSpectatePlayers)
 
 禁止旁观者玩家快捷传送。
 
-- 类型: `boolean`
+- 类型: `布尔值`
 - 默认值: `false`
 - 参考数据: `false`, `true`
-- 类别: `TCTC`, `TCTC-FEATURE`
+- 类别: `喵镇附属`, `喵镇附属-特性`
+
+### 禁用聊天非法字符检查(disableIllegalChatCharacterCheck)
+
+允许你在游戏中使用 分节符 等字符。
+
+- 类型: `布尔值`
+- 默认值: `false`
+- 参考数据: `false`, `true`
+- 类别: `喵镇附属`, `喵镇附属-客户端`, `喵镇附属-实验性`, `喵镇附属-杂项`
 
 ### 末路之地平台(enderPlatform)
 
-是否在实体进入末路之地时生成黑曜石平台.
+是否在实体进入末路之地时生成黑曜石平台。
 
 all - 任何实体进入末路之地维度时，生成黑曜石平台。
 
@@ -82,10 +100,10 @@ none - 任何实体进入末路之地维度时，都不生成黑曜石平台。
 
 player - 玩家实体进入末路之地维度时，生成黑曜石平台。
 
-- 类型: `enum`
+- 类型: `枚举`
 - 默认值: `player`
 - 参考数据: `all`, `none`, `player`
-- 类别: `TCTC`, `TCTC-FEATURE`, `TCTC-WORLD-GENERATE`
+- 类别: `喵镇附属`, `喵镇附属-特性`, `喵镇附属-世界生成`
 
 *对于 Minecraft 1.16.5 及更高版本的分支，默认值为 `all`*
 
@@ -101,48 +119,46 @@ item_only - 物品实体穿过末路之地折跃门时，给予目标区块加�
 
 off - 原版行为。
 
-- 类型: `enum`
+- 类型: `枚举`
 - 默认值: `off`
 - 参考数据: `all`, `except_player`, `item_only`, `off`
-- 类别: `TCTC`, `TCTC-FEATURE`
+- 类别: `喵镇附属`, `喵镇附属-特性`
 
 ### 烟花加速系数(fireworkSpeedupCoefficient)
 
 控制烟花火箭的加速系数。
 
-- 类型: `double`
+- 类型: `双精度浮点`
 - 默认值: `1.5`
 - 参考数据: `1.25`, `1.5`
-- 类别: `TCTC`, `TCTC-CLIENT`, `TCTC-FEATURE`
-
-*对于 Minecraft 1.18 及更高版本的分支，默认值为 `1.25`*
+- 类别: `喵镇附属`, `喵镇附属-客户端`, `喵镇附属-特性`
 
 ### 灵魂回溯(freecamRestoreLocation)
 
 结束旁观后回到初始位置。
 
-- 类型: `boolean`
+- 类型: `布尔值`
 - 默认值: `true`
-- 参考数据: `true`, `false`
-- 类别: `TCTC`, `TCTC-MISC`
+- 参考数据: `false`, `true`
+- 类别: `喵镇附属`, `喵镇附属-杂项`
 
 ### 高亮时间(hereGlowTime)
 
 使用 here 共享坐标时高亮的时间。
 
-- 类型: `int`
+- 类型: `整型`
 - 默认值: `15`
 - 参考数据: `0`, `15`
-- 类别: `TCTC`, `TCTC-MISC`
+- 类别: `喵镇附属`, `喵镇附属-杂项`
 
 ### 非法活塞动作修复(illegalPistonActionFix)
 
 修复无头活塞破坏方块。
 
-- 类型: `boolean`
+- 类型: `布尔值`
 - 默认值: `false`
 - 参考数据: `false`, `true`
-- 类别: `TCTC`, `TCTC-FEATURE`
+- 类别: `喵镇附属`, `喵镇附属-特性`
 
 ### 统计信息(playerStats)
 
@@ -156,64 +172,64 @@ none - 玩家和假人均不可获得统计信息。
 
 player - 仅玩家可获得统计信息。
 
-- 类型: `enum`
+- 类型: `枚举`
 - 默认值: `both`
 - 参考数据: `bot`, `both`, `none`, `player`
-- 类别: `TCTC`, `TCTC-FEATURE`
+- 类别: `喵镇附属`, `喵镇附属-特性`
 
 ### 更新抑制崩溃修复(updateSuppressionCrashFix)
 
 修复更新抑制造成的服务器崩溃。
 
-- 类型: `boolean`
+- 类型: `布尔值`
 - 默认值: `false`
 - 参考数据: `false`, `true`
-- 类别: `TCTC`, `TCTC-BUGFIX`
+- 类别: `喵镇附属`, `喵镇附属-漏洞修复`
 
 ### 体素地图世界名(voxelMapWorldName)
 
 向客户端发送体素地图世界信息数据包。
 
-- 类型: `string`
+- 类型: `字符串`
 - 默认值: `#none`
 - 参考数据: `#none`, `creative`, `mirror`, `survival`
-- 类别: `TCTC`, `TCTC-PROTOCOL`
+- 类别: `喵镇附属`, `喵镇附属-协议`
 
 ### 湿海绵吸收岩浆(wetSpongeAbsorbLava)
 
 湿海绵将可以吸收岩浆。
 
-- 类型: `boolean`
+- 类型: `布尔值`
 - 默认值: `false`
 - 参考数据: `false`, `true`
-- 类别: `TCTC`, `TCTC-EXPERIMENTAL`, `TCTC-FEATURE`
+- 类别: `喵镇附属`, `喵镇附属-实验性`, `喵镇附属-特性`
 
 ### 湿海绵吸收岩浆限制(wetSpongeAbsorbLavaLimit)
 
 湿海绵吸收岩浆最大数量限制。
 
-- 类型: `int`
+- 类型: `整型`
 - 默认值: `32`
 - 参考数据: `32`, `64`
-- 类别: `TCTC`, `TCTC-EXPERIMENTAL`, `TCTC-FEATURE`
+- 类别: `喵镇附属`, `喵镇附属-实验性`, `喵镇附属-特性`
 
 ### 湿海绵吸收岩浆距离(wetSpongeAbsorbLavaRange)
 
 湿海绵吸收岩浆最大偏移限制。
 
-- 类型: `int`
+- 类型: `整型`
 - 默认值: `3`
 - 参考数据: `3`, `6`
-- 类别: `TCTC`, `TCTC-EXPERIMENTAL`, `TCTC-FEATURE`
+- 类别: `喵镇附属`, `喵镇附属-实验性`, `喵镇附属-特性`
 
 ### xaero地图世界名(voxelMapWorldName)
 
 向客户端发送xaero地图世界信息数据包。
 
-- 类型: `string`
+- 类型: `字符串`
 - 默认值: `#none`
 - 参考数据: `#none`, `creative`, `mirror`, `survival`
-- 类别: `TCTC`, `TCTC-PROTOCOL`
+- 类别: `喵镇附属`, `喵镇附属-协议`
 
 ## 开发
 
