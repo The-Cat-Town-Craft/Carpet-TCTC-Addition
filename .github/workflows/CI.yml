@@ -189,6 +189,7 @@ jobs:
         run: ./gradlew publishModrinth
         env:
           CHANGE_LOG: ${{ github.event.release.body }}
+          GIT_COMMIT_ID: ${{ steps.get_short_sha.outputs.short_sha }}
           MODRINTH_API_TOKEN: ${{ secrets.MODRINTH_API_TOKEN }}
           VERSION_NUMBER: ${{ steps.properties.outputs.mod_file_name }}-mc${{ steps.properties.outputs.minecraft_version_out }}-${{ steps.properties.outputs.mod_version }}+${{ steps.get_short_sha.outputs.short_sha }}
   pull_request:
