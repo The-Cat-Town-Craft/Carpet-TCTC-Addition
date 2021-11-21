@@ -32,6 +32,9 @@
   "category.TCTC-PROTOCOL": "喵镇附属-协议",
   "category.TCTC-WORLD_GENERATE": "喵镇附属-世界生成",
 
+  "rule.blockIllegalUsername.name": "阻止非法用户名",
+  "rule.blockIllegalUsername.desc": "使用正版模式规则验证用户名。",
+
   "rule.commandFix.name": "区块修复命令",
   "rule.commandFix.desc": "启用 /fix 命令用于修复区块数据。",
 
