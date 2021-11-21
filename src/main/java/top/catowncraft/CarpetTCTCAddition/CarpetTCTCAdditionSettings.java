@@ -59,6 +59,13 @@ public class CarpetTCTCAdditionSettings {
     public static boolean cameraModeDisableSpectatePlayers = false;
 
     @Rule(
+            name = "disableIllegalChatCharacterCheck",
+            desc = "Allows you to use characters such as subsections in the game.",
+            category = {TCTC, TCTC_CLIENT, TCTC_EXPERIMENTAL, TCTC_MISC}
+    )
+    public static boolean disableIllegalChatCharacterCheck = false;
+
+    @Rule(
             name = "enderPlatform",
             desc = "Is obsidian platform generated in the end.",
             extra = {
