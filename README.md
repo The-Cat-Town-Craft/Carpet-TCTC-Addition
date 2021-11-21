@@ -27,13 +27,22 @@ A [fabric-carpet](https://github.com/gnembon/fabric-carpet) extension mod. It of
 
 ## Rule List
 
+### blockIllegalUsername
+
+Verify username using online mode rules.
+
+- Type: `boolean`
+- Default value: `false`
+- Suggested options: `false`, `true`
+- Categories: `TCTC`, `TCTC-MISC`, `TCTC-PROTOCOL`
+
 ### commandFix
 
 Enables /fix command to fix chunk data.
 
 - Type: `string`
 - Default value: `ops`
-- Suggested options: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4`
+- Suggested options: `false`, `true`, `ops`, `0`, `1`, `2`, `3`, `4`
 - Categories: `TCTC`, `TCTC-COMMAND`
 
 ### commandFreecam
@@ -42,7 +51,7 @@ Enables /freecam command to toggle your camera mode.
 
 - Type: `string`
 - Default value: `true`
-- Suggested options: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4`
+- Suggested options: `false`, `true`, `ops`, `0`, `1`, `2`, `3`, `4`
 - Categories: `TCTC`, `TCTC-COMMAND`
 
 ### commandHere
@@ -51,7 +60,7 @@ Enables /here command to allow you to share your location with other players.
 
 - Type: `string`
 - Default value: `true`
-- Suggested options: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4`
+- Suggested options: `false`, `true`, `ops`, `0`, `1`, `2`, `3`, `4`
 - Categories: `TCTC`, `TCTC-COMMAND`
 
 ### commandOperator
@@ -60,7 +69,7 @@ Enables /operator command to allow you to change the player's permission level.
 
 - Type: `string`
 - Default value: `ops`
-- Suggested options: `true`, `false`, `ops`, `0`, `1`, `2`, `3`, `4`
+- Suggested options: `false`, `true`, `ops`, `0`, `1`, `2`, `3`, `4`
 - Categories: `TCTC`, `TCTC-COMMAND`
 
 ### cameraModeDisableSpectatePlayers
@@ -130,7 +139,7 @@ Return to the starting position when you have finished spectating.
 
 - Type: `boolean`
 - Default value: `true`
-- Suggested options: `true`, `false`
+- Suggested options: `false`, `true`
 - Categories: `TCTC`, `TCTC-MISC`
 
 ### hereGlowTime
