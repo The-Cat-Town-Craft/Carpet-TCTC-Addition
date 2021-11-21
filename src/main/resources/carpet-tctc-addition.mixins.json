@@ -6,6 +6,7 @@
   "mixins": [
     "misc.commandOperatorHelper.MixinPlayerList",
     "misc.printCarpetVersion.MixinSettingsManager",
+    "rule.blockIllegalUsername.MixinPlayerList",
     "rule.cameraModeDisableSpectatePlayers.MixinServerGamePacketListenerImpl",
     "rule.disableIllegalChatCharacterCheck.MixinSharedConstants",
     "rule.enderPlatform.MixinEntity",
