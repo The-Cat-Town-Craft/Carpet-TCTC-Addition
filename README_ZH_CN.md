@@ -124,8 +124,6 @@ off - 原版行为。
 - 参考数据: `1.25`, `1.5`
 - 类别: `TCTC`, `TCTC-CLIENT`, `TCTC-FEATURE`
 
-*对于 Minecraft 1.18 及更高版本的分支，默认值为 `1.25`*
-
 ### 灵魂回溯(freecamRestoreLocation)
 
 结束旁观后回到初始位置。

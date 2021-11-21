@@ -124,8 +124,6 @@ Controlling the acceleration coefficient of a firework rocket.
 - Suggested options: `1.25`, `1.5`
 - Categories: `TCTC`, `TCTC-CLIENT`, `TCTC-FEATURE`
 
-*For Minecraft 1.18 and later branches, the default value is `1.25`*
-
 ### freecamRestoreLocation
 
 Return to the starting position when you have finished spectating.
