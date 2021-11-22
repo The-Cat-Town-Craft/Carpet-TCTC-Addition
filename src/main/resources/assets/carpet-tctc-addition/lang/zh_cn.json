@@ -19,6 +19,7 @@
   "carpet-tctc-addition.message.command.operator.setBypassPlayerLimit.success": "玩家 %s 绕过玩家最大数上限已更新至 %s。",
   "carpet-tctc-addition.message.command.operator.setPermissionLevel.lower": "你不能赋予目标高于你拥有的权限(等级: %d)。",
   "carpet-tctc-addition.message.command.operator.setPermissionLevel.success": "玩家 %s 的权限已更新至等级 %d。",
+  "carpet-tctc-addition.message.server.checkIllegalUsername.fakePlayer": "玩家名 %s 不合法！",
   "carpet-tctc-addition.message.server.updateSuppression.exception": "捕获到更新抑制异常，已阻止服务器崩溃。",
   "carpet-tctc-addition.message.server.updateSuppression.processed": "更新抑制。",
 
