@@ -35,6 +35,7 @@ public class GCCommand {
 
     static class CleanerThread implements Runnable {
         private final CommandSourceStack sourceStack;
+
         public CleanerThread(CommandSourceStack commandSourceStack) {
             this.sourceStack = commandSourceStack;
         }

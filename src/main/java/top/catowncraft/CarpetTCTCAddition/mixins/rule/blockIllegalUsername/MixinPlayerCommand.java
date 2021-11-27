@@ -14,7 +14,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import top.catowncraft.CarpetTCTCAddition.CarpetTCTCAddition;
 import top.catowncraft.CarpetTCTCAddition.CarpetTCTCAdditionSettings;
 import top.catowncraft.CarpetTCTCAddition.utils.MessageUtil;
 
