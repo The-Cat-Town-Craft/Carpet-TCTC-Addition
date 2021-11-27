@@ -16,10 +16,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import top.catowncraft.CarpetTCTCAddition.commands.FixCommand;
-import top.catowncraft.CarpetTCTCAddition.commands.FreecamCommand;
-import top.catowncraft.CarpetTCTCAddition.commands.HereCommand;
-import top.catowncraft.CarpetTCTCAddition.commands.OperatorCommand;
+import top.catowncraft.CarpetTCTCAddition.commands.*;
 import top.catowncraft.CarpetTCTCAddition.utils.CarpetTCTCAdditionTranslations;
 import top.catowncraft.CarpetTCTCAddition.utils.FreeCameraUtil;
 import top.catowncraft.CarpetTCTCAddition.utils.WorldMapUtil;
@@ -42,6 +39,7 @@ public class CarpetTCTCAddition implements CarpetExtension, ModInitializer {
     public void registerCommands(CommandDispatcher<CommandSourceStack> dispatcher) {
         FixCommand.register(dispatcher);
         FreecamCommand.register(dispatcher);
+        GCCommand.register(dispatcher);
         HereCommand.register(dispatcher);
         OperatorCommand.register(dispatcher);
     }
