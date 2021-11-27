@@ -11,6 +11,8 @@
   "carpet-tctc-addition.message.command.carpet.version": "%s 版本: %s (%s)",
   "carpet-tctc-addition.message.command.fix.fixed": "区块 [%s, %s] 修复中...",
   "carpet-tctc-addition.message.command.fix.fixing": "区块 [%s, %s] 修复完成。",
+  "carpet-tctc-addition.message.command.gc.started": "内存清理开始！",
+  "carpet-tctc-addition.message.command.gc.finished": "内存清理完成！",
   "carpet-tctc-addition.message.command.here.withoutTransformed": "%s @ %s %s %s %s %s",
   "carpet-tctc-addition.message.command.here.withTransformed": "%s @ %s %s %s %s %s -> %s",
   "carpet-tctc-addition.message.command.here.hover.teleport": "点击传送至此",
@@ -41,6 +43,9 @@
 
   "rule.commandFreecam.name": "灵魂出窍命令",
   "rule.commandFreecam.desc": "启用 /freecam 允许你切换旁观模式。",
+
+  "rule.commandGC.name": "强制垃圾回收",
+  "rule.commandGC.desc": "启用 /gc 允许你强制jvm垃圾回收。",
 
   "rule.commandHere.name": "共享坐标命令",
   "rule.commandHere.desc": "启用 /here 命令来让你可以与其他玩家分享你的位置。",
