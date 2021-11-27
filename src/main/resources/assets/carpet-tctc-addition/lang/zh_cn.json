@@ -11,6 +11,8 @@
   "carpet-tctc-addition.message.command.carpet.version": "%s 版本: %s (%s)",
   "carpet-tctc-addition.message.command.fix.fixed": "区块 [%s, %s] 修复中...",
   "carpet-tctc-addition.message.command.fix.fixing": "区块 [%s, %s] 修复完成。",
+  "carpet-tctc-addition.message.command.gc.started": "内存清理开始！",
+  "carpet-tctc-addition.message.command.gc.finished": "内存清理完成！",
   "carpet-tctc-addition.message.command.here.withoutTransformed": "%s @ %s %s %s %s %s",
   "carpet-tctc-addition.message.command.here.withTransformed": "%s @ %s %s %s %s %s -> %s",
   "carpet-tctc-addition.message.command.here.hover.teleport": "点击传送至此",
@@ -19,6 +21,7 @@
   "carpet-tctc-addition.message.command.operator.setBypassPlayerLimit.success": "玩家 %s 绕过玩家最大数上限已更新至 %s。",
   "carpet-tctc-addition.message.command.operator.setPermissionLevel.lower": "你不能赋予目标高于你拥有的权限(等级: %d)。",
   "carpet-tctc-addition.message.command.operator.setPermissionLevel.success": "玩家 %s 的权限已更新至等级 %d。",
+  "carpet-tctc-addition.message.server.checkIllegalUsername.fakePlayer": "玩家名 %s 不合法！",
   "carpet-tctc-addition.message.server.updateSuppression.exception": "捕获到更新抑制异常，已阻止服务器崩溃。",
   "carpet-tctc-addition.message.server.updateSuppression.processed": "更新抑制。",
 
@@ -40,6 +43,9 @@
 
   "rule.commandFreecam.name": "灵魂出窍命令",
   "rule.commandFreecam.desc": "启用 /freecam 允许你切换旁观模式。",
+
+  "rule.commandGC.name": "强制垃圾回收",
+  "rule.commandGC.desc": "启用 /gc 允许你强制jvm垃圾回收。",
 
   "rule.commandHere.name": "共享坐标命令",
   "rule.commandHere.desc": "启用 /here 命令来让你可以与其他玩家分享你的位置。",

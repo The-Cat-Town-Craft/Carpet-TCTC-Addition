@@ -54,6 +54,15 @@ Enables /freecam command to toggle your camera mode.
 - Suggested options: `false`, `true`, `ops`, `0`, `1`, `2`, `3`, `4`
 - Categories: `TCTC`, `TCTC-COMMAND`
 
+### commandGC
+
+Enables /gc command to allow you to force gc with jvm.
+
+- Type: `string`
+- Default value: `ops`
+- Suggested options: `false`, `true`, `ops`, `0`, `1`, `2`, `3`, `4`
+- Categories: `TCTC`, `TCTC-COMMAND`
+
 ### commandHere
 
 Enables /here command to allow you to share your location with other players.
