@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "carpet-tctc-addition",
   "version": "${mod_version}",
-  "name": "CarpetTCTCAddition",
+  "name": "Carpet TCTC Addition",
   "description": "A carpet extension.",
   "authors": [
     {

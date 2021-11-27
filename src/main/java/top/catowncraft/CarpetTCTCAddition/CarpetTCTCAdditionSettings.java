@@ -43,6 +43,14 @@ public class CarpetTCTCAdditionSettings {
     public static String commandFreecam = "true";
 
     @Rule(
+            name = "commandGC",
+            desc = "Enables /gc command to allow you to force gc with jvm.",
+            category = {TCTC, TCTC_COMMAND},
+            options = {"true", "false", "ops", "0", "1", "2", "3", "4"}
+    )
+    public static String commandGC = "ops";
+
+    @Rule(
             name = "commandHere",
             desc = "Enables /here command to allow you to share your location with other players.",
             category = {TCTC, TCTC_COMMAND},
