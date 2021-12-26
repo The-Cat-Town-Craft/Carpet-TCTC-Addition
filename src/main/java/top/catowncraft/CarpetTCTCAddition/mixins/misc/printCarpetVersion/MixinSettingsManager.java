@@ -30,6 +30,6 @@ public class MixinSettingsManager {
             remap = false
     )
     private void printAdditionVersion(CommandSourceStack source, CallbackInfoReturnable<Integer> cir) {
-        MessageUtil.sendMessage(source, new TextComponent(String.format(tr("carpet-tctc-addition.message.command.carpet.version", "%s Version: %s (%s)"), CarpetTCTCAdditionReference.getModName(), CarpetTCTCAdditionReference.getModVersion(), tr(String.format("carpet-tctc-addition.label.versionType.%s", CarpetTCTCAdditionReference.getModVersionType()), CarpetTCTCAdditionReference.getModVersionType()))).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
+        MessageUtil.sendMessage(source, new TextComponent(String.format(tr("carpet-tctc-addition.message.command.carpet.version", "%s Version: %s (%s)"), CarpetTCTCAdditionReference.getModName(), CarpetTCTCAdditionReference.getModVersion(), tr(String.format("carpet-tctc-addition.label.versionType.%s", CarpetTCTCAdditionReference.getModVersionType()), CarpetTCTCAdditionReference.getModVersionType()))).withStyle(ChatFormatting.GRAY));
     }
 }

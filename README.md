@@ -195,6 +195,15 @@ Fix updates suppression causing server crashes.
 - Suggested options: `false`, `true`
 - Categories: `TCTC`, `TCTC-BUGFIX`
 
+### shulkerBoxDupeFix
+
+Taking items from a shulker box while destroying it will result in item duplication.
+
+- Type: `boolean`
+- Default value: `false`
+- Suggested options: `false`, `true`
+- Categories: `TCTC`, `TCTC-BUGFIX`
+
 ### voxelMapWorldName
 
 Send VoxelMap world information packets to client.
