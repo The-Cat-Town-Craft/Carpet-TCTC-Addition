@@ -29,6 +29,6 @@ public class MixinSettingsManager {
             remap = false
     )
     private void printAdditionVersion(CommandSourceStack source, CallbackInfoReturnable<Integer> cir) {
-        MessageUtil.sendMessage(source, (BaseComponent) new TextComponent(String.format("%s Version: %s (%s)", CarpetTCTCAdditionReference.getModName(), CarpetTCTCAdditionReference.getModVersion(), CarpetTCTCAdditionReference.getModVersionType())).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
+        MessageUtil.sendMessage(source, (BaseComponent) new TextComponent(String.format("%s Version: %s (%s)", CarpetTCTCAdditionReference.getModName(), CarpetTCTCAdditionReference.getModVersion(), CarpetTCTCAdditionReference.getModVersionType())).withStyle(ChatFormatting.GRAY));
     }
 }
