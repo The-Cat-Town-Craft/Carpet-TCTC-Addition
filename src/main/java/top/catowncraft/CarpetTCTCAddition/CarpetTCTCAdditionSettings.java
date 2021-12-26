@@ -171,6 +171,13 @@ public class CarpetTCTCAdditionSettings {
     }
 
     @Rule(
+            name = "shulkerBoxDupeFix",
+            desc = "Taking items from a shulker box while destroying it will result in item duplication.",
+            category = {TCTC, TCTC_BUGFIX}
+    )
+    public static boolean shulkerBoxDupeFix = false;
+
+    @Rule(
             name = "updateSuppressionCrashFix",
             desc = "Fix updates suppression causing server crashes.",
             category = {TCTC, TCTC_BUGFIX}
