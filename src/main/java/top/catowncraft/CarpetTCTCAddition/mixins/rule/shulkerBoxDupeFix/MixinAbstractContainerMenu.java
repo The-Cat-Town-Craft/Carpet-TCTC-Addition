@@ -4,7 +4,7 @@
  * License, version 3. If a copy of the GPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  */
-package top.catowncraft.CarpetTCTCAddition.mixins.rule;
+package top.catowncraft.CarpetTCTCAddition.mixins.rule.shulkerBoxDupeFix;
 
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;

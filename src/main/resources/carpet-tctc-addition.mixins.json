@@ -6,7 +6,7 @@
   "mixins": [
     "misc.commandOperatorHelper.MixinPlayerList",
     "misc.printCarpetVersion.MixinSettingsManager",
-    "rule.MixinAbstractContainerMenu",
+    "rule.shulkerBoxDupeFix.MixinAbstractContainerMenu",
     "rule.blockIllegalUsername.MixinPlayerCommand",
     "rule.blockIllegalUsername.MixinPlayerList",
     "rule.cameraModeDisableSpectatePlayers.MixinServerGamePacketListenerImpl",
