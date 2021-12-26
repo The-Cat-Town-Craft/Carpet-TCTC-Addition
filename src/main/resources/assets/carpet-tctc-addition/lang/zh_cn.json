@@ -91,6 +91,9 @@
   "rule.playerStats.extra.2": "none - 玩家和假人均不可获得统计信息。",
   "rule.playerStats.extra.3": "player - 仅玩家可获得统计信息。",
 
+  "rule.shulkerBoxDupeFix.name": "潜影盒复制修复",
+  "rule.shulkerBoxDupeFix.desc": "在破坏潜影盒的同时取走其中的物品会导致物品复制。",
+
   "rule.updateSuppressionCrashFix.name": "更新抑制崩溃修复",
   "rule.updateSuppressionCrashFix.desc": "修复更新抑制造成的服务器崩溃。",
 

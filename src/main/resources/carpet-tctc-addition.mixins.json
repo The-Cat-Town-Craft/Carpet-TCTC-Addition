@@ -16,6 +16,7 @@
     "rule.fireworkSpeedupCoefficient.MixinFireworkRocketEntity",
     "rule.illegalPistonActionFix.MixinPistonBaseBlock",
     "rule.playerStats.MixinPlayer",
+    "rule.shulkerBoxDupeFix.MixinAbstractContainerMenu",
     "rule.updateSuppressionCrashFix.MixinLevel",
     "rule.updateSuppressionCrashFix.MixinMinecraftServer",
     "rule.wetSpongeAbsorbLava.MixinWetSpongeBlock",
