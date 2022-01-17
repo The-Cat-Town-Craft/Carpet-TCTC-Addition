@@ -19,6 +19,7 @@
     "rule.shulkerBoxDupeFix.MixinAbstractContainerMenu",
     "rule.updateSuppressionCrashFix.MixinLevel",
     "rule.updateSuppressionCrashFix.MixinMinecraftServer",
+    "rule.voidTradeFix.MixinServerLevel",
     "rule.wetSpongeAbsorbLava.MixinWetSpongeBlock",
     "rule.xaeroMapWorldName.MixinPlayerList"
   ],
