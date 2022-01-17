@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/github/license/The-Cat-Town-Craft/Carpet-TCTC-Addition?label=License&style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/blob/main/LICENSE)
 ![Java-8](https://img.shields.io/github/languages/top/The-Cat-Town-Craft/Carpet-TCTC-Addition?style=flat-square)
 ![Languages](https://img.shields.io/badge/Java-8-orange?style=flat-square)
-[![Codacy Grade](https://img.shields.io/codacy/grade/1c5b3072db3c4137b0b5a0c7b57a43e9?label=Codacy%20Grade&style=flat-square)](https://app.codacy.com/gh/The-Cat-Town-Craft/Carpet-TCTC-Addition/dashboard)
+[![Codacy Grade](https://img.shields.io/codacy/grade/f55de957650840f0be367cedb027aeba?label=Codacy%20Grade&style=flat-square)](https://app.codacy.com/gh/The-Cat-Town-Craft/Carpet-TCTC-Addition/dashboard)
 [![Issues](https://img.shields.io/github/issues/The-Cat-Town-Craft/Carpet-TCTC-Addition?label=Issues&style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/issues)
 [![Pull Requests](https://img.shields.io/github/issues-pr/The-Cat-Town-Craft/Carpet-TCTC-Addition?label=Pull%20Requests&style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/pulls)
 [![CI](https://img.shields.io/github/workflow/status/The-Cat-Town-Craft/Carpet-TCTC-Addition/CI/dev?label=Public%20Beta&style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/actions/workflows/CI.yml?query=branch%3Adev)
@@ -198,6 +198,15 @@ player - 仅玩家可获得统计信息。
 ### 更新抑制崩溃修复(updateSuppressionCrashFix)
 
 修复更新抑制造成的服务器崩溃。
+
+- 类型: `布尔值`
+- 默认值: `false`
+- 参考数据: `false`, `true`
+- 类别: `喵镇附属`, `喵镇附属-漏洞修复`
+
+### 虚空交易修复(voidTradeFix)
+
+一旦村民实体被卸载，将关闭交易界面。
 
 - 类型: `布尔值`
 - 默认值: `false`
