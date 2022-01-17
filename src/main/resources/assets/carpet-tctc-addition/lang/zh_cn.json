@@ -97,6 +97,9 @@
   "rule.updateSuppressionCrashFix.name": "更新抑制崩溃修复",
   "rule.updateSuppressionCrashFix.desc": "修复更新抑制造成的服务器崩溃。",
 
+  "rule.voidTradeFix.name": "虚空交易修复",
+  "rule.voidTradeFix.desc": "一旦村民实体被卸载，将关闭交易界面。",
+
   "rule.voxelMapWorldName.name": "体素地图世界名",
   "rule.voxelMapWorldName.desc": "向客户端发送体素地图世界信息数据包。",
 

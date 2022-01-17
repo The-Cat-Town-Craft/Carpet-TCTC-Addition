@@ -204,6 +204,15 @@ Taking items from a shulker box while destroying it will result in item duplicat
 - Suggested options: `false`, `true`
 - Categories: `TCTC`, `TCTC-BUGFIX`
 
+### voidTradeFix
+
+Once the villager entity is unloaded, the trading interface will be closed.
+
+- Type: `boolean`
+- Default value: `false`
+- Suggested options: `false`, `true`
+- Categories: `TCTC`, `TCTC-BUGFIX`
+
 ### voxelMapWorldName
 
 Send VoxelMap world information packets to client.
