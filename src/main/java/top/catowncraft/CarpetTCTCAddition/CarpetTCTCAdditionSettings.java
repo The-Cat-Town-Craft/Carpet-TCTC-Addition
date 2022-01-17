@@ -185,6 +185,13 @@ public class CarpetTCTCAdditionSettings {
     public static boolean updateSuppressionCrashFix = false;
 
     @Rule(
+            name = "voidTradeFix",
+            desc = "Once the villager entity is unloaded, the trading interface will be closed.",
+            category = {TCTC, TCTC_BUGFIX}
+    )
+    public static boolean voidTradeFix = false;
+
+    @Rule(
             name = "voxelMapWorldName",
             desc = "Send VoxelMap world information packets to client.",
             category = {TCTC, TCTC_PROTOCOL},
