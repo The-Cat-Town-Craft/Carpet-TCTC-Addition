@@ -4,7 +4,7 @@
   "version": "${mod_version}",
 
   "name": "Carpet TCTC Addition",
-  "description": "A carpet extension.",
+  "description": "A fabric-carpet extension mod. It offers some interesting features.",
   "authors": [
     {
       "name": "The Cat Town Craft",
