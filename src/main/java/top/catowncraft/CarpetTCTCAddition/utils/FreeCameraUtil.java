@@ -6,136 +6,133 @@
  */
 package top.catowncraft.CarpetTCTCAddition.utils;
 
-import com.google.common.reflect.TypeToken;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.storage.LevelResource;
-import org.apache.commons.io.IOUtils;
+import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
 import top.catowncraft.CarpetTCTCAddition.CarpetTCTCAddition;
 import top.catowncraft.CarpetTCTCAddition.CarpetTCTCAdditionReference;
 
-import java.io.*;
-import java.nio.charset.StandardCharsets;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import static net.minecraft.core.Registry.DIMENSION_REGISTRY;
 
 public class FreeCameraUtil {
-    public static HashMap<UUID, CameraData> freeCameraData = new HashMap<>();
+    public static class FreeCameraData {
+        public final @NotNull GameType gameType;
+        public final @NotNull ResourceKey<Level> dimension;
+        public final @NotNull Vec3 vec3;
+        public final float xRot;
+        public final float yRot;
+        public boolean isFreecam;
 
-    public static class CameraData {
-        boolean isFreeCamera;
-        String gameType;
-        String resourceKey;
-        double x;
-        double y;
-        double z;
-        float yRot;
-        float xRot;
-
-        public CameraData(GameType gameType, ResourceKey<Level> resourceKey, double x, double y, double z, float yRot, float xRot, boolean isFreeCamera) {
-            this.isFreeCamera = isFreeCamera;
-            this.gameType = gameType.getName();
-            this.resourceKey = resourceKey.location().toString();
-            this.x = x;
-            this.y = y;
-            this.z = z;
-            this.yRot = yRot;
+        public FreeCameraData(@NotNull GameType gameType, @NotNull ResourceKey<Level> dimension, @NotNull Vec3 vec3, float xRot, float yRot, boolean isFreecam) {
+            this.gameType = gameType;
+            this.dimension = dimension;
+            this.vec3 = vec3;
             this.xRot = xRot;
-        }
-
-        public boolean isFreeCamera() {
-            return this.isFreeCamera;
-        }
-
-        public GameType getGameType() {
-            return GameType.byName(this.gameType);
-        }
-
-        public ResourceKey<Level> getResourceKey() {
-            return ResourceKey.create(DIMENSION_REGISTRY, new ResourceLocation(this.resourceKey));
-        }
-
-        public double getX() {
-            return this.x;
-        }
-
-        public double getY() {
-            return this.y;
-        }
-
-        public double getZ() {
-            return this.z;
-        }
-
-        public float getYRot() {
-            return this.yRot;
-        }
-
-        public float getXRot() {
-            return this.xRot;
-        }
-
-        public void setFreeCamera(boolean isFreeCamera) {
-            this.isFreeCamera = isFreeCamera;
-        }
-
-        public void setGameType(GameType gameType) {
-            this.gameType = gameType.getName();
-        }
-
-        public void setDimensionType(ResourceKey<Level> resourceKey) {
-            this.resourceKey = resourceKey.toString();
-        }
-
-        public void setX(double x) {
-            this.x = x;
-        }
-
-        public void setY(double y) {
-            this.y = y;
-        }
-
-        public void setZ(double z) {
-            this.z = z;
-        }
-
-        public void setYRot(float yRot) {
             this.yRot = yRot;
+            this.isFreecam = isFreecam;
         }
 
-        public void setXRot(float xRot) {
-            this.xRot = xRot;
+        public FreeCameraData(@NotNull ServerPlayer serverPlayer, boolean isFreecam) {
+            this.gameType = serverPlayer.gameMode.getGameModeForPlayer();
+            this.dimension = serverPlayer.getLevel().dimension();
+            this.vec3 = serverPlayer.position();
+            this.xRot = serverPlayer.getXRot();
+            this.yRot = serverPlayer.getYRot();
+            this.isFreecam = isFreecam;
         }
-    }
 
-    public static void loadFreeCameraData() {
-        String dataJSON;
-        try {
-            dataJSON = IOUtils.toString(new FileInputStream(getFile()), StandardCharsets.UTF_8);
-        } catch (NullPointerException | IOException e) {
-            dataJSON = "{}";
-        }
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        freeCameraData = gson.fromJson(dataJSON, new TypeToken<HashMap<String, CameraData>>() {
-        }.getType());
-    }
-
-    public static void saveFreeCameraData() {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        try (Writer writer = new OutputStreamWriter(new FileOutputStream(getFile()), StandardCharsets.UTF_8)) {
-            writer.write(gson.toJson(freeCameraData));
-        } catch (Exception e) {
-            e.printStackTrace();
+        public void serialize(JsonObject jsonObject) {
+            jsonObject.addProperty("gameType", this.gameType.getName());
+            jsonObject.addProperty("dimension", this.dimension.location().toString());
+            jsonObject.addProperty("x", this.vec3.x);
+            jsonObject.addProperty("y", this.vec3.y);
+            jsonObject.addProperty("z", this.vec3.z);
+            jsonObject.addProperty("xRot", this.xRot);
+            jsonObject.addProperty("yRot", this.yRot);
+            jsonObject.addProperty("isFreecam", this.isFreecam);
         }
     }
 
-    public static File getFile() {
-        return CarpetTCTCAddition.getServer().getWorldPath(LevelResource.ROOT).resolve(String.format("%s_freeCameraStorage.json", CarpetTCTCAdditionReference.getModId())).toFile();
+    public static Path getFile() {
+        return CarpetTCTCAddition.getServer().getWorldPath(LevelResource.ROOT).resolve(String.format("%s_freeCameraStorage.json", CarpetTCTCAdditionReference.getModId()));
+    }
+
+    public static FreeCameraData createEntry(JsonObject jsonObject) {
+        GameType gameType = jsonObject.has("gameType") ? GameType.byName(jsonObject.get("gameType").getAsString()) : GameType.SURVIVAL;
+        ResourceKey<Level> dimension = jsonObject.has("dimension") ? ResourceKey.create(DIMENSION_REGISTRY, new ResourceLocation(jsonObject.get("dimension").getAsString())) : null;
+        double x = jsonObject.has("x") ? jsonObject.get("x").getAsDouble() : 0;
+        double y = jsonObject.has("y") ? jsonObject.get("y").getAsDouble() : 0;
+        double z = jsonObject.has("z") ? jsonObject.get("z").getAsDouble() : 0;
+        float xRot = jsonObject.has("xRot") ? jsonObject.get("xRot").getAsFloat() : 0;
+        float yRot = jsonObject.has("yRot") ? jsonObject.get("yRot").getAsFloat() : 0;
+        boolean isFreecam = jsonObject.has("isFreecam") && jsonObject.get("isFreecam").getAsBoolean();
+        return new FreeCameraData(gameType, dimension != null ? dimension : Level.OVERWORLD, new Vec3(x, y, z), xRot, yRot, isFreecam);
+    }
+
+    static class Serializer implements JsonDeserializer<FreeCameraData>, JsonSerializer<FreeCameraData> {
+        private Serializer() {
+        }
+
+        @Override
+        public JsonElement serialize(FreeCameraData src, Type typeOfSrc, JsonSerializationContext context) {
+            JsonObject jsonObject = new JsonObject();
+            src.serialize(jsonObject);
+            return jsonObject;
+        }
+
+        @Override
+        public FreeCameraData deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+            if (json.isJsonObject()) {
+                JsonObject jsonObject = json.getAsJsonObject();
+                return FreeCameraUtil.createEntry(jsonObject);
+            }
+            return null;
+        }
+    }
+
+    public static void saveFreeCameraData(Map<UUID, FreeCameraData> data) throws IOException {
+        Path file = getFile();
+
+        if (data.isEmpty()) {
+            Files.deleteIfExists(file);
+            return;
+        }
+
+        String string = new GsonBuilder().registerTypeAdapter(FreeCameraData.class, new Serializer()).create().toJson(data);
+
+        try (BufferedWriter writer = Files.newBufferedWriter(file)) {
+            writer.write(string);
+        } catch (Throwable throwable) {
+            CarpetTCTCAddition.getLogger().error("Cannot write freeCameraData: {}", string);
+        }
+    }
+
+    public static Map<UUID, FreeCameraData> loadFreeCameraData() throws IOException {
+        Path file = getFile();
+
+        if (!Files.isRegularFile(file)) {
+            return new HashMap<>();
+        }
+        try (BufferedReader reader = Files.newBufferedReader(file)) {
+            return new GsonBuilder().registerTypeAdapter(FreeCameraData.class, new Serializer()).create().fromJson(reader, new TypeToken<Map<UUID, FreeCameraData>>() {
+            }.getType());
+        }
     }
 }

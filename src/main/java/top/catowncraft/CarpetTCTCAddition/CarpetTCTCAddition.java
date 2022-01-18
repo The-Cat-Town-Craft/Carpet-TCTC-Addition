@@ -10,10 +10,13 @@ import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import com.mojang.brigadier.CommandDispatcher;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.entity.npc.AbstractVillager;
+import net.minecraft.world.entity.player.Player;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import top.catowncraft.CarpetTCTCAddition.commands.*;
@@ -21,11 +24,16 @@ import top.catowncraft.CarpetTCTCAddition.utils.CarpetTCTCAdditionTranslations;
 import top.catowncraft.CarpetTCTCAddition.utils.FreeCameraUtil;
 import top.catowncraft.CarpetTCTCAddition.utils.WorldMapUtil;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class CarpetTCTCAddition implements CarpetExtension, ModInitializer {
     private static final Logger logger = LogManager.getLogger(CarpetTCTCAdditionReference.getModId());
     private static MinecraftServer minecraftServer;
+    private static CarpetTCTCAddition instance;
+    private Map<UUID, FreeCameraUtil.FreeCameraData> cameraData = new HashMap<>();
 
     public static MinecraftServer getServer() {
         return minecraftServer;
@@ -52,8 +60,13 @@ public class CarpetTCTCAddition implements CarpetExtension, ModInitializer {
     @Override
     public void onServerLoaded(MinecraftServer server) {
         minecraftServer = server;
+        instance = this;
         // Load freecam data.
-        FreeCameraUtil.loadFreeCameraData();
+        try {
+            this.cameraData = FreeCameraUtil.loadFreeCameraData();
+        } catch (Exception e) {
+            CarpetTCTCAddition.getLogger().error(e.getMessage());
+        }
     }
 
     @Override
@@ -73,5 +86,30 @@ public class CarpetTCTCAddition implements CarpetExtension, ModInitializer {
 
         // Register packet handler
         ServerPlayNetworking.registerGlobalReceiver(new ResourceLocation("worldinfo", "world_id"), WorldMapUtil::voxelMapPacketHandler);
+
+        ServerEntityEvents.ENTITY_UNLOAD.register(((entity, world) -> {
+            if (entity instanceof AbstractVillager) {
+                Player player = ((AbstractVillager) entity).getTradingPlayer();
+                if (CarpetTCTCAdditionSettings.voidTradeFix && player != null) {
+                    player.containerMenu.removed(player);
+                }
+            }
+        }));
+    }
+
+    public static CarpetTCTCAddition getInstance() {
+        return instance;
+    }
+
+    public void onLevelSave() {
+        try {
+            FreeCameraUtil.saveFreeCameraData(this.cameraData);
+        } catch (IOException e) {
+            CarpetTCTCAddition.getLogger().error(e.getMessage());
+        }
+    }
+
+    public Map<UUID, FreeCameraUtil.FreeCameraData> getCameraData() {
+        return this.cameraData;
     }
 }
