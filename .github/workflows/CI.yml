@@ -103,7 +103,7 @@ jobs:
           elif ${{ matrix.branch == '1.17'}}; then
             echo "::set-output name=branchname::1.17.1"
           elif ${{ matrix.branch == '1.18'}}; then
-            echo "::set-output name=branchname::1.18"
+            echo "::set-output name=branchname::1.18.1"
           fi
       - name: Checkout the sources
         uses: actions/checkout@v2
