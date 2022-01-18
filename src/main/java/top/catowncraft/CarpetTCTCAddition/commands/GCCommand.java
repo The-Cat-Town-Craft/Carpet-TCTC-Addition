@@ -13,6 +13,7 @@ import com.mojang.brigadier.context.CommandContext;
 import net.minecraft.commands.CommandSourceStack;
 import top.catowncraft.CarpetTCTCAddition.CarpetTCTCAdditionSettings;
 import top.catowncraft.CarpetTCTCAddition.utils.MessageUtil;
+
 import static net.minecraft.commands.Commands.literal;
 
 public class GCCommand {

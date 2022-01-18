@@ -20,9 +20,16 @@ import top.catowncraft.CarpetTCTCAddition.commands.*;
 import top.catowncraft.CarpetTCTCAddition.utils.FreeCameraUtil;
 import top.catowncraft.CarpetTCTCAddition.utils.WorldMapUtil;
 
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
 public class CarpetTCTCAddition implements CarpetExtension, ModInitializer {
     private static final Logger logger = LogManager.getLogger(CarpetTCTCAdditionReference.getModId());
     private static MinecraftServer minecraftServer;
+    private static CarpetTCTCAddition instance;
+    private Map<UUID, FreeCameraUtil.FreeCameraData> cameraData = new HashMap<>();
 
     public static MinecraftServer getServer() {
         return minecraftServer;
@@ -49,8 +56,13 @@ public class CarpetTCTCAddition implements CarpetExtension, ModInitializer {
     @Override
     public void onServerLoaded(MinecraftServer server) {
         minecraftServer = server;
+        instance = this;
         // Load freecam data.
-        FreeCameraUtil.loadFreeCameraData();
+        try {
+            this.cameraData = FreeCameraUtil.loadFreeCameraData();
+        } catch (Exception e) {
+            CarpetTCTCAddition.getLogger().error(e.getMessage());
+        }
     }
 
     @Override
@@ -66,4 +78,21 @@ public class CarpetTCTCAddition implements CarpetExtension, ModInitializer {
         // Register packet handler
         ServerPlayNetworking.registerGlobalReceiver(new ResourceLocation("worldinfo", "world_id"), WorldMapUtil::voxelMapPacketHandler);
     }
+
+    public static CarpetTCTCAddition getInstance() {
+        return instance;
+    }
+
+    public void onLevelSave() {
+        try {
+            FreeCameraUtil.saveFreeCameraData(this.cameraData);
+        } catch (IOException e) {
+            CarpetTCTCAddition.getLogger().error(e.getMessage());
+        }
+    }
+
+    public Map<UUID, FreeCameraUtil.FreeCameraData> getCameraData() {
+        return this.cameraData;
+    }
+
 }
