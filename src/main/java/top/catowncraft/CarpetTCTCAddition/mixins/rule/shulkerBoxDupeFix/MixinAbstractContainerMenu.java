@@ -19,9 +19,11 @@ import top.catowncraft.CarpetTCTCAddition.CarpetTCTCAdditionSettings;
 
 @Mixin(AbstractContainerMenu.class)
 public abstract class MixinAbstractContainerMenu {
-    @Shadow public abstract boolean stillValid(Player var1);
+    @Shadow
+    public abstract boolean stillValid(Player var1);
 
-    @Shadow public abstract void removed(Player player);
+    @Shadow
+    public abstract void removed(Player player);
 
     @Inject(
             method = "clicked",
