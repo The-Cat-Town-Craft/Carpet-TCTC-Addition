@@ -4,6 +4,7 @@
   "package": "top.catowncraft.CarpetTCTCAddition.mixins",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "events.MixinMinecraftServer",
     "misc.commandOperatorHelper.MixinPlayerList",
     "misc.printCarpetVersion.MixinSettingsManager",
     "rule.blockIllegalUsername.MixinPlayerCommand",

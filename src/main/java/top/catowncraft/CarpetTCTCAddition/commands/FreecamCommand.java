@@ -12,10 +12,13 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.GameType;
+import top.catowncraft.CarpetTCTCAddition.CarpetTCTCAddition;
 import top.catowncraft.CarpetTCTCAddition.CarpetTCTCAdditionSettings;
 import top.catowncraft.CarpetTCTCAddition.utils.FreeCameraUtil;
 
 import java.util.Collection;
+import java.util.Map;
+import java.util.UUID;
 
 import static net.minecraft.commands.Commands.argument;
 import static net.minecraft.commands.Commands.literal;
@@ -41,22 +44,22 @@ public class FreecamCommand {
     }
 
     public static int executeFreeCamera(CommandSourceStack source, ServerPlayer serverPlayer) {
-        FreeCameraUtil.CameraData cameraData = FreeCameraUtil.freeCameraData == null ? null : FreeCameraUtil.freeCameraData.get(serverPlayer.getUUID());
+        Map<UUID, FreeCameraUtil.FreeCameraData> freeCameraUtilMap = CarpetTCTCAddition.getInstance().getCameraData();
+        FreeCameraUtil.FreeCameraData cameraData = freeCameraUtilMap.get(serverPlayer.getUUID());
         boolean isCameraMode;
-        FreeCameraUtil.CameraData cameraDataNew = new FreeCameraUtil.CameraData(serverPlayer.gameMode.getGameModeForPlayer(), serverPlayer.dimension, serverPlayer.getX(), serverPlayer.getY(), serverPlayer.getZ(), serverPlayer.yRot, serverPlayer.xRot, true);
-        if (cameraData == null || !cameraData.isFreeCamera()) {
+        FreeCameraUtil.FreeCameraData cameraDataNew = new FreeCameraUtil.FreeCameraData(serverPlayer, true);
+        if (cameraData == null || !cameraData.isFreecam) {
             isCameraMode = true;
             serverPlayer.setGameMode(GameType.SPECTATOR);
         } else {
-            if (CarpetTCTCAdditionSettings.freecamRestoreLocation && cameraData.isFreeCamera() && serverPlayer.isAlive()) {
-                serverPlayer.teleportTo(serverPlayer.server.getLevel(cameraData.getDimensionType()), cameraData.getX(), cameraData.getY(), cameraData.getZ(), cameraData.getYRot(), cameraData.getXRot());
+            if (CarpetTCTCAdditionSettings.freecamRestoreLocation && serverPlayer.isAlive()) {
+                serverPlayer.teleportTo(serverPlayer.server.getLevel(cameraData.dimension), cameraData.vec3.x, cameraData.vec3.y, cameraData.vec3.z, cameraData.yRot, cameraData.xRot);
             }
             isCameraMode = false;
-            serverPlayer.setGameMode(cameraData.getGameType());
+            serverPlayer.setGameMode(cameraData.gameType);
         }
-        cameraDataNew.setFreeCamera(isCameraMode);
-        FreeCameraUtil.freeCameraData.put(serverPlayer.getUUID(), cameraDataNew);
-        FreeCameraUtil.saveFreeCameraData();
+        cameraDataNew.isFreecam = isCameraMode;
+        freeCameraUtilMap.put(serverPlayer.getUUID(), cameraDataNew);
         return 1;
     }
 }
