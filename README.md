@@ -270,7 +270,7 @@ Current maintaining branches:
 - `1.15.2` for Minecraft 1.15.2
 - `1.16.5` for Minecraft 1.16.5
 - `1.17.1` for Minecraft 1.17.1
-- `1.18` for Minecraft 1.18-snapshot
+- `1.18.1` for Minecraft 1.18.1
 
 For general new features, implement them in `dev` branch first then merge it into other branches.
 
@@ -280,7 +280,7 @@ Branches merge order:
 - `dev` -> `1.15.2`
 - `dev` -> `1.16.5`
 - `dev` -> `1.17.1`
-- `dev` -> `1.18`
+- `dev` -> `1.18.1`
 - `1.15.2` -> `master` (When publishing **public releases**)
 
 For version specific fixes / patches, implement them in relevant branches.
