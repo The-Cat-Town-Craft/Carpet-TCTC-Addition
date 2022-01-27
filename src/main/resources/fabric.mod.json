@@ -8,7 +8,7 @@
     {
       "name": "The Cat Town Craft",
       "contact": {
-        "homepage": "https://github.com/The-Cat-The-Craft"
+        "homepage": "https://github.com/The-Cat-Town-Craft"
       }
     }
   ],
@@ -21,9 +21,9 @@
     }
   ],
   "contact": {
-    "homepage": "https://github.com/The-Cat-The-Craft",
+    "homepage": "https://github.com/The-Cat-Town-Craft",
     "issues": "https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/issues",
-    "sources": "https://github.com/The-Cat-The-Craft/Carpet-TCTC-Addition"
+    "sources": "https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition"
   },
   "license": "GPL-v3",
   "icon": "assets/carpet-tctc-addition/icon.png",
