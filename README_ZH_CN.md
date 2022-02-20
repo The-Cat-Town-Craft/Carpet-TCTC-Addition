@@ -249,7 +249,7 @@ player - 仅玩家可获得统计信息。
 - 参考数据: `3`, `6`
 - 类别: `喵镇附属`, `喵镇附属-实验性`, `喵镇附属-特性`
 
-### xaero地图世界名(voxelMapWorldName)
+### xaero地图世界名(xaeroMapWorldName)
 
 向客户端发送xaero地图世界信息数据包。
 
