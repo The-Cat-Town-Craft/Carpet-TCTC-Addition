@@ -4,12 +4,12 @@
   "version": "${mod_version}",
 
   "name": "Carpet TCTC Addition",
-  "description": "A carpet extension.",
+  "description": "A fabric-carpet extension mod. It offers some interesting features.",
   "authors": [
     {
       "name": "The Cat Town Craft",
       "contact": {
-        "homepage": "https://github.com/The-Cat-The-Craft"
+        "homepage": "https://github.com/The-Cat-Town-Craft"
       }
     }
   ],
@@ -22,9 +22,9 @@
     }
   ],
   "contact": {
-    "homepage": "https://github.com/The-Cat-The-Craft",
+    "homepage": "https://github.com/The-Cat-Town-Craft",
     "issues": "https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/issues",
-    "sources": "https://github.com/The-Cat-The-Craft/Carpet-TCTC-Addition"
+    "sources": "https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition"
   },
 
   "license": "GPL-v3",

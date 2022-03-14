@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/github/license/The-Cat-Town-Craft/Carpet-TCTC-Addition?label=License&style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/blob/main/LICENSE)
 ![Java-8](https://img.shields.io/github/languages/top/The-Cat-Town-Craft/Carpet-TCTC-Addition?style=flat-square)
 ![Languages](https://img.shields.io/badge/Java-8-orange?style=flat-square)
-[![Codacy Grade](https://img.shields.io/codacy/grade/1c5b3072db3c4137b0b5a0c7b57a43e9?label=Codacy%20Grade&style=flat-square)](https://app.codacy.com/gh/The-Cat-Town-Craft/Carpet-TCTC-Addition/dashboard)
+[![Codacy Grade](https://img.shields.io/codacy/grade/f55de957650840f0be367cedb027aeba?label=Codacy%20Grade&style=flat-square)](https://app.codacy.com/gh/The-Cat-Town-Craft/Carpet-TCTC-Addition/dashboard)
 [![Issues](https://img.shields.io/github/issues/The-Cat-Town-Craft/Carpet-TCTC-Addition?label=Issues&style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/issues)
 [![Pull Requests](https://img.shields.io/github/issues-pr/The-Cat-Town-Craft/Carpet-TCTC-Addition?label=Pull%20Requests&style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/pulls)
 [![CI](https://img.shields.io/github/workflow/status/The-Cat-Town-Craft/Carpet-TCTC-Addition/CI/dev?label=Public%20Beta&style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/actions/workflows/CI.yml?query=branch%3Adev)
@@ -204,6 +204,15 @@ Taking items from a shulker box while destroying it will result in item duplicat
 - Suggested options: `false`, `true`
 - Categories: `TCTC`, `TCTC-BUGFIX`
 
+### voidTradeFix
+
+Once the villager entity is unloaded, the trading interface will be closed.
+
+- Type: `boolean`
+- Default value: `false`
+- Suggested options: `false`, `true`
+- Categories: `TCTC`, `TCTC-BUGFIX`
+
 ### voxelMapWorldName
 
 Send VoxelMap world information packets to client.
@@ -261,7 +270,7 @@ Current maintaining branches:
 - `1.15.2` for Minecraft 1.15.2
 - `1.16.5` for Minecraft 1.16.5
 - `1.17.1` for Minecraft 1.17.1
-- `1.18` for Minecraft 1.18-snapshot
+- `1.18.1` for Minecraft 1.18.1
 
 For general new features, implement them in `dev` branch first then merge it into other branches.
 
@@ -271,7 +280,7 @@ Branches merge order:
 - `dev` -> `1.15.2`
 - `dev` -> `1.16.5`
 - `dev` -> `1.17.1`
-- `dev` -> `1.18`
+- `dev` -> `1.18.1`
 - `1.15.2` -> `master` (When publishing **public releases**)
 
 For version specific fixes / patches, implement them in relevant branches.

@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/github/license/The-Cat-Town-Craft/Carpet-TCTC-Addition?label=License&style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/blob/main/LICENSE)
 ![Java-8](https://img.shields.io/github/languages/top/The-Cat-Town-Craft/Carpet-TCTC-Addition?style=flat-square)
 ![Languages](https://img.shields.io/badge/Java-8-orange?style=flat-square)
-[![Codacy Grade](https://img.shields.io/codacy/grade/1c5b3072db3c4137b0b5a0c7b57a43e9?label=Codacy%20Grade&style=flat-square)](https://app.codacy.com/gh/The-Cat-Town-Craft/Carpet-TCTC-Addition/dashboard)
+[![Codacy Grade](https://img.shields.io/codacy/grade/f55de957650840f0be367cedb027aeba?label=Codacy%20Grade&style=flat-square)](https://app.codacy.com/gh/The-Cat-Town-Craft/Carpet-TCTC-Addition/dashboard)
 [![Issues](https://img.shields.io/github/issues/The-Cat-Town-Craft/Carpet-TCTC-Addition?label=Issues&style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/issues)
 [![Pull Requests](https://img.shields.io/github/issues-pr/The-Cat-Town-Craft/Carpet-TCTC-Addition?label=Pull%20Requests&style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/pulls)
 [![CI](https://img.shields.io/github/workflow/status/The-Cat-Town-Craft/Carpet-TCTC-Addition/CI/dev?label=Public%20Beta&style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/actions/workflows/CI.yml?query=branch%3Adev)
@@ -47,7 +47,7 @@
 
 ### 强制垃圾回收(commandGC)
 
-启用 /freecam 允许你切换旁观模式。
+启用 /gc 允许你强制jvm垃圾回收。
 
 - 类型: `字符串`
 - 默认值: `ops`
@@ -204,6 +204,15 @@ player - 仅玩家可获得统计信息。
 - 参考数据: `false`, `true`
 - 类别: `喵镇附属`, `喵镇附属-漏洞修复`
 
+### 虚空交易修复(voidTradeFix)
+
+一旦村民实体被卸载，将关闭交易界面。
+
+- 类型: `布尔值`
+- 默认值: `false`
+- 参考数据: `false`, `true`
+- 类别: `喵镇附属`, `喵镇附属-漏洞修复`
+
 ### 体素地图世界名(voxelMapWorldName)
 
 向客户端发送体素地图世界信息数据包。
@@ -240,7 +249,7 @@ player - 仅玩家可获得统计信息。
 - 参考数据: `3`, `6`
 - 类别: `喵镇附属`, `喵镇附属-实验性`, `喵镇附属-特性`
 
-### xaero地图世界名(voxelMapWorldName)
+### xaero地图世界名(xaeroMapWorldName)
 
 向客户端发送xaero地图世界信息数据包。
 
@@ -261,7 +270,7 @@ player - 仅玩家可获得统计信息。
 - `1.15.2` 适用于 Minecraft 1.15.2
 - `1.16.5` 适用于 Minecraft 1.16.5
 - `1.17.1` 适用于 Minecraft 1.17.1
-- `1.18` 适用于 Minecraft 1.18-快照
+- `1.18.1` 适用于 Minecraft 1.18.1
 
 对于通用的新特性，在 `dev` 分支中实现，再将其合并至其他分支。
 
@@ -271,7 +280,7 @@ player - 仅玩家可获得统计信息。
 - `dev` -> `1.15.2`
 - `dev` -> `1.16.5`
 - `dev` -> `1.17.1`
-- `dev` -> `1.18`
+- `dev` -> `1.18.1`
 - `1.15.2` -> `master` (当发布**公共发行版**时)
 
 对于版本专用的修复/补丁，在对应的分支上实现即可。

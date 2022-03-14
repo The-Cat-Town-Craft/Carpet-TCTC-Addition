@@ -49,26 +49,27 @@ public class HereCommand {
     public static int print(CommandSourceStack commandSourceStack, ServerPlayer serverPlayer) {
         if (serverPlayer.dimension == DimensionType.OVERWORLD || serverPlayer.dimension == DimensionType.NETHER) {
             MessageUtil.sendServerMessage(CarpetTCTCAddition.getServer(),
-                    new TranslatableComponent(tr("carpet-tctc-addition.message.command.here.withTransformed", "%s @ %s %s %s %s %s -> %s"),
+                    new TranslatableComponent(tr("carpet-tctc-addition.message.command.here.withTransformed", "%s @ %s %s %s %s %s %s -> %s"),
                             new TextComponent(serverPlayer.getName().getString()).withStyle(ChatFormatting.GRAY),
                             getDimension(serverPlayer.dimension),
                             new TextComponent(getOriginalPosition(serverPlayer)).withStyle(serverPlayer.dimension == DimensionType.OVERWORLD ? ChatFormatting.DARK_GREEN : ChatFormatting.DARK_RED),
                             getWorldMapAdderVM(serverPlayer),
                             getWorldMapAdderXM(serverPlayer),
-                            getTeleportAction(serverPlayer),
+                            getTeleportLocationAction(serverPlayer),
+                            getTeleportPlayerAction(serverPlayer),
                             new TextComponent(serverPlayer.dimension == DimensionType.OVERWORLD ? getDividedPosition(serverPlayer) : getMultipliedPosition(serverPlayer)).withStyle(serverPlayer.dimension == DimensionType.OVERWORLD ? ChatFormatting.DARK_RED : ChatFormatting.DARK_GREEN)
-
                     )
             );
         } else {
             MessageUtil.sendServerMessage(CarpetTCTCAddition.getServer(),
-                    new TranslatableComponent(tr("carpet-tctc-addition.message.command.here.withoutTransformed", "%s @ %s %s %s %s %s"),
+                    new TranslatableComponent(tr("carpet-tctc-addition.message.command.here.withoutTransformed", "%s @ %s %s %s %s %s %s"),
                             new TextComponent(serverPlayer.getName().getString()).withStyle(ChatFormatting.GRAY),
                             getDimension(serverPlayer.dimension),
+                            new TextComponent(getOriginalPosition(serverPlayer)).withStyle(serverPlayer.dimension == DimensionType.THE_END ? ChatFormatting.GOLD : ChatFormatting.DARK_AQUA),
                             getWorldMapAdderVM(serverPlayer),
                             getWorldMapAdderXM(serverPlayer),
-                            getTeleportAction(serverPlayer),
-                            new TextComponent(getOriginalPosition(serverPlayer)).withStyle(serverPlayer.dimension == DimensionType.THE_END ? ChatFormatting.GOLD : ChatFormatting.DARK_AQUA)
+                            getTeleportLocationAction(serverPlayer),
+                            getTeleportPlayerAction(serverPlayer)
                     )
             );
         }
@@ -108,10 +109,14 @@ public class HereCommand {
     }
 
     public static Component getWorldMapAdderXM(Entity entity) {
-        return new TextComponent("[X]").withStyle(ChatFormatting.DARK_GRAY).deepCopy().withStyle((style -> style.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, String.format("xaero_waypoint_add:%s's Location:%s:%d:%d:%d:8:false:0", entity.getDisplayName().getString(), entity.getDisplayName().getString(1), (int) entity.getX(), (int) entity.getY(), (int) entity.getZ()))).setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponent(tr("carpet-tctc-addition.message.command.here.hover.xaeroMap", "Click with xaeroMap to add waypoints."))))));
+        return new TextComponent("[X]").withStyle(ChatFormatting.DARK_GREEN).deepCopy().withStyle((style -> style.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, String.format("xaero_waypoint_add:%s's Location:%s:%d:%d:%d:8:false:0", entity.getDisplayName().getString(), entity.getDisplayName().getString(1), (int) entity.getX(), (int) entity.getY(), (int) entity.getZ()))).setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponent(tr("carpet-tctc-addition.message.command.here.hover.xaeroMap", "Click with xaeroMap to add waypoints."))))));
     }
 
-    public static Component getTeleportAction(Entity entity) {
-        return new TextComponent("[T]").withStyle(ChatFormatting.DARK_PURPLE).deepCopy().withStyle((style -> style.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, String.format("/execute in %s run tp %d %d %d", entity.dimension.toString(), (int) entity.getX(), (int) entity.getY(), (int) entity.getZ()))).setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponent(tr("carpet-tctc-addition.message.command.here.hover.teleport", "Click teleport to there."))))));
+    public static Component getTeleportLocationAction(Entity entity) {
+        return new TextComponent("[T]").withStyle(ChatFormatting.DARK_PURPLE).deepCopy().withStyle((style -> style.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, String.format("/execute in %s run tp %d %d %d", entity.dimension.toString(), (int) entity.getX(), (int) entity.getY(), (int) entity.getZ()))).setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponent(String.format(tr("carpet-tctc-addition.message.command.here.hover.teleport.location", "Click teleport to [%d, %d, %d]."), (int) entity.getX(), (int) entity.getY(), (int) entity.getZ()))))));
+    }
+
+    public static Component getTeleportPlayerAction(Entity entity) {
+        return new TextComponent("[P]").withStyle(ChatFormatting.DARK_AQUA).deepCopy().withStyle((style -> style.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, String.format("/tp %s", entity.getName().getString()))).setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponent(String.format(tr("carpet-tctc-addition.message.command.here.hover.teleport.player", "Click teleport to %s."), entity.getName().getString()))))));
     }
 }

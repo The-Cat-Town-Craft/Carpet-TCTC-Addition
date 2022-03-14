@@ -4,9 +4,9 @@
   "package": "top.catowncraft.CarpetTCTCAddition.mixins",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "events.MixinMinecraftServer",
     "misc.commandOperatorHelper.MixinPlayerList",
     "misc.printCarpetVersion.MixinSettingsManager",
-    "rule.shulkerBoxDupeFix.MixinAbstractContainerMenu",
     "rule.blockIllegalUsername.MixinPlayerCommand",
     "rule.blockIllegalUsername.MixinPlayerList",
     "rule.cameraModeDisableSpectatePlayers.MixinServerGamePacketListenerImpl",
@@ -17,8 +17,10 @@
     "rule.fireworkSpeedupCoefficient.MixinFireworkRocketEntity",
     "rule.illegalPistonActionFix.MixinPistonBaseBlock",
     "rule.playerStats.MixinPlayer",
+    "rule.shulkerBoxDupeFix.MixinAbstractContainerMenu",
     "rule.updateSuppressionCrashFix.MixinLevel",
     "rule.updateSuppressionCrashFix.MixinMinecraftServer",
+    "rule.voidTradeFix.MixinServerLevel",
     "rule.wetSpongeAbsorbLava.MixinWetSpongeBlock",
     "rule.xaeroMapWorldName.MixinPlayerList"
   ],
