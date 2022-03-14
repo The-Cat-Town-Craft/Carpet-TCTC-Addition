@@ -1,9 +1,0 @@
-{
-  "carpet-tctc-addition.message.command.carpet.version": "%s Version: %s",
-
-  "carpet-tctc-addition.label.versionType.Public Beta": "Public Beta",
-  "carpet-tctc-addition.label.versionType.Public Release": "Public Release",
-  "carpet-tctc-addition.label.versionType.Version Exception": "Version Exception",
-
-  "category.TCTC": "TCTC"
-}
