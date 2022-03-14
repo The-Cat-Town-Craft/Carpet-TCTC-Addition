@@ -88,7 +88,7 @@ jobs:
           elif ${{ matrix.branch == '1.17'}}; then
             echo "::set-output name=branchname::1.17.1"
           elif ${{ matrix.branch == '1.18'}}; then
-            echo "::set-output name=branchname::1.18.1"
+            echo "::set-output name=branchname::1.18.2"
           elif ${{ matrix.branch == '1.19'}}; then
             echo "::set-output name=branchname::1.19-snapshot"
           fi
