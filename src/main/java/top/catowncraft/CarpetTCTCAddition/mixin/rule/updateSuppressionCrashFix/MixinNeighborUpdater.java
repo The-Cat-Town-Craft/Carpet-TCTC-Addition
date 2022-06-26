@@ -7,24 +7,24 @@
 package top.catowncraft.carpettctcaddition.mixin.rule.updateSuppressionCrashFix;
 
 //#if MC >= 11900
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
+//$$ import net.minecraft.core.BlockPos;
+//$$ import net.minecraft.world.level.Level;
+//$$ import net.minecraft.world.level.block.Block;
+//$$ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.redstone.NeighborUpdater;
 //#else
 //$$ import net.minecraft.server.MinecraftServer;
 //#endif
 import org.spongepowered.asm.mixin.Mixin;
 //#if MC >= 11900
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import top.catowncraft.carpettctcaddition.CarpetTCTCAddition;
-import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
-import top.catowncraft.carpettctcaddition.helper.UpdateSuppressionException;
-import top.catowncraft.carpettctcaddition.util.MessageUtil;
-import top.catowncraft.carpettctcaddition.util.StringUtil;
+//$$ import org.spongepowered.asm.mixin.injection.At;
+//$$ import org.spongepowered.asm.mixin.injection.Inject;
+//$$ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+//$$ import top.catowncraft.carpettctcaddition.CarpetTCTCAddition;
+//$$ import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
+//$$ import top.catowncraft.carpettctcaddition.helper.UpdateSuppressionException;
+//$$ import top.catowncraft.carpettctcaddition.util.MessageUtil;
+//$$ import top.catowncraft.carpettctcaddition.util.StringUtil;
 
 @Mixin(NeighborUpdater.class)
 //#else
@@ -34,8 +34,9 @@ import top.catowncraft.carpettctcaddition.util.StringUtil;
 //$$ @Dependencies(not = @Dependency("minecraft"))
 //$$ @Mixin(MinecraftServer.class)
 //#endif
-public class MixinNeighborUpdater {
+public interface MixinNeighborUpdater {
     //#if MC >= 11900
+    //$$ //I don't want to see IDE's annoying warnings.
     //$$ @Inject(
     //$$         method = "executeUpdate",
     //$$         at = @At(
