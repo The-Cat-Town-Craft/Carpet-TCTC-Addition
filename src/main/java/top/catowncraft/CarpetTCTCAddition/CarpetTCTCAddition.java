@@ -24,8 +24,9 @@ import top.catowncraft.carpettctcaddition.command.*;
 import top.catowncraft.carpettctcaddition.rule.CarpetTCTCAdditionSettingsManager;
 import top.catowncraft.carpettctcaddition.util.CarpetTCTCAdditionTranslations;
 import top.catowncraft.carpettctcaddition.util.FreeCameraUtil;
-import top.catowncraft.carpettctcaddition.util.StringUtil;
 import top.catowncraft.carpettctcaddition.util.WorldMapUtil;
+import top.hendrixshen.magiclib.dependency.annotation.Dependencies;
+import top.hendrixshen.magiclib.dependency.annotation.Dependency;
 
 import java.util.Map;
 
@@ -44,6 +45,22 @@ public class CarpetTCTCAddition implements ModInitializer, CarpetExtension {
     public static Logger getLogger() {
         return logger;
     }
+
+    @Dependencies(and = {
+            //#if MC >= 11900
+            //$$ @Dependency(value = "carpet", versionPredicate = ">=1.4.79"),
+            //#elseif MC >= 11800
+            //$$ @Dependency(value = "carpet", versionPredicate = ">=1.4.69"),
+            //#elseif MC >= 11700
+            //$$ @Dependency(value = "carpet", versionPredicate = ">=1.4.57"),
+            //#elseif MC >= 11600
+            //$$ @Dependency(value = "carpet", versionPredicate = ">=1.4.44"),
+            //#elseif MC >= 11500
+            //$$ @Dependency(value = "carpet", versionPredicate = ">=1.4.8"),
+            //#else
+            //$$ @Dependency(value = "carpet", versionPredicate = ">=1.3.7"),
+            //#endif
+            @Dependency(value = "fabric")})
     @Override
     public void onInitialize() {
         // Register mod as carpet extension.
