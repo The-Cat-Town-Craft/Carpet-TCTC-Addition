@@ -3,6 +3,7 @@
 .gradle/
 build/
 out/
+publish/
 classes/
 
 # eclipse

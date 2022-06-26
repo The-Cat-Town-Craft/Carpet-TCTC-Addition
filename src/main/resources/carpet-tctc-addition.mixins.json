@@ -1,11 +1,13 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "top.catowncraft.CarpetTCTCAddition.mixins",
+  "package": "top.catowncraft.carpettctcaddition.mixin",
+  "plugin": "top.catowncraft.carpettctcaddition.CarpetTCTCAdditionMixinPlugin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "events.MixinMinecraftServer",
-    "misc.commandOperatorHelper.MixinPlayerList",
+    "dev.MixinChunkMap",
+    "event.MixinMinecraftServer",
+    "inject.MixinPlayerList",
     "misc.printCarpetVersion.MixinSettingsManager",
     "rule.blockIllegalUsername.MixinPlayerCommand",
     "rule.blockIllegalUsername.MixinPlayerList",
@@ -14,17 +16,15 @@
     "rule.enderPlatform.MixinEntity",
     "rule.enderPlatform.MixinServerPlayer",
     "rule.endGatewayChunkLoader.MixinTheEndGatewayBlockEntity",
-    "rule.fireworkSpeedupCoefficient.MixinFireworkRocketEntity",
     "rule.illegalPistonActionFix.MixinPistonBaseBlock",
     "rule.playerStats.MixinPlayer",
     "rule.shulkerBoxDupeFix.MixinAbstractContainerMenu",
     "rule.updateSuppressionCrashFix.MixinLevel",
     "rule.updateSuppressionCrashFix.MixinMinecraftServer",
+    "rule.updateSuppressionCrashFix.MixinNeighborUpdater",
     "rule.voidTradeFix.MixinServerLevel",
     "rule.wetSpongeAbsorbLava.MixinWetSpongeBlock",
     "rule.xaeroMapWorldName.MixinPlayerList"
-  ],
-  "client": [
   ],
   "injectors": {
     "defaultRequire": 1

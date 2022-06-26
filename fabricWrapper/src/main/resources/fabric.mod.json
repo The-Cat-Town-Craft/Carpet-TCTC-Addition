@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "${mod_id}",
+  "version": "${mod_version}",
+  "icon": "assets/${mod_id}/icon.png",
+  "name": "${mod_name}",
+  "description": "A fabric-carpet extension mod. It offers some interesting features.",
+  "authors": [
+    {
+      "name": "The Cat Town Craft",
+      "contact": {
+        "homepage": "https://github.com/The-Cat-Town-Craft"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Hendrix-Shen",
+      "contact": {
+        "homepage": "https://github.com/Hendrix-Shen"
+      }
+    }
+  ],
+  "contact": {
+    "homepage": "${mod_homepage}",
+    "issues": "${mod_sources}/issues",
+    "sources": "${mod_sources}"
+  },
+  "license": "${mod_license}",
+  "environment": "*",
+  "depends": {
+    "magiclib": ">=${magiclib_version}"
+  },
+  "custom": {
+    "modmenu:parent": "carpet",
+    "modmenu": {
+      "parent": "carpet"
+    }
+  },
+  "jars": ${sub_jars}
+}

@@ -1,82 +1,137 @@
 /*
- * Copyright (c) Copyright 2020 - 2021 The Cat Town Craft and contributors.
- * This source code is subject to the terms of the GNU General Public
- * License, version 3. If a copy of the GPL was not distributed with this
- * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
+ * Copyright (c) Copyright 2020 - 2022 The Cat Town Craft and contributors.
+ * This source code is subject to the terms of the GNU Lesser General Public
+ * License, version 3. If a copy of the LGPL was not distributed with this
+ * file, You can obtain one at: https://www.gnu.org/licenses/lgpl-3.0.txt
  */
-package top.catowncraft.CarpetTCTCAddition;
+package top.catowncraft.carpettctcaddition;
 
 import carpet.settings.Rule;
+import top.catowncraft.carpettctcaddition.rule.RuleCategory;
 
 public class CarpetTCTCAdditionSettings {
-    private static final String TCTC = "TCTC";
-    private static final String TCTC_BUGFIX = "TCTC-BUGFIX";
-    private static final String TCTC_CLIENT = "TCTC-CLIENT";
-    private static final String TCTC_COMMAND = "TCTC-COMMAND";
-    private static final String TCTC_EXPERIMENTAL = "TCTC-EXPERIMENTAL";
-    private static final String TCTC_FEATURE = "TCTC-FEATURE";
-    private static final String TCTC_MISC = "TCTC-MISC";
-    private static final String TCTC_PROTOCOL = "TCTC-PROTOCOL";
-    private static final String TCTC_WORLD_GENERATE = "TCTC-WORLD_GENERATE";
-
     @Rule(
             name = "blockIllegalUsername",
             desc = "Verify username using online mode rules.",
-            category = {TCTC, TCTC_MISC, TCTC_PROTOCOL}
+            category = {
+                    RuleCategory.MISC,
+                    RuleCategory.PROTOCOL
+            }
     )
     public static boolean blockIllegalUsername = false;
 
     @Rule(
             name = "commandFix",
             desc = "Enables /fix command to fix chunk data.",
-            category = {TCTC, TCTC_COMMAND},
-            options = {"true", "false", "ops", "0", "1", "2", "3", "4"}
+            category = {
+                    RuleCategory.COMMAND
+            },
+            options = {
+                    "true",
+                    "false",
+                    "ops",
+                    "0",
+                    "1",
+                    "2",
+                    "3",
+                    "4"
+            }
     )
     public static String commandFix = "ops";
 
     @Rule(
             name = "commandFreecam",
             desc = "Enables /freecam command to toggle your camera mode.",
-            category = {TCTC, TCTC_COMMAND},
-            options = {"true", "false", "ops", "0", "1", "2", "3", "4"}
+            category = {
+                    RuleCategory.COMMAND
+            },
+            options = {
+                    "true",
+                    "false",
+                    "ops",
+                    "0",
+                    "1",
+                    "2",
+                    "3",
+                    "4"
+            }
     )
     public static String commandFreecam = "true";
 
     @Rule(
             name = "commandGC",
             desc = "Enables /gc command to allow you to force gc with jvm.",
-            category = {TCTC, TCTC_COMMAND},
-            options = {"true", "false", "ops", "0", "1", "2", "3", "4"}
+            category = {
+                    RuleCategory.COMMAND
+            },
+            options = {
+                    "true",
+                    "false",
+                    "ops",
+                    "0",
+                    "1",
+                    "2",
+                    "3",
+                    "4"
+            }
     )
     public static String commandGC = "ops";
 
     @Rule(
             name = "commandHere",
             desc = "Enables /here command to allow you to share your location with other players.",
-            category = {TCTC, TCTC_COMMAND},
-            options = {"true", "false", "ops", "0", "1", "2", "3", "4"}
+            category = {
+                    RuleCategory.COMMAND
+            },
+            options = {
+                    "true",
+                    "false",
+                    "ops",
+                    "0",
+                    "1",
+                    "2",
+                    "3",
+                    "4"
+            }
     )
     public static String commandHere = "true";
 
     @Rule(
             name = "commandOperator",
             desc = "Enables /operator command to allow you to change the player's permission level.",
-            category = {TCTC, TCTC_COMMAND},
-            options = {"true", "false", "ops", "0", "1", "2", "3", "4"}
+            category = {
+                    RuleCategory.COMMAND
+            },
+            options = {
+                    "true",
+                    "false",
+                    "ops",
+                    "0",
+                    "1",
+                    "2",
+                    "3",
+                    "4"
+            }
     )
     public static String commandOperator = "ops";
 
     @Rule(
             name = "cameraModeDisableSpectatePlayers",
             desc = "Disables players in /c from spectating other players.",
-            category = {TCTC, TCTC_FEATURE}
+            category = {
+                    RuleCategory.FEATURE
+            }
     )
     public static boolean cameraModeDisableSpectatePlayers = false;
 
     @Rule(
             name = "disableIllegalChatCharacterCheck",
             desc = "Allows you to use characters such as subsections in the game.",
-            category = {TCTC, TCTC_CLIENT, TCTC_EXPERIMENTAL, TCTC_MISC}
+            category = {
+                    RuleCategory.CLIENT,
+                    RuleCategory.EXPERIMENTAL,
+                    RuleCategory.MISC
+            }
     )
     public static boolean disableIllegalChatCharacterCheck = false;
 
@@ -88,7 +143,10 @@ public class CarpetTCTCAdditionSettings {
                     "none - Ender platform will not be generated anyway.",
                     "player - Ender platform is generated only when the player entity teleports to the_end dimension.",
             },
-            category = {TCTC, TCTC_FEATURE, TCTC_WORLD_GENERATE}
+            category = {
+                    RuleCategory.FEATURE,
+                    RuleCategory.WORLD_GENERATE
+            }
     )
     public static EnderPlatformOptions enderPlatform = EnderPlatformOptions.PLAYER;
 
@@ -107,7 +165,9 @@ public class CarpetTCTCAdditionSettings {
                     "item_only - Give the target chunk a load ticket when the player entities except the player through the ender gateway.",
                     "off - Vanilla action.",
             },
-            category = {TCTC, TCTC_FEATURE}
+            category = {
+                    RuleCategory.FEATURE
+            }
     )
     public static EndGatewayChunkLoaderOptions endGatewayChunkLoader = EndGatewayChunkLoaderOptions.OFF;
 
@@ -119,26 +179,24 @@ public class CarpetTCTCAdditionSettings {
     }
 
     @Rule(
-            name = "fireworkSpeedupCoefficient",
-            desc = "Controlling the acceleration coefficient of a firework rocket.",
-            category = {TCTC, TCTC_CLIENT, TCTC_FEATURE},
-            options = {"1.25", "1.5"},
-            strict = false
-    )
-    public static double fireworkSpeedupCoefficient = 1.5D;
-
-    @Rule(
             name = "freecamRestoreLocation",
             desc = "Return to the starting position when you have finished spectating.",
-            category = {TCTC, TCTC_MISC}
+            category = {
+                    RuleCategory.MISC
+            }
     )
     public static boolean freecamRestoreLocation = true;
 
     @Rule(
             name = "hereGlowTime",
             desc = "Time highlighted when using here command shared coordinates.",
-            category = {TCTC, TCTC_MISC},
-            options = {"0", "15"},
+            category = {
+                    RuleCategory.MISC
+            },
+            options = {
+                    "0",
+                    "15"
+            },
             strict = false
     )
     public static int hereGlowTime = 15;
@@ -146,7 +204,9 @@ public class CarpetTCTCAdditionSettings {
     @Rule(
             name = "illegalPistonActionFix",
             desc = "Fix headless pistons to destroy blocks.",
-            category = {TCTC, TCTC_FEATURE}
+            category = {
+                    RuleCategory.FEATURE
+            }
     )
     public static boolean illegalPistonActionFix = false;
 
@@ -159,7 +219,9 @@ public class CarpetTCTCAdditionSettings {
                     "none - No one allowed to gain stats.",
                     "player - Only players are allowed to gain stats."
             },
-            category = {TCTC, TCTC_FEATURE}
+            category = {
+                    RuleCategory.FEATURE
+            }
     )
     public static PlayerStatsOptions playerStats = PlayerStatsOptions.BOTH;
 
@@ -173,29 +235,42 @@ public class CarpetTCTCAdditionSettings {
     @Rule(
             name = "shulkerBoxDupeFix",
             desc = "Taking items from a shulker box while destroying it will result in item duplication.",
-            category = {TCTC, TCTC_BUGFIX}
+            category = {
+                    RuleCategory.BUGFIX
+            }
     )
     public static boolean shulkerBoxDupeFix = false;
 
     @Rule(
             name = "updateSuppressionCrashFix",
             desc = "Fix updates suppression causing server crashes.",
-            category = {TCTC, TCTC_BUGFIX}
+            category = {
+                    RuleCategory.BUGFIX
+            }
     )
     public static boolean updateSuppressionCrashFix = false;
 
     @Rule(
             name = "voidTradeFix",
             desc = "Once the villager entity is unloaded, the trading interface will be closed.",
-            category = {TCTC, TCTC_BUGFIX}
+            category = {
+                    RuleCategory.BUGFIX
+            }
     )
     public static boolean voidTradeFix = false;
 
     @Rule(
             name = "voxelMapWorldName",
             desc = "Send VoxelMap world information packets to client.",
-            category = {TCTC, TCTC_PROTOCOL},
-            options = {"#none", "creative", "mirror", "survival"},
+            category = {
+                    RuleCategory.PROTOCOL
+            },
+            options = {
+                    "#none",
+                    "creative",
+                    "mirror",
+                    "survival"
+            },
             strict = false
     )
     public static String voxelMapWorldName = "#none";
@@ -203,29 +278,45 @@ public class CarpetTCTCAdditionSettings {
     @Rule(
             name = "wetSpongeAbsorbLava",
             desc = "Wet sponges will be able to absorb lava.",
-            category = {TCTC, TCTC_EXPERIMENTAL, TCTC_FEATURE}
+            category = {
+                    RuleCategory.EXPERIMENTAL,
+                    RuleCategory.FEATURE
+            }
     )
     public static boolean wetSpongeAbsorbLava = false;
 
     @Rule(
             name = "wetSpongeAbsorbLavaLimit",
             desc = "Maximum offset limit for wet sponge.",
-            category = {TCTC, TCTC_EXPERIMENTAL, TCTC_FEATURE}
+            category = {
+                    RuleCategory.EXPERIMENTAL,
+                    RuleCategory.FEATURE
+            }
     )
     public static int wetSpongeAbsorbLavaLimit = 32;
 
     @Rule(
             name = "wetSpongeAbsorbLavaRange",
             desc = "Maximum lava sucking for wet sponge.",
-            category = {TCTC, TCTC_EXPERIMENTAL, TCTC_FEATURE}
+            category = {
+                    RuleCategory.EXPERIMENTAL,
+                    RuleCategory.FEATURE
+            }
     )
     public static int wetSpongeAbsorbLavaRange = 3;
 
     @Rule(
             name = "xaeroMapWorldName",
             desc = "Send XaeroMap world information packets to client.",
-            category = {TCTC, TCTC_PROTOCOL},
-            options = {"#none", "creative", "mirror", "survival"},
+            category = {
+                    RuleCategory.PROTOCOL
+            },
+            options = {
+                    "#none",
+                    "creative",
+                    "mirror",
+                    "survival"
+            },
             strict = false
     )
     public static String xaeroMapWorldName = "#none";

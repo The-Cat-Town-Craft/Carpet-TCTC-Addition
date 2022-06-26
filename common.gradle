@@ -1,0 +1,149 @@
+apply(plugin: "maven-publish")
+apply(plugin: "fabric-loom")
+apply(plugin: "io.github.juuxel.loom-quiltflower")
+apply(plugin: "com.replaymod.preprocess")
+
+int mcVersion = 1
+
+preprocess {
+    mcVersion = vars.get()["MC"]
+    tabIndentation = false
+}
+
+repositories {
+    maven {
+        url("https://www.cursemaven.com")
+    }
+
+    maven {
+        url("https://api.modrinth.com/maven")
+    }
+
+    maven {
+        url("https://maven.hendrixshen.top")
+    }
+
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    minecraft("com.mojang:minecraft:${project.minecraft_version}")
+    mappings(loom.officialMojangMappings())
+
+    modImplementation("top.hendrixshen:magiclib-${project.minecraft_version.replace(".", "_")}:${project.magiclib_version}") {
+        //If you want to use runClient task, you should remove this exclude setting.
+        //exclude(group: "net.fabricmc.fabric-api", module: "fabric-api")
+    }
+    modImplementation("curse.maven:carpet-349239:${project.carpet_version}")
+
+    runtimeOnly(project(path: ":fabricWrapper"))
+}
+
+loom {
+    runConfigs.all {
+        property("mixin.debug.export", "true")
+    }
+
+    runConfigs.client {
+        programArgs([
+                "--width",
+                "1280",
+                "--height",
+                "720",
+        ])
+        runDir("run/client")
+    }
+
+    runConfigs.server {
+        runDir("run/server")
+    }
+
+    runClient {
+        defaultCharacterEncoding("UTF-8")
+        // Set client language to zh_cn
+        if (!new File("${projectDir}/run/client/options.txt").exists()) {
+            new File("${projectDir}/run/client").mkdirs()
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("${projectDir}/run/client/options.txt"))
+            bufferedWriter.write("lang:zh_CN\nforceUnicodeFont:true\nguiScale:1")
+            bufferedWriter.close()
+        }
+    }
+
+    runServer {
+        defaultCharacterEncoding("UTF-8")
+        // Auto agree EULA
+        if (!new File("${projectDir}/run/server/eula.txt").exists()) {
+            new File("${projectDir}/run/server").mkdirs()
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("${projectDir}/run/server/eula.txt"))
+            bufferedWriter.write("eula=true")
+            bufferedWriter.close()
+        }
+    }
+}
+
+remapJar {
+    remapperIsolation = true
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+archivesBaseName = project.archives_base_name + "-" + project.minecraft_version
+version = project.parent.version
+group = project.maven_group
+
+processResources {
+    outputs.upToDateWhen { false }
+
+    inputs.property("version", version)
+    filesMatching("fabric.mod.json") {
+        expand(["mod_version"         : project.version,
+                "mod_id"              : project.mod_id,
+                "mod_name"            : project.mod_name,
+                "mod_homepage"        : project.mod_homepage,
+                "mod_sources"         : project.mod_sources,
+                "mod_license"         : project.mod_license,
+                "minecraft_dependency": project.minecraft_dependency,
+                "minecraft_version_id": project.minecraft_version.replace(".", "_"),
+                "minecraft_version"   : project.minecraft_version,
+                "magiclib_version"    : project.magiclib_version
+        ])
+    }
+    println("assets/${project.mod_id}/lang/*.json")
+    filesMatching("assets/${project.mod_id}/lang/*.json") {
+        expand([
+                "mod_id"  : project.mod_id,
+                "mod_name": project.mod_name,
+        ])
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+java {
+    withSourcesJar()
+}
+
+jar {
+    from("../../LICENSE")
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = "${project.mod_id}-${project.minecraft_version.replace(".", "_")}"
+            version = project.version
+            from(components.java)
+        }
+    }
+
+    repositories {
+        mavenLocal()
+        maven {
+            url("$rootDir/publish")
+        }
+    }
+}

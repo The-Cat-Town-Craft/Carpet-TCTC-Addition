@@ -1,36 +1,41 @@
 /*
- * Copyright (c) Copyright 2020 - 2021 The Cat Town Craft and contributors.
- * This source code is subject to the terms of the GNU General Public
- * License, version 3. If a copy of the GPL was not distributed with this
- * file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
+ * Copyright (c) Copyright 2020 - 2022 The Cat Town Craft and contributors.
+ * This source code is subject to the terms of the GNU Lesser General Public
+ * License, version 3. If a copy of the LGPL was not distributed with this
+ * file, You can obtain one at: https://www.gnu.org/licenses/lgpl-3.0.txt
  */
-package top.catowncraft.CarpetTCTCAddition;
+package top.catowncraft.carpettctcaddition;
 
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
+import carpet.settings.SettingsManager;
 import com.mojang.brigadier.CommandDispatcher;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+//#if MC >= 11900
+import net.minecraft.commands.CommandBuildContext;
+//#endif
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import top.catowncraft.CarpetTCTCAddition.commands.*;
-import top.catowncraft.CarpetTCTCAddition.utils.CarpetTCTCAdditionTranslations;
-import top.catowncraft.CarpetTCTCAddition.utils.FreeCameraUtil;
-import top.catowncraft.CarpetTCTCAddition.utils.WorldMapUtil;
+import top.catowncraft.carpettctcaddition.command.*;
+import top.catowncraft.carpettctcaddition.rule.CarpetTCTCAdditionSettingsManager;
+import top.catowncraft.carpettctcaddition.util.CarpetTCTCAdditionTranslations;
+import top.catowncraft.carpettctcaddition.util.FreeCameraUtil;
+import top.catowncraft.carpettctcaddition.util.StringUtil;
+import top.catowncraft.carpettctcaddition.util.WorldMapUtil;
 
-import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
-public class CarpetTCTCAddition implements CarpetExtension, ModInitializer {
+public class CarpetTCTCAddition implements ModInitializer, CarpetExtension {
     private static final Logger logger = LogManager.getLogger(CarpetTCTCAdditionReference.getModId());
     private static MinecraftServer minecraftServer;
-    private static CarpetTCTCAddition instance;
-    private Map<UUID, FreeCameraUtil.FreeCameraData> cameraData = new HashMap<>();
+    private static final CarpetTCTCAdditionSettingsManager settingsManager = new CarpetTCTCAdditionSettingsManager(
+            CarpetTCTCAdditionReference.getModVersion(),
+            CarpetTCTCAdditionReference.getModId().replaceAll("-", ""),
+            CarpetTCTCAdditionReference.getModName());
 
     public static MinecraftServer getServer() {
         return minecraftServer;
@@ -39,9 +44,31 @@ public class CarpetTCTCAddition implements CarpetExtension, ModInitializer {
     public static Logger getLogger() {
         return logger;
     }
+    @Override
+    public void onInitialize() {
+        // Register mod as carpet extension.
+        CarpetServer.manageExtension(new CarpetTCTCAddition());
+        ServerPlayNetworking.registerGlobalReceiver(new ResourceLocation("worldinfo", "world_id"), WorldMapUtil::voxelMapPacketHandler);
+    }
 
     @Override
-    public void registerCommands(CommandDispatcher<CommandSourceStack> dispatcher) {
+    public void onGameStarted() {
+        CarpetTCTCAddition.settingsManager.parseSettingsClass(CarpetTCTCAdditionSettings.class);
+    }
+
+    @Override
+    public void onServerLoaded(MinecraftServer server) {
+        CarpetTCTCAddition.minecraftServer = server;
+        // Load freecam data.
+        FreeCameraUtil.load();
+    }
+
+    //#if MC >= 11900
+    @Override
+    public void registerCommands(CommandDispatcher<CommandSourceStack> dispatcher, CommandBuildContext commandBuildContext) {
+    //#else
+    //$$ public void registerCommands(CommandDispatcher<CommandSourceStack> dispatcher) {
+    //#endif
         FixCommand.register(dispatcher);
         FreecamCommand.register(dispatcher);
         GCCommand.register(dispatcher);
@@ -50,20 +77,8 @@ public class CarpetTCTCAddition implements CarpetExtension, ModInitializer {
     }
 
     @Override
-    public void onGameStarted() {
-        CarpetServer.settingsManager.parseSettingsClass(CarpetTCTCAdditionSettings.class);
-    }
-
-    @Override
-    public void onServerLoaded(MinecraftServer server) {
-        minecraftServer = server;
-        instance = this;
-        // Load freecam data.
-        try {
-            this.cameraData = FreeCameraUtil.loadFreeCameraData();
-        } catch (Exception e) {
-            CarpetTCTCAddition.getLogger().error(e.getMessage());
-        }
+    public SettingsManager customSettingsManager() {
+        return CarpetTCTCAddition.settingsManager;
     }
 
     @Override
@@ -71,33 +86,10 @@ public class CarpetTCTCAddition implements CarpetExtension, ModInitializer {
         return CarpetTCTCAdditionReference.getModVersion();
     }
 
+    //#if MC >= 11500
     @Override
     public Map<String, String> canHasTranslations(String lang) {
         return CarpetTCTCAdditionTranslations.getTranslationFromResourcePath(lang);
     }
-
-    @Override
-    public void onInitialize() {
-        // Register mod as carpet extension.
-        CarpetServer.manageExtension(new CarpetTCTCAddition());
-
-        // Register packet handler
-        ServerPlayNetworking.registerGlobalReceiver(new ResourceLocation("worldinfo", "world_id"), WorldMapUtil::voxelMapPacketHandler);
-    }
-
-    public static CarpetTCTCAddition getInstance() {
-        return instance;
-    }
-
-    public void onLevelSave() {
-        try {
-            FreeCameraUtil.saveFreeCameraData(this.cameraData);
-        } catch (IOException e) {
-            CarpetTCTCAddition.getLogger().error(e.getMessage());
-        }
-    }
-
-    public Map<UUID, FreeCameraUtil.FreeCameraData> getCameraData() {
-        return this.cameraData;
-    }
+    //#endif
 }

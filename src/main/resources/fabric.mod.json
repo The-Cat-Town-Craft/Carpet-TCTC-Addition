@@ -1,54 +1,46 @@
 {
   "schemaVersion": 1,
-  "id": "carpet-tctc-addition",
+  "id": "${mod_id}-${minecraft_version_id}",
   "version": "${mod_version}",
-
-  "name": "Carpet TCTC Addition",
+  "icon": "assets/${mod_id}/icon.png",
+  "name": "${mod_name} for ${minecraft_version}",
   "description": "A fabric-carpet extension mod. It offers some interesting features.",
   "authors": [
     {
-      "name": "The Cat Town Craft",
-      "contact": {
-        "homepage": "https://github.com/The-Cat-Town-Craft"
-      }
-    }
-  ],
-  "contributors": [
-    {
-      "name": "Hendrix-Shen",
+      "name": "Hendrix_Shen",
       "contact": {
         "homepage": "https://github.com/Hendrix-Shen"
       }
     }
   ],
   "contact": {
-    "homepage": "https://github.com/The-Cat-Town-Craft",
-    "issues": "https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/issues",
-    "sources": "https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition"
+    "homepage": "${mod_homepage}",
+    "issues": "${mod_sources}/issues",
+    "sources": "${mod_sources}"
   },
-
-  "license": "GPL-v3",
-  "icon": "assets/carpet-tctc-addition/icon.png",
-
-  "environment": "*",
+  "license": "${mod_license}",
+  "environment": "client",
   "entrypoints": {
     "main": [
-      "top.catowncraft.CarpetTCTCAddition.CarpetTCTCAddition"
+      "top.catowncraft.carpettctcaddition.CarpetTCTCAddition"
     ]
   },
   "mixins": [
-    "carpet-tctc-addition.mixins.json"
+    "${mod_id}.mixins.json"
   ],
-
-  "accessWidener": "carpet-tctc-addition.accesswidener",
-
   "depends": {
-    "carpet": ">=1.4.8",
-    "fabricloader": ">=0.9.0",
-    "fabric": ">=0.28.5",
-    "minecraft": "1.15.2"
+    "minecraft": "${minecraft_dependency}",
+    "magiclib-${minecraft_version_id}": ">=${magiclib_version}"
   },
   "custom": {
-    "modmenu:parent": "carpet"
+    "modmenu:parent": "${mod_id}",
+    "modmenu": {
+      "parent": "${mod_id}"
+    },
+    "loom:injected_interfaces": {
+      "net/minecraft/class_3324": [
+        "top/catowncraft/carpettctcaddition/mixininterface/PlayerListApi"
+      ]
+    }
   }
 }

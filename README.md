@@ -14,16 +14,19 @@
 
 [中文](./README_ZH_CN.md)
 
-**Warning: The project is still in the early development stage.**
+**Warning: we use our own SettingManager to manage the rules and you need to manually migrate the default configuration saved in carpet.conf.**
 
 A [fabric-carpet](https://github.com/gnembon/fabric-carpet) extension mod. It offers some interesting features.
 
+Operation command: `/carpettctcaddition`
+
 ## Dependencies
 
-| Dependency | Type     | Download                                                                                                                                                                         |
-| ---------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Carpet     | Required | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/carpet) &#124; [Github](https://github.com/gnembon/fabric-carpet)                                                      |
-| Fabric API | Required | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api) &#124; [Github](https://github.com/FabricMC/fabric) &#124; [Modrinth](https://modrinth.com/mod/fabric-api) |
+| Dependency | Type     | Download                                                                                                                                                                            |
+|------------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Carpet     | Required | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/carpet) &#124; [GitHub](https://github.com/gnembon/fabric-carpet)                                                         |
+| Fabric API | Required | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api) &#124; [GitHub](https://github.com/FabricMC/fabric) &#124; [Modrinth](https://modrinth.com/mod/fabric-api)    |
+| MagicLib   | Required | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/magiclib) &#124; [GitHub](https://github.com/Hendrix-Shen/MagicLib) &#124; [Modrinth](https://modrinth.com/mod/magiclib)  |
 
 ## Rule List
 
@@ -34,7 +37,7 @@ Verify username using online mode rules.
 - Type: `boolean`
 - Default value: `false`
 - Suggested options: `false`, `true`
-- Categories: `TCTC`, `TCTC-MISC`, `TCTC-PROTOCOL`
+- Categories: `MISC`, `PROTOCOL`
 
 ### commandFix
 
@@ -43,7 +46,7 @@ Enables /fix command to fix chunk data.
 - Type: `string`
 - Default value: `ops`
 - Suggested options: `false`, `true`, `ops`, `0`, `1`, `2`, `3`, `4`
-- Categories: `TCTC`, `TCTC-COMMAND`
+- Categories: `COMMAND`
 
 ### commandFreecam
 
@@ -52,7 +55,7 @@ Enables /freecam command to toggle your camera mode.
 - Type: `string`
 - Default value: `true`
 - Suggested options: `false`, `true`, `ops`, `0`, `1`, `2`, `3`, `4`
-- Categories: `TCTC`, `TCTC-COMMAND`
+- Categories: `COMMAND`
 
 ### commandGC
 
@@ -61,7 +64,7 @@ Enables /gc command to allow you to force gc with jvm.
 - Type: `string`
 - Default value: `ops`
 - Suggested options: `false`, `true`, `ops`, `0`, `1`, `2`, `3`, `4`
-- Categories: `TCTC`, `TCTC-COMMAND`
+- Categories: `COMMAND`
 
 ### commandHere
 
@@ -70,7 +73,7 @@ Enables /here command to allow you to share your location with other players.
 - Type: `string`
 - Default value: `true`
 - Suggested options: `false`, `true`, `ops`, `0`, `1`, `2`, `3`, `4`
-- Categories: `TCTC`, `TCTC-COMMAND`
+- Categories: `COMMAND`
 
 ### commandOperator
 
@@ -79,7 +82,7 @@ Enables /operator command to allow you to change the player's permission level.
 - Type: `string`
 - Default value: `ops`
 - Suggested options: `false`, `true`, `ops`, `0`, `1`, `2`, `3`, `4`
-- Categories: `TCTC`, `TCTC-COMMAND`
+- Categories: `COMMAND`
 
 ### cameraModeDisableSpectatePlayers
 
@@ -88,7 +91,7 @@ Disables players in /c from spectating other players.
 - Type: `boolean`
 - Default value: `false`
 - Suggested options: `false`, `true`
-- Categories: `TCTC`, `TCTC-FEATURE`
+- Categories: `FEATURE`
 
 ### disableIllegalChatCharacterCheck
 
@@ -97,7 +100,7 @@ Allows you to use characters such as subsections in the game.
 - Type: `boolean`
 - Default value: `false`
 - Suggested options: `false`, `true`
-- Categories: `TCTC`, `TCTC-CLIENT`, `TCTC-EXPERIMENTAL`, `TCTC-MISC`
+- Categories: `CLIENT`, `EXPERIMENTAL`, `MISC`
 
 ### enderPlatform
 
@@ -112,7 +115,7 @@ player - Ender platform is generated only when the player entity teleports to th
 - Type: `enum`
 - Default value: `player`
 - Suggested options: `all`, `none`, `player`
-- Categories: `TCTC`, `TCTC-FEATURE`, `TCTC-WORLD-GENERATE`
+- Categories: `FEATURE`, `WORLD-GENERATE`
 
 *For Minecraft 1.16.5 and later branches, the default value is `all`*
 
@@ -131,16 +134,7 @@ off - Vanilla action.
 - Type: `enum`
 - Default value: `off`
 - Suggested options: `all`, `except_player`, `item_only`, `off`
-- Categories: `TCTC`, `TCTC-FEATURE`
-
-### fireworkSpeedupCoefficient
-
-Controlling the acceleration coefficient of a firework rocket.
-
-- Type: `double`
-- Default value: `1.5`
-- Suggested options: `1.25`, `1.5`
-- Categories: `TCTC`, `TCTC-CLIENT`, `TCTC-FEATURE`
+- Categories: `FEATURE`
 
 ### freecamRestoreLocation
 
@@ -149,7 +143,7 @@ Return to the starting position when you have finished spectating.
 - Type: `boolean`
 - Default value: `true`
 - Suggested options: `false`, `true`
-- Categories: `TCTC`, `TCTC-MISC`
+- Categories: `MISC`
 
 ### hereGlowTime
 
@@ -158,7 +152,7 @@ Time highlighted when using here command shared coordinates.
 - Type: `int`
 - Default value: `15`
 - Suggested options: `0`, `15`
-- Categories: `TCTC`, `TCTC-MISC`
+- Categories: `MISC`
 
 ### illegalPistonActionFix
 
@@ -167,7 +161,7 @@ Fix headless pistons to destroy blocks.
 - Type: `boolean`
 - Default value: `false`
 - Suggested options: `false`, `true`
-- Categories: `TCTC`, `TCTC-FEATURE`
+- Categories: `FEATURE`
 
 ### playerStats
 
@@ -184,16 +178,7 @@ player - Only players are allowed to gain stats.
 - Type: `enum`
 - Default value: `both`
 - Suggested options: `bot`, `both`, `none`, `player`
-- Categories: `TCTC`, `TCTC-FEATURE`
-
-### updateSuppressionCrashFix
-
-Fix updates suppression causing server crashes.
-
-- Type: `boolean`
-- Default value: `false`
-- Suggested options: `false`, `true`
-- Categories: `TCTC`, `TCTC-BUGFIX`
+- Categories: `FEATURE`
 
 ### shulkerBoxDupeFix
 
@@ -202,7 +187,16 @@ Taking items from a shulker box while destroying it will result in item duplicat
 - Type: `boolean`
 - Default value: `false`
 - Suggested options: `false`, `true`
-- Categories: `TCTC`, `TCTC-BUGFIX`
+- Categories: `BUGFIX`
+
+### updateSuppressionCrashFix
+
+Fix updates suppression causing server crashes.
+
+- Type: `boolean`
+- Default value: `false`
+- Suggested options: `false`, `true`
+- Categories: `BUGFIX`
 
 ### voidTradeFix
 
@@ -211,7 +205,7 @@ Once the villager entity is unloaded, the trading interface will be closed.
 - Type: `boolean`
 - Default value: `false`
 - Suggested options: `false`, `true`
-- Categories: `TCTC`, `TCTC-BUGFIX`
+- Categories: `BUGFIX`
 
 ### voxelMapWorldName
 
@@ -220,7 +214,7 @@ Send VoxelMap world information packets to client.
 - Type: `string`
 - Default value: `#none`
 - Suggested options: `#none`, `creative`, `mirror`, `survival`
-- Categories: `TCTC`, `TCTC-PROTOCOL`
+- Categories: `PROTOCOL`
 
 ### wetSpongeAbsorbLava
 
@@ -229,7 +223,7 @@ Wet sponges will be able to absorb lava.
 - Type: `boolean`
 - Default value: `false`
 - Suggested options: `false`, `true`
-- Categories: `TCTC`, `TCTC-EXPERIMENTAL`, `TCTC-FEATURE`
+- Categories: `EXPERIMENTAL`, `FEATURE`
 
 ### wetSpongeAbsorbLavaLimit
 
@@ -238,7 +232,7 @@ Maximum offset limit for wet sponge.
 - Type: `int`
 - Default value: `32`
 - Suggested options: `32`, `64`
-- Categories: `TCTC`, `TCTC-EXPERIMENTAL`, `TCTC-FEATURE`
+- Categories: `EXPERIMENTAL`, `FEATURE`
 
 ### wetSpongeAbsorbLavaRange
 
@@ -247,7 +241,7 @@ Maximum lava sucking for wet sponge.
 - Type: `int`
 - Default value: `3`
 - Suggested options: `3`, `6`
-- Categories: `TCTC`, `TCTC-EXPERIMENTAL`, `TCTC-FEATURE`
+- Categories: `EXPERIMENTAL`, `FEATURE`
 
 ### xaeroMapWorldName
 
@@ -256,38 +250,24 @@ Send XaeroMap world information packets to client.
 - Type: `string`
 - Default value: `#none`
 - Suggested options: `#none`, `creative`, `mirror`, `survival`
-- Categories: `TCTC`, `TCTC-PROTOCOL`
+- Categories: `PROTOCOL`
 
 ## Development
 
-### Branches
+### Support
 
-Current main development for Minecraft version: 1.15.2.
+Current main development for Minecraft version: 1.19 
 
-Current maintaining branches:
+And use `preprocess` to be compatible with all versions.
 
-- `1.14.4` for Minecraft 1.14.4
-- `1.15.2` for Minecraft 1.15.2
-- `1.16.5` for Minecraft 1.16.5
-- `1.17.1` for Minecraft 1.17.1
-- `1.18.1` for Minecraft 1.18.1
+**Note: We only accept the following versions of issues, which are the last updates of each MC major version. Please note that this information is time-sensitive and any version of the issue not listed here will be closed**
 
-For general new features, implement them in `dev` branch first then merge it into other branches.
-
-Branches merge order:
-
-- `dev` -> `1.14.4`
-- `dev` -> `1.15.2`
-- `dev` -> `1.16.5`
-- `dev` -> `1.17.1`
-- `dev` -> `1.18.1`
-- `1.15.2` -> `master` (When publishing **public releases**)
-
-For version specific fixes / patches, implement them in relevant branches.
-
-`master` branch is always consistent with the main development branch version.
-
-Try not to affect version compatibility unless it's necessary.
+- Minecraft 1.14.4
+- Minecraft 1.15.2
+- Minecraft 1.16.5
+- Minecraft 1.17.1
+- Minecraft 1.18.2
+- Minecraft 1.19
 
 ### Mappings
 
@@ -299,4 +279,4 @@ The English doc and the Chinese doc are aligned line by line.
 
 ## License
 
-This project is available under the GPLv3 license. Feel free to learn from it and incorporate it in your own projects.
+This project is available under the LGPLv3 license. Feel free to learn from it and incorporate it in your own projects.
