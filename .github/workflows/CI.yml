@@ -26,6 +26,16 @@ jobs:
           distribution: 'adopt'
           java-version: ${{ matrix.java }}
 
+      - name: Cache Gradle packages
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ./.gradle/loom-caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('*.gradle', 'gradle.properties', '**/*.accesswidener') }}
+          restore-keys: ${{ runner.os }}-gradle-
+
       - name: Get short commit sha
         id: get_short_sha
         run: |
