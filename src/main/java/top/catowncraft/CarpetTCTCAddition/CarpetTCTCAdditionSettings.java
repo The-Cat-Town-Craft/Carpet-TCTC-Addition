@@ -148,7 +148,11 @@ public class CarpetTCTCAdditionSettings {
                     RuleCategory.WORLD_GENERATE
             }
     )
-    public static EnderPlatformOptions enderPlatform = EnderPlatformOptions.PLAYER;
+    //#if MC >= 11600
+    public static EnderPlatformOptions enderPlatform = EnderPlatformOptions.ALL;
+    //#else
+    //$$ public static EnderPlatformOptions enderPlatform = EnderPlatformOptions.PLAYER;
+    //#endif
 
     public enum EnderPlatformOptions {
         ALL,
