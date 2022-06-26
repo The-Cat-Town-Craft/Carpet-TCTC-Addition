@@ -7,24 +7,24 @@
 package top.catowncraft.carpettctcaddition.mixin.rule.updateSuppressionCrashFix;
 
 //#if MC >= 11900
-//$$ import net.minecraft.core.BlockPos;
-//$$ import net.minecraft.world.level.Level;
-//$$ import net.minecraft.world.level.block.Block;
-//$$ import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.redstone.NeighborUpdater;
 //#else
 //$$ import net.minecraft.server.MinecraftServer;
 //#endif
 import org.spongepowered.asm.mixin.Mixin;
 //#if MC >= 11900
-//$$ import org.spongepowered.asm.mixin.injection.At;
-//$$ import org.spongepowered.asm.mixin.injection.Inject;
-//$$ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-//$$ import top.catowncraft.carpettctcaddition.CarpetTCTCAddition;
-//$$ import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
-//$$ import top.catowncraft.carpettctcaddition.helper.UpdateSuppressionException;
-//$$ import top.catowncraft.carpettctcaddition.util.MessageUtil;
-//$$ import top.catowncraft.carpettctcaddition.util.StringUtil;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import top.catowncraft.carpettctcaddition.CarpetTCTCAddition;
+import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
+import top.catowncraft.carpettctcaddition.helper.UpdateSuppressionException;
+import top.catowncraft.carpettctcaddition.util.MessageUtil;
+import top.catowncraft.carpettctcaddition.util.StringUtil;
 
 @Mixin(NeighborUpdater.class)
 //#else
@@ -36,19 +36,18 @@ import org.spongepowered.asm.mixin.Mixin;
 //#endif
 public interface MixinNeighborUpdater {
     //#if MC >= 11900
-    //$$ //I don't want to see IDE's annoying warnings.
-    //$$ @Inject(
-    //$$         method = "executeUpdate",
-    //$$         at = @At(
-    //$$                 value = "INVOKE",
-    //$$                 target = "Lnet/minecraft/CrashReport;forThrowable(Ljava/lang/Throwable;Ljava/lang/String;)Lnet/minecraft/CrashReport;"
-    //$$         )
-    //$$ )
-    //$$ private static void onExecuteUpdate(Level level, BlockState blockState, BlockPos blockPos, Block block, BlockPos blockPos2, boolean bl, CallbackInfo ci) {
-    //$$     if (CarpetTCTCAdditionSettings.updateSuppressionCrashFix) {
-    //$$         MessageUtil.sendServerMessage(CarpetTCTCAddition.getServer(), StringUtil.tr("message.server.updateSuppression.processed"));
-    //$$         throw new UpdateSuppressionException("Update suppression");
-    //$$     }
-    //$$ }
+    @Inject(
+            method = "executeUpdate",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/CrashReport;forThrowable(Ljava/lang/Throwable;Ljava/lang/String;)Lnet/minecraft/CrashReport;"
+            )
+    )
+    private static void onExecuteUpdate(Level level, BlockState blockState, BlockPos blockPos, Block block, BlockPos blockPos2, boolean bl, CallbackInfo ci) {
+         if (CarpetTCTCAdditionSettings.updateSuppressionCrashFix) {
+             MessageUtil.sendServerMessage(CarpetTCTCAddition.getServer(), StringUtil.tr("message.server.updateSuppression.processed"));
+             throw new UpdateSuppressionException("Update suppression");
+         }
+    }
     //#endif
 }
