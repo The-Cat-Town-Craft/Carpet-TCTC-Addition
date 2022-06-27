@@ -60,7 +60,7 @@ public class HereCommand {
         //$$ if (serverPlayer.level.dimension.getType() == DimensionType.OVERWORLD || serverPlayer.level.dimension.getType() == DimensionType.NETHER) {
         //#endif
             MessageUtil.sendServerMessage(CarpetTCTCAddition.getServer(),
-                    ComponentCompatApi.literal(StringUtil.tr("carpet-tctc-addition.message.command.here.withTransformed",
+                    ComponentCompatApi.literal(StringUtil.tr("message.command.here.withTransformed",
                             ComponentCompatApi.literal(serverPlayer.getName().getString()).withStyle(ChatFormatting.GRAY),
                             //#if MC >= 11600
                             HereCommand.getDimension(serverPlayer.level.dimension()),
@@ -81,7 +81,7 @@ public class HereCommand {
                     )));
         } else {
             MessageUtil.sendServerMessage(CarpetTCTCAddition.getServer(),
-                    ComponentCompatApi.literal(StringUtil.tr("carpet-tctc-addition.message.command.here.withTransformed",
+                    ComponentCompatApi.literal(StringUtil.tr("message.command.here.withoutTransformed",
                             ComponentCompatApi.literal(serverPlayer.getName().getString()).withStyle(ChatFormatting.GRAY),
                             //#if MC >= 11600
                             HereCommand.getDimension(serverPlayer.level.dimension()),
@@ -121,13 +121,13 @@ public class HereCommand {
     //$$     switch (dimensionType.toString()) {
     //#endif
             case "minecraft:overworld":
-                return ComponentCompatApi.literal(StringUtil.tr("carpet-tctc-addition.label.dimensionType.overworld")).withStyle(ChatFormatting.GREEN);
+                return ComponentCompatApi.literal(StringUtil.tr("label.dimensionType.overworld")).withStyle(ChatFormatting.GREEN);
             case "minecraft:the_end":
-                return ComponentCompatApi.literal(StringUtil.tr("carpet-tctc-addition.label.dimensionType.end")).withStyle(ChatFormatting.YELLOW);
+                return ComponentCompatApi.literal(StringUtil.tr("label.dimensionType.end")).withStyle(ChatFormatting.YELLOW);
             case "minecraft:the_nether":
-                return ComponentCompatApi.literal(StringUtil.tr("carpet-tctc-addition.label.dimensionType.nether")).withStyle(ChatFormatting.RED);
+                return ComponentCompatApi.literal(StringUtil.tr("label.dimensionType.nether")).withStyle(ChatFormatting.RED);
             default:
-                return ComponentCompatApi.literal(StringUtil.tr("carpet-tctc-addition.label.dimensionType.unknown")).withStyle(ChatFormatting.AQUA);
+                return ComponentCompatApi.literal(StringUtil.tr("label.dimensionType.unknown")).withStyle(ChatFormatting.AQUA);
         }
     }
 
@@ -138,7 +138,7 @@ public class HereCommand {
     }
 
     public static Component getWorldMapAdderXM(Entity entity) {
-        return ComponentCompatApi.literal("[V]").withStyle(ChatFormatting.DARK_GREEN).withStyle(style -> style.withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, String.format("xaero_waypoint_add:%s's Location:%s:%d:%d:%d:8:false:0",  entity.getDisplayName().getString(), entity.getDisplayName().getString(1), (int) entity.getZCompat(), (int) entity.getYCompat(), (int) entity.getZ()))).withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, ComponentCompatApi.literal(StringUtil.tr("carpet-tctc-addition.message.command.here.hover.xaeroMap")))));
+        return ComponentCompatApi.literal("[V]").withStyle(ChatFormatting.DARK_GREEN).withStyle(style -> style.withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, String.format("xaero_waypoint_add:%s's Location:%s:%d:%d:%d:8:false:0",  entity.getDisplayName().getString(), entity.getDisplayName().getString(1), (int) entity.getZCompat(), (int) entity.getYCompat(), (int) entity.getZ()))).withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, ComponentCompatApi.literal(StringUtil.tr("message.command.here.hover.xaeroMap")))));
     }
 
     public static Component getTeleportLocationAction(Entity entity) {

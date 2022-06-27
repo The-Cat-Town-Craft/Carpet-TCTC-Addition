@@ -42,7 +42,7 @@ public class OperatorCommand {
 
     private static int setPermissionLevel(CommandSourceStack commandSourceStack, Collection<GameProfile> gameProfileCollection, int level) {
         if (!commandSourceStack.hasPermission(level)) {
-            commandSourceStack.sendFailure(ComponentCompatApi.literal(StringUtil.tr("carpet-tctc-addition.message.command.operator.setPermissionLevel.lower", level)));
+            commandSourceStack.sendFailure(ComponentCompatApi.literal(StringUtil.tr("message.command.operator.setPermissionLevel.lower", level)));
             return 1;
         }
 
@@ -57,7 +57,7 @@ public class OperatorCommand {
     private static int setBypassPlayerLimit(CommandSourceStack commandSourceStack, Collection<GameProfile> gameProfileCollection, boolean bypass) {
         for (GameProfile gameProfile : gameProfileCollection) {
             CarpetTCTCAddition.getServer().getPlayerList().tctc$setBypassPlayerLimit(gameProfile, bypass);
-            MessageUtil.sendMessage(commandSourceStack, StringUtil.tr("carpet-tctc-addition.message.command.operator.setBypassPlayerLimit.success", gameProfile.getName(), bypass));
+            MessageUtil.sendMessage(commandSourceStack, StringUtil.tr("message.command.operator.setBypassPlayerLimit.success", gameProfile.getName(), bypass));
         }
         return 1;
     }
