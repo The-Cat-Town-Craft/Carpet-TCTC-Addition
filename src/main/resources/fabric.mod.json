@@ -19,7 +19,7 @@
     "sources": "${mod_sources}"
   },
   "license": "${mod_license}",
-  "environment": "client",
+  "environment": "*",
   "entrypoints": {
     "main": [
       "top.catowncraft.carpettctcaddition.CarpetTCTCAddition"
