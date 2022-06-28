@@ -60,7 +60,7 @@ public class HereCommand {
         //$$ if (serverPlayer.level.dimension.getType() == DimensionType.OVERWORLD || serverPlayer.level.dimension.getType() == DimensionType.NETHER) {
         //#endif
             MessageUtil.sendServerMessage(CarpetTCTCAddition.getServer(),
-                    ComponentCompatApi.literal(StringUtil.tr("message.command.here.withTransformed",
+                    ComponentCompatApi.translatable(StringUtil.original("message.command.here.withTransformed"),
                             ComponentCompatApi.literal(serverPlayer.getName().getString()).withStyle(ChatFormatting.GRAY),
                             //#if MC >= 11600
                             HereCommand.getDimension(serverPlayer.level.dimension()),
@@ -78,10 +78,10 @@ public class HereCommand {
                             //#else
                             //$$ ComponentCompatApi.literal(serverPlayer.level.dimension.getType() == DimensionType.OVERWORLD ? getDividedPosition(serverPlayer) : getMultipliedPosition(serverPlayer)).withStyle(serverPlayer.level.dimension.getType() == DimensionType.OVERWORLD ? ChatFormatting.DARK_RED : ChatFormatting.DARK_GREEN)
                             //#endif
-                    )));
+                    ));
         } else {
             MessageUtil.sendServerMessage(CarpetTCTCAddition.getServer(),
-                    ComponentCompatApi.literal(StringUtil.tr("message.command.here.withoutTransformed",
+                    ComponentCompatApi.translatable(StringUtil.original("message.command.here.withoutTransformed"),
                             ComponentCompatApi.literal(serverPlayer.getName().getString()).withStyle(ChatFormatting.GRAY),
                             //#if MC >= 11600
                             HereCommand.getDimension(serverPlayer.level.dimension()),
@@ -93,7 +93,7 @@ public class HereCommand {
                             HereCommand.getWorldMapAdderVM(serverPlayer),
                             HereCommand.getWorldMapAdderXM(serverPlayer),
                             HereCommand.getTeleportLocationAction(serverPlayer),
-                            HereCommand.getTeleportPlayerAction(serverPlayer))));
+                            HereCommand.getTeleportPlayerAction(serverPlayer)));
         }
         if (CarpetTCTCAdditionSettings.hereGlowTime > 0) {
             serverPlayer.addEffect(new MobEffectInstance(MobEffects.GLOWING, CarpetTCTCAdditionSettings.hereGlowTime * 20, 0, false, false, false));

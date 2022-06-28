@@ -9,6 +9,9 @@ package top.catowncraft.carpettctcaddition.util;
 import carpet.CarpetSettings;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionReference;
 import top.hendrixshen.magiclib.language.I18n;
+import top.hendrixshen.magiclib.language.MagicLanguageManager;
+
+import java.util.concurrent.ConcurrentHashMap;
 
 public class StringUtil {
     public static String tr(String node, Object... objects) {
@@ -16,6 +19,14 @@ public class StringUtil {
         return I18n.getByCode(!CarpetSettings.language.equals("none") ? CarpetSettings.language : "en_us", String.format("%s.%s", CarpetTCTCAdditionReference.getModId(), node), objects);
         //#else
         //$$ return I18n.get(String.format("%s.%s", CarpetTCTCAdditionReference.getModId(), node), objects);
+        //#endif
+    }
+
+    public static String original(String node) {
+        //#if MC >= 11500
+        return I18n.getByCode(!CarpetSettings.language.equals("none") ? CarpetSettings.language : "en_us", String.format("%s.%s", CarpetTCTCAdditionReference.getModId(), node));
+        //#else
+        //$$ return I18n.get(String.format("%s.%s", CarpetTCTCAdditionReference.getModId(), node));
         //#endif
     }
 }
