@@ -33,7 +33,6 @@ public class CarpetTCTCAdditionMixinPlugin extends MagicMixinPlugin {
                     methodNode.instructions.add(insnList);
                 }
             }
-            System.out.println("Injected");
         }
     }
 }

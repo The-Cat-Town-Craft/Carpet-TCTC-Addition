@@ -10,12 +10,15 @@ package top.catowncraft.carpettctcaddition.mixin.rule.enderPlatform;
 //$$ import net.minecraft.core.BlockPos;
 //$$ import net.minecraft.server.MinecraftServer;
 //#endif
+import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 //#if MC < 11600
 //$$ import net.minecraft.world.level.block.Blocks;
 //$$ import net.minecraft.world.level.dimension.DimensionType;
 //#endif
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 //#if MC >= 11600
@@ -26,6 +29,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 //$$ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 //#endif
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
+import top.catowncraft.carpettctcaddition.compat.carpetfixes.CFSettings;
 
 @Mixin(Entity.class)
 public class MixinEntity {
@@ -39,9 +43,30 @@ public class MixinEntity {
     )
     private void makeObsidianPlatform(ServerLevel serverLevel) {
         if (CarpetTCTCAdditionSettings.enderPlatform == CarpetTCTCAdditionSettings.EnderPlatformOptions.ALL) {
+            if (CFSettings.isObsidianPlatformDestroysBlocksFixEnable()) {
+                this.tctc$createEndSpawnObsidian(serverLevel);
+            }
             ServerLevel.makeObsidianPlatform(serverLevel);
         }
     }
+
+    // Modified from Carpet-Fixes
+    private void tctc$createEndSpawnObsidian(ServerLevel serverLevel) {
+        BlockPos.MutableBlockPos mutableBlockPos = ServerLevel.END_SPAWN_POINT.mutable();
+
+        for(int i = -2; i <= 2; ++i) {
+            for(int j = -2; j <= 2; ++j) {
+                for(int k = -1; k < 3; ++k) {
+                    BlockState blockState = k == -1 ? Blocks.OBSIDIAN.defaultBlockState() : Blocks.AIR.defaultBlockState();
+                    if (blockState == Blocks.AIR.defaultBlockState() && serverLevel.getBlockState(ServerLevel.END_SPAWN_POINT.offset(j, k, i)).is(Blocks.END_STONE)) {
+                        continue;
+                    }
+                    serverLevel.setBlockAndUpdate(mutableBlockPos.set(ServerLevel.END_SPAWN_POINT).move(j, k, i), blockState);
+                }
+            }
+        }
+    }
+
     //#else
     //$$ @Inject(
     //$$         method = "changeDimension",

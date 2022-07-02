@@ -19,7 +19,10 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
+import top.hendrixshen.magiclib.dependency.annotation.Dependencies;
+import top.hendrixshen.magiclib.dependency.annotation.Dependency;
 
+@Dependencies(not = @Dependency(value = "carpet-fixes", versionPredicate = ">=1.8.7"))
 @Mixin(ServerPlayer.class)
 public abstract class MixinServerPlayer {
     //#if MC >= 11600

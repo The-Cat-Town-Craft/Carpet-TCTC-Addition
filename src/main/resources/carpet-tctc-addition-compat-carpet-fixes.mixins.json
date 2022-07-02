@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "top.catowncraft.carpettctcaddition.compat.carpetfixes",
+  "plugin": "top.catowncraft.carpettctcaddition.compat.carpetfixes.CarpetFixesMixinPlugin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "mixin.rule.enderPlatform.MixinServerPlayer",
+    "mixin.rule.updateSuppressionCrashFix.MixinMinecraftServer"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
