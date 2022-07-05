@@ -6,6 +6,7 @@
  */
 package top.catowncraft.carpettctcaddition.util;
 
+import com.google.common.collect.Maps;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 //#if MC >= 11600
@@ -15,7 +16,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.GameType;
 //#if MC >= 11600
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.storage.LevelResource;
 //#else
 //$$ import net.minecraft.world.level.dimension.DimensionType;
 //#endif
@@ -49,14 +49,6 @@ public class FreeCameraUtil {
         FreeCameraUtil.cameraData = cameraData;
     }
 
-    public static Path getFile() {
-        //#if MC >= 11600
-        return CarpetTCTCAddition.getServer().getWorldPath(LevelResource.ROOT).resolve(String.format("%s_freeCameraStorage.json", CarpetTCTCAdditionReference.getModId()));
-        //#else
-        //$$ return CarpetTCTCAddition.getServer().getStorageSource().getFile(CarpetTCTCAddition.getServer().getLevelIdName(), String.format("%s_freeCameraStorage.json", CarpetTCTCAdditionReference.getModId())).toPath();
-        //#endif
-    }
-
     public static FreeCameraData createEntry(JsonObject jsonObject) {
         GameType gameType = jsonObject.has("gameType") ? GameType.byName(jsonObject.get("gameType").getAsString()) : GameType.SURVIVAL;
         //#if MC >= 11600
@@ -78,7 +70,6 @@ public class FreeCameraUtil {
     }
 
     static class Serializer implements JsonDeserializer<FreeCameraData>, JsonSerializer<FreeCameraData> {
-
         @Override
         public JsonElement serialize(FreeCameraData src, Type typeOfSrc, JsonSerializationContext context) {
             JsonObject jsonObject = new JsonObject();
@@ -97,49 +88,77 @@ public class FreeCameraUtil {
     }
 
     public static void load() {
-        try {
-            FreeCameraUtil.setCameraData(FreeCameraUtil.loadFreeCameraData());
-        } catch (IOException e) {
-            CarpetTCTCAddition.getLogger().error("Cannot load free camera data from file!");
-            e.printStackTrace();
-        }
+        FreeCameraUtil.setCameraData(FreeCameraUtil.loadFreeCameraData());
     }
 
     public static void save() {
-        try {
-            FreeCameraUtil.saveFreeCameraData(FreeCameraUtil.cameraData);
-        } catch (IOException e) {
-            CarpetTCTCAddition.getLogger().error("Cannot save free camera data to file!");
-            e.printStackTrace();
-        }
+        FreeCameraUtil.saveFreeCameraData(FreeCameraUtil.cameraData);
     }
 
-    public static void saveFreeCameraData(Map<UUID, FreeCameraData> data) throws IOException {
-        Path file = getFile();
+    public static void saveFreeCameraData(Map<UUID, FreeCameraData> data) {
+        Path path = FileUtil.getDataRoot().resolve("freecam.json");
 
         if (data.isEmpty()) {
-            Files.deleteIfExists(file);
+            try {
+                Files.deleteIfExists(path);
+            } catch (IOException e) {
+                CarpetTCTCAddition.getLogger().error("Cannot delete empty file: {}", path.toString());
+                e.printStackTrace();
+            }
             return;
         }
 
         String string = new GsonBuilder().registerTypeAdapter(FreeCameraData.class, new Serializer()).create().toJson(data);
-
-        try (BufferedWriter writer = Files.newBufferedWriter(file)) {
+        FileUtil.checkDataRoot();
+        try (BufferedWriter writer = Files.newBufferedWriter(path)) {
             writer.write(string);
-        } catch (Throwable throwable) {
+        } catch (IOException e) {
             CarpetTCTCAddition.getLogger().error("Cannot write freeCameraData: {}", string);
+            e.printStackTrace();
         }
     }
 
-    public static Map<UUID, FreeCameraData> loadFreeCameraData() throws IOException {
-        Path file = getFile();
+    public static Map<UUID, FreeCameraData> loadFreeCameraData() {
+        Path legacyPath = FileUtil.getLevelRoot().resolve(String.format("%s_freeCameraStorage.json", CarpetTCTCAdditionReference.getModId()));
 
-        if (!Files.isRegularFile(file)) {
-            return new HashMap<>();
+        if (legacyPath.toFile().exists()) {
+            CarpetTCTCAddition.getLogger().info("[{}]Legacy freecam data found!", CarpetTCTCAdditionReference.getModName());
+            Map<UUID, FreeCameraData> legacy = Maps.newHashMap();
+
+            try (BufferedReader reader = Files.newBufferedReader(legacyPath)) {
+                legacy = new GsonBuilder().registerTypeAdapter(FreeCameraData.class, new Serializer()).create().fromJson(reader, new TypeToken<Map<UUID, FreeCameraData>>() {
+                }.getType());
+            } catch (IOException e) {
+                CarpetTCTCAddition.getLogger().error("Cannot load legacy freeCameraData.");
+                e.printStackTrace();
+            }
+
+            FreeCameraUtil.save();
+
+            try {
+                Files.deleteIfExists(legacyPath);
+                CarpetTCTCAddition.getLogger().info("[{}]Legacy file deleted.", CarpetTCTCAdditionReference.getModName());
+            } catch (IOException e) {
+                CarpetTCTCAddition.getLogger().error("Cannot delete legacy freeCameraData.");
+                e.printStackTrace();
+            }
+
+            return legacy;
         }
-        try (BufferedReader reader = Files.newBufferedReader(file)) {
+
+        Path path = FileUtil.getDataRoot().resolve("freecam.json");
+
+        if (!Files.isRegularFile(path)) {
+            return Maps.newHashMap();
+        }
+        try (BufferedReader reader = Files.newBufferedReader(path)) {
             return new GsonBuilder().registerTypeAdapter(FreeCameraData.class, new Serializer()).create().fromJson(reader, new TypeToken<Map<UUID, FreeCameraData>>() {
             }.getType());
+        } catch (IOException e) {
+            CarpetTCTCAddition.getLogger().error("Cannot load freeCameraData.");
+            e.printStackTrace();
         }
+
+        return null;
     }
 }

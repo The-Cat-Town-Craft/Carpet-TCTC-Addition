@@ -124,7 +124,7 @@ public abstract class MixinSettingsManager {
     private void printAdditionVersion(CommandSourceStack source, CallbackInfoReturnable<Integer> cir) {
         MessageUtil.sendMessage(source, ComponentCompatApi.literal(StringUtil.tr(
                 "message.command.carpet.version",
-                        CarpetTCTCAdditionReference.getModName(),
+                        CarpetTCTCAdditionReference.getCurrentModName(),
                         CarpetTCTCAdditionReference.getModVersion(),
                         StringUtil.tr(String.format("label.versionType.%s", CarpetTCTCAdditionReference.getModVersionType()))))
                 .withStyle(ChatFormatting.GRAY));

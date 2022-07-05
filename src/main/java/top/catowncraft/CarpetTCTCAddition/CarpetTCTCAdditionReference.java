@@ -25,11 +25,16 @@ public class CarpetTCTCAdditionReference {
     //#else
     //$$ private static final String CURRENT_MOD_ID = String.format("%s-1_14_4", MOD_ID);
     //#endif
-    private static final String MOD_NAME = FabricLoader.getInstance().getModContainer(CURRENT_MOD_ID).orElseThrow(RuntimeException::new).getMetadata().getName();
+    private static final String CURRENT_MOD_NAME = FabricLoader.getInstance().getModContainer(CURRENT_MOD_ID).orElseThrow(RuntimeException::new).getMetadata().getName();
+    private static final String MOD_NAME = "Carpet TCTC Addition";
     private static final String MOD_VERSION = FabricLoader.getInstance().getModContainer(CURRENT_MOD_ID).orElseThrow(RuntimeException::new).getMetadata().getVersion().getFriendlyString();
     private static final String MOD_VERSION_TYPE = VersionParser.getVersionType(MOD_VERSION);
     public static String getCurrentModId() {
         return CURRENT_MOD_ID;
+    }
+
+    public static String getCurrentModName() {
+        return CURRENT_MOD_NAME;
     }
 
     public static String getModId() {
