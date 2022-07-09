@@ -27,6 +27,7 @@
   },
   "mixins": [
     "${mod_id}.mixins.json",
+    "${mod_id}-compat-carpet-extra.mixins.json",
     "${mod_id}-compat-carpet-fixes.mixins.json"
   ],
   "depends": {

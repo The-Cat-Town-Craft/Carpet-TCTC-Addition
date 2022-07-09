@@ -23,10 +23,14 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
 //#endif
 import top.catowncraft.carpettctcaddition.compat.carpetfixes.CFSettings;
+import top.catowncraft.carpettctcaddition.util.mixin.MixinType;
+import top.catowncraft.carpettctcaddition.util.mixin.annotation.MagicAttack;
+import top.catowncraft.carpettctcaddition.util.mixin.annotation.MagicInterruption;
 import top.hendrixshen.magiclib.dependency.annotation.Dependencies;
 import top.hendrixshen.magiclib.dependency.annotation.Dependency;
 
 //#if MC >= 11600
+@MagicInterruption(targets = "carpetfixes.mixins.playerFixes.ServerPlayerEntity_spawnPlatformMixin")
 @Dependencies(and = @Dependency(value = "carpet-fixes", versionPredicate = ">=1.8.7"))
 @Mixin(value = ServerPlayer.class, priority = 1001)
 //#else
@@ -36,38 +40,27 @@ import top.hendrixshen.magiclib.dependency.annotation.Dependency;
 public abstract class MixinServerPlayer {
     //#if MC >= 11600
     @Shadow protected abstract void createEndPlatform(ServerLevel serverLevel, BlockPos blockPos);
-
-    @Redirect(
-            method = "changeDimension",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/server/level/ServerPlayer;createEndPlatform(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;)V",
-                    ordinal = 0
-            )
-    )
-    private void makeObsidianPlatform(ServerPlayer serverPlayer, ServerLevel serverLevel, BlockPos blockPos) {
+    @SuppressWarnings("unused")
+    @MagicAttack(type = MixinType.REDIRECT, name = "dontRecreateObsidianPlatform")
+    private void tctc$makeObsidianPlatform(ServerPlayer serverPlayer, ServerLevel serverLevel, BlockPos blockPos) {
         if (CarpetTCTCAdditionSettings.enderPlatform != CarpetTCTCAdditionSettings.EnderPlatformOptions.NONE) {
             if (CFSettings.isObsidianPlatformDestroysBlocksFixEnable()) {
-                this.tctc$createEndSpawnObsidian(serverLevel, blockPos);
+                // Modified from Carpet-Fixes
+                BlockPos.MutableBlockPos mutableBlockPos = blockPos.mutable();
+
+                for(int i = -2; i <= 2; ++i) {
+                    for(int j = -2; j <= 2; ++j) {
+                        for(int k = -1; k < 3; ++k) {
+                            BlockState blockState = k == -1 ? Blocks.OBSIDIAN.defaultBlockState() : Blocks.AIR.defaultBlockState();
+                            if (blockState == Blocks.AIR.defaultBlockState() && serverLevel.getBlockState(blockPos.offset(j, k, i)).is(Blocks.END_STONE)) {
+                                continue;
+                            }
+                            serverLevel.setBlockAndUpdate(mutableBlockPos.set(blockPos).move(j, k, i), blockState);
+                        }
+                    }
+                }
             } else {
                 this.createEndPlatform(serverLevel, blockPos);
-            }
-        }
-    }
-
-    // Modified from Carpet-Fixes
-    private void tctc$createEndSpawnObsidian(ServerLevel serverLevel, BlockPos blockPos) {
-        BlockPos.MutableBlockPos mutableBlockPos = blockPos.mutable();
-
-        for(int i = -2; i <= 2; ++i) {
-            for(int j = -2; j <= 2; ++j) {
-                for(int k = -1; k < 3; ++k) {
-                    BlockState blockState = k == -1 ? Blocks.OBSIDIAN.defaultBlockState() : Blocks.AIR.defaultBlockState();
-                    if (blockState == Blocks.AIR.defaultBlockState() && serverLevel.getBlockState(blockPos.offset(j, k, i)).is(Blocks.END_STONE)) {
-                        continue;
-                    }
-                    serverLevel.setBlockAndUpdate(mutableBlockPos.set(blockPos).move(j, k, i), blockState);
-                }
             }
         }
     }

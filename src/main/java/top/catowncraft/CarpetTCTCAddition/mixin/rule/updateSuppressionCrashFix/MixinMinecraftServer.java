@@ -23,7 +23,12 @@ import top.hendrixshen.magiclib.dependency.annotation.Dependency;
 
 import java.util.function.BooleanSupplier;
 
-@Dependencies(not = @Dependency(value = "carpet-fixes", versionPredicate = ">=1.9.1"))
+@Dependencies(
+        not = {
+                @Dependency(value = "carpet-extra", versionPredicate = ">=1.4.14 <=1.4.43"),
+                @Dependency(value = "carpet-fixes", versionPredicate = ">=1.9.1")
+        }
+)
 @Mixin(MinecraftServer.class)
 public class MixinMinecraftServer {
     @Redirect(
