@@ -4,19 +4,19 @@
  * License, version 3. If a copy of the LGPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/lgpl-3.0.txt
  */
-package top.catowncraft.carpettctcaddition.compat.carpetfixes;
+package top.catowncraft.carpettctcaddition.compat.carpet;
 
-public class CFHelper {
-    private static Class<?> UpdateSuppressionException;
+public class CarpetHelper {
+    private static Class<?> ThrowableSuppression;
 
     static {
         try {
-            UpdateSuppressionException = Class.forName("carpetfixes.helpers.UpdateSuppressionException");
+            ThrowableSuppression = Class.forName("carpet.helpers.ThrowableSuppression");
         } catch (ClassNotFoundException ignore) {
         }
     }
 
-    public static Class<?> UpdateSuppressionException() {
-        return UpdateSuppressionException;
+    public static Class<?> ThrowableSuppression() {
+        return ThrowableSuppression;
     }
 }

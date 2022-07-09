@@ -29,7 +29,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 //$$ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 //#endif
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
-import top.catowncraft.carpettctcaddition.compat.carpetfixes.CFSettings;
+import top.catowncraft.carpettctcaddition.compat.carpetfixes.CarpetFixesSettings;
 
 @Mixin(Entity.class)
 public class MixinEntity {
@@ -43,7 +43,7 @@ public class MixinEntity {
     )
     private void makeObsidianPlatform(ServerLevel serverLevel) {
         if (CarpetTCTCAdditionSettings.enderPlatform == CarpetTCTCAdditionSettings.EnderPlatformOptions.ALL) {
-            if (CFSettings.isObsidianPlatformDestroysBlocksFixEnable()) {
+            if (CarpetFixesSettings.isObsidianPlatformDestroysBlocksFixEnable()) {
                 this.tctc$createEndSpawnObsidian(serverLevel);
             }
             ServerLevel.makeObsidianPlatform(serverLevel);

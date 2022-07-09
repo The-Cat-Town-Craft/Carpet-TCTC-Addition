@@ -8,7 +8,7 @@ package top.catowncraft.carpettctcaddition.compat.carpetfixes;
 
 import java.lang.reflect.Field;
 
-public class CFSettings {
+public class CarpetFixesSettings {
     private static boolean isPresent = false;
     private static Class<?> CFSettings;
 

@@ -18,11 +18,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 //#if MC >= 11600
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
 //#endif
-import top.catowncraft.carpettctcaddition.compat.carpetfixes.CFSettings;
+import top.catowncraft.carpettctcaddition.compat.carpetfixes.CarpetFixesSettings;
 import top.catowncraft.carpettctcaddition.util.mixin.MixinType;
 import top.catowncraft.carpettctcaddition.util.mixin.annotation.MagicAttack;
 import top.catowncraft.carpettctcaddition.util.mixin.annotation.MagicInterruption;
@@ -44,7 +42,7 @@ public abstract class MixinServerPlayer {
     @MagicAttack(type = MixinType.REDIRECT, name = "dontRecreateObsidianPlatform")
     private void tctc$makeObsidianPlatform(ServerPlayer serverPlayer, ServerLevel serverLevel, BlockPos blockPos) {
         if (CarpetTCTCAdditionSettings.enderPlatform != CarpetTCTCAdditionSettings.EnderPlatformOptions.NONE) {
-            if (CFSettings.isObsidianPlatformDestroysBlocksFixEnable()) {
+            if (CarpetFixesSettings.isObsidianPlatformDestroysBlocksFixEnable()) {
                 // Modified from Carpet-Fixes
                 BlockPos.MutableBlockPos mutableBlockPos = blockPos.mutable();
 

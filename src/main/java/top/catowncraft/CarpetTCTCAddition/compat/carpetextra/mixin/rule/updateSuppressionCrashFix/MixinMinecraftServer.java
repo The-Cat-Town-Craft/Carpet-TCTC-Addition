@@ -7,14 +7,13 @@
 package top.catowncraft.carpettctcaddition.compat.carpetextra.mixin.rule.updateSuppressionCrashFix;
 
 import net.minecraft.ChatFormatting;
-import net.minecraft.ReportedException;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import org.spongepowered.asm.mixin.Mixin;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAddition;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
-import top.catowncraft.carpettctcaddition.compat.carpetextra.CEHelper;
-import top.catowncraft.carpettctcaddition.compat.carpetextra.CESettings;
+import top.catowncraft.carpettctcaddition.compat.carpetextra.CarpetExtraHelper;
+import top.catowncraft.carpettctcaddition.compat.carpetextra.CarpetExtraSettings;
 import top.catowncraft.carpettctcaddition.helper.UpdateSuppressionException;
 import top.catowncraft.carpettctcaddition.util.MessageUtil;
 import top.catowncraft.carpettctcaddition.util.StringUtil;
@@ -38,7 +37,7 @@ public class MixinMinecraftServer {
             instance.tick(booleanSupplier);
         } catch (Throwable throwable) {
             if ((CarpetTCTCAdditionSettings.updateSuppressionCrashFix && throwable.getCause() instanceof UpdateSuppressionException)
-                    || (CESettings.isUpdateSuppressionCrashFixEnable() && throwable.getCause().getClass() == CEHelper.ThrowableSuppression())) {
+                    || (CarpetExtraSettings.isUpdateSuppressionCrashFixEnable() && throwable.getCause().getClass() == CarpetExtraHelper.ThrowableSuppression())) {
                 MessageUtil.sendServerMessage(CarpetTCTCAddition.getServer(),
                         ComponentCompatApi.literal(StringUtil.tr("message.server.updateSuppression.exception")).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
             } else {

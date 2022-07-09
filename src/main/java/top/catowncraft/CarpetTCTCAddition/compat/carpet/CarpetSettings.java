@@ -4,18 +4,18 @@
  * License, version 3. If a copy of the LGPL was not distributed with this
  * file, You can obtain one at: https://www.gnu.org/licenses/lgpl-3.0.txt
  */
-package top.catowncraft.carpettctcaddition.compat.carpetextra;
+package top.catowncraft.carpettctcaddition.compat.carpet;
 
 import java.lang.reflect.Field;
 
-public class CESettings {
+public class CarpetSettings {
     private static boolean isPresent = false;
     private static Class<?> CESettings;
     private static Field updateSuppressionCrashFix;
 
     static {
         try {
-            CESettings = Class.forName("carpetextra.CarpetExtraSettings");
+            CESettings = Class.forName("carpet.CarpetSettings");
             isPresent = true;
         } catch (ClassNotFoundException ignore) {
         }
