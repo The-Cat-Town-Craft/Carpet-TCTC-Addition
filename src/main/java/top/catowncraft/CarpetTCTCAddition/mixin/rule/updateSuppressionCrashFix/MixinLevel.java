@@ -10,7 +10,6 @@ package top.catowncraft.carpettctcaddition.mixin.rule.updateSuppressionCrashFix;
 //$$ import net.minecraft.ChatFormatting;
 //$$ import net.minecraft.core.BlockPos;
 //#endif
-import net.minecraft.ChatFormatting;
 import net.minecraft.world.level.Level;
 //#if MC < 11900
 //$$ import net.minecraft.world.level.block.Block;
@@ -18,10 +17,6 @@ import net.minecraft.world.level.Level;
 //#endif
 import org.spongepowered.asm.mixin.Mixin;
 //#if MC >= 11900
-import top.catowncraft.carpettctcaddition.CarpetTCTCAddition;
-import top.catowncraft.carpettctcaddition.util.MessageUtil;
-import top.catowncraft.carpettctcaddition.util.StringUtil;
-import top.hendrixshen.magiclib.compat.minecraft.network.chat.ComponentCompatApi;
 import top.hendrixshen.magiclib.dependency.annotation.Dependencies;
 import top.hendrixshen.magiclib.dependency.annotation.Dependency;
 //#else
