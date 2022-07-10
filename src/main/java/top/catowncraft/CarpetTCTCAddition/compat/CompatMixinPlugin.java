@@ -7,13 +7,15 @@
 package top.catowncraft.carpettctcaddition.compat;
 
 import com.google.common.collect.Lists;
-import org.objectweb.asm.tree.AnnotationNode;
-import org.objectweb.asm.tree.ClassNode;
-import org.objectweb.asm.tree.MethodNode;
+import net.fabricmc.tinyremapper.IMappingProvider.Member;
+import org.objectweb.asm.Opcodes;
+import org.objectweb.asm.tree.*;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 import org.spongepowered.asm.mixin.transformer.meta.MixinMerged;
 import org.spongepowered.asm.util.Annotations;
+import top.catowncraft.carpettctcaddition.CarpetTCTCAddition;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionMixinPlugin;
+import top.catowncraft.carpettctcaddition.util.RemappingUtil;
 import top.catowncraft.carpettctcaddition.util.mixin.MixinType;
 import top.catowncraft.carpettctcaddition.util.mixin.annotation.MagicInterruption;
 import top.catowncraft.carpettctcaddition.util.mixin.annotation.MagicAttack;
@@ -47,7 +49,7 @@ public class CompatMixinPlugin extends CarpetTCTCAdditionMixinPlugin {
 
     /**
      * 時空追放.
-     * <p>Erase target and infuse soul.
+     * <p>Erase target.
      * @param targetClass Injection target class.
      * @param magicAttackMethodNode Spell casting MethodNode.
      * @param magicInterruption Spell casting interruption AnnotationNode.
@@ -77,18 +79,20 @@ public class CompatMixinPlugin extends CarpetTCTCAdditionMixinPlugin {
         }
 
         // Magic releasing.
-        targetClass.methods.remove(tekitaiMethod);
 
-        tekitaiMethod.instructions.clear();
-        tekitaiMethod.instructions.add(magicAttackMethodNode.instructions);
-        tekitaiMethod.localVariables.clear();
-        tekitaiMethod.localVariables.addAll(magicAttackMethodNode.localVariables);
-        tekitaiMethod.tryCatchBlocks.clear();
-        tekitaiMethod.tryCatchBlocks.addAll(magicAttackMethodNode.tryCatchBlocks);
+        this.tsuihoTarget(targetClass, tekitaiMethod, magicAttackMethodNode, magicAttack);
+        // targetClass.methods.remove(tekitaiMethod);
+
+        // tekitaiMethod.instructions.clear();
+        // tekitaiMethod.instructions.add(magicAttackMethodNode.instructions);
+        // tekitaiMethod.localVariables.clear();
+        // tekitaiMethod.localVariables.addAll(magicAttackMethodNode.localVariables);
+        // tekitaiMethod.tryCatchBlocks.clear();
+        // tekitaiMethod.tryCatchBlocks.addAll(magicAttackMethodNode.tryCatchBlocks);
 
         // Magic Harvesting.
         targetClass.visibleAnnotations.removeIf(annotationNode -> annotationNode.desc.equals("Ltop/catowncraft/carpettctcaddition/util/mixin/annotation/MagicInterruption;"));
-        targetClass.methods.removeIf(methodNode -> methodNode.name.contentEquals(magicAttackMethodNode.name) && methodNode.desc.contentEquals(magicAttackMethodNode.desc));
+        // targetClass.methods.removeIf(methodNode -> methodNode.name.contentEquals(magicAttackMethodNode.name) && methodNode.desc.contentEquals(magicAttackMethodNode.desc));
     }
 
     /**
@@ -98,7 +102,6 @@ public class CompatMixinPlugin extends CarpetTCTCAdditionMixinPlugin {
      * @param tekitaiTarget Enemy's class.
      * @return Enemy's MethodNode.
      */
-
     private MethodNode findTekitaiMethod(ClassNode targetClass, AnnotationNode magicAttack, ArrayList<String> tekitaiTarget) {
         List<MixinType> type = Annotations.getValue(magicAttack, "type", true, MixinType.class);
         String name = Annotations.getValue(magicAttack, "name");
@@ -123,5 +126,69 @@ public class CompatMixinPlugin extends CarpetTCTCAdditionMixinPlugin {
             return methodNode;
         }
         return null;
+    }
+
+    /**
+     * Erase target and infuse soul.
+     * @param targetClass Injection target ClassNode.
+     * @param tekitaiMethodNode Enemy's MethodNode.
+     * @param magicAttackMethodNode Spell casting MethodNode.
+     * @param magicAttack Magical attacking AnnotationNode.
+     */
+    private void tsuihoTarget(ClassNode targetClass, MethodNode tekitaiMethodNode, MethodNode magicAttackMethodNode, AnnotationNode magicAttack) {
+        String method = Annotations.getValue(magicAttack, "method");
+        String owner = Annotations.getValue(magicAttack, "owner");
+        String desc = Annotations.getValue(magicAttack, "desc");
+        Member remappedMethod = RemappingUtil.mapMethod(owner, method, desc);
+        int ordinal = Annotations.getValue(magicAttack, "ordinal", -1);
+        boolean keep = Annotations.getValue(magicAttack, "keep", Boolean.FALSE);
+
+        for (MethodNode methodNode : targetClass.methods) {
+            if (methodNode.name.equals(remappedMethod.name) && methodNode.desc.equals(remappedMethod.desc)) {
+                int offset = 0;
+                int found = 0;
+                int processed = 0;
+
+                for(AbstractInsnNode abstractInsnNode : methodNode.instructions) {
+                    if (!(abstractInsnNode instanceof MethodInsnNode)) {
+                        continue;
+                    }
+
+                    MethodInsnNode methodInsnNode = (MethodInsnNode) abstractInsnNode;
+
+                    if (!methodInsnNode.name.equals(tekitaiMethodNode.name) ||
+                            !methodInsnNode.desc.equals(tekitaiMethodNode.desc)) {
+                        continue;
+                    }
+
+                    if ((tekitaiMethodNode.access & Opcodes.ACC_STATIC) == Opcodes.ACC_STATIC &&
+                            methodInsnNode.getOpcode() != Opcodes.INVOKESTATIC) {
+                        continue;
+                    }
+
+                    if ((tekitaiMethodNode.access & Opcodes.ACC_STATIC) == 0 &&
+                            methodInsnNode.getOpcode() == Opcodes.INVOKESTATIC) {
+                        continue;
+                    }
+
+                    if (ordinal < 0 || ordinal == offset) {
+                        MethodInsnNode invokeMethod = new MethodInsnNode(methodInsnNode.getOpcode(), methodInsnNode.owner,
+                                magicAttackMethodNode.name, methodInsnNode.desc);
+                        methodNode.instructions.insertBefore(methodInsnNode, invokeMethod);
+                        methodNode.instructions.remove(methodInsnNode);
+                        processed++;
+                    }
+
+                    offset++;
+                    found++;
+
+                    if (found == processed && !keep) {
+                        targetClass.methods.remove(tekitaiMethodNode);
+                    }
+                }
+                
+                break;
+            }
+        }
     }
 }

@@ -31,7 +31,13 @@ import java.util.function.BooleanSupplier;
 @Mixin(value = MinecraftServer.class, priority = 1100)
 public class MixinMinecraftServer {
     @SuppressWarnings("unused")
-    @MagicAttack(type = MixinType.REDIRECT, name = "catchUpdateSuppression")
+    @MagicAttack(
+            type = MixinType.REDIRECT,
+            name = "catchUpdateSuppression",
+            owner = "server.MinecraftServer",
+            method = "method_3813",
+            desc = "(Ljava/util/function/BooleanSupplier;)V"
+    )
     private void onTickingWorld(ServerLevel instance, BooleanSupplier booleanSupplier) {
         try {
             instance.tick(booleanSupplier);

@@ -30,7 +30,7 @@ import top.hendrixshen.magiclib.dependency.annotation.Dependency;
 //#if MC >= 11600
 @MagicInterruption(targets = "carpetfixes.mixins.playerFixes.ServerPlayerEntity_spawnPlatformMixin")
 @Dependencies(and = @Dependency(value = "carpet-fixes", versionPredicate = ">=1.8.7"))
-@Mixin(value = ServerPlayer.class, priority = 1001)
+@Mixin(value = ServerPlayer.class, priority = 1100)
 //#else
 //$$ @Dependencies(not = @Dependency("minecraft"))
 //$$ @Mixin(MinecraftServer.class)
@@ -39,7 +39,13 @@ public abstract class MixinServerPlayer {
     //#if MC >= 11600
     @Shadow protected abstract void createEndPlatform(ServerLevel serverLevel, BlockPos blockPos);
     @SuppressWarnings("unused")
-    @MagicAttack(type = MixinType.REDIRECT, name = "dontRecreateObsidianPlatform")
+    @MagicAttack(
+            type = MixinType.REDIRECT,
+            name = "dontRecreateObsidianPlatform",
+            owner = "class_1297",
+            method = "method_5731",
+            desc = "(Lnet/minecraft/class_3218;)Lnet/minecraft/class_1297;"
+    )
     private void tctc$makeObsidianPlatform(ServerPlayer serverPlayer, ServerLevel serverLevel, BlockPos blockPos) {
         if (CarpetTCTCAdditionSettings.enderPlatform != CarpetTCTCAdditionSettings.EnderPlatformOptions.NONE) {
             if (CarpetFixesSettings.isObsidianPlatformDestroysBlocksFixEnable()) {
