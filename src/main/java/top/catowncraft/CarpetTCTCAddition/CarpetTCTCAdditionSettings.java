@@ -136,6 +136,17 @@ public class CarpetTCTCAdditionSettings {
     public static boolean disableIllegalChatCharacterCheck = false;
 
     @Rule(
+            name = "disableParticlesPackets",
+            desc = "Disable particle packet sending to reduce bandwidth usage.",
+            category = {
+                    RuleCategory.CLIENT,
+                    RuleCategory.FEATURE,
+                    RuleCategory.MISC
+            }
+    )
+    public static boolean disableParticlesPackets = false;
+
+    @Rule(
             name = "enderPlatform",
             desc = "Is obsidian platform generated in the end.",
             extra = {

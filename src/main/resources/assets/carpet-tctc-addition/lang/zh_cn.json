@@ -62,6 +62,9 @@
   "rule.disableIllegalChatCharacterCheck.name": "禁用聊天非法字符检查",
   "rule.disableIllegalChatCharacterCheck.desc": "允许你在游戏中使用 分节符 等字符。",
 
+  "rule.disableParticlesPackets.name": "禁用粒子发包",
+  "rule.disableParticlesPackets.desc": "禁用粒子包发送以降低带宽占用。",
+
   "rule.endGatewayChunkLoader.name": "末路之地折跃门区块加载器",
   "rule.endGatewayChunkLoader.desc": "当实体穿越末路之地折跃门时，目标区块会像下界传送门一样使目标区块获得 15 秒的加载。",
   "rule.endGatewayChunkLoader.extra.0": "all - 所有实体穿过末路之地折跃门时，给予目标区块加载票。",

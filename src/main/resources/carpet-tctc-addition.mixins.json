@@ -13,6 +13,7 @@
     "rule.blockIllegalUsername.MixinPlayerList",
     "rule.cameraModeDisableSpectatePlayers.MixinServerGamePacketListenerImpl",
     "rule.disableIllegalChatCharacterCheck.MixinSharedConstants",
+    "rule.disableParticlesPackets.MixinServerLevel",
     "rule.enderPlatform.MixinEntity",
     "rule.enderPlatform.MixinServerPlayer",
     "rule.endGatewayChunkLoader.MixinTheEndGatewayBlockEntity",
