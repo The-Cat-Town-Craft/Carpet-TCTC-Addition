@@ -43,10 +43,8 @@ public class MixinWetSpongeBlock extends Block {
             )
     )
     private void onPlace(BlockState blockState, Level level, BlockPos blockPos, BlockState blockState2, boolean bl, CallbackInfo ci) {
-        if (CarpetTCTCAdditionSettings.wetSpongeAbsorbLava) {
-            if (blockState2.getBlock() != blockState.getBlock()) {
-                this.tryAbsorbLava(level, blockPos);
-            }
+        if (CarpetTCTCAdditionSettings.wetSpongeAbsorbLava && blockState2.getBlock() != blockState.getBlock()) {
+            this.tryAbsorbLava(level, blockPos);
         }
     }
     //#else
@@ -76,7 +74,6 @@ public class MixinWetSpongeBlock extends Block {
             level.playSound(null, blockPos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1.0F, (1.0F + level.getRandom().nextFloat() * 0.2F) * 0.7F);
         }
     }
-
 
     private boolean removeLavaBreadthFirstSearch(Level level, BlockPos blockPos) {
         Queue<Tuple<BlockPos, Integer>> queue = Lists.newLinkedList();

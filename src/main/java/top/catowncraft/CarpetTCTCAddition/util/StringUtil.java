@@ -9,9 +9,6 @@ package top.catowncraft.carpettctcaddition.util;
 import carpet.CarpetSettings;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionReference;
 import top.hendrixshen.magiclib.language.I18n;
-import top.hendrixshen.magiclib.language.MagicLanguageManager;
-
-import java.util.concurrent.ConcurrentHashMap;
 
 public class StringUtil {
     public static String tr(String node, Object... objects) {

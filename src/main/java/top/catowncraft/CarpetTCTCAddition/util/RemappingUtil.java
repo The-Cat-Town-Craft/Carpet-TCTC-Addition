@@ -15,7 +15,6 @@ import java.util.regex.Pattern;
 
 // This util from OptiFabric.
 public class RemappingUtil {
-
     private static final MappingResolver RESOLVER = FabricLoader.getInstance().getMappingResolver();
     private static final String INTERMEDIARY = "intermediary";
     private static final Pattern CLASS_FINDER = Pattern.compile("Lnet\\/minecraft\\/([^;]+);");

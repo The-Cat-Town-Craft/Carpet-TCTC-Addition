@@ -13,7 +13,6 @@ import org.objectweb.asm.tree.*;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 import org.spongepowered.asm.mixin.transformer.meta.MixinMerged;
 import org.spongepowered.asm.util.Annotations;
-import top.catowncraft.carpettctcaddition.CarpetTCTCAddition;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionMixinPlugin;
 import top.catowncraft.carpettctcaddition.util.RemappingUtil;
 import top.catowncraft.carpettctcaddition.util.mixin.MixinType;
@@ -186,7 +185,6 @@ public class CompatMixinPlugin extends CarpetTCTCAdditionMixinPlugin {
                         targetClass.methods.remove(tekitaiMethodNode);
                     }
                 }
-                
                 break;
             }
         }
