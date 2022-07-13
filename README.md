@@ -207,6 +207,21 @@ Fix updates suppression causing server crashes.
 - Suggested options: `false`, `true`
 - Categories: `BUGFIX`
 
+### voidDevouringBehavior
+
+The action that will occur when the player falls into the void.
+
+instant_death - Dies immediately when entering the void.
+
+teleport_to_spawn - Teleport to the player's spawn point when entering the void, or to the world spawn point if it does not exist.
+
+vanilla - Vanilla behaviour.
+
+- Type: `enum`
+- Default value: `false`
+- Suggested options: `instant_death`, `teleport_to_spawn`, `vanilla`
+- Categories: `EXPERIMENTAL`, `FEATURE`
+
 ### voidTradeFix
 
 Once the villager entity is unloaded, the trading interface will be closed.

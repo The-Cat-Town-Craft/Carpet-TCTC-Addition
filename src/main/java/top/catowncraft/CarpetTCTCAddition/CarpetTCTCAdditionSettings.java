@@ -266,6 +266,27 @@ public class CarpetTCTCAdditionSettings {
     public static boolean updateSuppressionCrashFix = false;
 
     @Rule(
+            name = "voidDevouringBehavior",
+            desc = "The action that will occur when the player falls into the void.",
+            extra = {
+                    "instant_death - Dies immediately when entering the void.",
+                    "teleport_to_spawn - Teleport to the player's spawn point when entering the void, or to the world spawn point if it does not exist.",
+                    "vanilla - Vanilla behaviour.",
+            },
+            category = {
+                    RuleCategory.EXPERIMENTAL,
+                    RuleCategory.FEATURE
+            }
+    )
+    public static VoidDevouringBehaviorOptions voidDevouringBehavior = VoidDevouringBehaviorOptions.VANILLA;
+
+    public enum VoidDevouringBehaviorOptions {
+        INSTANT_DEATH,
+        TELEPORT_TO_SPAWN,
+        VANILLA,
+    }
+
+    @Rule(
             name = "voidTradeFix",
             desc = "Once the villager entity is unloaded, the trading interface will be closed.",
             category = {

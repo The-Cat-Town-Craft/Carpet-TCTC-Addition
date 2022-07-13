@@ -11,6 +11,7 @@
 [![Github Release Downloads](https://img.shields.io/github/downloads/The-Cat-Town-Craft/Carpet-TCTC-Addition/total?label=Github%20Release%20Downloads&style=flat-square)](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/releases)
 [![Modrinth Downloads](https://img.shields.io/modrinth/dt/vbBQ6dVH?label=Modrinth%20Downloads&logo=Modrinth%20Downloads&style=flat-square)](https://modrinth.com/mod/carpet-tctc-addition)
 [![CurseForge Downloads](http://cf.way2muchnoise.eu/513524.svg?badge_style=flat)](https://www.curseforge.com/minecraft/mc-mods/carpet-tctc-addition)
+
 [English](./README.md)
 
 **警告: 自从 2.0 版本开始，我们使用自己的SettingManager来管理规则，您需要手动迁移carpet.conf中保存的默认配置**
@@ -206,6 +207,21 @@ player - 仅玩家可获得统计信息。
 - 参考数据: `false`, `true`
 - 类别: `漏洞修复`
 
+### 虚空吞噬行为(voidDevouringBehavior)
+
+玩家坠入虚空后发生的动作。
+
+instant_death - 进入虚空后立即死亡。
+
+teleport_to_spawn - 进入虚空后传送至玩家出生点，若不存在则传送至世界出生点。
+
+vanilla - 原版行为。
+
+- 类型: `枚举`
+- 默认值: `vanilla`
+- 参考数据: `instant_death`, `teleport_to_spawn`, `vanilla`
+- 类别: `实验性`, `特性`
+- 
 ### 虚空交易修复(voidTradeFix)
 
 一旦村民实体被卸载，将关闭交易界面。

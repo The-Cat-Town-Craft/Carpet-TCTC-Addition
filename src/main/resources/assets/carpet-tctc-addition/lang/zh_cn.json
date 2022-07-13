@@ -103,6 +103,12 @@
   "rule.updateSuppressionCrashFix.name": "更新抑制崩溃修复",
   "rule.updateSuppressionCrashFix.desc": "修复更新抑制造成的服务器崩溃。",
 
+  "rule.voidDevouringBehavior.name": "虚空吞噬行为",
+  "rule.voidDevouringBehavior.desc": "玩家坠入虚空后发生的动作。",
+  "rule.voidDevouringBehavior.extra.0": "instant_death - 进入虚空后立即死亡。",
+  "rule.voidDevouringBehavior.extra.1": "teleport_to_spawn - 进入虚空后传送至玩家出生点，若不存在则传送至世界出生点。",
+  "rule.voidDevouringBehavior.extra.2": "vanilla - 原版行为。",
+
   "rule.voidTradeFix.name": "虚空交易修复",
   "rule.voidTradeFix.desc": "一旦村民实体被卸载，将关闭交易界面。",
 
