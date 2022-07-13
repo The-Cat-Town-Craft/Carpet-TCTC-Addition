@@ -91,7 +91,7 @@ Disables players in /c from spectating other players.
 - Type: `boolean`
 - Default value: `false`
 - Suggested options: `false`, `true`
-- Categories: `FEATURE`
+- Categories: `COMMAND`, `FEATURE`
 
 ### disableIllegalChatCharacterCheck
 
@@ -152,7 +152,7 @@ Return to the starting position when you have finished spectating.
 - Type: `boolean`
 - Default value: `true`
 - Suggested options: `false`, `true`
-- Categories: `MISC`
+- Categories: `COMMAND`, `MISC`
 
 ### hereGlowTime
 
@@ -161,7 +161,7 @@ Time highlighted when using here command shared coordinates.
 - Type: `int`
 - Default value: `15`
 - Suggested options: `0`, `15`
-- Categories: `MISC`
+- Categories: `COMMAND`, `MISC`
 
 ### illegalPistonActionFix
 
@@ -171,6 +171,15 @@ Fix headless pistons to destroy blocks.
 - Default value: `false`
 - Suggested options: `false`, `true`
 - Categories: `FEATURE`
+
+### opLevelBelowSelf
+
+Operators can only grant the same or lower permissions to other players than themselves.
+
+- Type: `boolean`
+- Default value: `true`
+- Suggested options: `false`, `true`
+- Categories: `COMMAND`
 
 ### playerStats
 

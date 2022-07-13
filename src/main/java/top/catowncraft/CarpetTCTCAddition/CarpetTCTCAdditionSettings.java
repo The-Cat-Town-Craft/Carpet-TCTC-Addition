@@ -119,6 +119,7 @@ public class CarpetTCTCAdditionSettings {
             name = "cameraModeDisableSpectatePlayers",
             desc = "Disables players in /c from spectating other players.",
             category = {
+                    RuleCategory.COMMAND,
                     RuleCategory.FEATURE
             }
     )
@@ -197,6 +198,7 @@ public class CarpetTCTCAdditionSettings {
             name = "freecamRestoreLocation",
             desc = "Return to the starting position when you have finished spectating.",
             category = {
+                    RuleCategory.COMMAND,
                     RuleCategory.MISC
             }
     )
@@ -206,6 +208,7 @@ public class CarpetTCTCAdditionSettings {
             name = "hereGlowTime",
             desc = "Time highlighted when using here command shared coordinates.",
             category = {
+                    RuleCategory.COMMAND,
                     RuleCategory.MISC
             },
             options = {
@@ -224,6 +227,15 @@ public class CarpetTCTCAdditionSettings {
             }
     )
     public static boolean illegalPistonActionFix = false;
+
+    @Rule(
+            name = "opLevelBelowSelf",
+            desc = "Operators can only grant the same or lower permissions to other players than themselves.",
+            category = {
+                    RuleCategory.COMMAND
+            }
+    )
+    public static boolean opLevelBelowSelf = true;
 
     @Rule(
             name = "playerStats",

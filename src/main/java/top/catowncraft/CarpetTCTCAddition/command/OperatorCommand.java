@@ -41,7 +41,7 @@ public class OperatorCommand {
     }
 
     private static int setPermissionLevel(CommandSourceStack commandSourceStack, Collection<GameProfile> gameProfileCollection, int level) {
-        if (!commandSourceStack.hasPermission(level)) {
+        if (!commandSourceStack.hasPermission(level) && CarpetTCTCAdditionSettings.opLevelBelowSelf) {
             commandSourceStack.sendFailure(ComponentCompatApi.literal(StringUtil.tr("message.command.operator.setPermissionLevel.lower", level)));
             return 1;
         }

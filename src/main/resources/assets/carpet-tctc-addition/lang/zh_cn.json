@@ -90,6 +90,9 @@
   "rule.illegalPistonActionFix.name": "非法活塞动作修复",
   "rule.illegalPistonActionFix.desc": "修复无头活塞破坏方块。",
 
+  "rule.opLevelBelowSelf.name": "op等级限制",
+  "rule.opLevelBelowSelf.desc": "操作员只能给予其他玩家与自己相同或更低的权限。",
+
   "rule.playerStats.name": "统计信息",
   "rule.playerStats.desc": "玩家与假人统计信息的控制。",
   "rule.playerStats.extra.0": "bot - 仅假人可获得统计信息。",
