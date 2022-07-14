@@ -111,6 +111,15 @@ Disable particle packet sending to reduce bandwidth usage.
 - Suggested options: `false`, `true`
 - Categories: `CLIENT`, `FEATURE`, `MISC`
 
+### dispenserCollectExperience
+
+Dispenser firing glass bottles at players will convert to experience bottles.
+
+- Type: `boolean`
+- Default value: `false`
+- Suggested options: `false`, `true`
+- Categories: `EXPERIMENTAL`, `FEATURE`
+
 ### enderPlatform
 
 Is obsidian platform generated in the end.

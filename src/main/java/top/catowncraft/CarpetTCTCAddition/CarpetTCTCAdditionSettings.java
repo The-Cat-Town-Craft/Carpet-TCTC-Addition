@@ -148,6 +148,16 @@ public class CarpetTCTCAdditionSettings {
     public static boolean disableParticlesPackets = false;
 
     @Rule(
+            name = "dispenserCollectExperience",
+            desc = "Dispenser firing glass bottles at players will convert to experience bottles.",
+            category = {
+                    RuleCategory.EXPERIMENTAL,
+                    RuleCategory.FEATURE
+            }
+    )
+    public static boolean dispenserCollectExperience = false;
+
+    @Rule(
             name = "enderPlatform",
             desc = "Is obsidian platform generated in the end.",
             extra = {

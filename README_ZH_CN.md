@@ -111,6 +111,15 @@
 - 参考数据: `false`, `true`
 - 类别: `客户端`, `特性`, `杂项`
 
+### 发射器收集经验(dispenserCollectExperience)
+
+发射器向玩家发射玻璃瓶将转换为附魔之瓶。
+
+- 类型: `布尔值`
+- 默认值: `false`
+- 参考数据: `false`, `true`
+- 类别: `实验性`, `特性`
+
 ### 末路之地平台(enderPlatform)
 
 是否在实体进入末路之地时生成黑曜石平台。
@@ -247,7 +256,7 @@ vanilla - 原版行为。
 - 类型: `字符串`
 - 默认值: `#none`
 - 参考数据: `#none`, `creative`, `mirror`, `survival`
-- 类别: `喵镇附属-协议`
+- 类别: `协议`
 
 ### 湿海绵吸收岩浆(wetSpongeAbsorbLava)
 

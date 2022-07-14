@@ -65,6 +65,9 @@
   "rule.disableParticlesPackets.name": "禁用粒子发包",
   "rule.disableParticlesPackets.desc": "禁用粒子包发送以降低带宽占用。",
 
+  "rule.dispenserCollectExperience.name": "发射器收集经验",
+  "rule.dispenserCollectExperience.desc": "发射器向玩家发射玻璃瓶将转换为附魔之瓶。",
+
   "rule.endGatewayChunkLoader.name": "末路之地折跃门区块加载器",
   "rule.endGatewayChunkLoader.desc": "当实体穿越末路之地折跃门时，目标区块会像下界传送门一样使目标区块获得 15 秒的加载。",
   "rule.endGatewayChunkLoader.extra.0": "all - 所有实体穿过末路之地折跃门时，给予目标区块加载票。",

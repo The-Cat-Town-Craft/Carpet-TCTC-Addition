@@ -14,6 +14,7 @@
     "rule.cameraModeDisableSpectatePlayers.MixinServerGamePacketListenerImpl",
     "rule.disableIllegalChatCharacterCheck.MixinSharedConstants",
     "rule.disableParticlesPackets.MixinServerLevel",
+    "rule.dispenserCollectExperienceOrb.MixinDispenseItemBehavior",
     "rule.enderPlatform.MixinEntity",
     "rule.enderPlatform.MixinServerPlayer",
     "rule.endGatewayChunkLoader.MixinTheEndGatewayBlockEntity",
