@@ -18,7 +18,7 @@
 
 一个 [fabric-carpet](https://github.com/gnembon/fabric-carpet) 扩展模组。 它提供了一些有趣的特性。
 
-管理命令: `/carpettctcaddition`
+管理命令: `/carpet-tctc-addition`
 
 ## 依赖项
 

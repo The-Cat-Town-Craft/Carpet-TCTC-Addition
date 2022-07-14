@@ -35,7 +35,7 @@ public class CarpetTCTCAddition implements ModInitializer, CarpetExtension {
     private static MinecraftServer minecraftServer;
     private static final CarpetTCTCAdditionSettingsManager settingsManager = new CarpetTCTCAdditionSettingsManager(
             CarpetTCTCAdditionReference.getModVersion(),
-            CarpetTCTCAdditionReference.getModId().replaceAll("-", ""),
+            CarpetTCTCAdditionReference.getModId(),
             CarpetTCTCAdditionReference.getCurrentModName());
 
     public static MinecraftServer getServer() {

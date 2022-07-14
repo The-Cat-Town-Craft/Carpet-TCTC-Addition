@@ -77,7 +77,7 @@ public class MixinDispenseItemBehavior {
     //$$             new DefaultDispenseItemBehavior() {
     //$$                 @Override
     //$$                 protected ItemStack execute(BlockSource blockSource, ItemStack itemStack) {
-    //$$                     if (CarpetTCTCAdditionSettings.dispenserCollectExperienceOrb) {
+    //$$                     if (CarpetTCTCAdditionSettings.dispenserCollectExperience) {
     //$$                         BlockPos blockPos = blockSource.getPos().relative(blockSource.getBlockState().getValue(DispenserBlock.FACING));
     //$$                         List<ServerPlayer> list = blockSource.getLevel().getEntitiesOfClass(ServerPlayer.class, new AABB(blockPos), EntitySelector.NO_SPECTATORS);
     //$$                         if (list.isEmpty()) {

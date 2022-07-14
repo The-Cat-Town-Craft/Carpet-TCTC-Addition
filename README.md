@@ -18,7 +18,7 @@
 
 A [fabric-carpet](https://github.com/gnembon/fabric-carpet) extension mod. It offers some interesting features.
 
-Operation command: `/carpettctcaddition`
+Operation command: `/carpet-tctc-addition`
 
 ## Dependencies
 
