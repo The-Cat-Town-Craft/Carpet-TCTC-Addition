@@ -54,7 +54,6 @@ public class MixinDispenseItemBehavior {
                 return;
             }
             ServerPlayer serverPlayer = list.get(0);
-            System.out.println(serverPlayer.experienceLevel);
             if (serverPlayer.experienceLevel < 2) {
                 return;
             }
