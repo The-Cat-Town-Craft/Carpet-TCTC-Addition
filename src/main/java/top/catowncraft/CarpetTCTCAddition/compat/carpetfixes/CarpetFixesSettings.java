@@ -40,7 +40,7 @@ public class CarpetFixesSettings {
     public static boolean isObsidianPlatformDestroysBlocksFixEnable() {
         try {
             return obsidianPlatformDestroysBlocksFix.getBoolean(null);
-        } catch (IllegalAccessException e) {
+        } catch (IllegalAccessException | NullPointerException e) {
             return false;
         }
     }
@@ -48,7 +48,7 @@ public class CarpetFixesSettings {
     public static boolean isUpdateSuppressionCrashFixEnable() {
         try {
             return updateSuppressionCrashFix.getBoolean(null);
-        } catch (IllegalAccessException e) {
+        } catch (IllegalAccessException | NullPointerException e) {
             return false;
         }
     }
