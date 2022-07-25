@@ -7,6 +7,8 @@
 package top.catowncraft.carpettctcaddition.mixin.rule.voidFallBehavior;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.protocol.game.ClientboundCustomSoundPacket;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 //#if MC >= 11600
@@ -106,6 +108,15 @@ public abstract class MixinLivingEntity extends Entity {
                     //$$ 0.0F, 0.0F);
                     //#endif
                 }
+                serverPlayer.connection.send(new ClientboundCustomSoundPacket(
+                        new ResourceLocation("item.totem.use"),
+                        serverPlayer.getSoundSource(),
+                        new Vec3(serverPlayer.getXCompat(), serverPlayer.getYCompat(), serverPlayer.getZCompat()),
+                        //#if MC >= 11900
+                        1.0F, 1.0F, serverPlayer.level.getRandom().nextLong()));
+                        //#else
+                        //$$ 1.0F, 1.0F));
+                        //#endif
                 serverPlayer.fallDistance = 0.0F;
             }
             ci.cancel();
