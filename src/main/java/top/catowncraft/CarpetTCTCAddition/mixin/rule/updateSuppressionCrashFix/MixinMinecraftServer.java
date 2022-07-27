@@ -14,6 +14,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAddition;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
+import top.catowncraft.carpettctcaddition.compat.GeneralPredicate;
 import top.catowncraft.carpettctcaddition.helper.UpdateSuppressionException;
 import top.catowncraft.carpettctcaddition.util.MessageUtil;
 import top.catowncraft.carpettctcaddition.util.StringUtil;
@@ -23,13 +24,7 @@ import top.hendrixshen.magiclib.dependency.annotation.Dependency;
 
 import java.util.function.BooleanSupplier;
 
-@Dependencies(
-        not = {
-                @Dependency(value = "carpet", versionPredicate = ">=1.4.49 <1.4.77"),
-                @Dependency(value = "carpet-extra", versionPredicate = ">=1.4.14 <=1.4.43"),
-                @Dependency(value = "carpet-fixes", versionPredicate = ">=1.9.1")
-        }
-)
+@Dependencies(predicate = GeneralPredicate.shouldUseCompatForUpdateSuppressionCrashFix.class)
 @Mixin(MinecraftServer.class)
 public class MixinMinecraftServer {
     @Redirect(

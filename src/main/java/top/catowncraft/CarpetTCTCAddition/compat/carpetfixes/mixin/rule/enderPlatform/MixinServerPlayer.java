@@ -20,6 +20,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
 //#endif
+import top.catowncraft.carpettctcaddition.compat.carpetfixes.CarpetFixesPredicate;
 import top.catowncraft.carpettctcaddition.compat.carpetfixes.CarpetFixesSettings;
 import top.catowncraft.carpettctcaddition.util.mixin.MixinType;
 import top.catowncraft.carpettctcaddition.util.mixin.annotation.MagicAttack;
@@ -29,7 +30,7 @@ import top.hendrixshen.magiclib.dependency.annotation.Dependency;
 
 //#if MC >= 11600
 @MagicInterruption(targets = "carpetfixes.mixins.playerFixes.ServerPlayerEntity_spawnPlatformMixin")
-@Dependencies(and = @Dependency(value = "carpet-fixes", versionPredicate = ">=1.8.7"))
+@Dependencies(predicate = CarpetFixesPredicate.shouldApplyCompatForEnderPlatform.class)
 @Mixin(value = ServerPlayer.class, priority = 1100)
 //#else
 //$$ @Dependencies(not = @Dependency("minecraft"))

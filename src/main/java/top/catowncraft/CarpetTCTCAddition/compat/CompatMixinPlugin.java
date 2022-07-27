@@ -80,18 +80,9 @@ public class CompatMixinPlugin extends CarpetTCTCAdditionMixinPlugin {
         // Magic releasing.
 
         this.tsuihoTarget(targetClass, tekitaiMethod, magicAttackMethodNode, magicAttack);
-        // targetClass.methods.remove(tekitaiMethod);
-
-        // tekitaiMethod.instructions.clear();
-        // tekitaiMethod.instructions.add(magicAttackMethodNode.instructions);
-        // tekitaiMethod.localVariables.clear();
-        // tekitaiMethod.localVariables.addAll(magicAttackMethodNode.localVariables);
-        // tekitaiMethod.tryCatchBlocks.clear();
-        // tekitaiMethod.tryCatchBlocks.addAll(magicAttackMethodNode.tryCatchBlocks);
 
         // Magic Harvesting.
         targetClass.visibleAnnotations.removeIf(annotationNode -> annotationNode.desc.equals("Ltop/catowncraft/carpettctcaddition/util/mixin/annotation/MagicInterruption;"));
-        // targetClass.methods.removeIf(methodNode -> methodNode.name.contentEquals(magicAttackMethodNode.name) && methodNode.desc.contentEquals(magicAttackMethodNode.desc));
     }
 
     /**

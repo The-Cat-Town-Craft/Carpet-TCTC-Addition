@@ -14,6 +14,7 @@ import top.catowncraft.carpettctcaddition.CarpetTCTCAddition;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
 import top.catowncraft.carpettctcaddition.compat.carpetextra.CarpetExtraSettings;
 import top.catowncraft.carpettctcaddition.compat.carpetfixes.CarpetFixesHelper;
+import top.catowncraft.carpettctcaddition.compat.carpetfixes.CarpetFixesPredicate;
 import top.catowncraft.carpettctcaddition.helper.UpdateSuppressionException;
 import top.catowncraft.carpettctcaddition.util.MessageUtil;
 import top.catowncraft.carpettctcaddition.util.StringUtil;
@@ -27,7 +28,7 @@ import top.hendrixshen.magiclib.dependency.annotation.Dependency;
 import java.util.function.BooleanSupplier;
 
 @MagicInterruption(targets = "carpetfixes.mixins.coreSystemFixes.updateSuppression.MinecraftServer_crashFixMixin")
-@Dependencies(and = @Dependency(value = "carpet-fixes", versionPredicate = ">=1.9.1"))
+@Dependencies(predicate = CarpetFixesPredicate.shouldApplyCompatForUpdateSuppressionCrashFix.class)
 @Mixin(value = MinecraftServer.class, priority = 1100)
 public class MixinMinecraftServer {
     @SuppressWarnings("unused")
@@ -38,7 +39,7 @@ public class MixinMinecraftServer {
             method = "method_3813",
             desc = "(Ljava/util/function/BooleanSupplier;)V"
     )
-    private void onTickingWorld(ServerLevel instance, BooleanSupplier booleanSupplier) {
+    private void tctc$onTickingWorld(ServerLevel instance, BooleanSupplier booleanSupplier) {
         try {
             instance.tick(booleanSupplier);
         } catch (Throwable throwable) {
