@@ -38,6 +38,98 @@
   "carpet-tctc-addition.message.server.updateSuppression.exception": "捕获到更新抑制异常，已阻止服务器崩溃。",
   "carpet-tctc-addition.message.server.updateSuppression.processed": "更新抑制。",
 
+  "carpet-tctc-addition.rule.blockIllegalUsername.name": "阻止非法用户名",
+  "carpet-tctc-addition.rule.blockIllegalUsername.desc": "使用正版模式规则验证用户名。",
+
+  "carpet-tctc-addition.rule.commandFix.name": "区块修复命令",
+  "carpet-tctc-addition.rule.commandFix.desc": "启用 /fix 命令用于修复区块数据。",
+
+  "carpet-tctc-addition.rule.commandFreecam.name": "灵魂出窍命令",
+  "carpet-tctc-addition.rule.commandFreecam.desc": "启用 /freecam 允许你切换旁观模式。",
+
+  "carpet-tctc-addition.rule.commandGC.name": "强制垃圾回收",
+  "carpet-tctc-addition.rule.commandGC.desc": "启用 /gc 允许你强制jvm垃圾回收。",
+
+  "carpet-tctc-addition.rule.commandHere.name": "共享坐标命令",
+  "carpet-tctc-addition.rule.commandHere.desc": "启用 /here 命令来让你可以与其他玩家分享你的位置。",
+
+  "carpet-tctc-addition.rule.commandOperator.name": "权限控制命令",
+  "carpet-tctc-addition.rule.commandOperator.desc": "启用 /operator 命令来允许你更改玩家的权限等级。",
+
+  "carpet-tctc-addition.rule.cameraModeDisableSpectatePlayers.name": "禁止旁观者传送",
+  "carpet-tctc-addition.rule.cameraModeDisableSpectatePlayers.desc": "禁止旁观者玩家快捷传送。",
+
+  "carpet-tctc-addition.rule.disableIllegalChatCharacterCheck.name": "禁用聊天非法字符检查",
+  "carpet-tctc-addition.rule.disableIllegalChatCharacterCheck.desc": "允许你在游戏中使用 分节符 等字符。",
+
+  "carpet-tctc-addition.rule.disableParticlesPackets.name": "禁用粒子发包",
+  "carpet-tctc-addition.rule.disableParticlesPackets.desc": "禁用粒子包发送以降低带宽占用。",
+
+  "carpet-tctc-addition.rule.dispenserCollectExperience.name": "发射器收集经验",
+  "carpet-tctc-addition.rule.dispenserCollectExperience.desc": "发射器向玩家发射玻璃瓶将转换为附魔之瓶。",
+
+  "carpet-tctc-addition.rule.endGatewayChunkLoader.name": "末路之地折跃门区块加载器",
+  "carpet-tctc-addition.rule.endGatewayChunkLoader.desc": "当实体穿越末路之地折跃门时，目标区块会像下界传送门一样使目标区块获得 15 秒的加载。",
+  "carpet-tctc-addition.rule.endGatewayChunkLoader.extra.0": "all - 所有实体穿过末路之地折跃门时，给予目标区块加载票。",
+  "carpet-tctc-addition.rule.endGatewayChunkLoader.extra.1": "except_player - 除玩家外的所有实体穿过末路之地折跃门时，给予目标区块加载票。",
+  "carpet-tctc-addition.rule.endGatewayChunkLoader.extra.2": "item_only - 物品实体穿过末路之地折跃门时，给予目标区块加载票。",
+  "carpet-tctc-addition.rule.endGatewayChunkLoader.extra.3": "off - 原版行为。",
+
+  "carpet-tctc-addition.rule.enderPlatform.name": "末路之地平台",
+  "carpet-tctc-addition.rule.enderPlatform.desc": "是否在实体进入末路之地时生成黑曜石平台。",
+  "carpet-tctc-addition.rule.enderPlatform.extra.0": "all - 任何实体进入末路之地维度时，生成黑曜石平台。",
+  "carpet-tctc-addition.rule.enderPlatform.extra.1": "none - 任何实体进入末路之地维度时，都不生成黑曜石平台。",
+  "carpet-tctc-addition.rule.enderPlatform.extra.2": "player - 玩家实体进入末路之地维度时，生成黑曜石平台。",
+
+  "carpet-tctc-addition.rule.freecamRestoreLocation.name": "灵魂回溯",
+  "carpet-tctc-addition.rule.freecamRestoreLocation.desc": "结束旁观后回到初始位置。",
+
+  "carpet-tctc-addition.rule.hereGlowTime.name": "高亮时间",
+  "carpet-tctc-addition.rule.hereGlowTime.desc": "使用 here 共享坐标时高亮的时间。",
+
+  "carpet-tctc-addition.rule.illegalPistonActionFix.name": "非法活塞动作修复",
+  "carpet-tctc-addition.rule.illegalPistonActionFix.desc": "修复无头活塞破坏方块。",
+
+  "carpet-tctc-addition.rule.opLevelBelowSelf.name": "op等级限制",
+  "carpet-tctc-addition.rule.opLevelBelowSelf.desc": "操作员只能给予其他玩家与自己相同或更低的权限。",
+
+  "carpet-tctc-addition.rule.playerStats.name": "统计信息",
+  "carpet-tctc-addition.rule.playerStats.desc": "玩家与假人统计信息的控制。",
+  "carpet-tctc-addition.rule.playerStats.extra.0": "bot - 仅假人可获得统计信息。",
+  "carpet-tctc-addition.rule.playerStats.extra.1": "both - 玩家和假人均可获得统计信息。",
+  "carpet-tctc-addition.rule.playerStats.extra.2": "none - 玩家和假人均不可获得统计信息。",
+  "carpet-tctc-addition.rule.playerStats.extra.3": "player - 仅玩家可获得统计信息。",
+
+  "carpet-tctc-addition.rule.shulkerBoxDupeFix.name": "潜影盒复制修复",
+  "carpet-tctc-addition.rule.shulkerBoxDupeFix.desc": "在破坏潜影盒的同时取走其中的物品会导致物品复制。",
+
+  "carpet-tctc-addition.rule.updateSuppressionCrashFix.name": "更新抑制崩溃修复",
+  "carpet-tctc-addition.rule.updateSuppressionCrashFix.desc": "修复更新抑制造成的服务器崩溃。",
+
+  "carpet-tctc-addition.rule.voidDevouringBehavior.name": "虚空吞噬行为",
+  "carpet-tctc-addition.rule.voidDevouringBehavior.desc": "玩家坠入虚空后发生的动作。",
+  "carpet-tctc-addition.rule.voidDevouringBehavior.extra.0": "instant_death - 进入虚空后立即死亡。",
+  "carpet-tctc-addition.rule.voidDevouringBehavior.extra.1": "teleport_to_spawn - 进入虚空后传送至玩家出生点，若不存在则传送至世界出生点。",
+  "carpet-tctc-addition.rule.voidDevouringBehavior.extra.2": "vanilla - 原版行为。",
+
+  "carpet-tctc-addition.rule.voidTradeFix.name": "虚空交易修复",
+  "carpet-tctc-addition.rule.voidTradeFix.desc": "一旦村民实体被卸载，将关闭交易界面。",
+
+  "carpet-tctc-addition.rule.voxelMapWorldName.name": "体素地图世界名",
+  "carpet-tctc-addition.rule.voxelMapWorldName.desc": "向客户端发送体素地图世界信息数据包。",
+
+  "carpet-tctc-addition.rule.wetSpongeAbsorbLava.name": "湿海绵吸收岩浆",
+  "carpet-tctc-addition.rule.wetSpongeAbsorbLava.desc": "湿海绵将可以吸收岩浆。",
+
+  "carpet-tctc-addition.rule.wetSpongeAbsorbLavaLimit.name": "湿海绵吸收岩浆限制",
+  "carpet-tctc-addition.rule.wetSpongeAbsorbLavaLimit.desc": "湿海绵吸收岩浆最大数量限制。",
+
+  "carpet-tctc-addition.rule.wetSpongeAbsorbLavaRange.name": "湿海绵吸收岩浆距离",
+  "carpet-tctc-addition.rule.wetSpongeAbsorbLavaRange.desc": "湿海绵吸收岩浆最大偏移限制。",
+
+  "carpet-tctc-addition.rule.xaeroMapWorldName.name": "xaero地图世界名",
+  "carpet-tctc-addition.rule.xaeroMapWorldName.desc": "向客户端发送xaero地图世界信息数据包。",
+
   "rule.blockIllegalUsername.name": "阻止非法用户名",
   "rule.blockIllegalUsername.desc": "使用正版模式规则验证用户名。",
 
@@ -80,9 +172,6 @@
   "rule.enderPlatform.extra.0": "all - 任何实体进入末路之地维度时，生成黑曜石平台。",
   "rule.enderPlatform.extra.1": "none - 任何实体进入末路之地维度时，都不生成黑曜石平台。",
   "rule.enderPlatform.extra.2": "player - 玩家实体进入末路之地维度时，生成黑曜石平台。",
-
-  "rule.fireworkSpeedupCoefficient.name": "烟花加速系数",
-  "rule.fireworkSpeedupCoefficient.desc": "控制烟花火箭的加速系数。",
 
   "rule.freecamRestoreLocation.name": "灵魂回溯",
   "rule.freecamRestoreLocation.desc": "结束旁观后回到初始位置。",

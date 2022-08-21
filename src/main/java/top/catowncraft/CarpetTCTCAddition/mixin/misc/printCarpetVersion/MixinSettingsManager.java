@@ -8,7 +8,11 @@ package top.catowncraft.carpettctcaddition.mixin.misc.printCarpetVersion;
 
 import carpet.CarpetSettings;
 import carpet.settings.ParsedRule;
-import carpet.settings.SettingsManager;
+//#if MC > 11802
+import carpet.api.settings.SettingsManager;
+//#else
+//$$ import carpet.settings.SettingsManager;
+//#endif
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 //#if MC < 11600
@@ -43,7 +47,11 @@ public abstract class MixinSettingsManager {
     private String fancyName;
 
     @Shadow
-    public abstract Collection<ParsedRule<?>> getNonDefault();
+    //#if MC > 11802
+    protected abstract Collection<ParsedRule<?>> getNonDefault();
+    //#else
+    //$$ public abstract Collection<ParsedRule<?>> getNonDefault();
+    //#endif
 
     @Shadow
     @Final
@@ -118,7 +126,11 @@ public abstract class MixinSettingsManager {
             method = "listAllSettings",
             at = @At(
                     value = "INVOKE",
-                    target = "Lcarpet/settings/SettingsManager;getCategories()Ljava/lang/Iterable;"
+                    //#if MC > 11802
+                    target = "Lcarpet/api/settings/SettingsManager;getCategories()Ljava/lang/Iterable;"
+                    //#else
+                    //$$ target = "Lcarpet/settings/SettingsManager;getCategories()Ljava/lang/Iterable;"
+                    //#endif
             )
     )
     private void printAdditionVersion(CommandSourceStack source, CallbackInfoReturnable<Integer> cir) {

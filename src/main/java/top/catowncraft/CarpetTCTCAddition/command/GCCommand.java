@@ -12,6 +12,7 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import net.minecraft.commands.CommandSourceStack;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
+import top.catowncraft.carpettctcaddition.rule.CarpetTCTCAdditionSettingsManager;
 import top.catowncraft.carpettctcaddition.util.MessageUtil;
 import top.catowncraft.carpettctcaddition.util.StringUtil;
 
@@ -20,7 +21,7 @@ import static net.minecraft.commands.Commands.literal;
 public class GCCommand {
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
         LiteralArgumentBuilder<CommandSourceStack> gc = literal("gc")
-                .requires(s -> SettingsManager.canUseCommand(s, CarpetTCTCAdditionSettings.commandGC))
+                .requires(s -> CarpetTCTCAdditionSettingsManager.canUseCommand(s, CarpetTCTCAdditionSettings.commandGC))
                 .executes(GCCommand::gc);
         dispatcher.register(gc);
     }

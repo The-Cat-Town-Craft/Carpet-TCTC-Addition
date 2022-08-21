@@ -24,6 +24,7 @@ import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.level.levelgen.Heightmap;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
+import top.catowncraft.carpettctcaddition.rule.CarpetTCTCAdditionSettingsManager;
 import top.catowncraft.carpettctcaddition.util.MessageUtil;
 import top.catowncraft.carpettctcaddition.util.StringUtil;
 import top.hendrixshen.magiclib.compat.minecraft.network.chat.ComponentCompatApi;
@@ -38,7 +39,7 @@ import static net.minecraft.commands.arguments.coordinates.ColumnPosArgument.get
 public class FixCommand {
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
         LiteralArgumentBuilder<CommandSourceStack> fix = literal("fix")
-                .requires(s -> SettingsManager.canUseCommand(s, CarpetTCTCAdditionSettings.commandFix))
+                .requires(s -> CarpetTCTCAdditionSettingsManager.canUseCommand(s, CarpetTCTCAdditionSettings.commandFix))
                 .then(argument("location", columnPos())
                         .executes(c -> fixChunk(c.getSource(), getColumnPos(c, "location"))));
         dispatcher.register(fix);

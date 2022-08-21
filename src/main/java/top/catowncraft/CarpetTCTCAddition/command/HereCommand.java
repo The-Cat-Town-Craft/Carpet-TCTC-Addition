@@ -26,6 +26,7 @@ import net.minecraft.world.level.Level;
 //#endif
 import top.catowncraft.carpettctcaddition.CarpetTCTCAddition;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
+import top.catowncraft.carpettctcaddition.rule.CarpetTCTCAdditionSettingsManager;
 import top.catowncraft.carpettctcaddition.util.MessageUtil;
 import top.catowncraft.carpettctcaddition.util.StringUtil;
 import top.hendrixshen.magiclib.compat.minecraft.network.chat.ComponentCompatApi;
@@ -38,7 +39,7 @@ import static net.minecraft.commands.Commands.literal;
 public class HereCommand {
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
         LiteralArgumentBuilder<CommandSourceStack> here = literal("here")
-                .requires(commandSourceStack -> SettingsManager.canUseCommand(commandSourceStack, CarpetTCTCAdditionSettings.commandHere))
+                .requires(commandSourceStack -> CarpetTCTCAdditionSettingsManager.canUseCommand(commandSourceStack, CarpetTCTCAdditionSettings.commandHere))
                 .executes(context -> print(context.getSource(), context.getSource().getPlayerOrException()))
                 .then(argument("target", EntityArgument.players())
                         .requires(commandSourceStack -> commandSourceStack.hasPermission(2))

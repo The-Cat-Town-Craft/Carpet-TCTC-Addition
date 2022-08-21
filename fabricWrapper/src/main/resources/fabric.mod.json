@@ -29,7 +29,7 @@
   "license": "${mod_license}",
   "environment": "*",
   "depends": {
-    "magiclib": ">=${magiclib_version}"
+    "magiclib": ">=${magiclib_dependency}"
   },
   "custom": {
     "modmenu:parent": "carpet",

@@ -6,15 +6,10 @@
  */
 package top.catowncraft.carpettctcaddition;
 
-import carpet.CarpetExtension;
 import carpet.CarpetServer;
-import carpet.settings.SettingsManager;
 import com.mojang.brigadier.CommandDispatcher;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-//#if MC >= 11900
-import net.minecraft.commands.CommandBuildContext;
-//#endif
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
@@ -25,12 +20,14 @@ import top.catowncraft.carpettctcaddition.rule.CarpetTCTCAdditionSettingsManager
 import top.catowncraft.carpettctcaddition.util.CarpetTCTCAdditionTranslations;
 import top.catowncraft.carpettctcaddition.util.FreeCameraUtil;
 import top.catowncraft.carpettctcaddition.util.WorldMapUtil;
+import top.hendrixshen.magiclib.compat.carpet.CarpetExtensionCompatApi;
+import top.hendrixshen.magiclib.compat.carpet.WrapperSettingsManager;
 import top.hendrixshen.magiclib.dependency.annotation.Dependencies;
 import top.hendrixshen.magiclib.dependency.annotation.Dependency;
 
 import java.util.Map;
 
-public class CarpetTCTCAddition implements ModInitializer, CarpetExtension {
+public class CarpetTCTCAddition implements ModInitializer, CarpetExtensionCompatApi {
     private static final Logger logger = LogManager.getLogger(CarpetTCTCAdditionReference.getModId());
     private static MinecraftServer minecraftServer;
     private static final CarpetTCTCAdditionSettingsManager settingsManager = new CarpetTCTCAdditionSettingsManager(
@@ -48,7 +45,7 @@ public class CarpetTCTCAddition implements ModInitializer, CarpetExtension {
 
     @Dependencies(and = {
             //#if MC >= 11900
-            //$$ @Dependency(value = "carpet", versionPredicate = ">=1.4.79"),
+            //$$ @Dependency(value = "carpet", versionPredicate = ">=1.4.83"),
             //#elseif MC >= 11800
             //$$ @Dependency(value = "carpet", versionPredicate = ">=1.4.69"),
             //#elseif MC >= 11700
@@ -80,12 +77,19 @@ public class CarpetTCTCAddition implements ModInitializer, CarpetExtension {
         FreeCameraUtil.load();
     }
 
-    //#if MC >= 11900
     @Override
-    public void registerCommands(CommandDispatcher<CommandSourceStack> dispatcher, CommandBuildContext commandBuildContext) {
-    //#else
-    //$$ public void registerCommands(CommandDispatcher<CommandSourceStack> dispatcher) {
-    //#endif
+    public String version() {
+        return CarpetTCTCAdditionReference.getModVersion();
+    }
+
+
+    @Override
+    public WrapperSettingsManager getSettingsManagerCompat() {
+        return CarpetTCTCAddition.settingsManager;
+    }
+
+    @Override
+    public void registerCommandCompat(CommandDispatcher<CommandSourceStack> dispatcher) {
         FixCommand.register(dispatcher);
         FreecamCommand.register(dispatcher);
         GCCommand.register(dispatcher);
@@ -94,19 +98,7 @@ public class CarpetTCTCAddition implements ModInitializer, CarpetExtension {
     }
 
     @Override
-    public SettingsManager customSettingsManager() {
-        return CarpetTCTCAddition.settingsManager;
-    }
-
-    @Override
-    public String version() {
-        return CarpetTCTCAdditionReference.getModVersion();
-    }
-
-    //#if MC >= 11500
-    @Override
-    public Map<String, String> canHasTranslations(String lang) {
+    public Map<String, String> canHasTranslationsCompat(String lang) {
         return CarpetTCTCAdditionTranslations.getTranslationFromResourcePath(lang);
     }
-    //#endif
 }

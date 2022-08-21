@@ -16,6 +16,7 @@ import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.arguments.GameProfileArgument;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAddition;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
+import top.catowncraft.carpettctcaddition.rule.CarpetTCTCAdditionSettingsManager;
 import top.catowncraft.carpettctcaddition.util.MessageUtil;
 import top.catowncraft.carpettctcaddition.util.StringUtil;
 import top.hendrixshen.magiclib.compat.minecraft.network.chat.ComponentCompatApi;
@@ -28,7 +29,7 @@ import static net.minecraft.commands.Commands.literal;
 public class OperatorCommand {
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
         LiteralArgumentBuilder<CommandSourceStack> operator = literal("operator")
-                .requires(commandSourceStack -> SettingsManager.canUseCommand(commandSourceStack, CarpetTCTCAdditionSettings.commandOperator))
+                .requires(commandSourceStack -> CarpetTCTCAdditionSettingsManager.canUseCommand(commandSourceStack, CarpetTCTCAdditionSettings.commandOperator))
                 .then(argument("targets", GameProfileArgument.gameProfile())
                         .then(literal("set")
                                 .then(literal("permissionLevel")

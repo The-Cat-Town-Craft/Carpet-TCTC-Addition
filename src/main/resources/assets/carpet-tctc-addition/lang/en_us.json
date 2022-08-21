@@ -36,5 +36,97 @@
   "carpet-tctc-addition.message.command.operator.setPermissionLevel.success": "Player %s's permissions have been updated to level %d.",
   "carpet-tctc-addition.message.server.checkIllegalUsername.fakePlayer": "Player name %s is illegal!",
   "carpet-tctc-addition.message.server.updateSuppression.exception": "We caught an update suppression exception. This should cause the server to crash, but we prevented it.",
-  "carpet-tctc-addition.message.server.updateSuppression.processed": "Update suppression."
+  "carpet-tctc-addition.message.server.updateSuppression.processed": "Update suppression.",
+
+  "carpet-tctc-addition.rule.blockIllegalUsername.name": "blockIllegalUsername",
+  "carpet-tctc-addition.rule.blockIllegalUsername.desc": "Verify username using online mode rules.",
+
+  "carpet-tctc-addition.rule.commandFix.name": "commandFix",
+  "carpet-tctc-addition.rule.commandFix.desc": "Enables /fix command to fix chunk data.",
+
+  "carpet-tctc-addition.rule.commandFreecam.name": "commandFreecam",
+  "carpet-tctc-addition.rule.commandFreecam.desc": "Enables /freecam command to toggle your camera mode.",
+
+  "carpet-tctc-addition.rule.commandGC.name": "commandGC",
+  "carpet-tctc-addition.rule.commandGC.desc": "Enables /gc command to allow you to force gc with jvm.",
+
+  "carpet-tctc-addition.rule.commandHere.name": "commandHere",
+  "carpet-tctc-addition.rule.commandHere.desc": "Enables /here command to allow you to share your location with other players.",
+
+  "carpet-tctc-addition.rule.commandOperator.name": "commandOperator",
+  "carpet-tctc-addition.rule.commandOperator.desc": "Enables /operator command to allow you to change the player's permission level.",
+
+  "carpet-tctc-addition.rule.cameraModeDisableSpectatePlayers.name": "cameraModeDisableSpectatePlayers",
+  "carpet-tctc-addition.rule.cameraModeDisableSpectatePlayers.desc": "Disables players in /c from spectating other players.",
+
+  "carpet-tctc-addition.rule.disableIllegalChatCharacterCheck.name": "disableIllegalChatCharacterCheck",
+  "carpet-tctc-addition.rule.disableIllegalChatCharacterCheck.desc": "Allows you to use characters such as subsections in the game.",
+
+  "carpet-tctc-addition.rule.disableParticlesPackets.name": "disableParticlesPackets",
+  "carpet-tctc-addition.rule.disableParticlesPackets.desc": "Disable particle packet sending to reduce bandwidth usage.",
+
+  "carpet-tctc-addition.rule.dispenserCollectExperience.name": "dispenserCollectExperience",
+  "carpet-tctc-addition.rule.dispenserCollectExperience.desc": "Dispenser firing glass bottles at players will convert to experience bottles.",
+
+  "carpet-tctc-addition.rule.endGatewayChunkLoader.name": "endGatewayChunkLoader",
+  "carpet-tctc-addition.rule.endGatewayChunkLoader.desc": "When the entity passes through the ender gateway, the target chunk will be loaded for 15 seconds like nether portal.",
+  "carpet-tctc-addition.rule.endGatewayChunkLoader.extra.0": "all - Give the target chunk a load ticket when all entities through the ender gateway.",
+  "carpet-tctc-addition.rule.endGatewayChunkLoader.extra.1": "except_player - Give the target chunk a load ticket when all entities except the player through the ender gateway.",
+  "carpet-tctc-addition.rule.endGatewayChunkLoader.extra.2": "item_only - Give the target chunk a load ticket when the player entities except the player through the ender gateway.",
+  "carpet-tctc-addition.rule.endGatewayChunkLoader.extra.3": "off - Vanilla action.",
+
+  "carpet-tctc-addition.rule.enderPlatform.name": "enderPlatform",
+  "carpet-tctc-addition.rule.enderPlatform.desc": "Is obsidian platform generated in the end.",
+  "carpet-tctc-addition.rule.enderPlatform.extra.0": "all - Generate ender platform when all entities are transferred to the_end dimension.。",
+  "carpet-tctc-addition.rule.enderPlatform.extra.1": "none - Ender platform will not be generated anyway.",
+  "carpet-tctc-addition.rule.enderPlatform.extra.2": "player - Ender platform is generated only when the player entity teleports to the_end dimension.",
+
+  "carpet-tctc-addition.rule.freecamRestoreLocation.name": "freecamRestoreLocation",
+  "carpet-tctc-addition.rule.freecamRestoreLocation.desc": "Return to the starting position when you have finished spectating.",
+
+  "carpet-tctc-addition.rule.hereGlowTime.name": "hereGlowTime",
+  "carpet-tctc-addition.rule.hereGlowTime.desc": "Time highlighted when using here command shared coordinates.",
+
+  "carpet-tctc-addition.rule.illegalPistonActionFix.name": "illegalPistonActionFix",
+  "carpet-tctc-addition.rule.illegalPistonActionFix.desc": "Fix headless pistons to destroy blocks.",
+
+  "carpet-tctc-addition.rule.opLevelBelowSelf.name": "opLevelBelowSelf",
+  "carpet-tctc-addition.rule.opLevelBelowSelf.desc": "Operators can only grant the same or lower permissions to other players than themselves.",
+
+  "carpet-tctc-addition.rule.playerStats.name": "playerStats",
+  "carpet-tctc-addition.rule.playerStats.desc": "Control of player and bot statistics.",
+  "carpet-tctc-addition.rule.playerStats.extra.0": "bot - Only bots are allowed to gain stats.",
+  "carpet-tctc-addition.rule.playerStats.extra.1": "both - Both bots and players are allowed to gain stats.",
+  "carpet-tctc-addition.rule.playerStats.extra.2": "none - No one allowed to gain stats.",
+  "carpet-tctc-addition.rule.playerStats.extra.3": "player - Only players are allowed to gain stats.",
+
+  "carpet-tctc-addition.rule.shulkerBoxDupeFix.name": "shulkerBoxDupeFix",
+  "carpet-tctc-addition.rule.shulkerBoxDupeFix.desc": "Taking items from a shulker box while destroying it will result in item duplication.",
+
+  "carpet-tctc-addition.rule.updateSuppressionCrashFix.name": "updateSuppressionCrashFix",
+  "carpet-tctc-addition.rule.updateSuppressionCrashFix.desc": "Fix updates suppression causing server crashes.",
+
+  "carpet-tctc-addition.rule.voidDevouringBehavior.name": "voidDevouringBehavior",
+  "carpet-tctc-addition.rule.voidDevouringBehavior.desc": "The action that will occur when the player falls into the void.",
+  "carpet-tctc-addition.rule.voidDevouringBehavior.extra.0": "instant_death - Dies immediately when entering the void.",
+  "carpet-tctc-addition.rule.voidDevouringBehavior.extra.1": "teleport_to_spawn - Teleport to the player's spawn point when entering the void, or to the world spawn point if it does not exist.",
+  "carpet-tctc-addition.rule.voidDevouringBehavior.extra.2": "vanilla - Vanilla behaviour.",
+
+  "carpet-tctc-addition.rule.voidTradeFix.name": "voidTradeFix",
+  "carpet-tctc-addition.rule.voidTradeFix.desc": "Once the villager entity is unloaded, the trading interface will be closed.",
+
+  "carpet-tctc-addition.rule.voxelMapWorldName.name": "voxelMapWorldName",
+  "carpet-tctc-addition.rule.voxelMapWorldName.desc": "Send VoxelMap world information packets to client.",
+
+  "carpet-tctc-addition.rule.wetSpongeAbsorbLava.name": "wetSpongeAbsorbLava",
+  "carpet-tctc-addition.rule.wetSpongeAbsorbLava.desc": "Wet sponges will be able to absorb lava.",
+
+  "carpet-tctc-addition.rule.wetSpongeAbsorbLavaLimit.name": "wetSpongeAbsorbLavaLimit",
+  "carpet-tctc-addition.rule.wetSpongeAbsorbLavaLimit.desc": "Maximum offset limit for wet sponge.",
+
+  "carpet-tctc-addition.rule.wetSpongeAbsorbLavaRange.name": "wetSpongeAbsorbLavaRange",
+  "carpet-tctc-addition.rule.wetSpongeAbsorbLavaRange.desc": "Maximum lava sucking for wet sponge.",
+
+  "carpet-tctc-addition.rule.xaeroMapWorldName.name": "xaeroMapWorldName",
+  "carpet-tctc-addition.rule.xaeroMapWorldName.desc": "Send XaeroMap world information packets to client."
 }

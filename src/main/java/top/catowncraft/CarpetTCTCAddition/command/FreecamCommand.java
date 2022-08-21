@@ -14,6 +14,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.GameType;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
 import top.catowncraft.carpettctcaddition.helper.FreeCameraData;
+import top.catowncraft.carpettctcaddition.rule.CarpetTCTCAdditionSettingsManager;
 import top.catowncraft.carpettctcaddition.util.FreeCameraUtil;
 
 import java.util.Collection;
@@ -29,7 +30,7 @@ import static net.minecraft.commands.arguments.EntityArgument.players;
 public class FreecamCommand {
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
         LiteralArgumentBuilder<CommandSourceStack> camera = literal("freecam")
-                .requires(commandSourceStack -> SettingsManager.canUseCommand(commandSourceStack, CarpetTCTCAdditionSettings.commandFreecam))
+                .requires(commandSourceStack -> CarpetTCTCAdditionSettingsManager.canUseCommand(commandSourceStack, CarpetTCTCAdditionSettings.commandFreecam))
                 .executes(context -> executeFreeCamera(context.getSource(), context.getSource().getPlayerOrException()))
                 .then(argument("target", players())
                         .requires(commandContext -> commandContext.hasPermission(2))

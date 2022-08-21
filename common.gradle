@@ -105,19 +105,18 @@ processResources {
 
     inputs.property("version", version)
     filesMatching("fabric.mod.json") {
-        expand(["mod_version"         : project.version,
-                "mod_id"              : project.mod_id,
-                "mod_name"            : project.mod_name,
-                "mod_homepage"        : project.mod_homepage,
-                "mod_sources"         : project.mod_sources,
-                "mod_license"         : project.mod_license,
-                "minecraft_dependency": project.minecraft_dependency,
-                "minecraft_version_id": project.minecraft_version.replace(".", "_"),
-                "minecraft_version"   : project.minecraft_version,
-                "magiclib_version"    : project.magiclib_version
+        expand(["mod_version"          : project.version,
+                "mod_id"               : project.mod_id,
+                "mod_name"             : project.mod_name,
+                "mod_homepage"         : project.mod_homepage,
+                "mod_sources"          : project.mod_sources,
+                "mod_license"          : project.mod_license,
+                "minecraft_dependency" : project.minecraft_dependency,
+                "minecraft_version_id" : project.minecraft_version.replace(".", "_"),
+                "minecraft_version"    : project.minecraft_version,
+                "magiclib_dependency"  : project.magiclib_dependency
         ])
     }
-    println("assets/${project.mod_id}/lang/*.json")
     filesMatching("assets/${project.mod_id}/lang/*.json") {
         expand([
                 "mod_id"  : project.mod_id,

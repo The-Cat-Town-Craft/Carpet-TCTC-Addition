@@ -34,7 +34,12 @@ public class WorldMapUtil {
             friendlyByteBuf.writeByte(0);
             friendlyByteBuf.writeByte(bytes.length);
             friendlyByteBuf.writeBytes(bytes);
-            player.connection.send(new ClientboundCustomPayloadPacket(VOXEL_MAP_CHANNEL, friendlyByteBuf), future -> byteBuf.release());
+            //#if MC > 11802
+            player.connection.send(new ClientboundCustomPayloadPacket(VOXEL_MAP_CHANNEL, friendlyByteBuf));
+            byteBuf.release();
+            //#else
+            //$$ player.connection.send(new ClientboundCustomPayloadPacket(VOXEL_MAP_CHANNEL, friendlyByteBuf), future -> byteBuf.release());
+            //#endif
         }
     }
 
