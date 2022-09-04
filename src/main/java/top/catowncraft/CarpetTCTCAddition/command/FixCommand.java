@@ -25,9 +25,9 @@ import net.minecraft.world.level.levelgen.Heightmap;
 import org.jetbrains.annotations.NotNull;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
 import top.catowncraft.carpettctcaddition.rule.CarpetTCTCAdditionSettingManager;
-import top.catowncraft.carpettctcaddition.util.MessageUtil;
 import top.catowncraft.carpettctcaddition.util.StringUtil;
 import top.hendrixshen.magiclib.compat.minecraft.network.chat.ComponentCompatApi;
+import top.hendrixshen.magiclib.util.MessageUtil;
 
 import java.util.EnumSet;
 

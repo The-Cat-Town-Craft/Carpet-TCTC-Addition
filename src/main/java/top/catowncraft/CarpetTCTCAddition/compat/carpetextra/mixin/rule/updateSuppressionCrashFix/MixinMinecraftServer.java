@@ -15,7 +15,6 @@ import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
 import top.catowncraft.carpettctcaddition.compat.carpetextra.CarpetExtraHelper;
 import top.catowncraft.carpettctcaddition.compat.carpetextra.CarpetExtraSettings;
 import top.catowncraft.carpettctcaddition.helper.UpdateSuppressionException;
-import top.catowncraft.carpettctcaddition.util.MessageUtil;
 import top.catowncraft.carpettctcaddition.util.StringUtil;
 import top.catowncraft.carpettctcaddition.util.mixin.MixinType;
 import top.catowncraft.carpettctcaddition.util.mixin.annotation.MagicInterruption;
@@ -23,6 +22,7 @@ import top.catowncraft.carpettctcaddition.util.mixin.annotation.MagicAttack;
 import top.hendrixshen.magiclib.compat.minecraft.network.chat.ComponentCompatApi;
 import top.hendrixshen.magiclib.dependency.annotation.Dependencies;
 import top.hendrixshen.magiclib.dependency.annotation.Dependency;
+import top.hendrixshen.magiclib.util.MessageUtil;
 
 import java.util.function.BooleanSupplier;
 

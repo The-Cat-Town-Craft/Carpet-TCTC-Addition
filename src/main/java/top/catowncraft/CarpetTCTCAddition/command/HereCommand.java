@@ -27,9 +27,9 @@ import org.jetbrains.annotations.NotNull;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAddition;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
 import top.catowncraft.carpettctcaddition.rule.CarpetTCTCAdditionSettingManager;
-import top.catowncraft.carpettctcaddition.util.MessageUtil;
 import top.catowncraft.carpettctcaddition.util.StringUtil;
 import top.hendrixshen.magiclib.compat.minecraft.network.chat.ComponentCompatApi;
+import top.hendrixshen.magiclib.util.MessageUtil;
 
 import java.util.Collection;
 
@@ -122,13 +122,18 @@ public class HereCommand {
     //$$     switch (dimensionType.toString()) {
     //#endif
             case "minecraft:overworld":
-                return ComponentCompatApi.literal(StringUtil.tr("label.dimensionType.overworld")).withStyle(ChatFormatting.GREEN);
+                return ComponentCompatApi.literal(StringUtil.tr("label.dimensionType.minecraft:overworld")).withStyle(ChatFormatting.GREEN);
             case "minecraft:the_end":
-                return ComponentCompatApi.literal(StringUtil.tr("label.dimensionType.end")).withStyle(ChatFormatting.YELLOW);
+                return ComponentCompatApi.literal(StringUtil.tr("label.dimensionType.minecraft:the_end")).withStyle(ChatFormatting.YELLOW);
             case "minecraft:the_nether":
-                return ComponentCompatApi.literal(StringUtil.tr("label.dimensionType.nether")).withStyle(ChatFormatting.RED);
+                return ComponentCompatApi.literal(StringUtil.tr("label.dimensionType.minecraft:the_nether")).withStyle(ChatFormatting.RED);
             default:
-                return ComponentCompatApi.literal(StringUtil.tr("label.dimensionType.unknown")).withStyle(ChatFormatting.AQUA);
+                return ComponentCompatApi.literal(StringUtil.tr(String.format("label.dimensionType.%s",
+                        //#if MC > 11502
+                        resourceKey.location().toString()))).withStyle(ChatFormatting.AQUA);
+                        //#else
+                        //$$ dimensionType.toString()))).withStyle(ChatFormatting.AQUA);
+                        //#endif
         }
     }
 

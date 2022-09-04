@@ -22,7 +22,6 @@ import java.util.zip.CRC32;
 
 public class WorldMapUtil {
     private static final ResourceLocation VOXEL_MAP_CHANNEL = new ResourceLocation("worldinfo", "world_id");
-
     private static final ResourceLocation XAERO_WORLD_MAP_CHANNEL = new ResourceLocation("xaeroworldmap", "main");
     private static final ResourceLocation XAERO_MINI_MAP_CHANNEL = new ResourceLocation("xaeroworldmap", "main");
 

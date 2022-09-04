@@ -13,8 +13,8 @@ import net.minecraft.commands.CommandSourceStack;
 import org.jetbrains.annotations.NotNull;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
 import top.catowncraft.carpettctcaddition.rule.CarpetTCTCAdditionSettingManager;
-import top.catowncraft.carpettctcaddition.util.MessageUtil;
 import top.catowncraft.carpettctcaddition.util.StringUtil;
+import top.hendrixshen.magiclib.util.MessageUtil;
 
 import static net.minecraft.commands.Commands.literal;
 

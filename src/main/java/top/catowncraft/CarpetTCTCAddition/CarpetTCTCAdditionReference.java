@@ -7,7 +7,7 @@
 package top.catowncraft.carpettctcaddition;
 
 import net.fabricmc.loader.api.FabricLoader;
-import top.catowncraft.carpettctcaddition.util.VersionParser;
+import top.hendrixshen.magiclib.util.VersionParser;
 
 public class CarpetTCTCAdditionReference {
     private static final String MOD_ID = "carpet-tctc-addition";
@@ -29,6 +29,7 @@ public class CarpetTCTCAdditionReference {
     private static final String MOD_NAME = "Carpet TCTC Addition";
     private static final String MOD_VERSION = FabricLoader.getInstance().getModContainer(CURRENT_MOD_ID).orElseThrow(RuntimeException::new).getMetadata().getVersion().getFriendlyString();
     private static final String MOD_VERSION_TYPE = VersionParser.getVersionType(MOD_VERSION);
+
     public static String getCurrentModId() {
         return CURRENT_MOD_ID;
     }

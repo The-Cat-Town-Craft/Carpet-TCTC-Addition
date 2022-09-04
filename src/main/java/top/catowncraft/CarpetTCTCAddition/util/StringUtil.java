@@ -6,24 +6,19 @@
  */
 package top.catowncraft.carpettctcaddition.util;
 
-import carpet.CarpetSettings;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionReference;
-import top.hendrixshen.magiclib.language.I18n;
+import top.hendrixshen.magiclib.api.rule.WrapperSettingManager;
 
 public class StringUtil {
     public static String tr(String node, Object... objects) {
-        //#if MC >= 11500
-        return I18n.getByCode(!CarpetSettings.language.equals("none") ? CarpetSettings.language : "en_us", String.format("%s.%s", CarpetTCTCAdditionReference.getModId(), node), objects);
-        //#else
-        //$$ return I18n.get(String.format("%s.%s", CarpetTCTCAdditionReference.getModId(), node), objects);
-        //#endif
+        WrapperSettingManager settingManager = WrapperSettingManager.get(CarpetTCTCAdditionReference.getModId());
+        return settingManager.tr(settingManager.getCurrentLanguageCode(),
+                String.format("%s.%s", CarpetTCTCAdditionReference.getModId(), node), objects);
     }
 
     public static String original(String node) {
-        //#if MC >= 11500
-        return I18n.getByCode(!CarpetSettings.language.equals("none") ? CarpetSettings.language : "en_us", String.format("%s.%s", CarpetTCTCAdditionReference.getModId(), node));
-        //#else
-        //$$ return I18n.get(String.format("%s.%s", CarpetTCTCAdditionReference.getModId(), node));
-        //#endif
+        WrapperSettingManager settingManager = WrapperSettingManager.get(CarpetTCTCAdditionReference.getModId());
+        return settingManager.tr(settingManager.getCurrentLanguageCode(),
+                String.format("%s.%s", CarpetTCTCAdditionReference.getModId(), node));
     }
 }

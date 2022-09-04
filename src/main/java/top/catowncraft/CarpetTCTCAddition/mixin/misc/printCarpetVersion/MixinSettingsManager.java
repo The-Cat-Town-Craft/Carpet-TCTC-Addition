@@ -18,9 +18,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionReference;
-import top.catowncraft.carpettctcaddition.util.MessageUtil;
 import top.catowncraft.carpettctcaddition.util.StringUtil;
 import top.hendrixshen.magiclib.compat.minecraft.network.chat.ComponentCompatApi;
+import top.hendrixshen.magiclib.util.MessageUtil;
 
 
 @Mixin(value = SettingsManager.class, remap = false)
