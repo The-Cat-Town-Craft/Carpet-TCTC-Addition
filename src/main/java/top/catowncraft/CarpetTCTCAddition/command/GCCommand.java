@@ -6,27 +6,27 @@
  */
 package top.catowncraft.carpettctcaddition.command;
 
-import carpet.settings.SettingsManager;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import net.minecraft.commands.CommandSourceStack;
+import org.jetbrains.annotations.NotNull;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
-import top.catowncraft.carpettctcaddition.rule.CarpetTCTCAdditionSettingsManager;
+import top.catowncraft.carpettctcaddition.rule.CarpetTCTCAdditionSettingManager;
 import top.catowncraft.carpettctcaddition.util.MessageUtil;
 import top.catowncraft.carpettctcaddition.util.StringUtil;
 
 import static net.minecraft.commands.Commands.literal;
 
 public class GCCommand {
-    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
+    public static void register(@NotNull CommandDispatcher<CommandSourceStack> dispatcher) {
         LiteralArgumentBuilder<CommandSourceStack> gc = literal("gc")
-                .requires(s -> CarpetTCTCAdditionSettingsManager.canUseCommand(s, CarpetTCTCAdditionSettings.commandGC))
+                .requires(s -> CarpetTCTCAdditionSettingManager.canUseCommand(s, CarpetTCTCAdditionSettings.commandGC))
                 .executes(GCCommand::gc);
         dispatcher.register(gc);
     }
 
-    private static int gc(CommandContext<CommandSourceStack> context) {
+    private static int gc(@NotNull CommandContext<CommandSourceStack> context) {
         Runnable runnable = new CleanerThread(context.getSource());
         Thread gcThread = new Thread(runnable, "MemoryCleaner GC Thread");
         gcThread.setDaemon(true);

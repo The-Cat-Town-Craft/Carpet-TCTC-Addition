@@ -25,6 +25,7 @@ public abstract class MixinPlayer extends LivingEntity {
         super(entityType, level);
     }
 
+    @SuppressWarnings("ConstantConditions")
     @Inject(
             method = "awardStat(Lnet/minecraft/stats/Stat;)V",
             at = @At(

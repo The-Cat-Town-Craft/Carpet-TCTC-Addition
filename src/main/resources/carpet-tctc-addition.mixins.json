@@ -5,7 +5,6 @@
   "plugin": "top.catowncraft.carpettctcaddition.CarpetTCTCAdditionMixinPlugin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "dev.MixinChunkMap",
     "event.MixinMinecraftServer",
     "inject.MixinPlayerList",
     "misc.printCarpetVersion.MixinSettingsManager",

@@ -298,7 +298,7 @@ vanilla - 原版行为。
 
 ### 支持
 
-当前主开发版本：1.19 
+当前主开发版本：1.19.2
 
 并且使用 `预处理` 来兼容各版本。
 
@@ -309,7 +309,7 @@ vanilla - 原版行为。
 - Minecraft 1.16.5
 - Minecraft 1.17.1
 - Minecraft 1.18.2
-- Minecraft 1.19
+- Minecraft 1.19.2
 
 ### 混淆映射表
 

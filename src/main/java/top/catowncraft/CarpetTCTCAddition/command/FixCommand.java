@@ -6,7 +6,6 @@
  */
 package top.catowncraft.carpettctcaddition.command;
 
-import carpet.settings.SettingsManager;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
@@ -23,8 +22,9 @@ import net.minecraft.world.level.ChunkPos;
 //#endif
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.level.levelgen.Heightmap;
+import org.jetbrains.annotations.NotNull;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
-import top.catowncraft.carpettctcaddition.rule.CarpetTCTCAdditionSettingsManager;
+import top.catowncraft.carpettctcaddition.rule.CarpetTCTCAdditionSettingManager;
 import top.catowncraft.carpettctcaddition.util.MessageUtil;
 import top.catowncraft.carpettctcaddition.util.StringUtil;
 import top.hendrixshen.magiclib.compat.minecraft.network.chat.ComponentCompatApi;
@@ -37,15 +37,15 @@ import static net.minecraft.commands.arguments.coordinates.ColumnPosArgument.col
 import static net.minecraft.commands.arguments.coordinates.ColumnPosArgument.getColumnPos;
 
 public class FixCommand {
-    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
+    public static void register(@NotNull CommandDispatcher<CommandSourceStack> dispatcher) {
         LiteralArgumentBuilder<CommandSourceStack> fix = literal("fix")
-                .requires(s -> CarpetTCTCAdditionSettingsManager.canUseCommand(s, CarpetTCTCAdditionSettings.commandFix))
+                .requires(s -> CarpetTCTCAdditionSettingManager.canUseCommand(s, CarpetTCTCAdditionSettings.commandFix))
                 .then(argument("location", columnPos())
                         .executes(c -> fixChunk(c.getSource(), getColumnPos(c, "location"))));
         dispatcher.register(fix);
     }
 
-    private static int fixChunk(CommandSourceStack source, ColumnPos pos) throws CommandSyntaxException {
+    private static int fixChunk(@NotNull CommandSourceStack source, @NotNull ColumnPos pos) throws CommandSyntaxException {
         ServerLevel level = source.getLevel();
         //#if MC >= 11900
         ChunkPos chunkPos = new ChunkPos(pos.x() >> 4, pos.z() >> 4);

@@ -6,7 +6,6 @@
  */
 package top.catowncraft.carpettctcaddition.command;
 
-import carpet.settings.SettingsManager;
 import com.mojang.authlib.GameProfile;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.BoolArgumentType;
@@ -14,9 +13,10 @@ import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.arguments.GameProfileArgument;
+import org.jetbrains.annotations.NotNull;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAddition;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
-import top.catowncraft.carpettctcaddition.rule.CarpetTCTCAdditionSettingsManager;
+import top.catowncraft.carpettctcaddition.rule.CarpetTCTCAdditionSettingManager;
 import top.catowncraft.carpettctcaddition.util.MessageUtil;
 import top.catowncraft.carpettctcaddition.util.StringUtil;
 import top.hendrixshen.magiclib.compat.minecraft.network.chat.ComponentCompatApi;
@@ -27,9 +27,9 @@ import static net.minecraft.commands.Commands.argument;
 import static net.minecraft.commands.Commands.literal;
 
 public class OperatorCommand {
-    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
+    public static void register(@NotNull CommandDispatcher<CommandSourceStack> dispatcher) {
         LiteralArgumentBuilder<CommandSourceStack> operator = literal("operator")
-                .requires(commandSourceStack -> CarpetTCTCAdditionSettingsManager.canUseCommand(commandSourceStack, CarpetTCTCAdditionSettings.commandOperator))
+                .requires(commandSourceStack -> CarpetTCTCAdditionSettingManager.canUseCommand(commandSourceStack, CarpetTCTCAdditionSettings.commandOperator))
                 .then(argument("targets", GameProfileArgument.gameProfile())
                         .then(literal("set")
                                 .then(literal("permissionLevel")
@@ -41,7 +41,7 @@ public class OperatorCommand {
         dispatcher.register(operator);
     }
 
-    private static int setPermissionLevel(CommandSourceStack commandSourceStack, Collection<GameProfile> gameProfileCollection, int level) {
+    private static int setPermissionLevel(@NotNull CommandSourceStack commandSourceStack, Collection<GameProfile> gameProfileCollection, int level) {
         if (!commandSourceStack.hasPermission(level) && CarpetTCTCAdditionSettings.opLevelBelowSelf) {
             commandSourceStack.sendFailure(ComponentCompatApi.literal(StringUtil.tr("message.command.operator.setPermissionLevel.lower", level)));
             return 1;
@@ -55,7 +55,7 @@ public class OperatorCommand {
         return 1;
     }
 
-    private static int setBypassPlayerLimit(CommandSourceStack commandSourceStack, Collection<GameProfile> gameProfileCollection, boolean bypass) {
+    private static int setBypassPlayerLimit(CommandSourceStack commandSourceStack, @NotNull Collection<GameProfile> gameProfileCollection, boolean bypass) {
         for (GameProfile gameProfile : gameProfileCollection) {
             CarpetTCTCAddition.getServer().getPlayerList().tctc$setBypassPlayerLimit(gameProfile, bypass);
             MessageUtil.sendMessage(commandSourceStack, StringUtil.tr("message.command.operator.setBypassPlayerLimit.success", gameProfile.getName(), bypass));

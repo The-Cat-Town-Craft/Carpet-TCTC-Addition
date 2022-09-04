@@ -6,10 +6,9 @@
  */
 package top.catowncraft.carpettctcaddition.rule;
 
-import top.hendrixshen.magiclib.compat.carpet.WrapperSettingsManager;
-
-public class CarpetTCTCAdditionSettingsManager extends WrapperSettingsManager {
-    public CarpetTCTCAdditionSettingsManager(String version, String identifier, String fancyName) {
+import top.hendrixshen.magiclib.api.rule.WrapperSettingManager;
+public class CarpetTCTCAdditionSettingManager extends WrapperSettingManager {
+    public CarpetTCTCAdditionSettingManager(String version, String identifier, String fancyName) {
         super(version, identifier, fancyName);
     }
 }

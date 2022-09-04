@@ -3,14 +3,6 @@
   "carpet-tctc-addition.label.versionType.Public Release": "Public Release",
   "carpet-tctc-addition.label.versionType.Development": "Development",
 
-  "carpet-tctc-addition.label.categories.BUGFIX": "Bugfix",
-  "carpet-tctc-addition.label.categories.CLIENT": "Client",
-  "carpet-tctc-addition.label.categories.COMMAND": "Command",
-  "carpet-tctc-addition.label.categories.EXPERIMENTAL": "Experimental",
-  "carpet-tctc-addition.label.categories.FEATURE": "Feature",
-  "carpet-tctc-addition.label.categories.MISC": "Misc",
-  "carpet-tctc-addition.label.categories.PROTOCOL": "Protocol",
-  "carpet-tctc-addition.label.categories.WORLD_GENERATE": "WorldGenerate",
   "carpet-tctc-addition.label.dimensionType.overworld": "Overworld",
   "carpet-tctc-addition.label.dimensionType.end": "End",
   "carpet-tctc-addition.label.dimensionType.nether": "Nether",
@@ -37,6 +29,17 @@
   "carpet-tctc-addition.message.server.checkIllegalUsername.fakePlayer": "Player name %s is illegal!",
   "carpet-tctc-addition.message.server.updateSuppression.exception": "We caught an update suppression exception. This should cause the server to crash, but we prevented it.",
   "carpet-tctc-addition.message.server.updateSuppression.processed": "Update suppression.",
+
+  "carpet-tctc-addition.category.bugfix": "Bugfix",
+  "carpet-tctc-addition.category.client": "Client",
+  "carpet-tctc-addition.category.command": "Command",
+  "carpet-tctc-addition.category.experimental": "Experimental",
+  "carpet-tctc-addition.category.feature": "feature",
+  "carpet-tctc-addition.category.misc": "Misc",
+  "carpet-tctc-addition.category.protocol": "Protocol",
+  "carpet-tctc-addition.category.world_generate": "WorldGenerate",
+
+  "carpet-tctc-addition.info.mod_name": "CarpetTCTCAddition",
 
   "carpet-tctc-addition.rule.blockIllegalUsername.name": "blockIllegalUsername",
   "carpet-tctc-addition.rule.blockIllegalUsername.desc": "Verify username using online mode rules.",

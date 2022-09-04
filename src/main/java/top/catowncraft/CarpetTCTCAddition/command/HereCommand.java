@@ -6,7 +6,6 @@
  */
 package top.catowncraft.carpettctcaddition.command;
 
-import carpet.settings.SettingsManager;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import net.minecraft.ChatFormatting;
@@ -24,9 +23,10 @@ import net.minecraft.world.level.Level;
 //#if MC < 11600
 //$$ import net.minecraft.world.level.dimension.DimensionType;
 //#endif
+import org.jetbrains.annotations.NotNull;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAddition;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
-import top.catowncraft.carpettctcaddition.rule.CarpetTCTCAdditionSettingsManager;
+import top.catowncraft.carpettctcaddition.rule.CarpetTCTCAdditionSettingManager;
 import top.catowncraft.carpettctcaddition.util.MessageUtil;
 import top.catowncraft.carpettctcaddition.util.StringUtil;
 import top.hendrixshen.magiclib.compat.minecraft.network.chat.ComponentCompatApi;
@@ -37,9 +37,9 @@ import static net.minecraft.commands.Commands.argument;
 import static net.minecraft.commands.Commands.literal;
 
 public class HereCommand {
-    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
+    public static void register(@NotNull CommandDispatcher<CommandSourceStack> dispatcher) {
         LiteralArgumentBuilder<CommandSourceStack> here = literal("here")
-                .requires(commandSourceStack -> CarpetTCTCAdditionSettingsManager.canUseCommand(commandSourceStack, CarpetTCTCAdditionSettings.commandHere))
+                .requires(commandSourceStack -> CarpetTCTCAdditionSettingManager.canUseCommand(commandSourceStack, CarpetTCTCAdditionSettings.commandHere))
                 .executes(context -> print(context.getSource(), context.getSource().getPlayerOrException()))
                 .then(argument("target", EntityArgument.players())
                         .requires(commandSourceStack -> commandSourceStack.hasPermission(2))
@@ -47,14 +47,14 @@ public class HereCommand {
         dispatcher.register(here);
     }
 
-    public static int print(CommandSourceStack commandSourceStack, Collection<ServerPlayer> serverPlayerCollection) {
+    public static int print(CommandSourceStack commandSourceStack, @NotNull Collection<ServerPlayer> serverPlayerCollection) {
         for (ServerPlayer serverPlayer : serverPlayerCollection) {
             print(commandSourceStack, serverPlayer);
         }
         return 1;
     }
 
-    public static int print(CommandSourceStack commandSourceStack, ServerPlayer serverPlayer) {
+    public static int print(CommandSourceStack commandSourceStack, @NotNull ServerPlayer serverPlayer) {
         //#if MC >= 11600
         if (serverPlayer.level.dimension() == Level.OVERWORLD || serverPlayer.level.dimension() == Level.NETHER) {
         //#else
@@ -102,20 +102,20 @@ public class HereCommand {
         return 1;
     }
 
-    public static String getOriginalPosition(Entity entity) {
+    public static String getOriginalPosition(@NotNull Entity entity) {
         return String.format("[%d, %d, %d]", (int) entity.getXCompat(), (int) entity.getYCompat(), (int) entity.getZCompat());
     }
 
-    public static String getMultipliedPosition(Entity entity) {
+    public static String getMultipliedPosition(@NotNull Entity entity) {
         return String.format("[%d, %d, %d]", (int) (entity.getXCompat() * 8), (int) (entity.getYCompat() * 8), (int) (entity.getZCompat() * 8));
     }
 
-    public static String getDividedPosition(Entity entity) {
+    public static String getDividedPosition(@NotNull Entity entity) {
         return String.format("[%d, %d, %d]", (int) (entity.getXCompat() / 8), (int) (entity.getYCompat() / 8), (int) (entity.getZCompat() / 8));
     }
 
     //#if MC >= 11600
-    public static Component getDimension(ResourceKey<Level> resourceKey) {
+    public static Component getDimension(@NotNull ResourceKey<Level> resourceKey) {
         switch (resourceKey.location().toString()) {
     //#else
     //$$ public static Component getDimension(DimensionType dimensionType) {

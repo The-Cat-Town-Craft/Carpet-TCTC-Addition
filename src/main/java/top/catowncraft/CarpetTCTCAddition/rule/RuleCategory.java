@@ -7,12 +7,12 @@
 package top.catowncraft.carpettctcaddition.rule;
 
 public class RuleCategory {
-    public static final String BUGFIX = "BUGFIX";
-    public static final String CLIENT = "CLIENT";
-    public static final String COMMAND = "COMMAND";
-    public static final String EXPERIMENTAL = "EXPERIMENTAL";
-    public static final String FEATURE = "FEATURE";
-    public static final String MISC = "MISC";
-    public static final String PROTOCOL = "PROTOCOL";
-    public static final String WORLD_GENERATE = "WORLD_GENERATE";
+    public static final String BUGFIX = "bugfix";
+    public static final String CLIENT = "client";
+    public static final String COMMAND = "command";
+    public static final String EXPERIMENTAL = "experimental";
+    public static final String FEATURE = "feature";
+    public static final String MISC = "misc";
+    public static final String PROTOCOL = "protocol";
+    public static final String WORLD_GENERATE = "world_generate";
 }

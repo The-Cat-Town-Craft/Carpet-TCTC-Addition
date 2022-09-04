@@ -16,21 +16,18 @@ import net.minecraft.server.MinecraftServer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import top.catowncraft.carpettctcaddition.command.*;
-import top.catowncraft.carpettctcaddition.rule.CarpetTCTCAdditionSettingsManager;
-import top.catowncraft.carpettctcaddition.util.CarpetTCTCAdditionTranslations;
+import top.catowncraft.carpettctcaddition.rule.CarpetTCTCAdditionSettingManager;
 import top.catowncraft.carpettctcaddition.util.FreeCameraUtil;
 import top.catowncraft.carpettctcaddition.util.WorldMapUtil;
-import top.hendrixshen.magiclib.compat.carpet.CarpetExtensionCompatApi;
-import top.hendrixshen.magiclib.compat.carpet.WrapperSettingsManager;
+import top.hendrixshen.magiclib.api.rule.CarpetExtensionCompatApi;
+import top.hendrixshen.magiclib.api.rule.WrapperSettingManager;
 import top.hendrixshen.magiclib.dependency.annotation.Dependencies;
 import top.hendrixshen.magiclib.dependency.annotation.Dependency;
-
-import java.util.Map;
 
 public class CarpetTCTCAddition implements ModInitializer, CarpetExtensionCompatApi {
     private static final Logger logger = LogManager.getLogger(CarpetTCTCAdditionReference.getModId());
     private static MinecraftServer minecraftServer;
-    private static final CarpetTCTCAdditionSettingsManager settingsManager = new CarpetTCTCAdditionSettingsManager(
+    private static final CarpetTCTCAdditionSettingManager settingsManager = new CarpetTCTCAdditionSettingManager(
             CarpetTCTCAdditionReference.getModVersion(),
             CarpetTCTCAdditionReference.getModId(),
             CarpetTCTCAdditionReference.getCurrentModName());
@@ -61,13 +58,14 @@ public class CarpetTCTCAddition implements ModInitializer, CarpetExtensionCompat
     @Override
     public void onInitialize() {
         // Register mod as carpet extension.
+        WrapperSettingManager.register(CarpetTCTCAdditionReference.getModId(), settingsManager);
         CarpetServer.manageExtension(new CarpetTCTCAddition());
         ServerPlayNetworking.registerGlobalReceiver(new ResourceLocation("worldinfo", "world_id"), WorldMapUtil::voxelMapPacketHandler);
     }
 
     @Override
     public void onGameStarted() {
-        CarpetTCTCAddition.settingsManager.parseSettingsClass(CarpetTCTCAdditionSettings.class);
+        WrapperSettingManager.get(CarpetTCTCAdditionReference.getModId()).parseSettingsClass(CarpetTCTCAdditionSettings.class);
     }
 
     @Override
@@ -84,8 +82,8 @@ public class CarpetTCTCAddition implements ModInitializer, CarpetExtensionCompat
 
 
     @Override
-    public WrapperSettingsManager getSettingsManagerCompat() {
-        return CarpetTCTCAddition.settingsManager;
+    public WrapperSettingManager getSettingsManagerCompat() {
+        return WrapperSettingManager.get(CarpetTCTCAdditionReference.getModId());
     }
 
     @Override
@@ -95,10 +93,5 @@ public class CarpetTCTCAddition implements ModInitializer, CarpetExtensionCompat
         GCCommand.register(dispatcher);
         HereCommand.register(dispatcher);
         OperatorCommand.register(dispatcher);
-    }
-
-    @Override
-    public Map<String, String> canHasTranslationsCompat(String lang) {
-        return CarpetTCTCAdditionTranslations.getTranslationFromResourcePath(lang);
     }
 }

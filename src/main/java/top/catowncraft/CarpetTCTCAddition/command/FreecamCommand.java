@@ -6,15 +6,15 @@
  */
 package top.catowncraft.carpettctcaddition.command;
 
-import carpet.settings.SettingsManager;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.GameType;
+import org.jetbrains.annotations.NotNull;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
 import top.catowncraft.carpettctcaddition.helper.FreeCameraData;
-import top.catowncraft.carpettctcaddition.rule.CarpetTCTCAdditionSettingsManager;
+import top.catowncraft.carpettctcaddition.rule.CarpetTCTCAdditionSettingManager;
 import top.catowncraft.carpettctcaddition.util.FreeCameraUtil;
 
 import java.util.Collection;
@@ -28,9 +28,9 @@ import static net.minecraft.commands.arguments.EntityArgument.getPlayers;
 import static net.minecraft.commands.arguments.EntityArgument.players;
 
 public class FreecamCommand {
-    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
+    public static void register(@NotNull CommandDispatcher<CommandSourceStack> dispatcher) {
         LiteralArgumentBuilder<CommandSourceStack> camera = literal("freecam")
-                .requires(commandSourceStack -> CarpetTCTCAdditionSettingsManager.canUseCommand(commandSourceStack, CarpetTCTCAdditionSettings.commandFreecam))
+                .requires(commandSourceStack -> CarpetTCTCAdditionSettingManager.canUseCommand(commandSourceStack, CarpetTCTCAdditionSettings.commandFreecam))
                 .executes(context -> executeFreeCamera(context.getSource(), context.getSource().getPlayerOrException()))
                 .then(argument("target", players())
                         .requires(commandContext -> commandContext.hasPermission(2))
@@ -38,14 +38,14 @@ public class FreecamCommand {
         dispatcher.register(camera);
     }
 
-    public static int executeFreeCamera(CommandSourceStack source, Collection<ServerPlayer> serverPlayerCollection) {
+    public static int executeFreeCamera(CommandSourceStack source, @NotNull Collection<ServerPlayer> serverPlayerCollection) {
         for (ServerPlayer serverPlayer : serverPlayerCollection) {
             executeFreeCamera(source, serverPlayer);
         }
         return 1;
     }
 
-    public static int executeFreeCamera(CommandSourceStack source, ServerPlayer serverPlayer) {
+    public static int executeFreeCamera(CommandSourceStack source, @NotNull ServerPlayer serverPlayer) {
         Map<UUID, FreeCameraData> freeCameraUtilMap = FreeCameraUtil.getCameraData();
         FreeCameraData cameraData = freeCameraUtilMap.get(serverPlayer.getUUID());
         boolean isCameraMode;

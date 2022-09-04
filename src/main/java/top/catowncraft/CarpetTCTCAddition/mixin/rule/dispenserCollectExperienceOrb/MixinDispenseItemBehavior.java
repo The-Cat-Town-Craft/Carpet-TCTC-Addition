@@ -39,6 +39,7 @@ import java.util.List;
 //#endif
 public class MixinDispenseItemBehavior {
     //#if MC >= 11500
+    @SuppressWarnings("UnresolvedMixinReference")
     @Inject(
             method = "execute",
             at = @At(

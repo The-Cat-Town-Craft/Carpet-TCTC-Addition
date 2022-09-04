@@ -43,6 +43,7 @@ public abstract class MixinLivingEntity extends Entity {
         super(entityType, level);
     }
 
+    @SuppressWarnings("ConstantConditions")
     @Inject(
             method = "outOfWorld",
             at = @At(

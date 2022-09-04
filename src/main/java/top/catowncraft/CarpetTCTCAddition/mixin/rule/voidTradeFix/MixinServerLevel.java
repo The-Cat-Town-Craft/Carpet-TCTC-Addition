@@ -24,6 +24,7 @@ import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
 //$$ @Mixin(ServerLevel.class)
 //#endif
 public class MixinServerLevel {
+    @SuppressWarnings("UnresolvedMixinReference")
     @Inject(
             //#if MC >= 11700
             method = "onTrackingEnd(Lnet/minecraft/world/entity/Entity;)V",
