@@ -7,11 +7,17 @@
 package top.catowncraft.carpettctcaddition.mixin.rule.voidFallBehavior;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.protocol.game.ClientboundCustomSoundPacket;
+//#if MC >= 11903
+import net.minecraft.core.Holder;
+import net.minecraft.network.protocol.game.ClientboundSoundPacket;
+//#else
+//$$ import net.minecraft.network.protocol.game.ClientboundCustomSoundPacket;
+//#endif
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 //#if MC >= 11600
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
 //#endif
@@ -109,15 +115,20 @@ public abstract class MixinLivingEntity extends Entity {
                     //$$ 0.0F, 0.0F);
                     //#endif
                 }
-                serverPlayer.connection.send(new ClientboundCustomSoundPacket(
-                        new ResourceLocation("item.totem.use"),
-                        serverPlayer.getSoundSource(),
-                        new Vec3(serverPlayer.getXCompat(), serverPlayer.getYCompat(), serverPlayer.getZCompat()),
-                        //#if MC >= 11900
-                        1.0F, 1.0F, serverPlayer.level.getRandom().nextLong()));
-                        //#else
-                        //$$ 1.0F, 1.0F));
-                        //#endif
+                //#if MC >= 11903
+                serverPlayer.connection.send(new ClientboundSoundPacket(
+                        Holder.direct(SoundEvent.createVariableRangeEvent(new ResourceLocation("item.totem.use"))), serverPlayer.getSoundSource(),
+                        serverPlayer.getXCompat(), serverPlayer.getYCompat(), serverPlayer.getZCompat(),
+                        1.0F, 1.0F, serverPlayer.level.getRandom().nextLong()
+
+                ));
+                //#else
+                //$$ serverPlayer.connection.send(new ClientboundCustomSoundPacket(
+                //$$         new ResourceLocation("item.totem.use"),
+                //$$         serverPlayer.getSoundSource(),
+                //$$         new Vec3(serverPlayer.getXCompat(), serverPlayer.getYCompat(), serverPlayer.getZCompat()),
+                //$$         1.0F, 1.0F));
+                //#endif
                 serverPlayer.fallDistance = 0.0F;
             }
             ci.cancel();

@@ -41,8 +41,8 @@ public class CarpetTCTCAddition implements ModInitializer, CarpetExtensionCompat
     }
 
     @Dependencies(and = {
-            //#if MC >= 11900
-            //$$ @Dependency(value = "carpet", versionPredicate = ">=1.4.83"),
+            //#if MC >= 11903
+            @Dependency(value = "carpet", versionPredicate = ">=1.4.91"),
             //#elseif MC >= 11800
             //$$ @Dependency(value = "carpet", versionPredicate = ">=1.4.69"),
             //#elseif MC >= 11700

@@ -9,6 +9,9 @@ package top.catowncraft.carpettctcaddition.util;
 import com.google.common.collect.Maps;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
+//#if MC >= 11903
+import net.minecraft.core.registries.Registries;
+//#endif
 //#if MC >= 11600
 import net.minecraft.resources.ResourceKey;
 //#endif
@@ -34,8 +37,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-//#if MC >= 11600
-import static net.minecraft.core.Registry.DIMENSION_REGISTRY;
+//#if MC >= 11600 && MC < 11903
+//$$ import static net.minecraft.core.Registry.DIMENSION_REGISTRY;
 //#endif
 
 public class FreeCameraUtil {
@@ -51,8 +54,10 @@ public class FreeCameraUtil {
 
     public static FreeCameraData createEntry(JsonObject jsonObject) {
         GameType gameType = jsonObject.has("gameType") ? GameType.byName(jsonObject.get("gameType").getAsString()) : GameType.SURVIVAL;
-        //#if MC >= 11600
-        ResourceKey<Level> dimension = jsonObject.has("dimension") ? ResourceKey.create(DIMENSION_REGISTRY, new ResourceLocation(jsonObject.get("dimension").getAsString())) : null;
+        //#if MC >= 11903
+        ResourceKey<Level> dimension = jsonObject.has("dimension") ? ResourceKey.create(Registries.DIMENSION, new ResourceLocation(jsonObject.get("dimension").getAsString())) : null;
+        //#elseif MC >= 11600
+        //$$ ResourceKey<Level> dimension = jsonObject.has("dimension") ? ResourceKey.create(DIMENSION_REGISTRY, new ResourceLocation(jsonObject.get("dimension").getAsString())) : null;
         //#else
         //$$ DimensionType dimension = jsonObject.has("dimension") ? DimensionType.getByName(new ResourceLocation(jsonObject.get("dimension").getAsString())) : null;
         //#endif
