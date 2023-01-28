@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionReference;
-import top.catowncraft.carpettctcaddition.util.StringUtil;
+import top.hendrixshen.magiclib.api.rule.WrapperSettingManager;
 import top.hendrixshen.magiclib.compat.minecraft.network.chat.ComponentCompatApi;
 import top.hendrixshen.magiclib.util.MessageUtil;
 
@@ -37,11 +37,8 @@ public abstract class MixinSettingsManager {
             )
     )
     private void printAdditionVersion(CommandSourceStack source, CallbackInfoReturnable<Integer> cir) {
-        MessageUtil.sendMessage(source, ComponentCompatApi.literal(StringUtil.tr(
-                "message.command.carpet.version",
-                        CarpetTCTCAdditionReference.getCurrentModName(),
-                        CarpetTCTCAdditionReference.getModVersion(),
-                        StringUtil.tr(String.format("label.versionType.%s", CarpetTCTCAdditionReference.getModVersionType()))))
+        WrapperSettingManager sm = WrapperSettingManager.get(CarpetTCTCAdditionReference.getModId());
+        MessageUtil.sendMessage(source, ComponentCompatApi.literal(sm.trUI("version", sm.trFancyName(), sm.getVersion()))
                 .withStyle(ChatFormatting.GRAY));
     }
 }

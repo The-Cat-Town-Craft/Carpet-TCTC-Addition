@@ -6,6 +6,8 @@
   "carpet-tctc-addition.label.dimensionType.minecraft:overworld": "Overworld",
   "carpet-tctc-addition.label.dimensionType.minecraft:end": "End",
   "carpet-tctc-addition.label.dimensionType.minecraft:nether": "Nether",
+  "carpet-tctc-addition.label.dimensionType.minecraft:the_end": "End",
+  "carpet-tctc-addition.label.dimensionType.minecraft:the_nether": "Nether",
 
   "carpet-tctc-addition.message.command.fix.fixed": "Fixing chunk [%s, %s]...",
   "carpet-tctc-addition.message.command.fix.fixing": "Fixed chunk [%s, %s].",

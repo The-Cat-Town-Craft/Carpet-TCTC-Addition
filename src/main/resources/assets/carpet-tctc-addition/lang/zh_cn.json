@@ -6,6 +6,8 @@
   "carpet-tctc-addition.label.dimensionType.minecraft:overworld": "主世界",
   "carpet-tctc-addition.label.dimensionType.minecraft:end": "末路之地",
   "carpet-tctc-addition.label.dimensionType.minecraft:nether": "下界",
+  "carpet-tctc-addition.label.dimensionType.minecraft:the_end": "末路之地",
+  "carpet-tctc-addition.label.dimensionType.minecraft:the_nether": "下界",
 
   "carpet-tctc-addition.message.command.fix.fixed": "区块 [%s, %s] 修复中...",
   "carpet-tctc-addition.message.command.fix.fixing": "区块 [%s, %s] 修复完成。",
