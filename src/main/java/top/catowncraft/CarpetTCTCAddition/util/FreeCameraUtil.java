@@ -23,6 +23,8 @@ import net.minecraft.world.level.Level;
 //$$ import net.minecraft.world.level.dimension.DimensionType;
 //#endif
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAddition;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionReference;
 import top.catowncraft.carpettctcaddition.helper.FreeCameraData;
@@ -44,15 +46,19 @@ import java.util.UUID;
 public class FreeCameraUtil {
     private static Map<UUID, FreeCameraData> cameraData = new HashMap<>();
 
+    public static FreeCameraData get(UUID uuid) {
+        return FreeCameraUtil.cameraData.get(uuid);
+    }
+
+    public static void put(UUID uuid, FreeCameraData data) {
+        FreeCameraUtil.cameraData.put(uuid, data);
+    }
+
     public static Map<UUID, FreeCameraData> getCameraData() {
         return FreeCameraUtil.cameraData;
     }
 
-    public static void setCameraData(Map<UUID, FreeCameraData> cameraData) {
-        FreeCameraUtil.cameraData = cameraData;
-    }
-
-    public static FreeCameraData createEntry(JsonObject jsonObject) {
+    public static @NotNull FreeCameraData createEntry(@NotNull JsonObject jsonObject) {
         GameType gameType = jsonObject.has("gameType") ? GameType.byName(jsonObject.get("gameType").getAsString()) : GameType.SURVIVAL;
         //#if MC >= 11903
         ResourceKey<Level> dimension = jsonObject.has("dimension") ? ResourceKey.create(Registries.DIMENSION, new ResourceLocation(jsonObject.get("dimension").getAsString())) : null;
@@ -76,14 +82,14 @@ public class FreeCameraUtil {
 
     static class Serializer implements JsonDeserializer<FreeCameraData>, JsonSerializer<FreeCameraData> {
         @Override
-        public JsonElement serialize(FreeCameraData src, Type typeOfSrc, JsonSerializationContext context) {
+        public JsonElement serialize(@NotNull FreeCameraData src, Type typeOfSrc, JsonSerializationContext context) {
             JsonObject jsonObject = new JsonObject();
             src.serialize(jsonObject);
             return jsonObject;
         }
 
         @Override
-        public FreeCameraData deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+        public FreeCameraData deserialize(@NotNull JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
             if (json.isJsonObject()) {
                 JsonObject jsonObject = json.getAsJsonObject();
                 return FreeCameraUtil.createEntry(jsonObject);
@@ -93,14 +99,14 @@ public class FreeCameraUtil {
     }
 
     public static void load() {
-        FreeCameraUtil.setCameraData(FreeCameraUtil.loadFreeCameraData());
+        FreeCameraUtil.cameraData = FreeCameraUtil.loadFreeCameraData();
     }
 
     public static void save() {
         FreeCameraUtil.saveFreeCameraData(FreeCameraUtil.cameraData);
     }
 
-    public static void saveFreeCameraData(Map<UUID, FreeCameraData> data) {
+    private static void saveFreeCameraData(@NotNull Map<UUID, FreeCameraData> data) {
         Path path = FileUtil.getDataRoot().resolve("freecam.json");
 
         if (data.isEmpty()) {
@@ -123,7 +129,7 @@ public class FreeCameraUtil {
         }
     }
 
-    public static Map<UUID, FreeCameraData> loadFreeCameraData() {
+    private static @Nullable Map<UUID, FreeCameraData> loadFreeCameraData() {
         Path legacyPath = FileUtil.getLevelRoot().resolve(String.format("%s_freeCameraStorage.json", CarpetTCTCAdditionReference.getModId()));
 
         if (legacyPath.toFile().exists()) {

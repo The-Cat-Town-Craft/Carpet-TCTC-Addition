@@ -58,7 +58,7 @@ public class FreeCameraData {
         );
     }
 
-    public void serialize(JsonObject jsonObject) {
+    public void serialize(@NotNull JsonObject jsonObject) {
         jsonObject.addProperty("gameType", this.gameType.getName());
         //#if MC >= 11600
         jsonObject.addProperty("dimension", this.dimension.location().toString());

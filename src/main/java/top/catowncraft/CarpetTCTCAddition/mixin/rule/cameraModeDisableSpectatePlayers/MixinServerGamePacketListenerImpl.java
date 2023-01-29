@@ -31,11 +31,6 @@ public abstract class MixinServerGamePacketListenerImpl {
             cancellable = true
     )
     private void onHandleTeleportToEntityPacket(ServerboundTeleportToEntityPacket serverboundTeleportToEntityPacket, CallbackInfo ci) {
-        FreeCameraData cameraData = FreeCameraUtil.getCameraData().get(this.player.getUUID());
-        if (cameraData != null && !cameraData.isFreecam) {
-            return;
-        }
-
         if (CarpetTCTCAdditionSettings.cameraModeDisableSpectatePlayers) {
             ci.cancel();
         }

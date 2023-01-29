@@ -11,6 +11,7 @@
     "rule.blockIllegalUsername.MixinPlayerCommand",
     "rule.blockIllegalUsername.MixinPlayerList",
     "rule.cameraModeDisableSpectatePlayers.MixinServerGamePacketListenerImpl",
+    "rule.commandFreecam.MixinPlayerList",
     "rule.disableIllegalChatCharacterCheck.MixinSharedConstants",
     "rule.disableParticlesPackets.MixinServerLevel",
     "rule.dispenserCollectExperienceOrb.MixinDispenseItemBehavior",

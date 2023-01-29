@@ -18,9 +18,7 @@ import top.catowncraft.carpettctcaddition.rule.CarpetTCTCAdditionSettingManager;
 import top.catowncraft.carpettctcaddition.util.FreeCameraUtil;
 
 import java.util.Collection;
-import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
 
 import static net.minecraft.commands.Commands.argument;
 import static net.minecraft.commands.Commands.literal;
@@ -31,37 +29,47 @@ public class FreecamCommand {
     public static void register(@NotNull CommandDispatcher<CommandSourceStack> dispatcher) {
         LiteralArgumentBuilder<CommandSourceStack> camera = literal("freecam")
                 .requires(commandSourceStack -> CarpetTCTCAdditionSettingManager.canUseCommand(commandSourceStack, CarpetTCTCAdditionSettings.commandFreecam))
-                .executes(context -> executeFreeCamera(context.getSource(), context.getSource().getPlayerOrException()))
+                .executes(context -> executeFreeCamera(context.getSource().getPlayerOrException()))
                 .then(argument("target", players())
                         .requires(commandContext -> commandContext.hasPermission(2))
-                        .executes(commandContext -> executeFreeCamera(commandContext.getSource(), getPlayers(commandContext, "target"))));
+                        .executes(commandContext -> executeFreeCamera(getPlayers(commandContext, "target"))));
         dispatcher.register(camera);
     }
 
-    public static int executeFreeCamera(CommandSourceStack source, @NotNull Collection<ServerPlayer> serverPlayerCollection) {
+    public static int executeFreeCamera(@NotNull Collection<ServerPlayer> serverPlayerCollection) {
         for (ServerPlayer serverPlayer : serverPlayerCollection) {
-            executeFreeCamera(source, serverPlayer);
+            executeFreeCamera(serverPlayer);
         }
         return 1;
     }
 
-    public static int executeFreeCamera(CommandSourceStack source, @NotNull ServerPlayer serverPlayer) {
-        Map<UUID, FreeCameraData> freeCameraUtilMap = FreeCameraUtil.getCameraData();
-        FreeCameraData cameraData = freeCameraUtilMap.get(serverPlayer.getUUID());
-        boolean isCameraMode;
-        FreeCameraData cameraDataNew = new FreeCameraData(serverPlayer, true);
-        if (cameraData == null || !cameraData.isFreecam) {
-            isCameraMode = true;
-            serverPlayer.setGameMode(GameType.SPECTATOR);
+    public static int executeFreeCamera(@NotNull ServerPlayer serverPlayer) {
+        FreeCameraData data = FreeCameraUtil.get(serverPlayer.getUUID());
+        if (data == null || !data.isFreecam) {
+            FreecamCommand.enterFreecam(serverPlayer);
         } else {
-            if (CarpetTCTCAdditionSettings.freecamRestoreLocation && serverPlayer.isAlive()) {
-                serverPlayer.teleportTo(Objects.requireNonNull(serverPlayer.server.getLevel(cameraData.dimension)), cameraData.vec3.x, cameraData.vec3.y, cameraData.vec3.z, cameraData.yRot, cameraData.xRot);
-            }
-            isCameraMode = false;
-            serverPlayer.setGameMode(cameraData.gameType);
+            FreecamCommand.exitFreecam(serverPlayer, data);
         }
-        cameraDataNew.isFreecam = isCameraMode;
-        freeCameraUtilMap.put(serverPlayer.getUUID(), cameraDataNew);
         return 1;
+    }
+
+    public static void enterFreecam(@NotNull ServerPlayer player) {
+        FreeCameraData cameraDataNew = new FreeCameraData(player, true);
+        player.setGameMode(GameType.SPECTATOR);
+        FreeCameraUtil.put(player.getUUID(), cameraDataNew);
+    }
+
+    public static void exitFreecam(@NotNull ServerPlayer player, @NotNull FreeCameraData data) {
+        FreecamCommand.exitFreecam(player, data, false);
+    }
+
+    public static void exitFreecam(@NotNull ServerPlayer player, @NotNull FreeCameraData data, boolean ignoreGameType) {
+        if (CarpetTCTCAdditionSettings.freecamRestoreLocation && player.isAlive()) {
+            player.teleportTo(Objects.requireNonNull(player.server.getLevel(data.dimension)), data.vec3.x, data.vec3.y, data.vec3.z, data.yRot, data.xRot);
+        }
+        if (!ignoreGameType) {
+            player.setGameMode(data.gameType);
+        }
+        data.isFreecam = false;
     }
 }
