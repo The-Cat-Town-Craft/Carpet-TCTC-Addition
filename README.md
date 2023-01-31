@@ -181,6 +181,15 @@ Fix headless pistons to destroy blocks.
 - Suggested options: `false`, `true`
 - Categories: `FEATURE`
 
+### noteBlockChunkLoader
+
+When the note block is activated, if the top is obsidian and the bottom is emerald ore, it gives the block a load ticket equivalent to the nether portal.
+
+- Type: `boolean`
+- Default value: `false`
+- Suggested options: `false`, `true`
+- Categories: `FEATURE`
+
 ### opLevelBelowSelf
 
 Operators can only grant the same or lower permissions to other players than themselves.

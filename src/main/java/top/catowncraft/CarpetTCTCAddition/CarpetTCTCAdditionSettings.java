@@ -155,6 +155,13 @@ public class CarpetTCTCAdditionSettings {
 
     @Rule(
             categories = {
+                    RuleCategory.FEATURE
+            }
+    )
+    public static boolean noteBlockChunkLoader = false;
+
+    @Rule(
+            categories = {
                     RuleCategory.COMMAND
             }
     )

@@ -89,6 +89,9 @@
   "carpet-tctc-addition.rule.illegalPistonActionFix.name": "illegalPistonActionFix",
   "carpet-tctc-addition.rule.illegalPistonActionFix.desc": "Fix headless pistons to destroy blocks.",
 
+  "carpet-tctc-addition.rule.noteBlockChunkLoader.name": "noteBlockChunkLoader",
+  "carpet-tctc-addition.rule.noteBlockChunkLoader.desc": "When the note block is activated, if the top is obsidian and the bottom is emerald ore, it gives the block a load ticket equivalent to the nether portal.",
+
   "carpet-tctc-addition.rule.opLevelBelowSelf.name": "opLevelBelowSelf",
   "carpet-tctc-addition.rule.opLevelBelowSelf.desc": "Operators can only grant the same or lower permissions to other players than themselves.",
 
