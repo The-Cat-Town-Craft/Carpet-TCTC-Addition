@@ -22,7 +22,6 @@ import top.hendrixshen.magiclib.api.rule.WrapperSettingManager;
 import top.hendrixshen.magiclib.compat.minecraft.network.chat.ComponentCompatApi;
 import top.hendrixshen.magiclib.util.MessageUtil;
 
-
 @Mixin(value = SettingsManager.class, remap = false)
 public abstract class MixinSettingsManager {
     @Inject(

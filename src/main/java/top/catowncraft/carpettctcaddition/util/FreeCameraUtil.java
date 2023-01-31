@@ -54,10 +54,6 @@ public class FreeCameraUtil {
         FreeCameraUtil.cameraData.put(uuid, data);
     }
 
-    public static Map<UUID, FreeCameraData> getCameraData() {
-        return FreeCameraUtil.cameraData;
-    }
-
     public static @NotNull FreeCameraData createEntry(@NotNull JsonObject jsonObject) {
         GameType gameType = jsonObject.has("gameType") ? GameType.byName(jsonObject.get("gameType").getAsString()) : GameType.SURVIVAL;
         //#if MC >= 11903
