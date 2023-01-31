@@ -12,4 +12,5 @@ import net.minecraft.server.level.TicketType;
 
 public class TicketTypeExtra {
     public static final TicketType<BlockPos> NOTE_BLOCK = TicketType.create("note_block", Vec3i::compareTo, 300);
+    public static final TicketType<BlockPos> THE_END_GATEWAY_BLOCK_ENTITY = TicketType.create("the_end_gateway_block_entity", Vec3i::compareTo, 300);
 }

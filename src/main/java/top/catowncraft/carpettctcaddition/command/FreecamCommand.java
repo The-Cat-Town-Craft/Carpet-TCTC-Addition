@@ -9,8 +9,10 @@ package top.catowncraft.carpettctcaddition.command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.GameType;
+import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
 import top.catowncraft.carpettctcaddition.helper.FreeCameraData;
@@ -19,6 +21,7 @@ import top.catowncraft.carpettctcaddition.util.FreeCameraUtil;
 
 import java.util.Collection;
 import java.util.Objects;
+import java.util.Optional;
 
 import static net.minecraft.commands.Commands.argument;
 import static net.minecraft.commands.Commands.literal;
@@ -65,7 +68,9 @@ public class FreecamCommand {
 
     public static void exitFreecam(@NotNull ServerPlayer player, @NotNull FreeCameraData data, boolean ignoreGameType) {
         if (CarpetTCTCAdditionSettings.freecamRestoreLocation && player.isAlive()) {
-            player.teleportTo(Objects.requireNonNull(player.server.getLevel(data.dimension)), data.vec3.x, data.vec3.y, data.vec3.z, data.yRot, data.xRot);
+            Optional.ofNullable(player.server.getLevel(data.dimension))
+                    .or(() -> Optional.of(player.server.overworld()))
+                    .ifPresent(level -> player.teleportTo(level, data.vec3.x, data.vec3.y, data.vec3.z, data.yRot, data.xRot));
         }
         if (!ignoreGameType) {
             player.setGameMode(data.gameType);

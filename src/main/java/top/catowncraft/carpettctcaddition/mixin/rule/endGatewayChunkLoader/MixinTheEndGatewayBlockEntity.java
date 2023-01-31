@@ -7,10 +7,6 @@
 package top.catowncraft.carpettctcaddition.mixin.rule.endGatewayChunkLoader;
 
 import net.minecraft.core.BlockPos;
-//#if MC < 11500
-//$$ import net.minecraft.server.level.ColumnPos;
-//#endif
-import net.minecraft.server.level.TicketType;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
@@ -28,8 +24,9 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAddition;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
+import top.catowncraft.carpettctcaddition.helper.TicketTypeExtra;
 
-import java.util.Objects;
+import java.util.Optional;
 
 @Mixin(TheEndGatewayBlockEntity.class)
 public class MixinTheEndGatewayBlockEntity {
@@ -53,14 +50,14 @@ public class MixinTheEndGatewayBlockEntity {
         if ((CarpetTCTCAdditionSettings.endGatewayChunkLoader == CarpetTCTCAdditionSettings.EndGatewayChunkLoaderOptions.ALL) ||
                 (CarpetTCTCAdditionSettings.endGatewayChunkLoader == CarpetTCTCAdditionSettings.EndGatewayChunkLoaderOptions.ITEM_ONLY && entity instanceof ItemEntity) ||
                 (CarpetTCTCAdditionSettings.endGatewayChunkLoader == CarpetTCTCAdditionSettings.EndGatewayChunkLoaderOptions.EXCEPT_PLAYER && !(entity instanceof Player))) {
-            BlockPos blockPos1 = new BlockPos(entity.position());
-            //#if MC >= 11600
-            Objects.requireNonNull(CarpetTCTCAddition.getServer().getLevel(entity.level.dimension())).getChunkSource().addRegionTicket(TicketType.PORTAL, new ChunkPos(blockPos1), 3, blockPos1);
-            //#elseif MC >= 11500
-            //$$ Objects.requireNonNull(CarpetTCTCAddition.getServer().getLevel(entity.dimension)).getChunkSource().addRegionTicket(TicketType.PORTAL, new ChunkPos(blockPos1), 3, blockPos1);
-            //#else
-            //$$ Objects.requireNonNull(CarpetTCTCAddition.getServer().getLevel(entity.dimension)).getChunkSource().addRegionTicket(TicketType.PORTAL, new ChunkPos(blockPos1), 3, new ColumnPos(blockPos1));
-            //#endif
+            BlockPos targetBlockPos = new BlockPos(entity.position());
+            Optional.ofNullable(CarpetTCTCAddition.getServer())
+                    //#if MC > 11502
+                    .flatMap(server -> Optional.ofNullable(server.getLevel(entity.level.dimension())))
+                    //#else
+                    //$$ .flatMap(server -> Optional.ofNullable(server.getLevel(entity.dimension)))
+                    //#endif
+                    .ifPresent(targetLevel -> targetLevel.getChunkSource().addRegionTicket(TicketTypeExtra.THE_END_GATEWAY_BLOCK_ENTITY, new ChunkPos(targetBlockPos), 3, targetBlockPos));
         }
     }
 }
