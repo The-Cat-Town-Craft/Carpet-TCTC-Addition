@@ -9,6 +9,7 @@ package top.catowncraft.carpettctcaddition.command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.GameType;
 //#if MC <= 11502
@@ -68,13 +69,13 @@ public class FreecamCommand {
 
     public static void exitFreecam(@NotNull ServerPlayer player, @NotNull FreeCameraData data, boolean ignoreGameType) {
         if (CarpetTCTCAdditionSettings.freecamRestoreLocation && player.isAlive()) {
-            Optional.ofNullable(player.server.getLevel(data.dimension))
+            ServerLevel serverLevel = Optional.ofNullable(player.server.getLevel(data.dimension))
                     //#if MC > 11502
-                    .or(() -> Optional.of(player.server.overworld()))
+                    .orElse(player.server.overworld());
                     //#else
-                    //$$ .or(() -> Optional.of(player.server.getLevel(DimensionType.OVERWORLD)))
+                    //$$ .orElse(player.server.getLevel(DimensionType.OVERWORLD));
                     //#endif
-                    .ifPresent(level -> player.teleportTo(level, data.vec3.x, data.vec3.y, data.vec3.z, data.yRot, data.xRot));
+            player.teleportTo(serverLevel, data.vec3.x, data.vec3.y, data.vec3.z, data.yRot, data.xRot);
         }
         if (!ignoreGameType) {
             player.setGameMode(data.gameType);
