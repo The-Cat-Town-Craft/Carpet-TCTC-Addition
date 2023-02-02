@@ -42,6 +42,12 @@ jobs:
           short_sha=$(echo ${GITHUB_SHA} | cut -c1-7)
           echo "short_sha=$short_sha" >> $GITHUB_OUTPUT
 
+      - name: Get commit count
+        id: get_commit_count
+        run: |
+          commit_count=$(git log | grep -e 'commit [a-zA-Z0-9]*' | wc -l)
+          echo "commit_count=$commit_count" >> $GITHUB_OUTPUT
+
       - name: Read Properties mod info
         id: mod_info
         uses: christian-draeger/read-properties@1.1.1
@@ -65,7 +71,7 @@ jobs:
       - name: Upload assets to GitHub Action
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ steps.mod_info.outputs.mod_name }} ${{ steps.mod_info.outputs.mod_version }}.${{ github.run_number }}+${{ steps.get_short_sha.outputs.short_sha }}
+          name: ${{ steps.mod_info.outputs.mod_name }} ${{ steps.mod_info.outputs.mod_version }}.${{ steps.get_commit_count.outputs.commit_count }}+${{ steps.get_short_sha.outputs.short_sha }}
           path: |
             LICENSE
             fabricWrapper/build/libs/*.jar
@@ -80,7 +86,7 @@ jobs:
             LICENSE
             fabricWrapper/build/libs/*.jar
             fabricWrapper/build/tmp/submods/META-INF/jars/*.jar
-          name: "[CI#${{ github.run_number }}]${{ steps.mod_info.outputs.mod_name }} ${{ steps.mod_info.outputs.mod_version }}.${{ github.run_number }}+${{ steps.get_short_sha.outputs.short_sha }}"
+          name: "[CI#${{ github.run_number }}]${{ steps.mod_info.outputs.mod_name }} ${{ steps.mod_info.outputs.mod_version }}.${{ steps.get_commit_count.outputs.commit_count }}+${{ steps.get_short_sha.outputs.short_sha }}"
           tag_name: dev-${{ github.run_number }}
           target_commitish: ${{ github.event.ref }}
           generate_release_notes: true
@@ -99,7 +105,7 @@ jobs:
           files-secondary: fabricWrapper/build/tmp/submods/META-INF/jars/!(*-@(dev|sources)).jar
 
           name: ''
-          version: ${{ steps.mod_version.outputs.value }}.${{ github.run_number}}+${{ steps.get_short_sha.outputs.short_sha }}
+          version: ${{ steps.mod_version.outputs.value }}.${{ steps.get_commit_count.outputs.commit_count }}+${{ steps.get_short_sha.outputs.short_sha }}
           version-type: alpha
 
           changelog: |
@@ -166,6 +172,12 @@ jobs:
           short_sha=$(echo ${GITHUB_SHA} | cut -c1-7)
           echo "short_sha=$short_sha" >> $GITHUB_OUTPUT
 
+      - name: Get commit count
+        id: get_commit_count
+        run: |
+          commit_count=$(git log | grep -e 'commit [a-zA-Z0-9]*' | wc -l)
+          echo "commit_count=$commit_count" >> $GITHUB_OUTPUT
+
       - name: Read Properties  info
         id: mod_info
         uses: christian-draeger/read-properties@1.1.1
@@ -189,7 +201,7 @@ jobs:
       - name: Upload assets to GitHub Action
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ steps.mod_info.outputs.mod_name }} ${{ steps.mod_info.outputs.mod_version }}.${{ github.run_number }}+${{ steps.get_short_sha.outputs.short_sha }}
+          name: ${{ steps.mod_info.outputs.mod_name }} ${{ steps.mod_info.outputs.mod_version }}.${{ steps.get_commit_count.outputs.commit_count }}+${{ steps.get_short_sha.outputs.short_sha }}
           path: |
             LICENSE
             fabricWrapper/build/libs/*.jar
@@ -217,7 +229,7 @@ jobs:
           files-secondary: fabricWrapper/build/tmp/submods/META-INF/jars/!(*-@(dev|sources)).jar
 
           name: ''
-          version: ${{ steps.mod_info.outputs.mod_version }}.${{ github.run_number }}+${{ steps.get_short_sha.outputs.short_sha }}
+          version: ${{ steps.mod_info.outputs.mod_version }}.${{ steps.get_commit_count.outputs.commit_count }}+${{ steps.get_short_sha.outputs.short_sha }}
           version-type: 'release'
 
           changelog: ${{ github.event.release.body }}
