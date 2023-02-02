@@ -46,7 +46,8 @@ public abstract class MixinLivingEntity extends Entity {
     @Shadow
     public abstract void kill();
 
-    @Shadow protected abstract boolean checkTotemDeathProtection(DamageSource damageSource);
+    @Shadow
+    protected abstract boolean checkTotemDeathProtection(DamageSource damageSource);
 
     public MixinLivingEntity(EntityType<?> entityType, Level level) {
         super(entityType, level);
