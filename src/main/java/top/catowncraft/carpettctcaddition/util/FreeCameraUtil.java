@@ -25,7 +25,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import top.catowncraft.carpettctcaddition.CarpetTCTCAddition;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionReference;
 import top.catowncraft.carpettctcaddition.helper.FreeCameraData;
 
@@ -109,7 +108,7 @@ public class FreeCameraUtil {
             try {
                 Files.deleteIfExists(path);
             } catch (IOException e) {
-                CarpetTCTCAddition.getLogger().error("Cannot delete empty file: {}", path.toString());
+                CarpetTCTCAdditionReference.getLogger().error("Cannot delete empty file: {}", path.toString());
                 e.printStackTrace();
             }
             return;
@@ -120,23 +119,23 @@ public class FreeCameraUtil {
         try (BufferedWriter writer = Files.newBufferedWriter(path)) {
             writer.write(string);
         } catch (IOException e) {
-            CarpetTCTCAddition.getLogger().error("Cannot write freeCameraData: {}", string);
+            CarpetTCTCAdditionReference.getLogger().error("Cannot write freeCameraData: {}", string);
             e.printStackTrace();
         }
     }
 
     private static @Nullable Map<UUID, FreeCameraData> loadFreeCameraData() {
-        Path legacyPath = FileUtil.getLevelRoot().resolve(String.format("%s_freeCameraStorage.json", CarpetTCTCAdditionReference.getModId()));
+        Path legacyPath = FileUtil.getLevelRoot().resolve(String.format("%s_freeCameraStorage.json", CarpetTCTCAdditionReference.getModIdentifier()));
 
         if (legacyPath.toFile().exists()) {
-            CarpetTCTCAddition.getLogger().info("[{}]Legacy freecam data found!", CarpetTCTCAdditionReference.getModName());
+            CarpetTCTCAdditionReference.getLogger().info("[{}]Legacy freecam data found!", CarpetTCTCAdditionReference.getModName());
             Map<UUID, FreeCameraData> legacy = Maps.newHashMap();
 
             try (BufferedReader reader = Files.newBufferedReader(legacyPath)) {
                 legacy = new GsonBuilder().registerTypeAdapter(FreeCameraData.class, new Serializer()).create().fromJson(reader, new TypeToken<Map<UUID, FreeCameraData>>() {
                 }.getType());
             } catch (IOException e) {
-                CarpetTCTCAddition.getLogger().error("Cannot load legacy freeCameraData.");
+                CarpetTCTCAdditionReference.getLogger().error("Cannot load legacy freeCameraData.");
                 e.printStackTrace();
             }
 
@@ -144,9 +143,9 @@ public class FreeCameraUtil {
 
             try {
                 Files.deleteIfExists(legacyPath);
-                CarpetTCTCAddition.getLogger().info("[{}]Legacy file deleted.", CarpetTCTCAdditionReference.getModName());
+                CarpetTCTCAdditionReference.getLogger().info("[{}]Legacy file deleted.", CarpetTCTCAdditionReference.getModName());
             } catch (IOException e) {
-                CarpetTCTCAddition.getLogger().error("Cannot delete legacy freeCameraData.");
+                CarpetTCTCAdditionReference.getLogger().error("Cannot delete legacy freeCameraData.");
                 e.printStackTrace();
             }
 
@@ -162,7 +161,7 @@ public class FreeCameraUtil {
             return new GsonBuilder().registerTypeAdapter(FreeCameraData.class, new Serializer()).create().fromJson(reader, new TypeToken<Map<UUID, FreeCameraData>>() {
             }.getType());
         } catch (IOException e) {
-            CarpetTCTCAddition.getLogger().error("Cannot load freeCameraData.");
+            CarpetTCTCAdditionReference.getLogger().error("Cannot load freeCameraData.");
             e.printStackTrace();
         }
 

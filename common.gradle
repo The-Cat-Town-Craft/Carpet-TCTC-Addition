@@ -1,6 +1,7 @@
 apply(plugin: "maven-publish")
 apply(plugin: "fabric-loom")
 apply(plugin: "io.github.juuxel.loom-quiltflower")
+apply(plugin: "net.kyori.blossom")
 apply(plugin: "com.replaymod.preprocess")
 
 int mcVersion = 1
@@ -28,23 +29,28 @@ repositories {
 }
 
 dependencies {
+    // Development environment
     minecraft("com.mojang:minecraft:${project.minecraft_version}")
     mappings(loom.officialMojangMappings())
 
-    modImplementation("top.hendrixshen:magiclib-${project.minecraft_version.replace(".", "_")}:${project.magiclib_version}") {
-        //If you want to use runClient task, you should remove this exclude setting.
-        //exclude(group: "net.fabricmc.fabric-api", module: "fabric-api")
-    }
-    modImplementation("curse.maven:carpet-349239:${project.carpet_version}")
+    // Annotation processor
+    modApi("org.projectlombok:lombok:${project.lombok_version}")
+    annotationProcessor("org.projectlombok:lombok:${project.lombok_version}")
 
+    // Dependency
+    modImplementation("top.hendrixshen:magiclib-${project.minecraft_version.replace(".", "_")}:${project.magiclib_version}")
+
+    // Misc
     runtimeOnly(project(path: ":fabricWrapper"))
 }
 
 loom {
     runConfigs.all {
+        // Dump modified classes automatically.
         property("mixin.debug.export", "true")
     }
 
+    // We need large window.
     runConfigs.client {
         programArgs([
                 "--width",
@@ -65,14 +71,23 @@ loom {
         if (!new File("${projectDir}/run/client/options.txt").exists()) {
             new File("${projectDir}/run/client").mkdirs()
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("${projectDir}/run/client/options.txt"))
-            bufferedWriter.write("lang:zh_CN\nforceUnicodeFont:true\nguiScale:1")
+            bufferedWriter.write("autoJump:false\n")
+            bufferedWriter.write("enableVsync:false\n")
+            bufferedWriter.write("forceUnicodeFont:true\n")
+            bufferedWriter.write("fov:1.0\n")
+            bufferedWriter.write("gamma:16.0\n")
+            bufferedWriter.write("guiScale:3\n")
+            bufferedWriter.write("lang:${Locale.getDefault().toString()}\n")
+            bufferedWriter.write("maxFps:260\n")
+            bufferedWriter.write("renderDistance:10\n")
+            bufferedWriter.write("soundCategory_master:0.0")
             bufferedWriter.close()
         }
     }
 
     runServer {
         defaultCharacterEncoding("UTF-8")
-        // Auto agree EULA
+        // Agree eula before server init.
         if (!new File("${projectDir}/run/server/eula.txt").exists()) {
             new File("${projectDir}/run/server").mkdirs()
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("${projectDir}/run/server/eula.txt"))
@@ -85,20 +100,20 @@ loom {
 remapJar {
     remapperIsolation = true
 }
-if (mcVersion >= 11800) {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
-} else if (mcVersion >= 11700) {
-    sourceCompatibility = JavaVersion.VERSION_16
-    targetCompatibility = JavaVersion.VERSION_16
-} else {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
-}
 
-archivesBaseName = project.archives_base_name + "-" + project.minecraft_version
-version = project.parent.version
-group = project.maven_group
+setArchivesBaseName("${project.archives_base_name}-${project.minecraft_version}")
+setVersion(project.parent.version)
+setGroup(project.maven_group)
+if (mcVersion >= 11800) {
+    setSourceCompatibility(JavaVersion.VERSION_17)
+    setTargetCompatibility(JavaVersion.VERSION_17)
+} else if (mcVersion >= 11700) {
+    setSourceCompatibility(JavaVersion.VERSION_16)
+    setTargetCompatibility(JavaVersion.VERSION_16)
+} else {
+    setSourceCompatibility(JavaVersion.VERSION_1_8)
+    setTargetCompatibility(JavaVersion.VERSION_1_8)
+}
 
 processResources {
     outputs.upToDateWhen { false }
@@ -117,16 +132,16 @@ processResources {
                 "magiclib_dependency"  : project.magiclib_dependency
         ])
     }
-    filesMatching("assets/${project.mod_id}/lang/*.json") {
-        expand([
-                "mod_id"  : project.mod_id,
-                "mod_name": project.mod_name,
-        ])
-    }
 }
 
-tasks.withType(JavaCompile) {
-    options.encoding = "UTF-8"
+blossom {
+    replaceToken("\${mod_id}", project.mod_id)
+    replaceToken("\${mod_name}", project.mod_name)
+    replaceToken("\${minecraft_version_id}", project.minecraft_version.replace(".", "_"))
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.encoding = "UTF-8"
 }
 
 java {
@@ -140,8 +155,7 @@ jar {
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            artifactId = "${project.mod_id}-${project.minecraft_version.replace(".", "_")}"
-            version = project.version
+            artifactId("${project.mod_id}-${project.minecraft_version.replace(".", "_")}")
             from(components.java)
         }
     }

@@ -24,7 +24,7 @@ import top.hendrixshen.magiclib.dependency.annotation.Dependency;
 //$$ import org.spongepowered.asm.mixin.injection.Inject;
 //$$ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 //$$ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
-//$$ import top.catowncraft.carpettctcaddition.CarpetTCTCAddition;
+//$$ import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionExtension;
 //$$ import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
 //$$ import top.catowncraft.carpettctcaddition.helper.UpdateSuppressionException;
 //$$ import top.catowncraft.carpettctcaddition.util.StringUtil;
@@ -49,7 +49,7 @@ public class MixinLevel {
     //$$ private void onNeighborChanged(BlockPos blockPos, Block block, BlockPos blockPos2, CallbackInfo ci, BlockState blockState, Throwable throwable) {
     //$$     if (CarpetTCTCAdditionSettings.updateSuppressionCrashFix) {
     //$$         if (throwable instanceof StackOverflowError) {
-    //$$             MessageUtil.sendServerMessage(CarpetTCTCAddition.getServer(), ComponentCompatApi.literal(StringUtil.tr("message.server.updateSuppression.processed")).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
+    //$$             MessageUtil.sendServerMessage(CarpetTCTCAdditionExtension.getServer(), ComponentCompatApi.literal(StringUtil.tr("message.server.updateSuppression.processed")).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
     //$$         }
     //$$         throw new UpdateSuppressionException("Update suppression");
     //$$     }

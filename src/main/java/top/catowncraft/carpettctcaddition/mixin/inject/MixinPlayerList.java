@@ -15,7 +15,7 @@ import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
-import top.catowncraft.carpettctcaddition.CarpetTCTCAddition;
+import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionExtension;
 import top.catowncraft.carpettctcaddition.mixininterface.PlayerListApi;
 
 import java.util.UUID;
@@ -47,6 +47,6 @@ public abstract class MixinPlayerList implements PlayerListApi {
 
     @Override
     public void tctc$setBypassPlayerLimit(GameProfile gameProfile, boolean bypass) {
-        ops.add(new ServerOpListEntry(gameProfile, CarpetTCTCAddition.getServer().getProfilePermissions(gameProfile), bypass));
+        ops.add(new ServerOpListEntry(gameProfile, CarpetTCTCAdditionExtension.getServer().getProfilePermissions(gameProfile), bypass));
     }
 }

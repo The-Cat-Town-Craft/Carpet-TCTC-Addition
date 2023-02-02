@@ -24,7 +24,7 @@ import net.minecraft.world.level.Level;
 //$$ import net.minecraft.world.level.dimension.DimensionType;
 //#endif
 import org.jetbrains.annotations.NotNull;
-import top.catowncraft.carpettctcaddition.CarpetTCTCAddition;
+import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionExtension;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
 import top.catowncraft.carpettctcaddition.rule.CarpetTCTCAdditionSettingManager;
 import top.catowncraft.carpettctcaddition.util.StringUtil;
@@ -60,7 +60,7 @@ public class HereCommand {
         //#else
         //$$ if (serverPlayer.level.dimension.getType() == DimensionType.OVERWORLD || serverPlayer.level.dimension.getType() == DimensionType.NETHER) {
         //#endif
-            MessageUtil.sendServerMessage(CarpetTCTCAddition.getServer(),
+            MessageUtil.sendServerMessage(CarpetTCTCAdditionExtension.getServer(),
                     ComponentCompatApi.translatable(StringUtil.original("message.command.here.withTransformed"),
                             ComponentCompatApi.literal(serverPlayer.getName().getString()).withStyle(ChatFormatting.GRAY),
                             //#if MC >= 11600
@@ -81,7 +81,7 @@ public class HereCommand {
                             //#endif
                     ));
         } else {
-            MessageUtil.sendServerMessage(CarpetTCTCAddition.getServer(),
+            MessageUtil.sendServerMessage(CarpetTCTCAdditionExtension.getServer(),
                     ComponentCompatApi.translatable(StringUtil.original("message.command.here.withoutTransformed"),
                             ComponentCompatApi.literal(serverPlayer.getName().getString()).withStyle(ChatFormatting.GRAY),
                             //#if MC >= 11600
@@ -115,7 +115,7 @@ public class HereCommand {
     }
 
     //#if MC >= 11600
-    public static Component getDimension(@NotNull ResourceKey<Level> resourceKey) {
+    public static @NotNull Component getDimension(@NotNull ResourceKey<Level> resourceKey) {
         switch (resourceKey.location().toString()) {
     //#else
     //$$ public static Component getDimension(DimensionType dimensionType) {

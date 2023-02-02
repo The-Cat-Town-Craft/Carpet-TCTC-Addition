@@ -36,7 +36,7 @@ public abstract class MixinSettingsManager {
             )
     )
     private void printAdditionVersion(CommandSourceStack source, CallbackInfoReturnable<Integer> cir) {
-        WrapperSettingManager sm = WrapperSettingManager.get(CarpetTCTCAdditionReference.getModId());
+        WrapperSettingManager sm = WrapperSettingManager.get(CarpetTCTCAdditionReference.getModIdentifier());
         MessageUtil.sendMessage(source, ComponentCompatApi.literal(sm.trUI("version", sm.trFancyName(), sm.getVersion()))
                 .withStyle(ChatFormatting.GRAY));
     }

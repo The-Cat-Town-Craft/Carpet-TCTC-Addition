@@ -11,14 +11,14 @@ import top.hendrixshen.magiclib.api.rule.WrapperSettingManager;
 
 public class StringUtil {
     public static String tr(String node, Object... objects) {
-        WrapperSettingManager settingManager = WrapperSettingManager.get(CarpetTCTCAdditionReference.getModId());
+        WrapperSettingManager settingManager = WrapperSettingManager.get(CarpetTCTCAdditionReference.getModIdentifier());
         return settingManager.tr(settingManager.getCurrentLanguageCode(),
-                String.format("%s.%s", CarpetTCTCAdditionReference.getModId(), node), objects);
+                String.format("%s.%s", CarpetTCTCAdditionReference.getModIdentifier(), node), objects);
     }
 
     public static String original(String node) {
-        WrapperSettingManager settingManager = WrapperSettingManager.get(CarpetTCTCAdditionReference.getModId());
+        WrapperSettingManager settingManager = WrapperSettingManager.get(CarpetTCTCAdditionReference.getModIdentifier());
         return settingManager.tr(settingManager.getCurrentLanguageCode(),
-                String.format("%s.%s", CarpetTCTCAdditionReference.getModId(), node));
+                String.format("%s.%s", CarpetTCTCAdditionReference.getModIdentifier(), node));
     }
 }

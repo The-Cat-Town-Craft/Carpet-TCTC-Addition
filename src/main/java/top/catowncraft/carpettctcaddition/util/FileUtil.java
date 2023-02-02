@@ -9,21 +9,22 @@ package top.catowncraft.carpettctcaddition.util;
 //#if MC >= 11600
 import net.minecraft.world.level.storage.LevelResource;
 //#endif
-import top.catowncraft.carpettctcaddition.CarpetTCTCAddition;
+import org.jetbrains.annotations.NotNull;
+import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionExtension;
 
 import java.io.File;
 import java.nio.file.Path;
 
 public class FileUtil {
-    public static Path getLevelRoot() {
+    public static @NotNull Path getLevelRoot() {
         //#if MC >= 11600
-        return CarpetTCTCAddition.getServer().getWorldPath(LevelResource.ROOT);
+        return CarpetTCTCAdditionExtension.getServer().getWorldPath(LevelResource.ROOT);
         //#else
-        //$$ return CarpetTCTCAddition.getServer().getStorageSource().getBaseDir().resolve(CarpetTCTCAddition.getServer().getLevelIdName());
+        //$$ return CarpetTCTCAdditionExtension.getServer().getStorageSource().getBaseDir().resolve(CarpetTCTCAdditionExtension.getServer().getLevelIdName());
         //#endif
     }
 
-    public static Path getDataRoot() {
+    public static @NotNull Path getDataRoot() {
         return FileUtil.getLevelRoot().resolve("CarpetTCTCAddition");
     }
 

@@ -54,16 +54,12 @@ jobs:
 
       - name: Preprocess resources
         env:
-          COMMIT_SHA: ${{ steps.get_short_sha.outputs.short_sha }}
           BUILD_TYPE: "BETA"
-          BUILD_NUMBER: ${{ github.run_number }}
         run: ./gradlew preprocessResources
 
       - name: Build with Gradle
         env:
-          COMMIT_SHA: ${{ steps.get_short_sha.outputs.short_sha }}
           BUILD_TYPE: "BETA"
-          BUILD_NUMBER: ${{ github.run_number }}
         run: ./gradlew build
 
       - name: Upload assets to GitHub Action
@@ -182,16 +178,12 @@ jobs:
 
       - name: Preprocess resources
         env:
-          COMMIT_SHA: ${{ steps.get_short_sha.outputs.short_sha }}
           BUILD_TYPE: "RELEASE"
-          BUILD_NUMBER: ${{ github.run_number }}
         run: ./gradlew preprocessResources
 
       - name: Build with Gradle
         env:
-          COMMIT_SHA: ${{ steps.get_short_sha.outputs.short_sha }}
           BUILD_TYPE: "RELEASE"
-          BUILD_NUMBER: ${{ github.run_number }}
         run: ./gradlew build
 
       - name: Upload assets to GitHub Action

@@ -12,7 +12,7 @@ import net.minecraft.server.level.ServerLevel;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
-import top.catowncraft.carpettctcaddition.CarpetTCTCAddition;
+import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionExtension;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
 import top.catowncraft.carpettctcaddition.compat.GeneralPredicate;
 import top.catowncraft.carpettctcaddition.helper.UpdateSuppressionException;
@@ -40,7 +40,7 @@ public class MixinMinecraftServer {
             if (!CarpetTCTCAdditionSettings.updateSuppressionCrashFix || !(throwable.getCause() instanceof UpdateSuppressionException)) {
                 throw throwable;
             }
-            MessageUtil.sendServerMessage(CarpetTCTCAddition.getServer(), ComponentCompatApi.literal(StringUtil.tr("message.server.updateSuppression.exception")).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
+            MessageUtil.sendServerMessage(CarpetTCTCAdditionExtension.getServer(), ComponentCompatApi.literal(StringUtil.tr("message.server.updateSuppression.exception")).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
         }
     }
 }

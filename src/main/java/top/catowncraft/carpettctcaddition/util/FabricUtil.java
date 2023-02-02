@@ -10,7 +10,7 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
 import net.fabricmc.loader.api.Version;
 import net.fabricmc.loader.api.VersionParsingException;
-import top.catowncraft.carpettctcaddition.CarpetTCTCAddition;
+import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionReference;
 
 import java.util.Optional;
 import java.util.regex.Matcher;
@@ -28,7 +28,7 @@ public class FabricUtil extends top.hendrixshen.magiclib.util.FabricUtil {
                 try {
                     version = Version.parse(realVer);
                 } catch (VersionParsingException e) {
-                    CarpetTCTCAddition.getLogger().error("Cannot parse target version: {}", realVer);
+                    CarpetTCTCAdditionReference.getLogger().error("Cannot parse target version: {}", realVer);
                     e.printStackTrace();
                     return false;
                 }

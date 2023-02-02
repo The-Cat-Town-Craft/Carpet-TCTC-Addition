@@ -10,7 +10,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import org.spongepowered.asm.mixin.Mixin;
-import top.catowncraft.carpettctcaddition.CarpetTCTCAddition;
+import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionExtension;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
 import top.catowncraft.carpettctcaddition.compat.carpetextra.CarpetExtraSettings;
 import top.catowncraft.carpettctcaddition.compat.carpetfixes.CarpetFixesHelper;
@@ -44,7 +44,7 @@ public class MixinMinecraftServer {
         } catch (Throwable throwable) {
             if ((CarpetTCTCAdditionSettings.updateSuppressionCrashFix && throwable.getCause() instanceof UpdateSuppressionException)
                     || (CarpetExtraSettings.isUpdateSuppressionCrashFixEnable() && throwable.getCause().getClass() == CarpetFixesHelper.UpdateSuppressionException())) {
-                MessageUtil.sendServerMessage(CarpetTCTCAddition.getServer(),
+                MessageUtil.sendServerMessage(CarpetTCTCAdditionExtension.getServer(),
                         ComponentCompatApi.literal(StringUtil.tr("message.server.updateSuppression.exception")).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
             } else {
                 throw throwable;

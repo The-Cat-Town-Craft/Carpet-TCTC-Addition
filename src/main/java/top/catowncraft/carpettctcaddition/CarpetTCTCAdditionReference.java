@@ -6,51 +6,24 @@
  */
 package top.catowncraft.carpettctcaddition;
 
+import lombok.Getter;
 import net.fabricmc.loader.api.FabricLoader;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import top.hendrixshen.magiclib.util.VersionParser;
 
 public class CarpetTCTCAdditionReference {
-    private static final String MOD_ID = "carpet-tctc-addition";
-
-    //#if MC > 11802
-    private static final String CURRENT_MOD_ID = String.format("%s-1_19_3", MOD_ID);
-    //#elseif MC > 11701
-    //$$ private static final String CURRENT_MOD_ID = String.format("%s-1_18_2", MOD_ID);
-    //#elseif MC > 11605
-    //$$ private static final String CURRENT_MOD_ID = String.format("%s-1_17_1", MOD_ID);
-    //#elseif MC > 11502
-    //$$ private static final String CURRENT_MOD_ID = String.format("%s-1_16_5", MOD_ID);
-    //#elseif MC > 11404
-    //$$ private static final String CURRENT_MOD_ID = String.format("%s-1_15_2", MOD_ID);
-    //#else
-    //$$ private static final String CURRENT_MOD_ID = String.format("%s-1_14_4", MOD_ID);
-    //#endif
-    private static final String CURRENT_MOD_NAME = FabricLoader.getInstance().getModContainer(CURRENT_MOD_ID).orElseThrow(RuntimeException::new).getMetadata().getName();
-    private static final String MOD_NAME = "Carpet TCTC Addition";
-    private static final String MOD_VERSION = FabricLoader.getInstance().getModContainer(CURRENT_MOD_ID).orElseThrow(RuntimeException::new).getMetadata().getVersion().getFriendlyString();
-    private static final String MOD_VERSION_TYPE = VersionParser.getVersionType(MOD_VERSION);
-
-    public static String getCurrentModId() {
-        return CURRENT_MOD_ID;
-    }
-
-    public static String getCurrentModName() {
-        return CURRENT_MOD_NAME;
-    }
-
-    public static String getModId() {
-        return MOD_ID;
-    }
-
-    public static String getModName() {
-        return MOD_NAME;
-    }
-
-    public static String getModVersion() {
-        return MOD_VERSION;
-    }
-
-    public static String getModVersionType() {
-        return MOD_VERSION_TYPE;
-    }
+    private static final String currentModIdentifier = "${mod_id}-${minecraft_version_id}";
+    @Getter
+    private static final String modIdentifier = "${mod_id}";
+    @Getter
+    private static final String currentModName = FabricLoader.getInstance().getModContainer(currentModIdentifier).orElseThrow(RuntimeException::new).getMetadata().getName();
+    @Getter
+    private static final String modName = "${mod_name}";
+    @Getter
+    private static final String modVersion = FabricLoader.getInstance().getModContainer(currentModIdentifier).orElseThrow(RuntimeException::new).getMetadata().getVersion().getFriendlyString();
+    @Getter
+    private static final String modVersionType = VersionParser.getVersionType(modVersion);
+    @Getter
+    private static final Logger logger = LogManager.getLogger(modIdentifier);
 }

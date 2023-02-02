@@ -20,7 +20,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import top.catowncraft.carpettctcaddition.CarpetTCTCAddition;
+import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionExtension;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
 import top.catowncraft.carpettctcaddition.helper.UpdateSuppressionException;
 import top.catowncraft.carpettctcaddition.util.StringUtil;
@@ -45,7 +45,7 @@ public interface MixinNeighborUpdater {
     )
     private static void onExecuteUpdate(Level level, BlockState blockState, BlockPos blockPos, Block block, BlockPos blockPos2, boolean bl, CallbackInfo ci) {
          if (CarpetTCTCAdditionSettings.updateSuppressionCrashFix) {
-             MessageUtil.sendServerMessage(CarpetTCTCAddition.getServer(), StringUtil.tr("message.server.updateSuppression.processed"));
+             MessageUtil.sendServerMessage(CarpetTCTCAdditionExtension.getServer(), StringUtil.tr("message.server.updateSuppression.processed"));
              throw new UpdateSuppressionException("Update suppression");
          }
     }

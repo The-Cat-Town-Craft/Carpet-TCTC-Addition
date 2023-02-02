@@ -14,7 +14,7 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.arguments.GameProfileArgument;
 import org.jetbrains.annotations.NotNull;
-import top.catowncraft.carpettctcaddition.CarpetTCTCAddition;
+import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionExtension;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
 import top.catowncraft.carpettctcaddition.rule.CarpetTCTCAdditionSettingManager;
 import top.catowncraft.carpettctcaddition.util.StringUtil;
@@ -48,7 +48,7 @@ public class OperatorCommand {
         }
 
         for (GameProfile gameProfile : gameProfileCollection) {
-            CarpetTCTCAddition.getServer().getPlayerList().tctc$setPermissionLevel(gameProfile, level);
+            CarpetTCTCAdditionExtension.getServer().getPlayerList().tctc$setPermissionLevel(gameProfile, level);
             MessageUtil.sendMessage(commandSourceStack, StringUtil.tr("message.command.operator.setPermissionLevel.success", gameProfile.getName(), level));
         }
 
@@ -57,7 +57,7 @@ public class OperatorCommand {
 
     private static int setBypassPlayerLimit(CommandSourceStack commandSourceStack, @NotNull Collection<GameProfile> gameProfileCollection, boolean bypass) {
         for (GameProfile gameProfile : gameProfileCollection) {
-            CarpetTCTCAddition.getServer().getPlayerList().tctc$setBypassPlayerLimit(gameProfile, bypass);
+            CarpetTCTCAdditionExtension.getServer().getPlayerList().tctc$setBypassPlayerLimit(gameProfile, bypass);
             MessageUtil.sendMessage(commandSourceStack, StringUtil.tr("message.command.operator.setBypassPlayerLimit.success", gameProfile.getName(), bypass));
         }
         return 1;

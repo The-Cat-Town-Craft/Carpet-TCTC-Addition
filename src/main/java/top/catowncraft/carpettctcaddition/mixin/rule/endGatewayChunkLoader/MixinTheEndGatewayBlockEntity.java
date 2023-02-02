@@ -22,7 +22,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import top.catowncraft.carpettctcaddition.CarpetTCTCAddition;
+import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionExtension;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
 import top.catowncraft.carpettctcaddition.helper.TicketTypeExtra;
 
@@ -51,7 +51,7 @@ public class MixinTheEndGatewayBlockEntity {
                 (CarpetTCTCAdditionSettings.endGatewayChunkLoader == CarpetTCTCAdditionSettings.EndGatewayChunkLoaderOptions.ITEM_ONLY && entity instanceof ItemEntity) ||
                 (CarpetTCTCAdditionSettings.endGatewayChunkLoader == CarpetTCTCAdditionSettings.EndGatewayChunkLoaderOptions.EXCEPT_PLAYER && !(entity instanceof Player))) {
             BlockPos targetBlockPos = new BlockPos(entity.position());
-            Optional.ofNullable(CarpetTCTCAddition.getServer())
+            Optional.ofNullable(CarpetTCTCAdditionExtension.getServer())
                     //#if MC > 11502
                     .flatMap(server -> Optional.ofNullable(server.getLevel(entity.level.dimension())))
                     //#else
