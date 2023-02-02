@@ -112,7 +112,9 @@
   "carpet-tctc-addition.rule.voidDevouringBehavior.desc": "The action that will occur when the player falls into the void.",
   "carpet-tctc-addition.rule.voidDevouringBehavior.extra.0": "instant_death - Dies immediately when entering the void.",
   "carpet-tctc-addition.rule.voidDevouringBehavior.extra.1": "teleport_to_spawn - Teleport to the player's spawn point when entering the void, or to the world spawn point if it does not exist.",
-  "carpet-tctc-addition.rule.voidDevouringBehavior.extra.2": "vanilla - Vanilla behaviour.",
+  "carpet-tctc-addition.rule.voidDevouringBehavior.extra.2": "teleport_to_spawn_cost_totem - Teleport to the player's spawn point when entering the void, or to the world spawn point if it does not exist. This action consumes a totem, and if the player does not hold a totem they will receive void damage.",
+  "carpet-tctc-addition.rule.voidDevouringBehavior.extra.3": "teleport_to_spawn_cost_totem_or_death - Teleport to the player's spawn point when entering the void, or to the world spawn point if it does not exist. This action consumes a totem, and if the player does not hold a totem they will die immediately.",
+  "carpet-tctc-addition.rule.voidDevouringBehavior.extra.4": "vanilla - Vanilla behaviour.",
 
   "carpet-tctc-addition.rule.voidTradeFix.name": "voidTradeFix",
   "carpet-tctc-addition.rule.voidTradeFix.desc": "Once the villager entity is unloaded, the trading interface will be closed.",

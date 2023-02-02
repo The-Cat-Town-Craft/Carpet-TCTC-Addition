@@ -204,9 +204,21 @@ public class CarpetTCTCAdditionSettings {
     public static VoidDevouringBehaviorOptions voidDevouringBehavior = VoidDevouringBehaviorOptions.VANILLA;
 
     public enum VoidDevouringBehaviorOptions {
-        INSTANT_DEATH,
-        TELEPORT_TO_SPAWN,
-        VANILLA,
+        INSTANT_DEATH(true, false, false),
+        TELEPORT_TO_SPAWN(false, false, true),
+        TELEPORT_TO_SPAWN_COST_TOTEM(false, true, true),
+        TELEPORT_TO_SPAWN_COST_TOTEM_OR_DEATH(true, true, true),
+        VANILLA(false, false, false);
+
+        public final boolean immediateDeath;
+        public final boolean totemBypass;
+        public final boolean teleportToSpawn;
+
+        VoidDevouringBehaviorOptions(boolean immediateDeath, boolean totemBypass, boolean teleportToSpawn) {
+            this.immediateDeath = immediateDeath;
+            this.totemBypass = totemBypass;
+            this.teleportToSpawn = teleportToSpawn;
+        }
     }
 
     @Rule(

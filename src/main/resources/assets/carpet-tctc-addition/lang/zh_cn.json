@@ -90,7 +90,7 @@
   "carpet-tctc-addition.rule.illegalPistonActionFix.desc": "修复无头活塞破坏方块。",
 
   "carpet-tctc-addition.rule.noteBlockChunkLoader.name": "音符盒区块加载器",
-  "carpet-tctc-addition.rule.noteBlockChunkLoader.desc": "音符盒被激活时, 若上方为黑曜石下方为绿宝石矿石时则赋予所在区块一个与下界传送门等效的加载票.",
+  "carpet-tctc-addition.rule.noteBlockChunkLoader.desc": "音符盒被激活时, 若上方为黑曜石下方为绿宝石矿石时则赋予所在区块一个与下界传送门等效的加载票。",
 
   "carpet-tctc-addition.rule.opLevelBelowSelf.name": "op等级限制",
   "carpet-tctc-addition.rule.opLevelBelowSelf.desc": "操作员只能给予其他玩家与自己相同或更低的权限。",
@@ -112,7 +112,9 @@
   "carpet-tctc-addition.rule.voidDevouringBehavior.desc": "玩家坠入虚空后发生的动作。",
   "carpet-tctc-addition.rule.voidDevouringBehavior.extra.0": "instant_death - 进入虚空后立即死亡。",
   "carpet-tctc-addition.rule.voidDevouringBehavior.extra.1": "teleport_to_spawn - 进入虚空后传送至玩家出生点，若不存在则传送至世界出生点。",
-  "carpet-tctc-addition.rule.voidDevouringBehavior.extra.2": "vanilla - 原版行为。",
+  "carpet-tctc-addition.rule.voidDevouringBehavior.extra.2": "teleport_to_spawn_cost_totem - 进入虚空后传送至玩家出生点，若不存在则传送至世界出生点。此行为消耗一个图腾，若玩家不持有图腾则会受到虚空伤害。",
+  "carpet-tctc-addition.rule.voidDevouringBehavior.extra.3": "teleport_to_spawn_cost_totem_or_death - 进入虚空后传送至玩家出生点，若不存在则传送至世界出生点。此行为消耗一个图腾，若玩家不持有图腾则会立即死亡。",
+  "carpet-tctc-addition.rule.voidDevouringBehavior.extra.4": "vanilla - 原版行为。",
 
   "carpet-tctc-addition.rule.voidTradeFix.name": "虚空交易修复",
   "carpet-tctc-addition.rule.voidTradeFix.desc": "一旦村民实体被卸载，将关闭交易界面。",

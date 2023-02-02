@@ -243,6 +243,10 @@ instant_death - 进入虚空后立即死亡。
 
 teleport_to_spawn - 进入虚空后传送至玩家出生点，若不存在则传送至世界出生点。
 
+teleport_to_spawn_cost_totem - 进入虚空后传送至玩家出生点，若不存在则传送至世界出生点。此行为消耗一个图腾，若玩家不持有图腾则会受到虚空伤害。
+
+teleport_to_spawn_cost_totem_or_death - 进入虚空后传送至玩家出生点，若不存在则传送至世界出生点。此行为消耗一个图腾，若玩家不持有图腾则会立即死亡。
+
 vanilla - 原版行为。
 
 - 类型: `枚举`

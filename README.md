@@ -243,6 +243,10 @@ instant_death - Dies immediately when entering the void.
 
 teleport_to_spawn - Teleport to the player's spawn point when entering the void, or to the world spawn point if it does not exist.
 
+teleport_to_spawn_cost_totem - Teleport to the player's spawn point when entering the void, or to the world spawn point if it does not exist. This action consumes a totem, and if the player does not hold a totem they will receive void damage.
+
+teleport_to_spawn_cost_totem_or_death - Teleport to the player's spawn point when entering the void, or to the world spawn point if it does not exist. This action consumes a totem, and if the player does not hold a totem they will die immediately.
+
 vanilla - Vanilla behaviour.
 
 - Type: `enum`

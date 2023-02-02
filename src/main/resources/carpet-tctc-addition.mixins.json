@@ -25,7 +25,7 @@
     "rule.updateSuppressionCrashFix.MixinLevel",
     "rule.updateSuppressionCrashFix.MixinMinecraftServer",
     "rule.updateSuppressionCrashFix.MixinNeighborUpdater",
-    "rule.voidFallBehavior.MixinLivingEntity",
+    "rule.voidDevouringBehavior.MixinLivingEntity",
     "rule.voidTradeFix.MixinServerLevel",
     "rule.wetSpongeAbsorbLava.MixinWetSpongeBlock",
     "rule.xaeroMapWorldName.MixinPlayerList"
