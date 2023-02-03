@@ -175,10 +175,19 @@ public class CarpetTCTCAdditionSettings {
     public static PlayerStatsOptions playerStats = PlayerStatsOptions.BOTH;
 
     public enum PlayerStatsOptions {
-        BOT,
-        BOTH,
-        NONE,
-        PLAYER
+        BOT(false, true),
+        BOTH(false, false),
+        NONE(true, true),
+        PLAYER(false, true);
+
+        public final boolean disablePlayer;
+        public final boolean disableBot;
+
+        PlayerStatsOptions(boolean disablePlayer, boolean disableBot) {
+
+            this.disablePlayer = disablePlayer;
+            this.disableBot = disableBot;
+        }
     }
 
     @Rule(

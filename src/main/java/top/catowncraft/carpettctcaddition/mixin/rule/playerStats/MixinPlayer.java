@@ -27,20 +27,15 @@ public abstract class MixinPlayer extends LivingEntity {
 
     @SuppressWarnings("ConstantConditions")
     @Inject(
-            method = "awardStat(Lnet/minecraft/stats/Stat;)V",
+            method = "awardStat(Lnet/minecraft/stats/Stat;I)V",
             at = @At(
                     value = "HEAD"
             ),
             cancellable = true
     )
-    private void onAwardStat(Stat<?> stat, CallbackInfo ci) {
-        if (CarpetTCTCAdditionSettings.playerStats == CarpetTCTCAdditionSettings.PlayerStatsOptions.PLAYER && (LivingEntity) this instanceof EntityPlayerMPFake) {
-            ci.cancel();
-        }
-        if (CarpetTCTCAdditionSettings.playerStats == CarpetTCTCAdditionSettings.PlayerStatsOptions.BOT && (LivingEntity) this instanceof ServerPlayer && !((LivingEntity) this instanceof EntityPlayerMPFake)) {
-            ci.cancel();
-        }
-        if (CarpetTCTCAdditionSettings.playerStats == CarpetTCTCAdditionSettings.PlayerStatsOptions.NONE) {
+    private void onAwardStat(Stat<?> stat, int i, CallbackInfo ci) {
+        if ((CarpetTCTCAdditionSettings.playerStats.disableBot && (LivingEntity) this instanceof EntityPlayerMPFake) ||
+                (CarpetTCTCAdditionSettings.playerStats.disablePlayer && (LivingEntity) this instanceof ServerPlayer)) {
             ci.cancel();
         }
     }
