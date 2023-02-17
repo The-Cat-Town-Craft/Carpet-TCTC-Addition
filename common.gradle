@@ -13,14 +13,12 @@ preprocess {
 
 repositories {
     maven {
+        name("CurseForge Maven")
         url("https://www.cursemaven.com")
     }
 
     maven {
-        url("https://api.modrinth.com/maven")
-    }
-
-    maven {
+        name("Nyan Maven")
         url("https://maven.hendrixshen.top")
     }
 
@@ -45,6 +43,10 @@ dependencies {
 }
 
 loom {
+    interfaceInjection {
+        enableDependencyInterfaceInjection = true
+    }
+
     runConfigs.all {
         // Dump modified classes automatically.
         property("mixin.debug.export", "true")
@@ -54,9 +56,9 @@ loom {
     runConfigs.client {
         programArgs([
                 "--width",
-                "1280",
+                "1920",
                 "--height",
-                "720",
+                "1080",
         ])
         runDir("run/client")
     }
@@ -65,33 +67,35 @@ loom {
         runDir("run/server")
     }
 
+    // Setup client default settings.
     runClient {
         defaultCharacterEncoding("UTF-8")
         // Set client language to zh_cn
         if (!new File("${projectDir}/run/client/options.txt").exists()) {
             new File("${projectDir}/run/client").mkdirs()
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("${projectDir}/run/client/options.txt"))
-            bufferedWriter.write("autoJump:false\n")
-            bufferedWriter.write("enableVsync:false\n")
-            bufferedWriter.write("forceUnicodeFont:true\n")
-            bufferedWriter.write("fov:1.0\n")
-            bufferedWriter.write("gamma:16.0\n")
-            bufferedWriter.write("guiScale:3\n")
-            bufferedWriter.write("lang:${Locale.getDefault().toString()}\n")
-            bufferedWriter.write("maxFps:260\n")
-            bufferedWriter.write("renderDistance:10\n")
-            bufferedWriter.write("soundCategory_master:0.0")
+            bufferedWriter.writeLine("autoJump:false")
+            bufferedWriter.writeLine("enableVsync:false")
+            bufferedWriter.writeLine("forceUnicodeFont:true")
+            bufferedWriter.writeLine("fov:1.0")
+            bufferedWriter.writeLine("gamma:16.0")
+            bufferedWriter.writeLine("guiScale:3")
+            bufferedWriter.writeLine("lang:${Locale.getDefault().toString()}")
+            bufferedWriter.writeLine("maxFps:260")
+            bufferedWriter.writeLine("renderDistance:10")
+            bufferedWriter.writeLine("soundCategory_master:0.0")
             bufferedWriter.close()
         }
     }
 
+    // Setup server default settings.
     runServer {
         defaultCharacterEncoding("UTF-8")
         // Agree eula before server init.
         if (!new File("${projectDir}/run/server/eula.txt").exists()) {
             new File("${projectDir}/run/server").mkdirs()
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("${projectDir}/run/server/eula.txt"))
-            bufferedWriter.write("eula=true")
+            bufferedWriter.writeLine("eula=true")
             bufferedWriter.close()
         }
     }

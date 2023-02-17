@@ -7,8 +7,10 @@
 package top.catowncraft.carpettctcaddition.mixin.rule.voidDevouringBehavior;
 
 import net.minecraft.core.BlockPos;
-//#if MC >= 11903
+//#if MC > 11802
+//#if MC > 11902
 import net.minecraft.core.Holder;
+//#endif
 import net.minecraft.network.protocol.game.ClientboundSoundPacket;
 //#else
 //$$ import net.minecraft.network.protocol.game.ClientboundCustomSoundPacket;
@@ -136,9 +138,14 @@ public abstract class MixinLivingEntity extends Entity {
             //$$ 0.0F, 0.0F);
             //#endif
         }
-        //#if MC >= 11903
+        //#if MC > 11802
         serverPlayer.connection.send(new ClientboundSoundPacket(
-                Holder.direct(SoundEvent.createVariableRangeEvent(new ResourceLocation("entity.enderman.teleport"))), serverPlayer.getSoundSource(),
+                //#if MC > 11902
+                Holder.direct(SoundEvent.createVariableRangeEvent(new ResourceLocation("entity.enderman.teleport"))),
+                //#else
+                //$$ new SoundEvent (new ResourceLocation("entity.enderman.teleport")),
+                //#endif
+                serverPlayer.getSoundSource(),
                 serverPlayer.getXCompat(), serverPlayer.getYCompat(), serverPlayer.getZCompat(),
                 1.0F, 1.0F, serverPlayer.level.getRandom().nextLong()
 

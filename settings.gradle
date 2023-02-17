@@ -9,20 +9,15 @@ pluginManagement {
             url("https://jitpack.io")
         }
         maven {
+            name("Nyan Maven")
+            url("https://maven.hendrixshen.top")
+        }
+        maven {
             name("Cotton")
             url("https://server.bbkr.space/artifactory/libs-release")
         }
         mavenCentral()
         gradlePluginPortal()
-    }
-    resolutionStrategy {
-        eachPlugin {
-            switch (requested.id.id) {
-                case "com.replaymod.preprocess": {
-                    useModule("com.github.Fallen-Breath:preprocessor:${requested.version}")
-                }
-            }
-        }
     }
 }
 
@@ -32,6 +27,7 @@ def versions = Arrays.asList(
         "1.16.5",
         "1.17.1",
         "1.18.2",
+        "1.19.2",
         "1.19.3",
 )
 

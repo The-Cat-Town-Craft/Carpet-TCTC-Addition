@@ -42,7 +42,8 @@ public class MixinMinecraftServer {
         try {
             instance.tick(booleanSupplier);
         } catch (Throwable throwable) {
-            if ((CarpetTCTCAdditionSettings.updateSuppressionCrashFix && throwable.getCause() instanceof UpdateSuppressionException)
+            if ((CarpetTCTCAdditionSettings.updateSuppressionCrashFix &&
+                    (throwable.getCause() instanceof UpdateSuppressionException || throwable instanceof UpdateSuppressionException))
                     || (CarpetSettings.isUpdateSuppressionCrashFixEnable() && throwable.getClass() == CarpetHelper.ThrowableSuppression())) {
                 MessageUtil.sendServerMessage(CarpetTCTCAdditionExtension.getServer(),
                         ComponentCompatApi.literal(StringUtil.tr("message.server.updateSuppression.exception")).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));

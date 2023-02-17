@@ -27,8 +27,10 @@ public class MixinNoteBlock {
             method = "neighborChanged",
             at = @At(
                     value = "INVOKE",
-                    //#if MC > 11802
+                    //#if MC > 11902
                     target = "Lnet/minecraft/world/level/block/NoteBlock;playNote(Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V"
+                    //#elseif MC > 11802
+                    //$$ target = "Lnet/minecraft/world/level/block/NoteBlock;playNote(Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V"
                     //#else
                     //$$ target = "Lnet/minecraft/world/level/block/NoteBlock;playNote(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V"
                     //#endif
