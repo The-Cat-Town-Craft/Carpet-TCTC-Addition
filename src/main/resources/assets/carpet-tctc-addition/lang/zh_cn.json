@@ -40,6 +40,12 @@
   "carpet-tctc-addition.rule.blockIllegalUsername.name": "阻止非法用户名",
   "carpet-tctc-addition.rule.blockIllegalUsername.desc": "使用正版模式规则验证用户名。",
 
+  "carpet-tctc-addition.rule.botTabListNamePrefix.name": "假人Tab栏名称前缀",
+  "carpet-tctc-addition.rule.botTabListNamePrefix.desc": "为Tab栏中的假人添加前缀，使用 & 来代替 § 以格式化文本。",
+
+  "carpet-tctc-addition.rule.botTabListNameSuffix.name": "假人Tab栏名称后缀",
+  "carpet-tctc-addition.rule.botTabListNameSuffix.desc": "为Tab栏中的假人添加后缀，使用 & 来代替 § 以格式化文本。",
+
   "carpet-tctc-addition.rule.commandFix.name": "区块修复命令",
   "carpet-tctc-addition.rule.commandFix.desc": "启用 /fix 命令用于修复区块数据。",
 

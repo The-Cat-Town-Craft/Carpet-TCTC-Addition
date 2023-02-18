@@ -40,6 +40,12 @@
   "carpet-tctc-addition.rule.blockIllegalUsername.name": "blockIllegalUsername",
   "carpet-tctc-addition.rule.blockIllegalUsername.desc": "Verify username using online mode rules.",
 
+  "carpet-tctc-addition.rule.botTabListNamePrefix.name": "botTabListNamePrefix",
+  "carpet-tctc-addition.rule.botTabListNamePrefix.desc": "Add a prefix to the Bot in the TabList, using & instead of § to format the text.",
+
+  "carpet-tctc-addition.rule.botTabListNameSuffix.name": "botTabListNameSuffix",
+  "carpet-tctc-addition.rule.botTabListNameSuffix.desc": "Add a suffix to the Bot in the TabList, using & instead of § to format the text.",
+
   "carpet-tctc-addition.rule.commandFix.name": "commandFix",
   "carpet-tctc-addition.rule.commandFix.desc": "Enables /fix command to fix chunk data.",
 

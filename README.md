@@ -40,6 +40,24 @@ Verify username using online mode rules.
 - Suggested options: `false`, `true`
 - Categories: `MISC`, `PROTOCOL`
 
+### botTabListNamePrefix
+
+Add a prefix to the Bot in the TabList, using & instead of § to format the text.
+
+- Type: `string`
+- Default value: `#none`
+- Suggested options: `#none`, `[Bot]`
+- Categories: `MISC`, `PROTOCOL`
+
+### botTabListNameSuffix
+
+Add a suffix to the Bot in the TabList, using & instead of § to format the text.
+
+- Type: `string`
+- Default value: `#none`
+- Suggested options: `#none`, `[Fake]`
+- Categories: `MISC`, `PROTOCOL`
+
 ### commandFix
 
 Enables /fix command to fix chunk data.

@@ -19,6 +19,32 @@ public class CarpetTCTCAdditionSettings {
     )
     public static boolean blockIllegalUsername = false;
 
+    @Rule(
+            categories = {
+                    RuleCategory.MISC,
+                    RuleCategory.PROTOCOL
+            },
+            options = {
+                    "#none",
+                    "[Bot]"
+            },
+            strict = false
+    )
+    public static String botTabListNamePrefix = "#none";
+
+    @Rule(
+            categories = {
+                    RuleCategory.MISC,
+                    RuleCategory.PROTOCOL
+            },
+            options = {
+                    "#none",
+                    "[Fake]"
+            },
+            strict = false
+    )
+    public static String botTabListNameSuffix = "#none";
+
     @Command(full = true)
     @Rule(
             categories = {

@@ -10,6 +10,7 @@
     "misc.printCarpetVersion.MixinSettingsManager",
     "rule.blockIllegalUsername.MixinPlayerCommand",
     "rule.blockIllegalUsername.MixinPlayerList",
+    "rule.botTabListName.MixinClientboundPlayerInfoUpdatePacketEntry",
     "rule.cameraModeDisableSpectatePlayers.MixinServerGamePacketListenerImpl",
     "rule.commandFreecam.MixinPlayerList",
     "rule.disableIllegalChatCharacterCheck.MixinSharedConstants",

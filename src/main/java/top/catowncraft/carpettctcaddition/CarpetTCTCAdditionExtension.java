@@ -9,12 +9,19 @@ package top.catowncraft.carpettctcaddition;
 import com.mojang.brigadier.CommandDispatcher;
 import lombok.Getter;
 import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.network.protocol.game.ClientboundPlayerInfoUpdatePacket;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.players.PlayerList;
 import top.catowncraft.carpettctcaddition.command.*;
 import top.catowncraft.carpettctcaddition.rule.CarpetTCTCAdditionSettingManager;
 import top.catowncraft.carpettctcaddition.util.FreeCameraUtil;
+import top.catowncraft.carpettctcaddition.util.MiscUtil;
 import top.hendrixshen.magiclib.api.rule.CarpetExtensionCompatApi;
 import top.hendrixshen.magiclib.api.rule.WrapperSettingManager;
+
+//#if MC > 11902
+import java.util.EnumSet;
+//#endif
 
 public class CarpetTCTCAdditionExtension implements CarpetExtensionCompatApi {
     @Getter
@@ -35,6 +42,18 @@ public class CarpetTCTCAdditionExtension implements CarpetExtensionCompatApi {
         CarpetTCTCAdditionExtension.server = server;
         // Load freecam data.
         FreeCameraUtil.load();
+        CarpetTCTCAdditionExtension.settingsManager.registerRuleCallback(((source, rule, value) -> {
+            if (rule.getName().equals("botTabListNamePrefix") || rule.getName().equals("botTabListNameSuffix")) {
+                PlayerList playerList = CarpetTCTCAdditionExtension.server.getPlayerList();
+                playerList.broadcastAll(new ClientboundPlayerInfoUpdatePacket(
+                        //#if MC > 11902
+                        EnumSet.of(ClientboundPlayerInfoUpdatePacket.Action.UPDATE_DISPLAY_NAME),
+                        //#else
+                        //$$ ClientboundPlayerInfoPacket.Action.UPDATE_DISPLAY_NAME,
+                        //#endif
+                        playerList.getPlayers().stream().filter(MiscUtil::isBotEntity).toList()));
+            }
+        }));
     }
 
     @Override
