@@ -8,9 +8,14 @@ package top.catowncraft.carpettctcaddition.util;
 
 import carpet.patches.EntityPlayerMPFake;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
 
 public class MiscUtil extends top.hendrixshen.magiclib.util.MiscUtil {
-    public static boolean isBotEntity(ServerPlayer serverPlayer) {
-        return serverPlayer instanceof EntityPlayerMPFake;
+    public static boolean isBotEntity(Player player) {
+        return player instanceof EntityPlayerMPFake;
+    }
+
+    public static boolean isRealPlayer(Player player) {
+        return player instanceof ServerPlayer && !(player instanceof EntityPlayerMPFake);
     }
 }

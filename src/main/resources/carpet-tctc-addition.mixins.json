@@ -21,7 +21,7 @@
     "rule.endGatewayChunkLoader.MixinTheEndGatewayBlockEntity",
     "rule.illegalPistonActionFix.MixinPistonBaseBlock",
     "rule.noteBlockChunkLoader.MixinNoteBlock",
-    "rule.playerStats.MixinPlayer",
+    "rule.playerStats.MixinServerPlayer",
     "rule.shulkerBoxDupeFix.MixinAbstractContainerMenu",
     "rule.updateSuppressionCrashFix.MixinLevel",
     "rule.updateSuppressionCrashFix.MixinMinecraftServer",
