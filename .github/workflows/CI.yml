@@ -47,7 +47,7 @@ jobs:
       - name: Get commit count
         id: get_commit_count
         run: |
-          commit_count=$(git log | grep -e 'commit [a-zA-Z0-9]*' | wc -l)
+          commit_count=$(git log | grep -e '^commit [a-zA-Z0-9]*' | wc -l)
           echo "commit_count=$commit_count" >> $GITHUB_OUTPUT
 
       - name: Read Properties mod info
@@ -99,17 +99,13 @@ jobs:
         with:
           modrinth-id: vbBQ6dVH
           modrinth-token: ${{ secrets.MODRINTH_API_TOKEN }}
-
           curseforge-id: 513524
           curseforge-token: ${{ secrets.CF_API_TOKEN }}
-
           files-primary: fabricWrapper/build/libs/!(*-@(dev|sources)).jar
           files-secondary: fabricWrapper/build/tmp/submods/META-INF/jars/!(*-@(dev|sources)).jar
-
           name: ''
-          version: ${{ steps.mod_version.outputs.value }}.${{ steps.get_commit_count.outputs.commit_count }}+${{ steps.get_short_sha.outputs.short_sha }}
+          version: ${{ steps.mod_info.outputs.mod_version }}.${{ steps.get_commit_count.outputs.commit_count }}+${{ steps.get_short_sha.outputs.short_sha }}
           version-type: alpha
-
           changelog: |
             **This version is automatically released by CI Build**
             
@@ -124,6 +120,7 @@ jobs:
             1.16.5
             1.17.1
             1.18.2
+            1.19.2
             1.19.3
           version-resolver: latest
           java: |
@@ -138,9 +135,9 @@ jobs:
             16
             17
             18
-
           retry-attempts: 2
           retry-delay: 10000
+
   publish:
     if: ${{ github.event_name == 'release' }}
     strategy:
@@ -179,7 +176,7 @@ jobs:
       - name: Get commit count
         id: get_commit_count
         run: |
-          commit_count=$(git log | grep -e 'commit [a-zA-Z0-9]*' | wc -l)
+          commit_count=$(git log | grep -e '^commit [a-zA-Z0-9]*' | wc -l)
           echo "commit_count=$commit_count" >> $GITHUB_OUTPUT
 
       - name: Read Properties  info
@@ -225,17 +222,13 @@ jobs:
         with:
           modrinth-id: vbBQ6dVH
           modrinth-token: ${{ secrets.MODRINTH_API_TOKEN }}
-
           curseforge-id: 513524
           curseforge-token: ${{ secrets.CF_API_TOKEN }}
-
           files-primary: fabricWrapper/build/libs/!(*-@(dev|sources)).jar
           files-secondary: fabricWrapper/build/tmp/submods/META-INF/jars/!(*-@(dev|sources)).jar
-
           name: ''
           version: ${{ steps.mod_info.outputs.mod_version }}.${{ steps.get_commit_count.outputs.commit_count }}+${{ steps.get_short_sha.outputs.short_sha }}
           version-type: 'release'
-
           changelog: ${{ github.event.release.body }}
           loaders:
             fabric
@@ -245,6 +238,7 @@ jobs:
             1.16.5
             1.17.1
             1.18.2
+            1.19.2
             1.19.3
           version-resolver: latest
           java: |
@@ -259,7 +253,6 @@ jobs:
             16
             17
             18
-
           retry-attempts: 2
           retry-delay: 10000
 
@@ -282,6 +275,9 @@ jobs:
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
+
+      - name: Preprocess resources
+        run: ./gradlew preprocessResources
 
       - name: Build with Gradle
         run: ./gradlew build
