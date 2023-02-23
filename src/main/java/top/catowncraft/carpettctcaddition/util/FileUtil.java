@@ -17,6 +17,7 @@ import java.nio.file.Path;
 
 public class FileUtil {
     public static @NotNull Path getLevelRoot() {
+        assert CarpetTCTCAdditionExtension.getServer() != null;
         //#if MC >= 11600
         return CarpetTCTCAdditionExtension.getServer().getWorldPath(LevelResource.ROOT);
         //#else

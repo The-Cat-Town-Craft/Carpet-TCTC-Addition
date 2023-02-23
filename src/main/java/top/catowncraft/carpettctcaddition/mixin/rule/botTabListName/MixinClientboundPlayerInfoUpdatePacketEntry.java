@@ -27,6 +27,7 @@ import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
 import top.hendrixshen.magiclib.compat.minecraft.network.chat.ComponentCompatApi;
 
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.regex.Pattern;
 
 //#if MC > 11902
@@ -73,24 +74,26 @@ public class MixinClientboundPlayerInfoUpdatePacketEntry {
     //#endif
         if (!CarpetTCTCAdditionSettings.botTabListNamePrefix.equals("#none") ||
                 !CarpetTCTCAdditionSettings.botTabListNameSuffix.equals("#none")) {
-            ServerPlayer serverPlayer = CarpetTCTCAdditionExtension.getServer().getPlayerList().getPlayer(profile.getId());
-            if (serverPlayer instanceof EntityPlayerMPFake) {
-                ArrayList<Component> components = Lists.newArrayList();
-                if (!CarpetTCTCAdditionSettings.botTabListNamePrefix.equals("#none")) {
-                    components.add(ComponentCompatApi.literal(cta$formatPattern.matcher(CarpetTCTCAdditionSettings.botTabListNamePrefix).replaceAll("§$1")));
+            Optional.ofNullable(CarpetTCTCAdditionExtension.getServer()).ifPresent(minecraftServer -> {
+                ServerPlayer serverPlayer = minecraftServer.getPlayerList().getPlayer(profile.getId());
+                if (serverPlayer instanceof EntityPlayerMPFake) {
+                    ArrayList<Component> components = Lists.newArrayList();
+                    if (!CarpetTCTCAdditionSettings.botTabListNamePrefix.equals("#none")) {
+                        components.add(ComponentCompatApi.literal(cta$formatPattern.matcher(CarpetTCTCAdditionSettings.botTabListNamePrefix).replaceAll("§$1")));
+                    }
+                    components.add(serverPlayer.getDisplayName());
+                    if (!CarpetTCTCAdditionSettings.botTabListNameSuffix.equals("#none")) {
+                        components.add(ComponentCompatApi.literal(cta$formatPattern.matcher(CarpetTCTCAdditionSettings.botTabListNameSuffix).replaceAll("§$1")));
+                    }
+                    //#if MC > 11502
+                    MutableComponent ret = ComponentCompatApi.literal("");
+                    //#else
+                    //$$ BaseComponent ret = ComponentCompatApi.literal("");
+                    //#endif
+                    components.forEach(ret::append);
+                    this.displayName = ret;
                 }
-                components.add(serverPlayer.getDisplayName());
-                if (!CarpetTCTCAdditionSettings.botTabListNameSuffix.equals("#none")) {
-                    components.add(ComponentCompatApi.literal(cta$formatPattern.matcher(CarpetTCTCAdditionSettings.botTabListNameSuffix).replaceAll("§$1")));
-                }
-                //#if MC > 11502
-                MutableComponent ret = ComponentCompatApi.literal("");
-                //#else
-                //$$ BaseComponent ret = ComponentCompatApi.literal("");
-                //#endif
-                components.forEach(ret::append);
-                this.displayName = ret;
-            }
+            });
         }
     }
 }

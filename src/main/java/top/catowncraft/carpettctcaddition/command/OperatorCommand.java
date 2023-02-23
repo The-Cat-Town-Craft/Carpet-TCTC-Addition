@@ -22,6 +22,7 @@ import top.hendrixshen.magiclib.compat.minecraft.network.chat.ComponentCompatApi
 import top.hendrixshen.magiclib.util.MessageUtil;
 
 import java.util.Collection;
+import java.util.Optional;
 
 import static net.minecraft.commands.Commands.argument;
 import static net.minecraft.commands.Commands.literal;
@@ -47,19 +48,22 @@ public class OperatorCommand {
             return 1;
         }
 
-        for (GameProfile gameProfile : gameProfileCollection) {
-            CarpetTCTCAdditionExtension.getServer().getPlayerList().tctc$setPermissionLevel(gameProfile, level);
-            MessageUtil.sendMessage(commandSourceStack, StringUtil.tr("message.command.operator.setPermissionLevel.success", gameProfile.getName(), level));
-        }
+        gameProfileCollection.forEach(gameProfile ->
+                Optional.ofNullable(CarpetTCTCAdditionExtension.getServer()).ifPresent(minecraftServer -> {
+                    minecraftServer.getPlayerList().tctc$setPermissionLevel(gameProfile, level);
+                    MessageUtil.sendMessage(commandSourceStack, StringUtil.tr("message.command.operator.setPermissionLevel.success", gameProfile.getName(), level));
+                }));
 
         return 1;
     }
 
     private static int setBypassPlayerLimit(CommandSourceStack commandSourceStack, @NotNull Collection<GameProfile> gameProfileCollection, boolean bypass) {
-        for (GameProfile gameProfile : gameProfileCollection) {
-            CarpetTCTCAdditionExtension.getServer().getPlayerList().tctc$setBypassPlayerLimit(gameProfile, bypass);
-            MessageUtil.sendMessage(commandSourceStack, StringUtil.tr("message.command.operator.setBypassPlayerLimit.success", gameProfile.getName(), bypass));
-        }
+        gameProfileCollection.forEach(gameProfile ->
+                Optional.ofNullable(CarpetTCTCAdditionExtension.getServer()).ifPresent(minecraftServer -> {
+                    minecraftServer.getPlayerList().tctc$setBypassPlayerLimit(gameProfile, bypass);
+                    MessageUtil.sendMessage(commandSourceStack, StringUtil.tr("message.command.operator.setBypassPlayerLimit.success", gameProfile.getName(), bypass));
+                }));
+
         return 1;
     }
 }

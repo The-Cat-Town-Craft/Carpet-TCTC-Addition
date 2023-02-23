@@ -7,6 +7,7 @@
 package top.catowncraft.carpettctcaddition.mixin.inject;
 
 import com.mojang.authlib.GameProfile;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.players.PlayerList;
 import net.minecraft.server.players.ServerOpList;
@@ -18,6 +19,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionExtension;
 import top.catowncraft.carpettctcaddition.mixininterface.PlayerListApi;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Mixin(PlayerList.class)
@@ -36,17 +38,20 @@ public abstract class MixinPlayerList implements PlayerListApi {
     @Nullable
     public abstract ServerPlayer getPlayer(UUID uUID);
 
+    @Shadow @Final private MinecraftServer server;
+
     @Override
     public void tctc$setPermissionLevel(GameProfile gameProfile, int level) {
         ops.add(new ServerOpListEntry(gameProfile, level, canBypassPlayerLimit(gameProfile)));
         ServerPlayer serverPlayer = getPlayer(gameProfile.getId());
         if (serverPlayer != null) {
-            sendPlayerPermissionLevel(serverPlayer);
+            this.sendPlayerPermissionLevel(serverPlayer);
         }
     }
 
     @Override
     public void tctc$setBypassPlayerLimit(GameProfile gameProfile, boolean bypass) {
-        ops.add(new ServerOpListEntry(gameProfile, CarpetTCTCAdditionExtension.getServer().getProfilePermissions(gameProfile), bypass));
+        Optional.ofNullable(CarpetTCTCAdditionExtension.getServer()).ifPresent(minecraftServer ->
+                this.ops.add(new ServerOpListEntry(gameProfile, server.getProfilePermissions(gameProfile), bypass)));
     }
 }
