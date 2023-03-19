@@ -8,7 +8,7 @@ package top.catowncraft.carpettctcaddition.compat.carpetfixes;
 
 import org.objectweb.asm.tree.ClassNode;
 import top.catowncraft.carpettctcaddition.util.FabricUtil;
-import top.hendrixshen.magiclib.dependency.annotation.MixinDependencyPredicate;
+import top.hendrixshen.magiclib.dependency.api.MixinDependencyPredicate;
 
 import java.util.regex.Pattern;
 
@@ -17,21 +17,21 @@ public class CarpetFixesPredicate {
 
     public static class shouldApplyCompatForEnderPlatform implements MixinDependencyPredicate {
         @Override
-        public boolean test(ClassNode classNode) {
+        public boolean isSatisfied(ClassNode classNode) {
             return CarpetFixesPredicate.shouldCompatForEnderPlatform();
         }
     }
 
     public static class shouldUseCompatForEnderPlatform implements MixinDependencyPredicate {
         @Override
-        public boolean test(ClassNode classNode) {
+        public boolean isSatisfied(ClassNode classNode) {
             return !CarpetFixesPredicate.shouldCompatForEnderPlatform();
         }
     }
 
     public static class shouldApplyCompatForUpdateSuppressionCrashFix implements MixinDependencyPredicate {
         @Override
-        public boolean test(ClassNode classNode) {
+        public boolean isSatisfied(ClassNode classNode) {
             return CarpetFixesPredicate.shouldCompatForUpdateSuppressionCrashFix();
         }
     }

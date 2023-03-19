@@ -6,10 +6,9 @@
  */
 package top.catowncraft.carpettctcaddition;
 
-import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.*;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
-import top.hendrixshen.magiclib.MagicMixinPlugin;
+import top.hendrixshen.magiclib.dependency.impl.MagicMixinPlugin;
 
 public class CarpetTCTCAdditionMixinPlugin extends MagicMixinPlugin {
     @Override

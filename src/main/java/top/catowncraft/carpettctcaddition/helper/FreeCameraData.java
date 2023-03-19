@@ -21,7 +21,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class FreeCameraData {
     public final @NotNull GameType gameType;
-    //#if MC >= 11600
+    //#if MC > 11502
     public final @NotNull ResourceKey<Level> dimension;
     //#else
     //$$ public final @NotNull DimensionType dimension;
@@ -31,7 +31,7 @@ public class FreeCameraData {
     public final float yRot;
     public boolean isFreecam;
 
-    //#if MC >= 11600
+    //#if MC > 11502
     public FreeCameraData(@NotNull GameType gameType, @NotNull ResourceKey<Level> dimension, @NotNull Vec3 vec3, float xRot, float yRot, boolean isFreecam) {
     //#else
     //$$ public FreeCameraData(@NotNull GameType gameType, @NotNull DimensionType dimension, @NotNull Vec3 vec3, float xRot, float yRot, boolean isFreecam) {
@@ -46,7 +46,7 @@ public class FreeCameraData {
 
     public FreeCameraData(@NotNull ServerPlayer serverPlayer, boolean isFreecam) {
         this(serverPlayer.gameMode.getGameModeForPlayer(),
-                //#if MC >= 11600
+                //#if MC > 11502
                 serverPlayer.getLevel().dimension(),
                 //#else
                 //$$ serverPlayer.dimension,
@@ -60,7 +60,7 @@ public class FreeCameraData {
 
     public void serialize(@NotNull JsonObject jsonObject) {
         jsonObject.addProperty("gameType", this.gameType.getName());
-        //#if MC >= 11600
+        //#if MC > 11502
         jsonObject.addProperty("dimension", this.dimension.location().toString());
         //#else
         //$$ jsonObject.addProperty("dimension", this.dimension.toString());

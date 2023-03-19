@@ -17,8 +17,8 @@ import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
 import top.catowncraft.carpettctcaddition.compat.GeneralPredicate;
 import top.catowncraft.carpettctcaddition.helper.UpdateSuppressionException;
 import top.catowncraft.carpettctcaddition.util.StringUtil;
-import top.hendrixshen.magiclib.compat.minecraft.network.chat.ComponentCompatApi;
-import top.hendrixshen.magiclib.dependency.annotation.Dependencies;
+import top.hendrixshen.magiclib.compat.minecraft.api.network.chat.ComponentCompatApi;
+import top.hendrixshen.magiclib.dependency.api.annotation.Dependencies;
 import top.hendrixshen.magiclib.util.MessageUtil;
 
 import java.util.function.BooleanSupplier;
@@ -41,6 +41,7 @@ public class MixinMinecraftServer {
                     !(throwable.getCause() instanceof UpdateSuppressionException || throwable instanceof UpdateSuppressionException)) {
                 throw throwable;
             }
+            
             MessageUtil.sendServerMessage(CarpetTCTCAdditionExtension.getServer(), ComponentCompatApi.literal(StringUtil.tr("message.server.updateSuppression.exception")).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
         }
     }

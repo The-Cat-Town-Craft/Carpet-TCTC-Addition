@@ -10,20 +10,21 @@ import lombok.Getter;
 import net.fabricmc.loader.api.FabricLoader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import top.hendrixshen.magiclib.util.VersionParser;
+import top.catowncraft.carpettctcaddition.util.StringUtil;
 
 public class CarpetTCTCAdditionReference {
-    private static final String currentModIdentifier = "${mod_id}-${minecraft_version_id}";
     @Getter
-    private static final String modIdentifier = "${mod_id}";
+    private static final String modIdentifier = "@MOD_IDENTIFIER@";
     @Getter
-    private static final String currentModName = FabricLoader.getInstance().getModContainer(currentModIdentifier).orElseThrow(RuntimeException::new).getMetadata().getName();
+    private static final String modIdentifierCurrent = "@MOD_IDENTIFIER@-@MINECRAFT_VERSION_IDENTIFY@";
     @Getter
-    private static final String modName = "${mod_name}";
+    private static final String modName = "@MOD_NAME@";
     @Getter
-    private static final String modVersion = FabricLoader.getInstance().getModContainer(currentModIdentifier).orElseThrow(RuntimeException::new).getMetadata().getVersion().getFriendlyString();
+    private static final String modNameCurrent = FabricLoader.getInstance().getModContainer(modIdentifierCurrent).orElseThrow(RuntimeException::new).getMetadata().getName();
     @Getter
-    private static final String modVersionType = VersionParser.getVersionType(modVersion);
+    private static final String modVersion = FabricLoader.getInstance().getModContainer(modIdentifierCurrent).orElseThrow(RuntimeException::new).getMetadata().getVersion().getFriendlyString();
+    @Getter
+    private static final String modVersionType = StringUtil.getVersionType(modVersion);
     @Getter
     private static final Logger logger = LogManager.getLogger(modIdentifier);
 }

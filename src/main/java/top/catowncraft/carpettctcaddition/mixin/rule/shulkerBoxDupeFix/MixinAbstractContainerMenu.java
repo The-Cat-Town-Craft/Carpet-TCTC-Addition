@@ -9,19 +9,18 @@ package top.catowncraft.carpettctcaddition.mixin.rule.shulkerBoxDupeFix;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ClickType;
-//#if MC < 11700
-//$$ import net.minecraft.world.item.ItemStack;
-//#endif
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-//#if MC >= 11700
+import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
+
+//#if MC > 11605
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 //#else
+//$$ import net.minecraft.world.item.ItemStack;
 //$$ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 //#endif
-import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
 
 @Mixin(AbstractContainerMenu.class)
 public abstract class MixinAbstractContainerMenu {
@@ -38,7 +37,7 @@ public abstract class MixinAbstractContainerMenu {
             ),
             cancellable = true
     )
-    //#if MC >= 11700
+    //#if MC > 11605
     private void onClick(int i, int j, ClickType clickType, Player player, CallbackInfo ci) {
     //#else
     //$$ private void onClick(int i, int j, ClickType clickType, Player player, CallbackInfoReturnable<ItemStack> ci) {

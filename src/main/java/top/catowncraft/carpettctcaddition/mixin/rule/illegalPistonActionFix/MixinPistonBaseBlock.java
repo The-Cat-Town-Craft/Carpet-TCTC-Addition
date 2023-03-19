@@ -28,8 +28,9 @@ public class MixinPistonBaseBlock {
             cancellable = true
     )
     private void onRemoveBlock(BlockState blockState, Level level, BlockPos blockPos, int i, int j, CallbackInfoReturnable<Boolean> cir) {
-        if (CarpetTCTCAdditionSettings.illegalPistonActionFix && level.getBlockState(blockPos.relative(blockState.getValue(PistonBaseBlock.FACING))).getBlock() != Blocks.PISTON_HEAD) {
-            cir.cancel();
+        if (CarpetTCTCAdditionSettings.illegalPistonActionFix &&
+                level.getBlockState(blockPos.relative(blockState.getValue(PistonBaseBlock.FACING))).getBlock() != Blocks.PISTON_HEAD) {
+            cir.setReturnValue(false);
         }
     }
 }

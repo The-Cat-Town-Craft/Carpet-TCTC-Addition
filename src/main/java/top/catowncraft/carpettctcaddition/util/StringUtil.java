@@ -7,17 +7,17 @@
 package top.catowncraft.carpettctcaddition.util;
 
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionReference;
-import top.hendrixshen.magiclib.api.rule.WrapperSettingManager;
+import top.hendrixshen.magiclib.carpet.impl.WrappedSettingManager;
 
-public class StringUtil {
+public class StringUtil extends top.hendrixshen.magiclib.util.StringUtil {
     public static String tr(String node, Object... objects) {
-        WrapperSettingManager settingManager = WrapperSettingManager.get(CarpetTCTCAdditionReference.getModIdentifier());
+        WrappedSettingManager settingManager = WrappedSettingManager.get(CarpetTCTCAdditionReference.getModIdentifier());
         return settingManager.tr(settingManager.getCurrentLanguageCode(),
                 String.format("%s.%s", CarpetTCTCAdditionReference.getModIdentifier(), node), objects);
     }
 
     public static String original(String node) {
-        WrapperSettingManager settingManager = WrapperSettingManager.get(CarpetTCTCAdditionReference.getModIdentifier());
+        WrappedSettingManager settingManager = WrappedSettingManager.get(CarpetTCTCAdditionReference.getModIdentifier());
         return settingManager.tr(settingManager.getCurrentLanguageCode(),
                 String.format("%s.%s", CarpetTCTCAdditionReference.getModIdentifier(), node));
     }

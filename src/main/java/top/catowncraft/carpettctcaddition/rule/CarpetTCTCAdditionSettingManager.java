@@ -7,8 +7,11 @@
 package top.catowncraft.carpettctcaddition.rule;
 
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionReference;
-import top.hendrixshen.magiclib.api.rule.WrapperSettingManager;
-public class CarpetTCTCAdditionSettingManager extends WrapperSettingManager {
+import top.hendrixshen.magiclib.MagicLibReference;
+import top.hendrixshen.magiclib.carpet.impl.WrappedSettingManager;
+import top.hendrixshen.magiclib.util.StringUtil;
+
+public class CarpetTCTCAdditionSettingManager extends WrappedSettingManager {
     public CarpetTCTCAdditionSettingManager(String version, String identifier, String fancyName) {
         super(version, identifier, fancyName);
     }
@@ -16,6 +19,6 @@ public class CarpetTCTCAdditionSettingManager extends WrapperSettingManager {
     @Override
     public String getVersion() {
         return String.format("%s (%s)", super.getVersion(), this.tr(this.getCurrentLanguageCode(),
-                String.format("magiclib.misc.versionType.%s", CarpetTCTCAdditionReference.getModVersionType())));
+                String.format("%s.%s", MagicLibReference.getModIdentifier(), StringUtil.getVersionTypeCode(CarpetTCTCAdditionReference.getModVersion()))));
     }
 }

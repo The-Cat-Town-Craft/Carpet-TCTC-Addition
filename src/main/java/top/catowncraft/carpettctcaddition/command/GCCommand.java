@@ -10,17 +10,16 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
 import org.jetbrains.annotations.NotNull;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
 import top.catowncraft.carpettctcaddition.rule.CarpetTCTCAdditionSettingManager;
 import top.catowncraft.carpettctcaddition.util.StringUtil;
 import top.hendrixshen.magiclib.util.MessageUtil;
 
-import static net.minecraft.commands.Commands.literal;
-
 public class GCCommand {
     public static void register(@NotNull CommandDispatcher<CommandSourceStack> dispatcher) {
-        LiteralArgumentBuilder<CommandSourceStack> gc = literal("gc")
+        LiteralArgumentBuilder<CommandSourceStack> gc = Commands.literal("gc")
                 .requires(s -> CarpetTCTCAdditionSettingManager.canUseCommand(s, CarpetTCTCAdditionSettings.commandGC))
                 .executes(GCCommand::gc);
         dispatcher.register(gc);
@@ -45,10 +44,12 @@ public class GCCommand {
         public void run() {
             MessageUtil.sendMessage(this.sourceStack, StringUtil.tr("message.command.gc.started"));
             System.gc();
+
             try {
                 Thread.sleep(1000L);
             } catch (InterruptedException ignored) {
             }
+
             System.gc();
             MessageUtil.sendMessage(this.sourceStack, StringUtil.tr("message.command.gc.finished"));
         }

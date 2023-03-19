@@ -19,22 +19,27 @@ import java.util.regex.Pattern;
 public class FabricUtil extends top.hendrixshen.magiclib.util.FabricUtil {
     public static boolean isVersionSatisfied(String modId, Pattern pattern, String versionPredicate) {
         Optional<ModContainer> modContainer = FabricLoader.getInstance().getModContainer(modId);
+
         if (modContainer.isPresent()) {
             String ver = modContainer.get().getMetadata().getVersion().getFriendlyString();
             Matcher matcher = pattern.matcher(ver);
+
             if (matcher.find()) {
                 String realVer = matcher.group(0);
                 Version version;
+
                 try {
                     version = Version.parse(realVer);
                 } catch (VersionParsingException e) {
                     CarpetTCTCAdditionReference.getLogger().error("Cannot parse target version: {}", realVer);
-                    e.printStackTrace();
+                    CarpetTCTCAdditionReference.getLogger().throwing(e);
                     return false;
                 }
+
                 return FabricUtil.isModLoaded(version, versionPredicate);
             }
         }
+
         return false;
     }
 }

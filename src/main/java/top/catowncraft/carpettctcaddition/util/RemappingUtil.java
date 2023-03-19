@@ -9,6 +9,8 @@ package top.catowncraft.carpettctcaddition.util;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.MappingResolver;
 import net.fabricmc.tinyremapper.IMappingProvider.Member;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -19,15 +21,16 @@ public class RemappingUtil {
     private static final String INTERMEDIARY = "intermediary";
     private static final Pattern CLASS_FINDER = Pattern.compile("Lnet\\/minecraft\\/([^;]+);");
 
-    public static String getClassName(String className) {
-        return fromIntermediaryDot(className).replace('.', '/');
+    public static @NotNull String getClassName(String className) {
+        return RemappingUtil.fromIntermediaryDot(className).replace('.', '/');
     }
 
     private static String fromIntermediaryDot(String className) {
         return RemappingUtil.RESOLVER.mapClassName(RemappingUtil.INTERMEDIARY, "net.minecraft." + className);
     }
 
-    public static Member mapMethod(String owner, String name, String desc) {
+    @Contract("_, _, _ -> new")
+    public static @NotNull Member mapMethod(String owner, String name, String desc) {
         return new Member(getClassName(owner), getMethodName(owner, name, desc), mapMethodDescriptor(desc));
     }
 
@@ -35,10 +38,11 @@ public class RemappingUtil {
         return RemappingUtil.RESOLVER.mapMethodName(RemappingUtil.INTERMEDIARY, "net.minecraft." + owner, methodName, desc);
     }
 
-    public static String mapMethodDescriptor(String desc) {
+    public static @NotNull String mapMethodDescriptor(String desc) {
         StringBuffer buf = new StringBuffer();
 
         Matcher matcher = RemappingUtil.CLASS_FINDER.matcher(desc);
+
         while (matcher.find()) {
             matcher.appendReplacement(buf, Matcher.quoteReplacement('L' + getClassName(matcher.group(1)) + ';'));
         }

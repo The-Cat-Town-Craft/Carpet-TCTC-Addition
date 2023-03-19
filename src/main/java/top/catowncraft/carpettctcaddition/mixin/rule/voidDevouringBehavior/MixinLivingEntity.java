@@ -7,32 +7,15 @@
 package top.catowncraft.carpettctcaddition.mixin.rule.voidDevouringBehavior;
 
 import net.minecraft.core.BlockPos;
-//#if MC > 11802
-//#if MC > 11902
-import net.minecraft.core.Holder;
-//#endif
-import net.minecraft.network.protocol.game.ClientboundSoundPacket;
-//#else
-//$$ import net.minecraft.network.protocol.game.ClientboundCustomSoundPacket;
-//#endif
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-//#if MC >= 11600
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.util.Mth;
-//#endif
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-//#if MC >= 11600
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
-//#endif
 import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -42,6 +25,23 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
 
 import java.util.Optional;
+
+//#if MC > 11802
+//#if MC > 11902
+import net.minecraft.core.Holder;
+//#endif
+import net.minecraft.network.protocol.game.ClientboundSoundPacket;
+//#else
+//$$ import net.minecraft.network.protocol.game.ClientboundCustomSoundPacket;
+//#endif
+
+//#if MC > 11502
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.util.Mth;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+//#endif
 
 @Mixin(LivingEntity.class)
 public abstract class MixinLivingEntity extends Entity {
@@ -76,7 +76,11 @@ public abstract class MixinLivingEntity extends Entity {
                     this.cta$teleportToSpawn();
                     ci.cancel();
                     return;
-                } else if (this.checkTotemDeathProtection(DamageSource.FALL)) {
+                //#if MC > 11903
+                } else if (this.checkTotemDeathProtection(this.damageSources().fall())) {
+                //#else
+                //$$ } else if (this.checkTotemDeathProtection(DamageSource.FALL)) {
+                //#endif
                     this.cta$teleportToSpawn();
                     ci.cancel();
                     return;
@@ -94,12 +98,12 @@ public abstract class MixinLivingEntity extends Entity {
     private void cta$teleportToSpawn() {
         ServerPlayer serverPlayer = (ServerPlayer) (Entity) this;
         BlockPos pos = serverPlayer.getRespawnPosition();
-        //#if MC >= 11600
+        //#if MC > 11502
         float respawnAngle = serverPlayer.getRespawnAngle();
         //#endif
         boolean isRespawnForced = serverPlayer.isRespawnForced();
 
-        //#if MC >= 11600
+        //#if MC > 11502
         ServerLevel serverLevel = this.getServer().getLevel(serverPlayer.getRespawnDimension());
         Optional<Vec3> optional = serverLevel != null && pos != null ?
                 Player.findRespawnPositionAndUseSpawnBlock(serverLevel, pos, respawnAngle, isRespawnForced, false) :
@@ -111,11 +115,12 @@ public abstract class MixinLivingEntity extends Entity {
         //#endif
 
         if (optional.isPresent()) {
-            //#if MC >= 11600
+            //#if MC > 11502
             BlockState blockState = serverLevel2.getBlockState(pos);
             boolean isRespawnAnchor = blockState.is(Blocks.RESPAWN_ANCHOR);
             Vec3 vec3 = optional.get();
             float teleportAngle;
+
             if (!blockState.is(BlockTags.BEDS) && !isRespawnAnchor) {
                 teleportAngle = respawnAngle;
             } else {
@@ -128,7 +133,7 @@ public abstract class MixinLivingEntity extends Entity {
             //$$ serverPlayer.teleportTo(serverLevel, optional.get().x(), optional.get().y(), optional.get().z(), 0.0F, 0.0F);
             //#endif
         } else {
-            //#if MC >= 11600
+            //#if MC > 11502
             BlockPos sharedSpawnPos = serverLevel2.getSharedSpawnPos();
             serverPlayer.teleportTo(serverLevel2, sharedSpawnPos.getX(), sharedSpawnPos.getY(), sharedSpawnPos.getZ(),
                     serverLevel2.getSharedSpawnAngle(), 0.0F);

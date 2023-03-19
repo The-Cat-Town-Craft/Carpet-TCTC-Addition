@@ -38,12 +38,15 @@ public abstract class MixinPlayerList implements PlayerListApi {
     @Nullable
     public abstract ServerPlayer getPlayer(UUID uUID);
 
-    @Shadow @Final private MinecraftServer server;
+    @Shadow
+    @Final
+    private MinecraftServer server;
 
     @Override
     public void tctc$setPermissionLevel(GameProfile gameProfile, int level) {
-        ops.add(new ServerOpListEntry(gameProfile, level, canBypassPlayerLimit(gameProfile)));
-        ServerPlayer serverPlayer = getPlayer(gameProfile.getId());
+        this.ops.add(new ServerOpListEntry(gameProfile, level, canBypassPlayerLimit(gameProfile)));
+        ServerPlayer serverPlayer = this.getPlayer(gameProfile.getId());
+
         if (serverPlayer != null) {
             this.sendPlayerPermissionLevel(serverPlayer);
         }
@@ -51,7 +54,6 @@ public abstract class MixinPlayerList implements PlayerListApi {
 
     @Override
     public void tctc$setBypassPlayerLimit(GameProfile gameProfile, boolean bypass) {
-        Optional.ofNullable(CarpetTCTCAdditionExtension.getServer()).ifPresent(minecraftServer ->
-                this.ops.add(new ServerOpListEntry(gameProfile, server.getProfilePermissions(gameProfile), bypass)));
+        this.ops.add(new ServerOpListEntry(gameProfile, this.server.getProfilePermissions(gameProfile), bypass));
     }
 }

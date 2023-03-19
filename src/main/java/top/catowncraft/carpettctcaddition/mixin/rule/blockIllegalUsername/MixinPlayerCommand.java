@@ -32,7 +32,7 @@ public class MixinPlayerCommand {
         String playerName = StringArgumentType.getString(context, "player");
         if (CarpetTCTCAdditionSettings.blockIllegalUsername && (playerName.matches("[^a-zA-Z0-9_]+$") || playerName.length() > 16)) {
             MessageUtil.sendMessage(context.getSource(), StringUtil.tr("message.server.checkIllegalUsername.fakePlayer", playerName));
-            cir.cancel();
+            cir.setReturnValue(1);
         }
     }
 }

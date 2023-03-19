@@ -6,30 +6,27 @@
  */
 package top.catowncraft.carpettctcaddition.mixin.rule.enderPlatform;
 
-//#if MC < 11600
-//$$ import net.minecraft.core.BlockPos;
-//$$ import net.minecraft.server.MinecraftServer;
-//#endif
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
-//#if MC < 11600
-//$$ import net.minecraft.world.level.block.Blocks;
-//$$ import net.minecraft.world.level.dimension.DimensionType;
-//#endif
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-//#if MC >= 11600
+import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
+import top.catowncraft.carpettctcaddition.compat.carpetfixes.CarpetFixesSettings;
+
+//#if MC > 11502
 import org.spongepowered.asm.mixin.injection.Redirect;
 //#else
+//$$ import net.minecraft.core.BlockPos;
+//$$ import net.minecraft.server.MinecraftServer;
+//$$ import net.minecraft.world.level.block.Blocks;
+//$$ import net.minecraft.world.level.dimension.DimensionType;
 //$$ import org.spongepowered.asm.mixin.injection.Inject;
 //$$ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 //$$ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 //#endif
-import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
-import top.catowncraft.carpettctcaddition.compat.carpetfixes.CarpetFixesSettings;
 
 @Mixin(Entity.class)
 public class MixinEntity {
@@ -46,6 +43,7 @@ public class MixinEntity {
             if (CarpetFixesSettings.isObsidianPlatformDestroysBlocksFixEnable()) {
                 this.tctc$createEndSpawnObsidian(serverLevel);
             }
+
             ServerLevel.makeObsidianPlatform(serverLevel);
         }
     }
@@ -66,7 +64,6 @@ public class MixinEntity {
             }
         }
     }
-
     //#else
     //$$ @Inject(
     //$$         method = "changeDimension",

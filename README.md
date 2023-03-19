@@ -283,7 +283,7 @@ Send XaeroMap world information packets to client.
 
 ### Support
 
-Current main development for Minecraft version: 1.19.3
+Current main development for Minecraft version: 1.19.4
 
 And use `preprocess` to be compatible with all versions.
 
@@ -296,6 +296,7 @@ And use `preprocess` to be compatible with all versions.
 - Minecraft 1.18.2
 - Minecraft 1.19.2
 - Minecraft 1.19.3
+- Minecraft 1.19.4
 
 ### Mappings
 

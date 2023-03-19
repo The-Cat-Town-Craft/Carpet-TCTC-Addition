@@ -6,39 +6,39 @@
  */
 package top.catowncraft.carpettctcaddition.compat.carpetfixes.mixin.rule.enderPlatform;
 
-//#if MC >= 11600
+import org.spongepowered.asm.mixin.Mixin;
+import top.catowncraft.carpettctcaddition.compat.carpetfixes.CarpetFixesPredicate;
+import top.catowncraft.carpettctcaddition.util.mixin.annotation.MagicInterruption;
+
+import top.hendrixshen.magiclib.dependency.api.annotation.Dependencies;
+
+//#if MC > 11502
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-//#else
-//$$ import net.minecraft.server.MinecraftServer;
-//#endif
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import org.spongepowered.asm.mixin.Mixin;
-//#if MC >= 11600
 import org.spongepowered.asm.mixin.Shadow;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
-//#endif
-import top.catowncraft.carpettctcaddition.compat.carpetfixes.CarpetFixesPredicate;
 import top.catowncraft.carpettctcaddition.compat.carpetfixes.CarpetFixesSettings;
 import top.catowncraft.carpettctcaddition.util.mixin.MixinType;
 import top.catowncraft.carpettctcaddition.util.mixin.annotation.MagicAttack;
-import top.catowncraft.carpettctcaddition.util.mixin.annotation.MagicInterruption;
-import top.hendrixshen.magiclib.dependency.annotation.Dependencies;
-import top.hendrixshen.magiclib.dependency.annotation.Dependency;
+//#else
+//$$ import top.hendrixshen.magiclib.compat.preprocess.api.DummyClass;
+//#endif
 
-//#if MC >= 11600
 @MagicInterruption(targets = "carpetfixes.mixins.playerFixes.ServerPlayerEntity_spawnPlatformMixin")
 @Dependencies(predicate = CarpetFixesPredicate.shouldApplyCompatForEnderPlatform.class)
+//#if MC > 11502
 @Mixin(value = ServerPlayer.class, priority = 1100)
 //#else
-//$$ @Dependencies(not = @Dependency("minecraft"))
-//$$ @Mixin(MinecraftServer.class)
+//$$ @Mixin(DummyClass.class)
 //#endif
 public abstract class MixinServerPlayer {
-    //#if MC >= 11600
-    @Shadow protected abstract void createEndPlatform(ServerLevel serverLevel, BlockPos blockPos);
+    //#if MC > 11502
+    @Shadow
+    protected abstract void createEndPlatform(ServerLevel serverLevel, BlockPos blockPos);
+
     @SuppressWarnings("unused")
     @MagicAttack(
             type = MixinType.REDIRECT,

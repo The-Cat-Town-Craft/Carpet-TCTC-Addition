@@ -11,13 +11,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.ChunkPos;
-//#if MC >= 11600
-import net.minecraft.world.level.Level;
-//#endif
 import net.minecraft.world.level.block.entity.TheEndGatewayBlockEntity;
-//#if MC >= 11600
-import net.minecraft.world.level.block.state.BlockState;
-//#endif
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -27,6 +21,11 @@ import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
 import top.catowncraft.carpettctcaddition.helper.TicketTypeExtra;
 
 import java.util.Optional;
+
+//#if MC > 11502
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
+//#endif
 
 @Mixin(TheEndGatewayBlockEntity.class)
 public class MixinTheEndGatewayBlockEntity {
@@ -38,7 +37,7 @@ public class MixinTheEndGatewayBlockEntity {
                     shift = At.Shift.AFTER
             )
     )
-    //#if MC >= 11700
+    //#if MC > 11605
     private static void addRegionTicket(Level level, BlockPos blockPos, BlockState blockState, Entity entity, TheEndGatewayBlockEntity theEndGatewayBlockEntity, CallbackInfo ci) {
     //#else
     //$$ private void addRegionTicket(Entity entity, CallbackInfo ci) {
@@ -50,7 +49,11 @@ public class MixinTheEndGatewayBlockEntity {
         if ((CarpetTCTCAdditionSettings.endGatewayChunkLoader == CarpetTCTCAdditionSettings.EndGatewayChunkLoaderOptions.ALL) ||
                 (CarpetTCTCAdditionSettings.endGatewayChunkLoader == CarpetTCTCAdditionSettings.EndGatewayChunkLoaderOptions.ITEM_ONLY && entity instanceof ItemEntity) ||
                 (CarpetTCTCAdditionSettings.endGatewayChunkLoader == CarpetTCTCAdditionSettings.EndGatewayChunkLoaderOptions.EXCEPT_PLAYER && !(entity instanceof Player))) {
-            BlockPos targetBlockPos = new BlockPos(entity.position());
+            //#if MC > 11903
+            BlockPos targetBlockPos = entity.blockPosition();
+            //#else
+            //$$ BlockPos targetBlockPos = new BlockPos(entity.position());
+            //#endif
             Optional.ofNullable(CarpetTCTCAdditionExtension.getServer())
                     //#if MC > 11502
                     .flatMap(server -> Optional.ofNullable(server.getLevel(entity.level.dimension())))

@@ -10,52 +10,49 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.network.chat.*;
-//#if MC >= 11600
-import net.minecraft.resources.ResourceKey;
-//#endif
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
-//#if MC < 11600
-//$$ import net.minecraft.world.level.dimension.DimensionType;
-//#endif
 import org.jetbrains.annotations.NotNull;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionExtension;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
 import top.catowncraft.carpettctcaddition.rule.CarpetTCTCAdditionSettingManager;
 import top.catowncraft.carpettctcaddition.util.StringUtil;
-import top.hendrixshen.magiclib.compat.minecraft.network.chat.ComponentCompatApi;
+import top.hendrixshen.magiclib.compat.minecraft.api.network.chat.ComponentCompatApi;
 import top.hendrixshen.magiclib.util.MessageUtil;
 
 import java.util.Collection;
 
-import static net.minecraft.commands.Commands.argument;
-import static net.minecraft.commands.Commands.literal;
+//#if MC > 11502
+import net.minecraft.resources.ResourceKey;
+//#else
+//$$ import net.minecraft.world.level.dimension.DimensionType;
+//#endif
 
 public class HereCommand {
     public static void register(@NotNull CommandDispatcher<CommandSourceStack> dispatcher) {
-        LiteralArgumentBuilder<CommandSourceStack> here = literal("here")
+        LiteralArgumentBuilder<CommandSourceStack> here = Commands.literal("here")
                 .requires(commandSourceStack -> CarpetTCTCAdditionSettingManager.canUseCommand(commandSourceStack, CarpetTCTCAdditionSettings.commandHere))
-                .executes(context -> print(context.getSource(), context.getSource().getPlayerOrException()))
-                .then(argument("target", EntityArgument.players())
+                .executes(context -> HereCommand.print(context.getSource(), context.getSource().getPlayerOrException()))
+                .then(Commands.argument("target", EntityArgument.players())
                         .requires(commandSourceStack -> commandSourceStack.hasPermission(2))
-                        .executes(context -> print(context.getSource(), EntityArgument.getPlayers(context, "target"))));
+                        .executes(context -> HereCommand.print(context.getSource(), EntityArgument.getPlayers(context, "target"))));
         dispatcher.register(here);
     }
 
     public static int print(CommandSourceStack commandSourceStack, @NotNull Collection<ServerPlayer> serverPlayerCollection) {
-        for (ServerPlayer serverPlayer : serverPlayerCollection) {
-            print(commandSourceStack, serverPlayer);
-        }
+        serverPlayerCollection.forEach(serverPlayer -> HereCommand.print(commandSourceStack, serverPlayer));
+
         return 1;
     }
 
     public static int print(CommandSourceStack commandSourceStack, @NotNull ServerPlayer serverPlayer) {
-        //#if MC >= 11600
+        //#if MC > 11502
         if (serverPlayer.level.dimension() == Level.OVERWORLD || serverPlayer.level.dimension() == Level.NETHER) {
         //#else
         //$$ if (serverPlayer.level.dimension.getType() == DimensionType.OVERWORLD || serverPlayer.level.dimension.getType() == DimensionType.NETHER) {
@@ -63,7 +60,7 @@ public class HereCommand {
             MessageUtil.sendServerMessage(CarpetTCTCAdditionExtension.getServer(),
                     ComponentCompatApi.translatable(StringUtil.original("message.command.here.withTransformed"),
                             ComponentCompatApi.literal(serverPlayer.getName().getString()).withStyle(ChatFormatting.GRAY),
-                            //#if MC >= 11600
+                            //#if MC > 11502
                             HereCommand.getDimension(serverPlayer.level.dimension()),
                             ComponentCompatApi.literal(getOriginalPosition(serverPlayer)).withStyle(serverPlayer.level.dimension() == Level.OVERWORLD ? ChatFormatting.DARK_GREEN : ChatFormatting.DARK_RED),
                             //#else
@@ -74,7 +71,7 @@ public class HereCommand {
                             HereCommand.getWorldMapAdderXM(serverPlayer),
                             HereCommand.getTeleportLocationAction(serverPlayer),
                             HereCommand.getTeleportPlayerAction(serverPlayer),
-                            //#if MC >= 11600
+                            //#if MC > 11502
                             ComponentCompatApi.literal(serverPlayer.level.dimension() == Level.OVERWORLD ? getDividedPosition(serverPlayer) : getMultipliedPosition(serverPlayer)).withStyle(serverPlayer.level.dimension() == Level.OVERWORLD ? ChatFormatting.DARK_RED : ChatFormatting.DARK_GREEN)
                             //#else
                             //$$ ComponentCompatApi.literal(serverPlayer.level.dimension.getType() == DimensionType.OVERWORLD ? getDividedPosition(serverPlayer) : getMultipliedPosition(serverPlayer)).withStyle(serverPlayer.level.dimension.getType() == DimensionType.OVERWORLD ? ChatFormatting.DARK_RED : ChatFormatting.DARK_GREEN)
@@ -84,7 +81,7 @@ public class HereCommand {
             MessageUtil.sendServerMessage(CarpetTCTCAdditionExtension.getServer(),
                     ComponentCompatApi.translatable(StringUtil.original("message.command.here.withoutTransformed"),
                             ComponentCompatApi.literal(serverPlayer.getName().getString()).withStyle(ChatFormatting.GRAY),
-                            //#if MC >= 11600
+                            //#if MC > 11502
                             HereCommand.getDimension(serverPlayer.level.dimension()),
                             ComponentCompatApi.literal(getOriginalPosition(serverPlayer)).withStyle(serverPlayer.level.dimension() == Level.END ? ChatFormatting.GOLD : ChatFormatting.DARK_AQUA),
                             //#else
@@ -96,9 +93,11 @@ public class HereCommand {
                             HereCommand.getTeleportLocationAction(serverPlayer),
                             HereCommand.getTeleportPlayerAction(serverPlayer)));
         }
+
         if (CarpetTCTCAdditionSettings.hereGlowTime > 0) {
             serverPlayer.addEffect(new MobEffectInstance(MobEffects.GLOWING, CarpetTCTCAdditionSettings.hereGlowTime * 20, 0, false, false, false));
         }
+
         return 1;
     }
 
@@ -137,17 +136,17 @@ public class HereCommand {
         }
     }
 
-    public static Component getWorldMapAdderVM(Entity entity) {
+    public static @NotNull Component getWorldMapAdderVM(Entity entity) {
         return ComponentCompatApi.literal("[V]")
                 .withStyle(ChatFormatting.DARK_BLUE)
                 .withStyle(style -> style.withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, String.format("/newWaypoint x:%d, y:%d, z:%d", (int) entity.getXCompat(), (int) entity.getYCompat(), (int) entity.getZCompat()))).withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, ComponentCompatApi.literal(StringUtil.tr("message.command.here.hover.voxelMap")))));
     }
 
-    public static Component getWorldMapAdderXM(Entity entity) {
+    public static @NotNull Component getWorldMapAdderXM(Entity entity) {
         return ComponentCompatApi.literal("[V]").withStyle(ChatFormatting.DARK_GREEN).withStyle(style -> style.withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, String.format("xaero_waypoint_add:%s's Location:%s:%d:%d:%d:8:false:0",  entity.getDisplayName().getString(), entity.getDisplayName().getString(1), (int) entity.getZCompat(), (int) entity.getYCompat(), (int) entity.getZ()))).withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, ComponentCompatApi.literal(StringUtil.tr("message.command.here.hover.xaeroMap")))));
     }
 
-    public static Component getTeleportLocationAction(Entity entity) {
+    public static @NotNull Component getTeleportLocationAction(Entity entity) {
         //#if MC >= 11600
         return ComponentCompatApi.literal("[T]").withStyle(ChatFormatting.DARK_PURPLE).withStyle(style -> style.withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, String.format("/execute in %s run tp %d %d %d", entity.level.dimension().location().toString(), (int) entity.getXCompat(), (int) entity.getYCompat(), (int) entity.getZCompat()))).withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, ComponentCompatApi.literal(StringUtil.tr("message.command.here.hover.teleport.location", (int) entity.getX(), (int) entity.getY(), (int) entity.getZ())))));
         //#else
@@ -155,7 +154,7 @@ public class HereCommand {
         //#endif
     }
 
-    public static Component getTeleportPlayerAction(Entity entity) {
+    public static @NotNull Component getTeleportPlayerAction(Entity entity) {
         return ComponentCompatApi.literal("[P]").withStyle(ChatFormatting.DARK_AQUA).withStyle(style -> style.withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, String.format("/tp %s", entity.getName().getString()))).withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, ComponentCompatApi.literal(StringUtil.tr("message.command.here.hover.teleport.player", entity.getName().getString())))));
     }
 }

@@ -9,19 +9,8 @@ package top.catowncraft.carpettctcaddition.util;
 import com.google.common.collect.Maps;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
-//#if MC >= 11903
-import net.minecraft.core.registries.Registries;
-//#endif
-//#if MC >= 11600
-import net.minecraft.resources.ResourceKey;
-//#endif
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.GameType;
-//#if MC >= 11600
-import net.minecraft.world.level.Level;
-//#else
-//$$ import net.minecraft.world.level.dimension.DimensionType;
-//#endif
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -38,8 +27,18 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-//#if MC >= 11600 && MC < 11903
+//#if MC > 11902
+import net.minecraft.core.registries.Registries;
+//#endif
+
+//#if MC > 11502
+//#if MC < 11903
 //$$ import static net.minecraft.core.Registry.DIMENSION_REGISTRY;
+//#endif
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.Level;
+//#else
+//$$ import net.minecraft.world.level.dimension.DimensionType;
 //#endif
 
 public class FreeCameraUtil {
@@ -55,9 +54,9 @@ public class FreeCameraUtil {
 
     public static @NotNull FreeCameraData createEntry(@NotNull JsonObject jsonObject) {
         GameType gameType = jsonObject.has("gameType") ? GameType.byName(jsonObject.get("gameType").getAsString()) : GameType.SURVIVAL;
-        //#if MC >= 11903
+        //#if MC > 11902
         ResourceKey<Level> dimension = jsonObject.has("dimension") ? ResourceKey.create(Registries.DIMENSION, new ResourceLocation(jsonObject.get("dimension").getAsString())) : null;
-        //#elseif MC >= 11600
+        //#elseif MC > 11502
         //$$ ResourceKey<Level> dimension = jsonObject.has("dimension") ? ResourceKey.create(DIMENSION_REGISTRY, new ResourceLocation(jsonObject.get("dimension").getAsString())) : null;
         //#else
         //$$ DimensionType dimension = jsonObject.has("dimension") ? DimensionType.getByName(new ResourceLocation(jsonObject.get("dimension").getAsString())) : null;
@@ -68,7 +67,7 @@ public class FreeCameraUtil {
         float xRot = jsonObject.has("xRot") ? jsonObject.get("xRot").getAsFloat() : 0;
         float yRot = jsonObject.has("yRot") ? jsonObject.get("yRot").getAsFloat() : 0;
         boolean isFreecam = jsonObject.has("isFreecam") && jsonObject.get("isFreecam").getAsBoolean();
-        //#if MC >= 11600
+        //#if MC > 11502
         return new FreeCameraData(gameType, dimension != null ? dimension : Level.OVERWORLD, new Vec3(x, y, z), xRot, yRot, isFreecam);
         //#else
         //$$ return new FreeCameraData(gameType, dimension != null ? dimension : DimensionType.OVERWORLD, new Vec3(x, y, z), xRot, yRot, isFreecam);
@@ -89,6 +88,7 @@ public class FreeCameraUtil {
                 JsonObject jsonObject = json.getAsJsonObject();
                 return FreeCameraUtil.createEntry(jsonObject);
             }
+
             return null;
         }
     }
@@ -109,18 +109,20 @@ public class FreeCameraUtil {
                 Files.deleteIfExists(path);
             } catch (IOException e) {
                 CarpetTCTCAdditionReference.getLogger().error("Cannot delete empty file: {}", path.toString());
-                e.printStackTrace();
+                CarpetTCTCAdditionReference.getLogger().throwing(e);
             }
+
             return;
         }
 
         String string = new GsonBuilder().registerTypeAdapter(FreeCameraData.class, new Serializer()).create().toJson(data);
         FileUtil.checkDataRoot();
+
         try (BufferedWriter writer = Files.newBufferedWriter(path)) {
             writer.write(string);
         } catch (IOException e) {
             CarpetTCTCAdditionReference.getLogger().error("Cannot write freeCameraData: {}", string);
-            e.printStackTrace();
+            CarpetTCTCAdditionReference.getLogger().throwing(e);
         }
     }
 
@@ -136,7 +138,7 @@ public class FreeCameraUtil {
                 }.getType());
             } catch (IOException e) {
                 CarpetTCTCAdditionReference.getLogger().error("Cannot load legacy freeCameraData.");
-                e.printStackTrace();
+                CarpetTCTCAdditionReference.getLogger().throwing(e);
             }
 
             FreeCameraUtil.save();
@@ -146,7 +148,7 @@ public class FreeCameraUtil {
                 CarpetTCTCAdditionReference.getLogger().info("[{}]Legacy file deleted.", CarpetTCTCAdditionReference.getModName());
             } catch (IOException e) {
                 CarpetTCTCAdditionReference.getLogger().error("Cannot delete legacy freeCameraData.");
-                e.printStackTrace();
+                CarpetTCTCAdditionReference.getLogger().throwing(e);
             }
 
             return legacy;
@@ -157,12 +159,13 @@ public class FreeCameraUtil {
         if (!Files.isRegularFile(path)) {
             return Maps.newHashMap();
         }
+
         try (BufferedReader reader = Files.newBufferedReader(path)) {
             return new GsonBuilder().registerTypeAdapter(FreeCameraData.class, new Serializer()).create().fromJson(reader, new TypeToken<Map<UUID, FreeCameraData>>() {
             }.getType());
         } catch (IOException e) {
             CarpetTCTCAdditionReference.getLogger().error("Cannot load freeCameraData.");
-            e.printStackTrace();
+            CarpetTCTCAdditionReference.getLogger().throwing(e);
         }
 
         return null;

@@ -12,33 +12,31 @@ import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.GameProfileArgument;
 import org.jetbrains.annotations.NotNull;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionExtension;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
 import top.catowncraft.carpettctcaddition.rule.CarpetTCTCAdditionSettingManager;
 import top.catowncraft.carpettctcaddition.util.StringUtil;
-import top.hendrixshen.magiclib.compat.minecraft.network.chat.ComponentCompatApi;
+import top.hendrixshen.magiclib.compat.minecraft.api.network.chat.ComponentCompatApi;
 import top.hendrixshen.magiclib.util.MessageUtil;
 
 import java.util.Collection;
 import java.util.Optional;
 
-import static net.minecraft.commands.Commands.argument;
-import static net.minecraft.commands.Commands.literal;
-
 public class OperatorCommand {
     public static void register(@NotNull CommandDispatcher<CommandSourceStack> dispatcher) {
-        LiteralArgumentBuilder<CommandSourceStack> operator = literal("operator")
+        LiteralArgumentBuilder<CommandSourceStack> operator = Commands.literal("operator")
                 .requires(commandSourceStack -> CarpetTCTCAdditionSettingManager.canUseCommand(commandSourceStack, CarpetTCTCAdditionSettings.commandOperator))
-                .then(argument("targets", GameProfileArgument.gameProfile())
-                        .then(literal("set")
-                                .then(literal("permissionLevel")
-                                        .then(argument("permissionLevel", IntegerArgumentType.integer(0, 4))
-                                                .executes(context -> setPermissionLevel(context.getSource(), GameProfileArgument.getGameProfiles(context, "targets"), IntegerArgumentType.getInteger(context, "permissionLevel")))))
-                                .then(literal("canBypassPlayerLimit")
-                                        .then(argument("canBypassPlayerLimit", BoolArgumentType.bool())
-                                                .executes(context -> setBypassPlayerLimit(context.getSource(), GameProfileArgument.getGameProfiles(context, "targets"), BoolArgumentType.getBool(context, "canBypassPlayerLimit")))))));
+                .then(Commands.argument("targets", GameProfileArgument.gameProfile())
+                        .then(Commands.literal("set")
+                                .then(Commands.literal("permissionLevel")
+                                        .then(Commands.argument("permissionLevel", IntegerArgumentType.integer(0, 4))
+                                                .executes(context -> OperatorCommand.setPermissionLevel(context.getSource(), GameProfileArgument.getGameProfiles(context, "targets"), IntegerArgumentType.getInteger(context, "permissionLevel")))))
+                                .then(Commands.literal("canBypassPlayerLimit")
+                                        .then(Commands.argument("canBypassPlayerLimit", BoolArgumentType.bool())
+                                                .executes(context -> OperatorCommand.setBypassPlayerLimit(context.getSource(), GameProfileArgument.getGameProfiles(context, "targets"), BoolArgumentType.getBool(context, "canBypassPlayerLimit")))))));
         dispatcher.register(operator);
     }
 

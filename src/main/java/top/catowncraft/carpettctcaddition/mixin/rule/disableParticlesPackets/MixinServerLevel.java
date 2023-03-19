@@ -26,7 +26,7 @@ public class MixinServerLevel {
     )
     private void onSendParticles(ServerPlayer serverPlayer, boolean bl, double d, double e, double f, Packet<?> packet, CallbackInfoReturnable<Boolean> cir) {
         if (CarpetTCTCAdditionSettings.disableParticlesPackets) {
-            cir.cancel();
+            cir.setReturnValue(false);
         }
     }
 }

@@ -6,9 +6,6 @@
  */
 package top.catowncraft.carpettctcaddition.mixin.rule.voidTradeFix;
 
-//#if MC < 11700
-//$$ import net.minecraft.server.level.ServerLevel;
-//#endif
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
@@ -18,7 +15,11 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
 
-//#if MC >= 11700
+//#if MC < 11700
+//$$ import net.minecraft.server.level.ServerLevel;
+//#endif
+
+//#if MC > 11605
 @Mixin(targets = "net/minecraft/server/level/ServerLevel$EntityCallbacks")
 //#else
 //$$ @Mixin(ServerLevel.class)
@@ -26,7 +27,7 @@ import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
 public class MixinServerLevel {
     @SuppressWarnings("UnresolvedMixinReference")
     @Inject(
-            //#if MC >= 11700
+            //#if MC > 11605
             method = "onTrackingEnd(Lnet/minecraft/world/entity/Entity;)V",
             //#else
             //$$ method = "onEntityRemoved",

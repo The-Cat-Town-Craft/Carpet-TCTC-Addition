@@ -12,13 +12,12 @@ import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.network.protocol.game.ClientboundPlayerInfoUpdatePacket;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.players.PlayerList;
-import org.jetbrains.annotations.Nullable;
 import top.catowncraft.carpettctcaddition.command.*;
 import top.catowncraft.carpettctcaddition.rule.CarpetTCTCAdditionSettingManager;
 import top.catowncraft.carpettctcaddition.util.FreeCameraUtil;
 import top.catowncraft.carpettctcaddition.util.MiscUtil;
-import top.hendrixshen.magiclib.api.rule.CarpetExtensionCompatApi;
-import top.hendrixshen.magiclib.api.rule.WrapperSettingManager;
+import top.hendrixshen.magiclib.carpet.api.CarpetExtensionCompatApi;
+import top.hendrixshen.magiclib.carpet.impl.WrappedSettingManager;
 
 import java.util.Optional;
 
@@ -31,14 +30,13 @@ public class CarpetTCTCAdditionExtension implements CarpetExtensionCompatApi {
     private static final CarpetTCTCAdditionSettingManager settingsManager = new CarpetTCTCAdditionSettingManager(
             CarpetTCTCAdditionReference.getModVersion(),
             CarpetTCTCAdditionReference.getModIdentifier(),
-            CarpetTCTCAdditionReference.getCurrentModName());
+            CarpetTCTCAdditionReference.getModNameCurrent());
     @Getter
-    @Nullable
     private static MinecraftServer server;
 
     @Override
     public void onGameStarted() {
-        WrapperSettingManager.get(CarpetTCTCAdditionReference.getModIdentifier()).parseSettingsClass(CarpetTCTCAdditionSettings.class);
+        WrappedSettingManager.get(CarpetTCTCAdditionReference.getModIdentifier()).parseSettingsClass(CarpetTCTCAdditionSettings.class);
     }
 
     @Override
@@ -68,8 +66,8 @@ public class CarpetTCTCAdditionExtension implements CarpetExtensionCompatApi {
     }
 
     @Override
-    public WrapperSettingManager getSettingsManagerCompat() {
-        return WrapperSettingManager.get(CarpetTCTCAdditionReference.getModIdentifier());
+    public WrappedSettingManager getSettingsManagerCompat() {
+        return WrappedSettingManager.get(CarpetTCTCAdditionReference.getModIdentifier());
     }
 
     @Override

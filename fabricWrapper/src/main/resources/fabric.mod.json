@@ -4,7 +4,7 @@
   "version": "${mod_version}",
   "icon": "assets/${mod_id}/icon.png",
   "name": "${mod_name}",
-  "description": "A fabric-carpet extension mod. It offers some interesting features.",
+  "description": "${mod_description}",
   "authors": [
     {
       "name": "The Cat Town Craft",
@@ -29,13 +29,8 @@
   "license": "${mod_license}",
   "environment": "*",
   "depends": {
+    "carpet": "*",
     "magiclib": ">=${magiclib_dependency}"
-  },
-  "custom": {
-    "modmenu:parent": "carpet",
-    "modmenu": {
-      "parent": "carpet"
-    }
   },
   "jars": ${sub_jars}
 }

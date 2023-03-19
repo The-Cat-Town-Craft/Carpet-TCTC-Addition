@@ -7,8 +7,8 @@
 package top.catowncraft.carpettctcaddition;
 
 import top.catowncraft.carpettctcaddition.rule.RuleCategory;
-import top.hendrixshen.magiclib.api.rule.annotation.Command;
-import top.hendrixshen.magiclib.api.rule.annotation.Rule;
+import top.hendrixshen.magiclib.carpet.api.annotation.Command;
+import top.hendrixshen.magiclib.carpet.api.annotation.Rule;
 
 public class CarpetTCTCAdditionSettings {
     @Rule(
@@ -125,7 +125,7 @@ public class CarpetTCTCAdditionSettings {
                     RuleCategory.WORLD_GENERATE
             }
     )
-    //#if MC >= 11600
+    //#if MC > 11502
     public static EnderPlatformOptions enderPlatform = EnderPlatformOptions.ALL;
     //#else
     //$$ public static EnderPlatformOptions enderPlatform = EnderPlatformOptions.PLAYER;

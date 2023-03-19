@@ -4,7 +4,7 @@
   "version": "${mod_version}",
   "icon": "assets/${mod_id}/icon.png",
   "name": "${mod_name} for ${minecraft_version}",
-  "description": "A fabric-carpet extension mod. It offers some interesting features.",
+  "description": "${mod_description}",
   "authors": [
     {
       "name": "Hendrix_Shen",
@@ -32,8 +32,10 @@
     "${mod_id}-compat-carpet-fixes.mixins.json"
   ],
   "depends": {
-    "minecraft": "${minecraft_dependency}",
-    "magiclib-${minecraft_version_id}": ">=${magiclib_dependency}"
+    "carpet": "*",
+    "fabric": "*",
+    "magiclib-${minecraft_version_id}": ">=${magiclib_dependency}",
+    "minecraft": "${minecraft_dependency}"
   },
   "custom": {
     "modmenu:parent": "${mod_id}",

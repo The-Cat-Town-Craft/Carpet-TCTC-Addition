@@ -8,7 +8,7 @@ package top.catowncraft.carpettctcaddition.compat;
 
 import org.objectweb.asm.tree.ClassNode;
 import top.catowncraft.carpettctcaddition.util.FabricUtil;
-import top.hendrixshen.magiclib.dependency.annotation.MixinDependencyPredicate;
+import top.hendrixshen.magiclib.dependency.api.MixinDependencyPredicate;
 
 import java.util.regex.Pattern;
 
@@ -17,7 +17,7 @@ public class GeneralPredicate {
 
     public static class shouldUseCompatForUpdateSuppressionCrashFix implements MixinDependencyPredicate {
         @Override
-        public boolean test(ClassNode classNode) {
+        public boolean isSatisfied(ClassNode classNode) {
             return !GeneralPredicate.shouldCompatForUpdateSuppressionCrashFix();
         }
     }

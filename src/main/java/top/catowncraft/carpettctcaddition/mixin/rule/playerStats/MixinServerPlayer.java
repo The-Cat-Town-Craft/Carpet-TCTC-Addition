@@ -6,7 +6,6 @@
  */
 package top.catowncraft.carpettctcaddition.mixin.rule.playerStats;
 
-import carpet.patches.EntityPlayerMPFake;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stat;
 import net.minecraft.world.entity.EntityType;

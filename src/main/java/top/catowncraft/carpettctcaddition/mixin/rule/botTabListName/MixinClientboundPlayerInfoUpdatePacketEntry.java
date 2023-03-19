@@ -24,7 +24,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionExtension;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
-import top.hendrixshen.magiclib.compat.minecraft.network.chat.ComponentCompatApi;
+import top.hendrixshen.magiclib.compat.minecraft.api.network.chat.ComponentCompatApi;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -37,6 +37,7 @@ import java.util.UUID;
 //#elseif MC > 11802
 //$$ import net.minecraft.world.entity.player.ProfilePublicKey;
 //#endif
+
 //#if MC > 11502
 import net.minecraft.network.chat.MutableComponent;
 //#else
