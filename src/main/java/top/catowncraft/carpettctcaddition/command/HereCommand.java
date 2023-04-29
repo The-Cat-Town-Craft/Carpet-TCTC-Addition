@@ -53,28 +53,28 @@ public class HereCommand {
 
     public static int print(CommandSourceStack commandSourceStack, @NotNull ServerPlayer serverPlayer) {
         //#if MC > 11502
-        if (serverPlayer.level.dimension() == Level.OVERWORLD || serverPlayer.level.dimension() == Level.NETHER) {
+        if (serverPlayer.getLevelCompat().dimension() == Level.OVERWORLD || serverPlayer.getLevelCompat().dimension() == Level.NETHER) {
         //#else
-        //$$ if (serverPlayer.level.dimension.getType() == DimensionType.OVERWORLD || serverPlayer.level.dimension.getType() == DimensionType.NETHER) {
+        //$$ if (serverPlayer.getLevelCompat().dimension.getType() == DimensionType.OVERWORLD || serverPlayer.getLevelCompat().dimension.getType() == DimensionType.NETHER) {
         //#endif
             MessageUtil.sendServerMessage(CarpetTCTCAdditionExtension.getServer(),
                     ComponentCompatApi.translatable(StringUtil.original("message.command.here.withTransformed"),
                             ComponentCompatApi.literal(serverPlayer.getName().getString()).withStyle(ChatFormatting.GRAY),
                             //#if MC > 11502
-                            HereCommand.getDimension(serverPlayer.level.dimension()),
-                            ComponentCompatApi.literal(getOriginalPosition(serverPlayer)).withStyle(serverPlayer.level.dimension() == Level.OVERWORLD ? ChatFormatting.DARK_GREEN : ChatFormatting.DARK_RED),
+                            HereCommand.getDimension(serverPlayer.getLevelCompat().dimension()),
+                            ComponentCompatApi.literal(getOriginalPosition(serverPlayer)).withStyle(serverPlayer.getLevelCompat().dimension() == Level.OVERWORLD ? ChatFormatting.DARK_GREEN : ChatFormatting.DARK_RED),
                             //#else
-                            //$$ HereCommand.getDimension(serverPlayer.level.dimension.getType()),
-                            //$$ ComponentCompatApi.literal(getOriginalPosition(serverPlayer)).withStyle(serverPlayer.level.dimension.getType() == DimensionType.OVERWORLD ? ChatFormatting.DARK_GREEN : ChatFormatting.DARK_RED),
+                            //$$ HereCommand.getDimension(serverPlayer.getLevelCompat().dimension.getType()),
+                            //$$ ComponentCompatApi.literal(getOriginalPosition(serverPlayer)).withStyle(serverPlayer.getLevelCompat().dimension.getType() == DimensionType.OVERWORLD ? ChatFormatting.DARK_GREEN : ChatFormatting.DARK_RED),
                             //#endif
                             HereCommand.getWorldMapAdderVM(serverPlayer),
                             HereCommand.getWorldMapAdderXM(serverPlayer),
                             HereCommand.getTeleportLocationAction(serverPlayer),
                             HereCommand.getTeleportPlayerAction(serverPlayer),
                             //#if MC > 11502
-                            ComponentCompatApi.literal(serverPlayer.level.dimension() == Level.OVERWORLD ? getDividedPosition(serverPlayer) : getMultipliedPosition(serverPlayer)).withStyle(serverPlayer.level.dimension() == Level.OVERWORLD ? ChatFormatting.DARK_RED : ChatFormatting.DARK_GREEN)
+                            ComponentCompatApi.literal(serverPlayer.getLevelCompat().dimension() == Level.OVERWORLD ? getDividedPosition(serverPlayer) : getMultipliedPosition(serverPlayer)).withStyle(serverPlayer.getLevelCompat().dimension() == Level.OVERWORLD ? ChatFormatting.DARK_RED : ChatFormatting.DARK_GREEN)
                             //#else
-                            //$$ ComponentCompatApi.literal(serverPlayer.level.dimension.getType() == DimensionType.OVERWORLD ? getDividedPosition(serverPlayer) : getMultipliedPosition(serverPlayer)).withStyle(serverPlayer.level.dimension.getType() == DimensionType.OVERWORLD ? ChatFormatting.DARK_RED : ChatFormatting.DARK_GREEN)
+                            //$$ ComponentCompatApi.literal(serverPlayer.getLevelCompat().dimension.getType() == DimensionType.OVERWORLD ? getDividedPosition(serverPlayer) : getMultipliedPosition(serverPlayer)).withStyle(serverPlayer.getLevelCompat().dimension.getType() == DimensionType.OVERWORLD ? ChatFormatting.DARK_RED : ChatFormatting.DARK_GREEN)
                             //#endif
                     ));
         } else {
@@ -82,11 +82,11 @@ public class HereCommand {
                     ComponentCompatApi.translatable(StringUtil.original("message.command.here.withoutTransformed"),
                             ComponentCompatApi.literal(serverPlayer.getName().getString()).withStyle(ChatFormatting.GRAY),
                             //#if MC > 11502
-                            HereCommand.getDimension(serverPlayer.level.dimension()),
-                            ComponentCompatApi.literal(getOriginalPosition(serverPlayer)).withStyle(serverPlayer.level.dimension() == Level.END ? ChatFormatting.GOLD : ChatFormatting.DARK_AQUA),
+                            HereCommand.getDimension(serverPlayer.getLevelCompat().dimension()),
+                            ComponentCompatApi.literal(getOriginalPosition(serverPlayer)).withStyle(serverPlayer.getLevelCompat().dimension() == Level.END ? ChatFormatting.GOLD : ChatFormatting.DARK_AQUA),
                             //#else
-                            //$$ HereCommand.getDimension(serverPlayer.level.dimension.getType()),
-                            //$$ ComponentCompatApi.literal(getOriginalPosition(serverPlayer)).withStyle(serverPlayer.level.dimension.getType() == DimensionType.THE_END ? ChatFormatting.GOLD : ChatFormatting.DARK_AQUA),
+                            //$$ HereCommand.getDimension(serverPlayer.getLevelCompat().dimension.getType()),
+                            //$$ ComponentCompatApi.literal(getOriginalPosition(serverPlayer)).withStyle(serverPlayer.getLevelCompat().dimension.getType() == DimensionType.THE_END ? ChatFormatting.GOLD : ChatFormatting.DARK_AQUA),
                             //#endif
                             HereCommand.getWorldMapAdderVM(serverPlayer),
                             HereCommand.getWorldMapAdderXM(serverPlayer),
@@ -148,9 +148,9 @@ public class HereCommand {
 
     public static @NotNull Component getTeleportLocationAction(Entity entity) {
         //#if MC >= 11600
-        return ComponentCompatApi.literal("[T]").withStyle(ChatFormatting.DARK_PURPLE).withStyle(style -> style.withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, String.format("/execute in %s run tp %d %d %d", entity.level.dimension().location().toString(), (int) entity.getXCompat(), (int) entity.getYCompat(), (int) entity.getZCompat()))).withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, ComponentCompatApi.literal(StringUtil.tr("message.command.here.hover.teleport.location", (int) entity.getX(), (int) entity.getY(), (int) entity.getZ())))));
+        return ComponentCompatApi.literal("[T]").withStyle(ChatFormatting.DARK_PURPLE).withStyle(style -> style.withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, String.format("/execute in %s run tp %d %d %d", entity.getLevelCompat().dimension().location().toString(), (int) entity.getXCompat(), (int) entity.getYCompat(), (int) entity.getZCompat()))).withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, ComponentCompatApi.literal(StringUtil.tr("message.command.here.hover.teleport.location", (int) entity.getX(), (int) entity.getY(), (int) entity.getZ())))));
         //#else
-        //$$ return ComponentCompatApi.literal("[T]").withStyle(ChatFormatting.DARK_PURPLE).withStyle(style -> style.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, String.format("/execute in %s run tp %d %d %d", entity.level.dimension.toString(), (int) entity.getXCompat(), (int) entity.getYCompat(), (int) entity.getZCompat()))).setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, ComponentCompatApi.literal(StringUtil.tr("message.command.here.hover.teleport.location", (int) entity.getX(), (int) entity.getY(), (int) entity.getZ())))));
+        //$$ return ComponentCompatApi.literal("[T]").withStyle(ChatFormatting.DARK_PURPLE).withStyle(style -> style.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, String.format("/execute in %s run tp %d %d %d", entity.getLevelCompat().dimension.toString(), (int) entity.getXCompat(), (int) entity.getYCompat(), (int) entity.getZCompat()))).setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, ComponentCompatApi.literal(StringUtil.tr("message.command.here.hover.teleport.location", (int) entity.getX(), (int) entity.getY(), (int) entity.getZ())))));
         //#endif
     }
 

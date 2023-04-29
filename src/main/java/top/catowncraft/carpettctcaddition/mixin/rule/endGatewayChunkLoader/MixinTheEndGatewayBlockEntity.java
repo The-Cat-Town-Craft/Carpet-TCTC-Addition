@@ -56,7 +56,7 @@ public class MixinTheEndGatewayBlockEntity {
             //#endif
             Optional.ofNullable(CarpetTCTCAdditionExtension.getServer())
                     //#if MC > 11502
-                    .flatMap(server -> Optional.ofNullable(server.getLevel(entity.level.dimension())))
+                    .flatMap(server -> Optional.ofNullable(server.getLevel(entity.getLevelCompat().dimension())))
                     //#else
                     //$$ .flatMap(server -> Optional.ofNullable(server.getLevel(entity.dimension)))
                     //#endif

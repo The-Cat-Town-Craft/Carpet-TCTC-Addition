@@ -152,7 +152,7 @@ public abstract class MixinLivingEntity extends Entity {
                 //#endif
                 serverPlayer.getSoundSource(),
                 serverPlayer.getXCompat(), serverPlayer.getYCompat(), serverPlayer.getZCompat(),
-                1.0F, 1.0F, serverPlayer.level.getRandom().nextLong()
+                1.0F, 1.0F, serverPlayer.getLevelCompat().getRandom().nextLong()
 
         ));
         //#else

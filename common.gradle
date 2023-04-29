@@ -15,8 +15,21 @@ repositories {
     mavenLocal()
 
     maven {
-        name("CurseForge Maven")
+        name("Curse Maven")
         url("https://www.cursemaven.com")
+
+        content {
+            includeGroup("curse.maven")
+        }
+    }
+
+    maven {
+        name("Modrinth Maven")
+        url("https://api.modrinth.com/maven")
+
+        content {
+            includeGroup("maven.modrinth")
+        }
     }
 
     maven {

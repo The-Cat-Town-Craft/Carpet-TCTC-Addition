@@ -47,7 +47,7 @@ public class FreeCameraData {
     public FreeCameraData(@NotNull ServerPlayer serverPlayer, boolean isFreecam) {
         this(serverPlayer.gameMode.getGameModeForPlayer(),
                 //#if MC > 11502
-                serverPlayer.getLevel().dimension(),
+                serverPlayer.getLevelCompat().dimension(),
                 //#else
                 //$$ serverPlayer.dimension,
                 //#endif
