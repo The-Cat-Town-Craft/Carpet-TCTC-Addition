@@ -10,15 +10,15 @@ import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionReference;
 import top.hendrixshen.magiclib.carpet.impl.WrappedSettingManager;
 
 public class StringUtil extends top.hendrixshen.magiclib.util.StringUtil {
+    public static String tr(String node) {
+        WrappedSettingManager settingManager = WrappedSettingManager.get(CarpetTCTCAdditionReference.getModIdentifier());
+        return settingManager.tr(settingManager.getCurrentLanguageCode(),
+                String.format("%s.%s", CarpetTCTCAdditionReference.getModIdentifier(), node));
+    }
+
     public static String tr(String node, Object... objects) {
         WrappedSettingManager settingManager = WrappedSettingManager.get(CarpetTCTCAdditionReference.getModIdentifier());
         return settingManager.tr(settingManager.getCurrentLanguageCode(),
                 String.format("%s.%s", CarpetTCTCAdditionReference.getModIdentifier(), node), objects);
-    }
-
-    public static String original(String node) {
-        WrappedSettingManager settingManager = WrappedSettingManager.get(CarpetTCTCAdditionReference.getModIdentifier());
-        return settingManager.tr(settingManager.getCurrentLanguageCode(),
-                String.format("%s.%s", CarpetTCTCAdditionReference.getModIdentifier(), node));
     }
 }

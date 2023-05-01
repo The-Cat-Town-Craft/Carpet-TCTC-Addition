@@ -58,7 +58,7 @@ public class HereCommand {
         //$$ if (serverPlayer.getLevelCompat().dimension.getType() == DimensionType.OVERWORLD || serverPlayer.getLevelCompat().dimension.getType() == DimensionType.NETHER) {
         //#endif
             MessageUtil.sendServerMessage(CarpetTCTCAdditionExtension.getServer(),
-                    ComponentCompatApi.translatable(StringUtil.original("message.command.here.withTransformed"),
+                    ComponentCompatApi.translatable(StringUtil.tr("message.command.here.withTransformed"),
                             ComponentCompatApi.literal(serverPlayer.getName().getString()).withStyle(ChatFormatting.GRAY),
                             //#if MC > 11502
                             HereCommand.getDimension(serverPlayer.getLevelCompat().dimension()),
@@ -79,7 +79,7 @@ public class HereCommand {
                     ));
         } else {
             MessageUtil.sendServerMessage(CarpetTCTCAdditionExtension.getServer(),
-                    ComponentCompatApi.translatable(StringUtil.original("message.command.here.withoutTransformed"),
+                    ComponentCompatApi.translatable(StringUtil.tr("message.command.here.withoutTransformed"),
                             ComponentCompatApi.literal(serverPlayer.getName().getString()).withStyle(ChatFormatting.GRAY),
                             //#if MC > 11502
                             HereCommand.getDimension(serverPlayer.getLevelCompat().dimension()),
