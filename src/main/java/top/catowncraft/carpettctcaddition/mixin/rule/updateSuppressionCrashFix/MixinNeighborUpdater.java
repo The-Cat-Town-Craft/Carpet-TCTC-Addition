@@ -9,6 +9,7 @@ package top.catowncraft.carpettctcaddition.mixin.rule.updateSuppressionCrashFix;
 import org.spongepowered.asm.mixin.Mixin;
 
 //#if MC > 11802
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -17,10 +18,12 @@ import net.minecraft.world.level.redstone.NeighborUpdater;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionExtension;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
 import top.catowncraft.carpettctcaddition.helper.UpdateSuppressionException;
 import top.catowncraft.carpettctcaddition.util.StringUtil;
+import top.hendrixshen.magiclib.compat.minecraft.api.network.chat.ComponentCompatApi;
 import top.hendrixshen.magiclib.util.MessageUtil;
 //#else
 //$$ import top.hendrixshen.magiclib.compat.preprocess.api.DummyClass;
@@ -38,11 +41,15 @@ public interface MixinNeighborUpdater {
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/CrashReport;forThrowable(Ljava/lang/Throwable;Ljava/lang/String;)Lnet/minecraft/CrashReport;"
-            )
+            ),
+            locals = LocalCapture.CAPTURE_FAILHARD
     )
-    private static void onExecuteUpdate(Level level, BlockState blockState, BlockPos blockPos, Block block, BlockPos blockPos2, boolean bl, CallbackInfo ci) {
+    private static void onExecuteUpdate(Level level, BlockState blockState, BlockPos blockPos, Block block, BlockPos blockPos2, boolean bl, CallbackInfo ci, Throwable throwable) {
          if (CarpetTCTCAdditionSettings.updateSuppressionCrashFix) {
-             MessageUtil.sendServerMessage(CarpetTCTCAdditionExtension.getServer(), StringUtil.tr("message.server.updateSuppression.processed"));
+             if (throwable instanceof StackOverflowError) {
+                 MessageUtil.sendServerMessage(CarpetTCTCAdditionExtension.getServer(), ComponentCompatApi.literal(StringUtil.tr("message.server.updateSuppression.processed")).withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
+             }
+
              throw new UpdateSuppressionException("Update suppression");
          }
     }
