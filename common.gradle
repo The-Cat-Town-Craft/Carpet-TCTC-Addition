@@ -166,6 +166,8 @@ remapJar {
 }
 
 processResources {
+    outputs.upToDateWhen { false }
+
     from("${rootDir}/icon.png") {
         into("assets/${project.mod_id}")
     }
