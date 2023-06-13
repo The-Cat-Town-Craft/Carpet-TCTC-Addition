@@ -17,6 +17,8 @@
 
 **Warning: we use our own SettingManager to manage the rules and you need to manually migrate the default configuration saved in carpet.conf.**
 
+❗Before reporting a problem, be sure to try the latest [beta version](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/releases) to check if the problem still exists.
+
 A [fabric-carpet](https://github.com/gnembon/fabric-carpet) extension mod. It offers some interesting features.
 
 Operation command: `/carpet-tctc-addition`
@@ -283,7 +285,7 @@ Send XaeroMap world information packets to client.
 
 ### Support
 
-Current main development for Minecraft version: 1.19.4
+Current main development for Minecraft version: 1.20
 
 And use `preprocess` to be compatible with all versions.
 
@@ -297,6 +299,7 @@ And use `preprocess` to be compatible with all versions.
 - Minecraft 1.19.2
 - Minecraft 1.19.3
 - Minecraft 1.19.4
+- Minecraft 1.20
 
 ### Mappings
 

@@ -17,6 +17,8 @@
 
 **警告: 自从 2.0 版本开始，我们使用自己的SettingManager来管理规则，您需要手动迁移carpet.conf中保存的默认配置**
 
+❗在报告问题前，请务必尝试最新[测试版](https://github.com/The-Cat-Town-Craft/Carpet-TCTC-Addition/releases)，检查问题是否依然存在。
+
 一个 [fabric-carpet](https://github.com/gnembon/fabric-carpet) 扩展模组。 它提供了一些有趣的特性。
 
 管理命令: `/carpet-tctc-addition`
@@ -283,7 +285,7 @@ vanilla - 原版行为。
 
 ### 支持
 
-当前主开发版本：1.19.4
+当前主开发版本：1.20
 
 并且使用 `预处理` 来兼容各版本。
 
@@ -297,6 +299,7 @@ vanilla - 原版行为。
 - Minecraft 1.19.2
 - Minecraft 1.19.3
 - Minecraft 1.19.4
+- Minecraft 1.20
 
 ### 混淆映射表
 

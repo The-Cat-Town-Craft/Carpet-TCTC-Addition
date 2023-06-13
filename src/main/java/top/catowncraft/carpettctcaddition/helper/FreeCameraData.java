@@ -13,7 +13,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.GameType;
 //#if MC < 16000
-//$$ import net.minecraft.world.level.dimension.DimensionType;
+import net.minecraft.world.level.dimension.DimensionType;
 //#endif
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;

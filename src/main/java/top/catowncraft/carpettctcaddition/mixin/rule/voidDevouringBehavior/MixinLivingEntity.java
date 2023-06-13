@@ -57,7 +57,7 @@ public abstract class MixinLivingEntity extends Entity {
 
     @SuppressWarnings("ConstantConditions")
     @Inject(
-            method = "outOfWorld",
+            method = "onBelowWorld",
             at = @At(
                     value = "HEAD"
             ),

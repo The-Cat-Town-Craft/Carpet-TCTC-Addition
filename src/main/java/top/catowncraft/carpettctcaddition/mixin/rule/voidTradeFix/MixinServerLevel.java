@@ -20,7 +20,7 @@ import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionSettings;
 //#endif
 
 //#if MC > 11605
-@Mixin(targets = "net/minecraft/server/level/ServerLevel$EntityCallbacks")
+@Mixin(targets = "net.minecraft.server.level.ServerLevel$EntityCallbacks")
 //#else
 //$$ @Mixin(ServerLevel.class)
 //#endif
