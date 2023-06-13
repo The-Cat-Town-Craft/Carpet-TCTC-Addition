@@ -33,7 +33,7 @@ public abstract class MixinServerPlayer {
             method = "changeDimension",
             at = @At(
                     value = "INVOKE",
-                    //#if MC >= 11502
+                    //#if MC > 11502
                     target = "Lnet/minecraft/server/level/ServerPlayer;createEndPlatform(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;)V"
                     //#else
                     //$$ target = "Lnet/minecraft/server/level/ServerLevel;setBlockAndUpdate(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z"
