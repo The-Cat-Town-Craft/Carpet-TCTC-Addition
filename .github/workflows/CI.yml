@@ -13,6 +13,8 @@ on:
 
 jobs:
   build:
+    permissions:
+      contents: write
     if: ${{ github.event_name == 'push' && !startsWith(github.event.ref, 'refs/tags/') && contains(github.event.head_commit.message, '[build skip]') == false }}
     strategy:
       matrix:
@@ -84,16 +86,16 @@ jobs:
 
       - name: Publish artifacts to CurseForge, GitHub & Modrinth
         if: contains(github.event.head_commit.message, '[publish skip]') == false && contains(github.event.ref, 'refs/heads/exp') == false
-        uses: Kir-Antipov/mc-publish@v3.2
+        uses: Kir-Antipov/mc-publish@v3.3
         with:
           # General
-          name: ''
+          name: ${{ steps.mod_info.outputs.mod_name }} ${{ steps.mod_info.outputs.mod_version }}.${{ steps.get_commit_count.outputs.commit_count }}
           files: |
-            build/libs/!(*-@(dev|sources|javadoc)).jar
-            build/libs/*-@(dev|sources|javadoc).jar
+            fabricWrapper/build/libs/!(*-@(dev|sources|javadoc)).jar
+            fabricWrapper/build/tmp/submods/META-INF/jars/!(*-@(dev|sources)).jar
           version: ${{ steps.mod_info.outputs.mod_version }}.${{ steps.get_commit_count.outputs.commit_count }}+${{ steps.get_short_sha.outputs.short_sha }}
           version-type: alpha
-          game-version-filter: min | releases
+          game-version-filter: none
           changelog: |
             **This version is automatically released by CI Build**
             
@@ -131,9 +133,9 @@ jobs:
           retry-delay: 10000
           # GitHub
           github-files: |
+            fabricWrapper/build/libs/!(*-@(dev|sources|javadoc)).jar
+            fabricWrapper/build/tmp/submods/META-INF/jars/!(*-@(dev|sources)).jar
             LICENSE
-            build/libs/!(*-@(dev|sources|javadoc)).jar
-            build/libs/*-@(dev|sources|javadoc).jar
           github-generate-changelog: true
           github-name: "[CI#${{ github.run_number }}]${{ steps.mod_info.outputs.mod_name }} ${{ steps.mod_info.outputs.mod_version }}.${{ steps.get_commit_count.outputs.commit_count }}+${{ steps.get_short_sha.outputs.short_sha }}"
           github-prerelease: true
@@ -148,6 +150,8 @@ jobs:
 
   publish:
     if: ${{ github.event_name == 'release' }}
+    permissions:
+      contents: write
     strategy:
       matrix:
         java: [ 17 ]
@@ -216,31 +220,23 @@ jobs:
             fabricWrapper/build/libs/*.jar
             fabricWrapper/build/tmp/submods/META-INF/jars/*.jar
 
-      - name: Upload assets to Github Release
-        uses: softprops/action-gh-release@v1
-        with:
-          files: |
-            LICENSE
-            fabricWrapper/build/libs/*.jar
-            fabricWrapper/build/tmp/submods/META-INF/jars/*.jar
-          tag_name: ${{ github.event.ref }}
-
-      - name: Publish to curseforge
+      - name: Publish artifacts to CurseForge, GitHub & Modrinth
         uses: Kir-Antipov/mc-publish@v3.3
         with:
-          modrinth-id: vbBQ6dVH
-          modrinth-token: ${{ secrets.MODRINTH_API_TOKEN }}
-          curseforge-id: 513524
-          curseforge-token: ${{ secrets.CF_API_TOKEN }}
+          # General
+          name: "${{ steps.mod_info.outputs.mod_name }} ${{ steps.mod_info.outputs.mod_version }}.${{ steps.get_commit_count.outputs.commit_count }}"
           files: |
-            build/libs/!(*-@(dev|sources|javadoc)).jar
-            build/libs/*-@(dev|sources|javadoc).jar
-          name: ''
+            fabricWrapper/build/libs/!(*-@(dev|sources|javadoc)).jar
+            fabricWrapper/build/tmp/submods/META-INF/jars/!(*-@(dev|sources)).jar
           version: ${{ steps.mod_info.outputs.mod_version }}.${{ steps.get_commit_count.outputs.commit_count }}+${{ steps.get_short_sha.outputs.short_sha }}
-          version-type: 'release'
+          version-type: release
+          game-version-filter: none
           changelog: ${{ github.event.release.body }}
-          loaders:
+          dependencies: |
+            carpet(required)
+          loaders: |
             fabric
+            quilt
           game-versions: |
             1.14.4
             1.15.2
@@ -251,7 +247,6 @@ jobs:
             1.19.3
             1.19.4
             1.20.1
-          version-resolver: latest
           java: |
             8
             9
@@ -266,6 +261,18 @@ jobs:
             18
           retry-attempts: 2
           retry-delay: 10000
+          # GitHub
+          github-files: |
+            fabricWrapper/build/libs/!(*-@(dev|sources|javadoc)).jar
+            fabricWrapper/build/tmp/submods/META-INF/jars/!(*-@(dev|sources)).jar
+            LICENSE
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          # Modrinth
+          modrinth-id: vbBQ6dVH
+          modrinth-token: ${{ secrets.MODRINTH_API_TOKEN }}
+          # CurseForge
+          curseforge-id: 513524
+          curseforge-token: ${{ secrets.CF_API_TOKEN }}
 
   pull_request:
     if: ${{ github.event_name == 'pull_request' }}
