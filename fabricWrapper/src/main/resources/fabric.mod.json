@@ -30,7 +30,8 @@
   "environment": "*",
   "depends": {
     "carpet": "*",
-    "magiclib": ">=${magiclib_dependency}"
+    "magiclib": ">=${magiclib_dependency}",
+    "minecraft": ${minecraft_dependency}
   },
   "jars": ${sub_jars}
 }

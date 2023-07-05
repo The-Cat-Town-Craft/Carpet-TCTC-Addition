@@ -82,41 +82,29 @@ jobs:
             fabricWrapper/build/libs/*.jar
             fabricWrapper/build/tmp/submods/META-INF/jars/*.jar
 
-      - name: Create Github Release
-        if: contains(github.event.head_commit.message, '[publish skip]') == false && contains(github.event.ref, 'refs/heads/exp') == false
-        uses: softprops/action-gh-release@v1
-        with:
-          prerelease: true
-          files: |
-            LICENSE
-            fabricWrapper/build/libs/*.jar
-            fabricWrapper/build/tmp/submods/META-INF/jars/*.jar
-          name: "[CI#${{ github.run_number }}]${{ steps.mod_info.outputs.mod_name }} ${{ steps.mod_info.outputs.mod_version }}.${{ steps.get_commit_count.outputs.commit_count }}+${{ steps.get_short_sha.outputs.short_sha }}"
-          tag_name: dev-${{ github.run_number }}
-          target_commitish: ${{ github.event.ref }}
-          generate_release_notes: true
-
-      - name: Publish release to Curseforge & Modrinth
+      - name: Publish artifacts to CurseForge, GitHub & Modrinth
         if: contains(github.event.head_commit.message, '[publish skip]') == false && contains(github.event.ref, 'refs/heads/exp') == false
         uses: Kir-Antipov/mc-publish@v3.2
         with:
-          modrinth-id: vbBQ6dVH
-          modrinth-token: ${{ secrets.MODRINTH_API_TOKEN }}
-          curseforge-id: 513524
-          curseforge-token: ${{ secrets.CF_API_TOKEN }}
-          files-primary: fabricWrapper/build/libs/!(*-@(dev|sources)).jar
-          files-secondary: fabricWrapper/build/tmp/submods/META-INF/jars/!(*-@(dev|sources)).jar
+          # General
           name: ''
+          files: |
+            build/libs/!(*-@(dev|sources|javadoc)).jar
+            build/libs/*-@(dev|sources|javadoc).jar
           version: ${{ steps.mod_info.outputs.mod_version }}.${{ steps.get_commit_count.outputs.commit_count }}+${{ steps.get_short_sha.outputs.short_sha }}
           version-type: alpha
+          game-version-filter: min | releases
           changelog: |
             **This version is automatically released by CI Build**
             
             Latest commit log:
             
             - ${{ github.event.head_commit.message }}
-          loaders:
+          dependencies: |
+            carpet(required)
+          loaders: |
             fabric
+            quilt
           game-versions: |
             1.14.4
             1.15.2
@@ -126,8 +114,7 @@ jobs:
             1.19.2
             1.19.3
             1.19.4
-            1.20
-          version-resolver: latest
+            1.20.1
           java: |
             8
             9
@@ -142,6 +129,22 @@ jobs:
             18
           retry-attempts: 2
           retry-delay: 10000
+          # GitHub
+          github-files: |
+            LICENSE
+            build/libs/!(*-@(dev|sources|javadoc)).jar
+            build/libs/*-@(dev|sources|javadoc).jar
+          github-generate-changelog: true
+          github-name: "[CI#${{ github.run_number }}]${{ steps.mod_info.outputs.mod_name }} ${{ steps.mod_info.outputs.mod_version }}.${{ steps.get_commit_count.outputs.commit_count }}+${{ steps.get_short_sha.outputs.short_sha }}"
+          github-prerelease: true
+          github-tag: dev-${{ github.run_number }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          # Modrinth
+          modrinth-id: vbBQ6dVH
+          modrinth-token: ${{ secrets.MODRINTH_API_TOKEN }}
+          # CurseForge
+          curseforge-id: 513524
+          curseforge-token: ${{ secrets.CF_API_TOKEN }}
 
   publish:
     if: ${{ github.event_name == 'release' }}
@@ -223,14 +226,15 @@ jobs:
           tag_name: ${{ github.event.ref }}
 
       - name: Publish to curseforge
-        uses: Kir-Antipov/mc-publish@v3.2
+        uses: Kir-Antipov/mc-publish@v3.3
         with:
           modrinth-id: vbBQ6dVH
           modrinth-token: ${{ secrets.MODRINTH_API_TOKEN }}
           curseforge-id: 513524
           curseforge-token: ${{ secrets.CF_API_TOKEN }}
-          files-primary: fabricWrapper/build/libs/!(*-@(dev|sources)).jar
-          files-secondary: fabricWrapper/build/tmp/submods/META-INF/jars/!(*-@(dev|sources)).jar
+          files: |
+            build/libs/!(*-@(dev|sources|javadoc)).jar
+            build/libs/*-@(dev|sources|javadoc).jar
           name: ''
           version: ${{ steps.mod_info.outputs.mod_version }}.${{ steps.get_commit_count.outputs.commit_count }}+${{ steps.get_short_sha.outputs.short_sha }}
           version-type: 'release'
@@ -246,7 +250,7 @@ jobs:
             1.19.2
             1.19.3
             1.19.4
-            1.20
+            1.20.1
           version-resolver: latest
           java: |
             8
