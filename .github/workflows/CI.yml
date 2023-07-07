@@ -84,6 +84,20 @@ jobs:
             fabricWrapper/build/libs/*.jar
             fabricWrapper/build/tmp/submods/META-INF/jars/*.jar
 
+      - name: Create Github Release
+        if: contains(github.event.head_commit.message, '[publish skip]') == false && contains(github.event.ref, 'refs/heads/exp') == false
+        uses: softprops/action-gh-release@v1
+        with:
+          prerelease: true
+          files: |
+            LICENSE
+            fabricWrapper/build/libs/*.jar
+            fabricWrapper/build/tmp/submods/META-INF/jars/*.jar
+          name: "[CI#${{ github.run_number }}]${{ steps.mod_info.outputs.mod_name }} ${{ steps.mod_info.outputs.mod_version }}.${{ steps.get_commit_count.outputs.commit_count }}+${{ steps.get_short_sha.outputs.short_sha }}"
+          tag_name: dev-${{ github.run_number }}
+          target_commitish: ${{ github.event.ref }}
+          generate_release_notes: true
+
       - name: Publish artifacts to CurseForge, GitHub & Modrinth
         if: contains(github.event.head_commit.message, '[publish skip]') == false && contains(github.event.ref, 'refs/heads/exp') == false
         uses: Kir-Antipov/mc-publish@v3.3
@@ -92,7 +106,7 @@ jobs:
           name: ${{ steps.mod_info.outputs.mod_name }} ${{ steps.mod_info.outputs.mod_version }}.${{ steps.get_commit_count.outputs.commit_count }}
           files: |
             fabricWrapper/build/libs/!(*-@(dev|sources|javadoc)).jar
-            fabricWrapper/build/tmp/submods/META-INF/jars/!(*-@(dev|sources)).jar
+            fabricWrapper/build/tmp/submods/META-INF/jars/!(*-@(dev|sources|javadoc)).jar
           version: ${{ steps.mod_info.outputs.mod_version }}.${{ steps.get_commit_count.outputs.commit_count }}+${{ steps.get_short_sha.outputs.short_sha }}
           version-type: alpha
           game-version-filter: none
@@ -104,6 +118,7 @@ jobs:
             - ${{ github.event.head_commit.message }}
           dependencies: |
             carpet(required)
+            magiclib(required)
           loaders: |
             fabric
             quilt
@@ -131,16 +146,6 @@ jobs:
             18
           retry-attempts: 2
           retry-delay: 10000
-          # GitHub
-          github-files: |
-            fabricWrapper/build/libs/!(*-@(dev|sources|javadoc)).jar
-            fabricWrapper/build/tmp/submods/META-INF/jars/!(*-@(dev|sources)).jar
-            LICENSE
-          github-generate-changelog: true
-          github-name: "[CI#${{ github.run_number }}]${{ steps.mod_info.outputs.mod_name }} ${{ steps.mod_info.outputs.mod_version }}.${{ steps.get_commit_count.outputs.commit_count }}+${{ steps.get_short_sha.outputs.short_sha }}"
-          github-prerelease: true
-          github-tag: dev-${{ github.run_number }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
           # Modrinth
           modrinth-id: vbBQ6dVH
           modrinth-token: ${{ secrets.MODRINTH_API_TOKEN }}
@@ -224,16 +229,17 @@ jobs:
         uses: Kir-Antipov/mc-publish@v3.3
         with:
           # General
-          name: "${{ steps.mod_info.outputs.mod_name }} ${{ steps.mod_info.outputs.mod_version }}.${{ steps.get_commit_count.outputs.commit_count }}"
+          name: ${{ steps.mod_info.outputs.mod_name }} ${{ steps.mod_info.outputs.mod_version }}.${{ steps.get_commit_count.outputs.commit_count }}
           files: |
             fabricWrapper/build/libs/!(*-@(dev|sources|javadoc)).jar
-            fabricWrapper/build/tmp/submods/META-INF/jars/!(*-@(dev|sources)).jar
+            fabricWrapper/build/tmp/submods/META-INF/jars/!(*-@(dev|sources|javadoc)).jar
           version: ${{ steps.mod_info.outputs.mod_version }}.${{ steps.get_commit_count.outputs.commit_count }}+${{ steps.get_short_sha.outputs.short_sha }}
           version-type: release
           game-version-filter: none
           changelog: ${{ github.event.release.body }}
           dependencies: |
             carpet(required)
+            magiclib(required)
           loaders: |
             fabric
             quilt
@@ -264,7 +270,7 @@ jobs:
           # GitHub
           github-files: |
             fabricWrapper/build/libs/!(*-@(dev|sources|javadoc)).jar
-            fabricWrapper/build/tmp/submods/META-INF/jars/!(*-@(dev|sources)).jar
+            fabricWrapper/build/tmp/submods/META-INF/jars/!(*-@(dev|sources|javadoc)).jar
             LICENSE
           github-token: ${{ secrets.GITHUB_TOKEN }}
           # Modrinth
