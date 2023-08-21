@@ -6,11 +6,10 @@
  */
 package top.catowncraft.carpettctcaddition.util;
 
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.protocol.game.ClientboundCustomPayloadPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
@@ -28,17 +27,12 @@ public class WorldMapUtil {
     public static void voxelMapPacketHandler(MinecraftServer server, ServerPlayer player, ServerGamePacketListenerImpl listener, FriendlyByteBuf buf, PacketSender responseSender) {
         if (!CarpetTCTCAdditionSettings.voxelMapWorldName.equals("#none")) {
             byte[] bytes = CarpetTCTCAdditionSettings.voxelMapWorldName.getBytes(StandardCharsets.UTF_8);
-            ByteBuf byteBuf = Unpooled.buffer();
-            FriendlyByteBuf friendlyByteBuf = new FriendlyByteBuf(byteBuf);
-            friendlyByteBuf.writeByte(0);
-            friendlyByteBuf.writeByte(bytes.length);
-            friendlyByteBuf.writeBytes(bytes);
-            //#if MC > 11802
-            player.connection.send(new ClientboundCustomPayloadPacket(VOXEL_MAP_CHANNEL, friendlyByteBuf));
-            byteBuf.release();
-            //#else
-            //$$ player.connection.send(new ClientboundCustomPayloadPacket(VOXEL_MAP_CHANNEL, friendlyByteBuf), future -> byteBuf.release());
-            //#endif
+            FriendlyByteBuf bufs = PacketByteBufs.create();
+            bufs.writeByte(0);
+            bufs.writeByte(bytes.length);
+            bufs.writeBytes(bytes);
+            responseSender.sendPacket(VOXEL_MAP_CHANNEL, bufs);
+            bufs.release();
         }
     }
 
@@ -47,11 +41,12 @@ public class WorldMapUtil {
             byte[] bytes = CarpetTCTCAdditionSettings.xaeroMapWorldName.getBytes(StandardCharsets.UTF_8);
             CRC32 crc32 = new CRC32();
             crc32.update(bytes, 0, bytes.length);
-            ByteBuf byteBuf = Unpooled.buffer();
-            byteBuf.writeByte(0);
-            byteBuf.writeInt((int) crc32.getValue());
-            player.connection.send(new ClientboundCustomPayloadPacket(XAERO_MINI_MAP_CHANNEL, new FriendlyByteBuf(byteBuf.duplicate())));
-            player.connection.send(new ClientboundCustomPayloadPacket(XAERO_WORLD_MAP_CHANNEL, new FriendlyByteBuf(byteBuf.duplicate())));
+            FriendlyByteBuf buf = PacketByteBufs.create();
+            buf.writeByte(0);
+            buf.writeInt((int) crc32.getValue());
+            ServerPlayNetworking.send(player, XAERO_MINI_MAP_CHANNEL, buf);
+            ServerPlayNetworking.send(player, XAERO_WORLD_MAP_CHANNEL, buf);
+            buf.release();
         }
     }
 }

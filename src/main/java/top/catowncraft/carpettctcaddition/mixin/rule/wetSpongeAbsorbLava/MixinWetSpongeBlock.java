@@ -93,11 +93,19 @@ public class MixinWetSpongeBlock extends Block {
                 BlockState blockState = level.getBlockState(relative);
                 FluidState fluidState = level.getFluidState(relative);
                 if (fluidState.is(FluidTags.LAVA)) {
-                    //#if MC >= 11700
-                    if (blockState.getBlock() instanceof BucketPickup && !((BucketPickup) blockState.getBlock()).pickupBlock(level, relative, blockState).isEmpty()) {
-                    //#else
-                    //$$ if (blockState.getBlock() instanceof BucketPickup && ((BucketPickup) blockState.getBlock()).takeLiquid(level, relative, blockState) != Fluids.EMPTY) {
-                    //#endif
+                    if (blockState.getBlock() instanceof BucketPickup &&
+                            //#if MC > 11605
+                            !((BucketPickup) blockState.getBlock()).pickupBlock(
+                                    //#if MC > 12001
+                                    //$$ null,
+                                    //#endif
+                                    level,
+                                    relative,
+                                    blockState
+                            ).isEmpty()) {
+                            //#else
+                            //$$ ((BucketPickup) blockState.getBlock()).takeLiquid(level, relative, blockState) != Fluids.EMPTY) {
+                            //#endif
                         i++;
 
                         if (tupleB < CarpetTCTCAdditionSettings.wetSpongeAbsorbLavaRange) {

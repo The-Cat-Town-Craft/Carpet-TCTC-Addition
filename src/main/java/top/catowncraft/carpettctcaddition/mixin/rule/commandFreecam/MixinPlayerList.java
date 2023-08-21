@@ -30,11 +30,22 @@ public abstract class MixinPlayerList {
             method = "placeNewPlayer",
             at = @At(
                     value = "INVOKE",
+                    //#if MC > 12001
+                    //$$ target = "Lnet/minecraft/server/network/ServerGamePacketListenerImpl;<init>(Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/network/Connection;Lnet/minecraft/server/level/ServerPlayer;I)V",
+                    //#else
                     target = "Lnet/minecraft/server/network/ServerGamePacketListenerImpl;<init>(Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/network/Connection;Lnet/minecraft/server/level/ServerPlayer;)V",
+                    //#endif
                     shift = At.Shift.AFTER
             )
     )
-    private void onPlaceNewPlayer(Connection connection, ServerPlayer serverPlayer, CallbackInfo ci) {
+    private void onPlaceNewPlayer(
+            Connection connection,
+            ServerPlayer serverPlayer,
+            //#if MC > 12001
+            //$$ int i,
+            //#endif
+            CallbackInfo ci
+    ) {
         if (CarpetTCTCAdditionSettings.freecamRestoreLocation &&
                 this.getServer() instanceof DedicatedServer &&
                 //#if MC > 11605

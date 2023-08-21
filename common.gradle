@@ -33,8 +33,17 @@ repositories {
     }
 
     maven {
-        name("Nyan Maven")
-        url("https://maven.hendrixshen.top")
+        name("Masa Maven")
+        url("https://masa.dy.fi/maven")
+    }
+
+    maven {
+        name("Jitpack Maven")
+        url("https://jitpack.io")
+
+        content {
+            includeGroup("com.github.Nyan-Work")
+        }
     }
 
     mavenCentral()
@@ -52,6 +61,7 @@ dependencies {
     // Dependency
     modImplementation("top.hendrixshen.magiclib:magiclib-${project.minecraft_version.replace(".", "_")}:${project.magiclib_version}") {
         exclude(group: "curse.maven", module: "malilib-303119")
+        exclude(group: "com.github.Nyan-Work", module: "malilib")
     }
 
     // Misc
