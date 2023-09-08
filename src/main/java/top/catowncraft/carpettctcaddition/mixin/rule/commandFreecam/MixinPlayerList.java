@@ -22,6 +22,10 @@ import top.catowncraft.carpettctcaddition.util.FreeCameraUtil;
 
 import java.util.Optional;
 
+//#if MC > 12001
+//$$ import net.minecraft.server.network.CommonListenerCookie;
+//#endif
+
 @Mixin(PlayerList.class)
 public abstract class MixinPlayerList {
     @Shadow public abstract MinecraftServer getServer();
@@ -31,7 +35,7 @@ public abstract class MixinPlayerList {
             at = @At(
                     value = "INVOKE",
                     //#if MC > 12001
-                    //$$ target = "Lnet/minecraft/server/network/ServerGamePacketListenerImpl;<init>(Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/network/Connection;Lnet/minecraft/server/level/ServerPlayer;I)V",
+                    //$$ target = "Lnet/minecraft/server/network/ServerGamePacketListenerImpl;<init>(Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/network/Connection;Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/server/network/CommonListenerCookie;)V",
                     //#else
                     target = "Lnet/minecraft/server/network/ServerGamePacketListenerImpl;<init>(Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/network/Connection;Lnet/minecraft/server/level/ServerPlayer;)V",
                     //#endif
@@ -42,22 +46,24 @@ public abstract class MixinPlayerList {
             Connection connection,
             ServerPlayer serverPlayer,
             //#if MC > 12001
-            //$$ int i,
+            //$$ CommonListenerCookie commonListenerCookie,
             //#endif
             CallbackInfo ci
     ) {
         if (CarpetTCTCAdditionSettings.freecamRestoreLocation &&
                 this.getServer() instanceof DedicatedServer &&
                 //#if MC > 11605
-                this.getServer().getForcedGameType() != null) {
+                this.getServer().getForcedGameType() != null
                 //#else
-                //$$ this.getServer().getForceGameType()) {
+                //$$ this.getServer().getForceGameType()
                 //#endif
-            Optional.ofNullable(FreeCameraUtil.get(serverPlayer.getUUID())).ifPresent(data -> {
-                if (data.isFreecam) {
-                    FreecamCommand.exitFreecam(serverPlayer, data, true);
-                }
-            });
+        ) {
+            Optional.ofNullable(FreeCameraUtil.get(serverPlayer.getUUID()))
+                    .ifPresent(data -> {
+                        if (data.isFreecam) {
+                            FreecamCommand.exitFreecam(serverPlayer, data, true);
+                        }
+                    });
         }
     }
 }
