@@ -109,7 +109,7 @@ jobs:
             fabricWrapper/build/tmp/submods/META-INF/jars/!(*-@(dev|sources|javadoc)).jar
           version: ${{ steps.mod_info.outputs.mod_version }}.${{ steps.get_commit_count.outputs.commit_count }}+${{ steps.get_short_sha.outputs.short_sha }}
           version-type: alpha
-          game-version-filter: none
+          game-version-filter: any
           changelog: |
             **This version is automatically released by CI Build**
             
@@ -132,6 +132,7 @@ jobs:
             1.19.3
             1.19.4
             1.20.1
+            1.20.2
           java: |
             8
             9
@@ -235,7 +236,7 @@ jobs:
             fabricWrapper/build/tmp/submods/META-INF/jars/!(*-@(dev|sources|javadoc)).jar
           version: ${{ steps.mod_info.outputs.mod_version }}.${{ steps.get_commit_count.outputs.commit_count }}+${{ steps.get_short_sha.outputs.short_sha }}
           version-type: release
-          game-version-filter: none
+          game-version-filter: any
           changelog: ${{ github.event.release.body }}
           dependencies: |
             carpet(required)
@@ -253,6 +254,7 @@ jobs:
             1.19.3
             1.19.4
             1.20.1
+            1.20.2
           java: |
             8
             9

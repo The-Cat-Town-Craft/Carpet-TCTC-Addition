@@ -48,8 +48,13 @@ public class MixinDispenseItemBehavior {
     )
     private void onExecute(BlockSource blockSource, ItemStack itemStack, CallbackInfoReturnable<ItemStack> cir) {
         if (CarpetTCTCAdditionSettings.dispenserCollectExperience) {
+            //#if MC > 12001
+            //$$ BlockPos blockPos = blockSource.pos().relative(blockSource.state().getValue(DispenserBlock.FACING));
+            //$$ List<ServerPlayer> list = blockSource.level().getEntitiesOfClass(ServerPlayer.class, new AABB(blockPos), EntitySelector.NO_SPECTATORS);
+            //#else
             BlockPos blockPos = blockSource.getPos().relative(blockSource.getBlockState().getValue(DispenserBlock.FACING));
             List<ServerPlayer> list = blockSource.getLevel().getEntitiesOfClass(ServerPlayer.class, new AABB(blockPos), EntitySelector.NO_SPECTATORS);
+            //#endif
 
             if (list.isEmpty()) {
                 return;
