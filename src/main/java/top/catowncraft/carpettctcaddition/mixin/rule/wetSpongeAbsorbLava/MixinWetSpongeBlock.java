@@ -97,7 +97,7 @@ public class MixinWetSpongeBlock extends Block {
                             //#if MC > 11605
                             !((BucketPickup) blockState.getBlock()).pickupBlock(
                                     //#if MC > 12001
-                                    //$$ null,
+                                    null,
                                     //#endif
                                     level,
                                     relative,

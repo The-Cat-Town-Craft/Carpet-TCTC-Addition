@@ -23,7 +23,7 @@ import top.catowncraft.carpettctcaddition.util.FreeCameraUtil;
 import java.util.Optional;
 
 //#if MC > 12001
-//$$ import net.minecraft.server.network.CommonListenerCookie;
+import net.minecraft.server.network.CommonListenerCookie;
 //#endif
 
 @Mixin(PlayerList.class)
@@ -35,9 +35,9 @@ public abstract class MixinPlayerList {
             at = @At(
                     value = "INVOKE",
                     //#if MC > 12001
-                    //$$ target = "Lnet/minecraft/server/network/ServerGamePacketListenerImpl;<init>(Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/network/Connection;Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/server/network/CommonListenerCookie;)V",
+                    target = "Lnet/minecraft/server/network/ServerGamePacketListenerImpl;<init>(Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/network/Connection;Lnet/minecraft/server/level/ServerPlayer;Lnet/minecraft/server/network/CommonListenerCookie;)V",
                     //#else
-                    target = "Lnet/minecraft/server/network/ServerGamePacketListenerImpl;<init>(Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/network/Connection;Lnet/minecraft/server/level/ServerPlayer;)V",
+                    //$$ target = "Lnet/minecraft/server/network/ServerGamePacketListenerImpl;<init>(Lnet/minecraft/server/MinecraftServer;Lnet/minecraft/network/Connection;Lnet/minecraft/server/level/ServerPlayer;)V",
                     //#endif
                     shift = At.Shift.AFTER
             )
@@ -46,7 +46,7 @@ public abstract class MixinPlayerList {
             Connection connection,
             ServerPlayer serverPlayer,
             //#if MC > 12001
-            //$$ CommonListenerCookie commonListenerCookie,
+            CommonListenerCookie commonListenerCookie,
             //#endif
             CallbackInfo ci
     ) {
