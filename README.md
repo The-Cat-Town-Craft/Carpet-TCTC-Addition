@@ -301,6 +301,7 @@ And use `preprocess` to be compatible with all versions.
 - Minecraft 1.19.4
 - Minecraft 1.20.1 (Ending support soon)
 - Minecraft 1.20.2
+- Minecraft 1.20.4
 
 ### Mappings
 

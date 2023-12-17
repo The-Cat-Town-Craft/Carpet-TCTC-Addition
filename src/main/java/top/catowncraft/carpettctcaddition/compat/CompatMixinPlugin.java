@@ -7,7 +7,6 @@
 package top.catowncraft.carpettctcaddition.compat;
 
 import com.google.common.collect.Lists;
-import net.fabricmc.tinyremapper.IMappingProvider.Member;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.*;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
@@ -15,6 +14,7 @@ import org.spongepowered.asm.mixin.transformer.meta.MixinMerged;
 import org.spongepowered.asm.util.Annotations;
 import top.catowncraft.carpettctcaddition.CarpetTCTCAdditionMixinPlugin;
 import top.catowncraft.carpettctcaddition.util.RemappingUtil;
+import top.catowncraft.carpettctcaddition.util.mixin.Member;
 import top.catowncraft.carpettctcaddition.util.mixin.MixinType;
 import top.catowncraft.carpettctcaddition.util.mixin.annotation.MagicInterruption;
 import top.catowncraft.carpettctcaddition.util.mixin.annotation.MagicAttack;

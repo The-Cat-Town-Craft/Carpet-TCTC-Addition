@@ -8,9 +8,9 @@ package top.catowncraft.carpettctcaddition.util;
 
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.MappingResolver;
-import net.fabricmc.tinyremapper.IMappingProvider.Member;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+import top.catowncraft.carpettctcaddition.util.mixin.Member;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
